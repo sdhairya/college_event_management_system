@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Color(0xFF1D2A3A)),
                   )),
               Container(
-                  width: kIsWeb ? 800 : double.infinity,
+                  width: kIsWeb ? 600 : double.infinity,
                   // constraints: BoxConstraints(maxWidth: 1000),
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(
@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           )),
                       Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 70, vertical: 10),
+                              horizontal: 70, vertical: 5),
                           child: Container(
                             alignment: Alignment.center,
                             padding: EdgeInsets.all(3),
