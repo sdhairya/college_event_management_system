@@ -195,20 +195,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                 style: TextStyle(
                                     fontSize: 20.0, color: Colors.white),
                               ),
-                              onPressed: () {},
+                                onPressed: () async{
+                                  User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
+                                  print(user);
+                                  if(user != null)
+                                  {
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> dashboardScreen()));
+                                  }
+                                },
                             ),
                           )),
                       Align(
                           // alignment: Alignment(0, 0.5),
                           child: TextButton(
-                        onPressed: () async{
-                          User? user = await loginUsingEmailPassword(email: _emailController.text, password: _passwordController.text, context: context);
-                          print(user);
-                          if(user != null)
-                            {
-                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> dashboardScreen()));
-                            }
-                        },
+                        onPressed: () {},
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -409,3 +409,5 @@ class _LoginScreenState extends State<LoginScreen> {
 //     );
 //   }
 // }
+
+
