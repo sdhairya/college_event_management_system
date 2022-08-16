@@ -1,3 +1,4 @@
+import 'package:college_event_management/size_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -34,6 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   bool _isobscure = true;
 
+
+
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -42,9 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    var screensize=MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
+
         children: <Widget>[
 
 
@@ -53,10 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Column(
             children: [
               Align(alignment: Alignment(0, 0)),
-
-
               Container(
-
+                  height: getHeight(50),
+                  width: getWidth(kIsWeb ? 100 : double.infinity),
                   margin: EdgeInsets.only(
                       left: 20, top: MediaQuery.of(context).size.height * 0.12),
                   child: const Text(
@@ -68,7 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Color(0xFF1D2A3A)),
                   )),
               Container(
-                  width: kIsWeb ? 600 : double.infinity,
+                height: getHeight(555),
+                  width: getWidth(kIsWeb ? 100 : double.infinity),
+                  // width: kIsWeb ? 600 : double.infinity,
                   // constraints: BoxConstraints(maxWidth: 1000),
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(
@@ -88,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           hintText: 'Enter Phone Number',
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       const Text('    Password\n',
@@ -113,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Align(
                           alignment: Alignment(1, 0),
+
                           child: TextButton(
                             onPressed: () {},
                             child: const Text(
@@ -121,6 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   fontSize: 15, color: Color(0xFF1D2A3A)),
                             ),
                           )),
+                      const SizedBox(
+                        height: 30,
+                      ),
                       Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 70, vertical: 5),
