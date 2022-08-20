@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +43,16 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyBZ1C4-OlfZ9es8wI11n67Pfn6-2jO3_Sk',
+    appId: '1:218216942084:web:8177f1e389af6825edc351',
+    messagingSenderId: '218216942084',
+    projectId: 'collegeevent-management-system',
+    authDomain: 'collegeevent-management-system.firebaseapp.com',
+    storageBucket: 'collegeevent-management-system.appspot.com',
+    measurementId: 'G-4YKJ8CEXRH',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyA0_JPXdOlPWpTe-GQQS4c3gvn4r_4c21o',
     appId: '1:218216942084:android:464598a87da25bd4edc351',
@@ -65,5 +69,15 @@ class DefaultFirebaseOptions {
     storageBucket: 'collegeevent-management-system.appspot.com',
     iosClientId: '218216942084-4mv7o4lhari0ili82netpgivfa9864lf.apps.googleusercontent.com',
     iosBundleId: 'com.example.collegeEventManagement',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAn3oMLbrDdgGdB8zSMewWYp60JLXD2MhU',
+    appId: '1:218216942084:ios:132d70e0eebf235eedc351',
+    messagingSenderId: '218216942084',
+    projectId: 'collegeevent-management-system',
+    storageBucket: 'collegeevent-management-system.appspot.com',
+    iosClientId: '218216942084-g6abqna5ult931ub55r397pco3os6pg6.apps.googleusercontent.com',
+    iosBundleId: 'com.example.collegeEventManagementSystem',
   );
 }

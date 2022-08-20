@@ -7,7 +7,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'dashboardScreen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyBZ1C4-OlfZ9es8wI11n67Pfn6-2jO3_Sk",
+      appId: "1:218216942084:web:8177f1e389af6825edc351",
+        messagingSenderId: "218216942084",
+      projectId: "collegeevent-management-system"
+    ),
+  );
   runApp(const MyApp());
 }
 
