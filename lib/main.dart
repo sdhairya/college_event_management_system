@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'dashboardScreen.dart';
+import 'registrtion.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -245,7 +246,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         Align(
                             // alignment: Alignment(0, 0.5),
                             child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        registration()));
+                          },
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

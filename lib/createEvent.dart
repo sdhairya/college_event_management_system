@@ -59,7 +59,6 @@ class _createEventState extends State<createEvent> {
                         height: 10,
                       ),
                       TextField(
-                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
@@ -79,7 +78,7 @@ class _createEventState extends State<createEvent> {
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Email',
+                          hintText: 'Enter Date',
                         ),
                         keyboardType: TextInputType.emailAddress,
                       ),
