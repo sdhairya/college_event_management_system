@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -152,58 +154,9 @@ class _registrationState extends State<registration> {
                           ),
                           Text("I read and agree with"),
                           TextButton(
-                              onPressed: () => showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      title: const Center(
-                                        child: Text(
-                                          "Terms & Conditions",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Color(0xFF1D2A3A),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      content: const SingleChildScrollView(
-                                        child: Text("1. Acknowledgment\n"
-                                            "These are the Terms and Conditions governing the use of this Service and the agreement that operates"
-                                            "between You and the Company. These Terms and Conditions set out the rights and obligations of all users"
-                                            "regarding the use of the Service.\n\n"
-                                            "2. User Accounts\n"
-                                            "When You create an account with Us, You must provide Us information that is accurate, complete, and"
-                                            "current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate"
-                                            "termination of Your account on Our Service\n\n"
-                                            "3. Termination\n"
-                                            "We may terminate or suspend Your Account immediately, without prior notice or liability, for any reason"
-                                            "whatsoever, including without limitation if You breach these Terms and Conditions.\n\n"
-                                            "4. Payments\n"
-                                            "Payment can be made through various payment methods we have available, such as Visa, MasterCard,"
-                                            "Affinity Card, American Express cards or online payment methods (PayPal, for example)\n\n"
-                                            "5. Content\n"
-                                            "Our Service allows You to post Content. You are responsible for the Content that You post to the Service,"
-                                            "including its legality, reliability, and appropriateness.\n\n"),
-                                      ),
-                                      actions: <Widget>[
-                                        ElevatedButton(
-                                          onPressed: Navigator.of(context).pop,
-                                          child: const Text(
-                                            'Ok',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          style: ElevatedButton.styleFrom(
-                                            primary: Color(0xFF1D2A3A),
-                                            onSurface: Color(0xFF1D2A3A),
-                                            padding: EdgeInsets.all(1),
-                                            textStyle: TextStyle(fontSize: 20),
-                                            shape: StadiumBorder(),
-                                            enableFeedback: true,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                              onPressed: (){
+                                terms();
+                              },
                               child: const Text(
                                 "Terms & Conditions",
                                 style: TextStyle(
@@ -388,5 +341,62 @@ class _registrationState extends State<registration> {
                     child: Text('Ok'))
               ],
             ));
+  }
+
+  void terms() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+
+        title: const Center(
+          child: Text(
+            "Terms & Conditions",
+            style: TextStyle(
+              fontSize: 15,
+              color: Color(0xFF1D2A3A),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        content: const SingleChildScrollView(
+          child: Text("1. Acknowledgment\n"
+              "These are the Terms and Conditions governing the use of this Service and the agreement that operates"
+              "between You and the Company. These Terms and Conditions set out the rights and obligations of all users"
+              "regarding the use of the Service.\n\n"
+              "2. User Accounts\n"
+              "When You create an account with Us, You must provide Us information that is accurate, complete, and"
+              "current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate"
+              "termination of Your account on Our Service\n\n"
+              "3. Termination\n"
+              "We may terminate or suspend Your Account immediately, without prior notice or liability, for any reason"
+              "whatsoever, including without limitation if You breach these Terms and Conditions.\n\n"
+              "4. Payments\n"
+              "Payment can be made through various payment methods we have available, such as Visa, MasterCard,"
+              "Affinity Card, American Express cards or online payment methods (PayPal, for example)\n\n"
+              "5. Content\n"
+              "Our Service allows You to post Content. You are responsible for the Content that You post to the Service,"
+              "including its legality, reliability, and appropriateness.\n\n"),
+        ),
+        actions: <Widget>[
+          ElevatedButton(
+            onPressed: Navigator.of(context).pop,
+            child: const Text(
+              'Ok',
+              style:
+              TextStyle(color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xFF1D2A3A),
+              onSurface: Color(0xFF1D2A3A),
+              padding: EdgeInsets.all(1),
+              textStyle: TextStyle(fontSize: 20),
+              shape: StadiumBorder(),
+              enableFeedback: true,
+            ),
+          )
+        ],
+      ),
+
+    );
   }
 }
