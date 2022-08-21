@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'dashboardScreen.dart';
 import 'registrtion.dart';
+import 'forgotPassword.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -182,7 +183,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         Align(
                             alignment: Alignment(1, 0),
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                     forgotPassword()));
+                              },
                               child: const Text(
                                 'Forgot Password?',
                                 style: TextStyle(
