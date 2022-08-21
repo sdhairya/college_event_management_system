@@ -165,15 +165,24 @@ class _registrationState extends State<registration> {
                                           ),
                                         ),
                                       ),
-                                      content: Container(
-                                        child: const Text("1. One\n\n"
-                                            "2. Two\n\n"
-                                            "3. Three \n\n"
-                                            "4. Four \n\n"
-                                            "5. Five\n\n"
-                                            "6. Six\n\n"
-                                            "7. Seven \n\n"
-                                            "8. Eight\n\n"),
+                                      content: const SingleChildScrollView(
+                                        child: Text("1. Acknowledgment\n"
+                                            "These are the Terms and Conditions governing the use of this Service and the agreement that operates"
+                                            "between You and the Company. These Terms and Conditions set out the rights and obligations of all users"
+                                            "regarding the use of the Service.\n\n"
+                                            "2. User Accounts\n"
+                                            "When You create an account with Us, You must provide Us information that is accurate, complete, and"
+                                            "current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate"
+                                            "termination of Your account on Our Service\n\n"
+                                            "3. Termination\n"
+                                            "We may terminate or suspend Your Account immediately, without prior notice or liability, for any reason"
+                                            "whatsoever, including without limitation if You breach these Terms and Conditions.\n\n"
+                                            "4. Payments\n"
+                                            "Payment can be made through various payment methods we have available, such as Visa, MasterCard,"
+                                            "Affinity Card, American Express cards or online payment methods (PayPal, for example)\n\n"
+                                            "5. Content\n"
+                                            "Our Service allows You to post Content. You are responsible for the Content that You post to the Service,"
+                                            "including its legality, reliability, and appropriateness.\n\n"),
                                       ),
                                       actions: <Widget>[
                                         ElevatedButton(
