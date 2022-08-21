@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:college_event_management/size_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,6 +19,7 @@ class registration extends StatefulWidget {
 class _registrationState extends State<registration> {
   bool _isobscure = true;
   bool isLoading = false;
+  bool isChecked = false;
   TextEditingController _signUpEmailController = TextEditingController();
   TextEditingController _signUpPasswordController = TextEditingController();
   TextEditingController _signUpConfrimPasswordController =
@@ -137,6 +140,71 @@ class _registrationState extends State<registration> {
                         ),
                         keyboardType: TextInputType.number,
                       ),
+                      Row(
+                        children: <Widget>[
+                          Checkbox(
+                            value: this.isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                this.isChecked = value!;
+                              });
+                            },
+                          ),
+                          Text("I read and agree with"),
+                          TextButton(
+                              onPressed: () => showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Center(
+                                        child: Text(
+                                          "Terms & Conditions",
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xFF1D2A3A),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      content: Container(
+                                        child: const Text("1. One\n\n"
+                                            "2. Two\n\n"
+                                            "3. Three \n\n"
+                                            "4. Four \n\n"
+                                            "5. Five\n\n"
+                                            "6. Six\n\n"
+                                            "7. Seven \n\n"
+                                            "8. Eight\n\n"),
+                                      ),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                          onPressed: Navigator.of(context).pop,
+                                          child: const Text(
+                                            'Ok',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Color(0xFF1D2A3A),
+                                            onSurface: Color(0xFF1D2A3A),
+                                            padding: EdgeInsets.all(1),
+                                            textStyle: TextStyle(fontSize: 20),
+                                            shape: StadiumBorder(),
+                                            enableFeedback: true,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                              child: const Text(
+                                "Terms & Conditions",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xFF1D2A3A),
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline),
+                              ))
+                        ],
+                      ),
                       const SizedBox(
                         height: 30,
                       ),
@@ -147,7 +215,8 @@ class _registrationState extends State<registration> {
                             alignment: Alignment.center,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Color(0xFF1D2A3A),
+                                
+                                primary: isChecked ? Color(0xFF1D2A3A) : Color(0xFFFF7F7F7),
                                 onSurface: Color(0xFF1D2A3A),
                                 padding: EdgeInsets.all(3),
                                 textStyle: TextStyle(fontSize: 20),
@@ -161,7 +230,8 @@ class _registrationState extends State<registration> {
                                       backgroundColor: Colors.transparent,
                                     )
                                   : const Text('Register'),
-                              onPressed: () async {
+                              onPressed: isChecked ? ()
+                              async {
                                 if (isLoading) return;
 
                                 if (_signUpEmailController.text.isNotEmpty) {
@@ -212,7 +282,7 @@ class _registrationState extends State<registration> {
                                 //       fontSize: 16.0);
                                 //   setState(() => isLoading = false);
                                 // }
-                              },
+                              } : null,
                             ),
                           )),
                     ],
@@ -253,7 +323,6 @@ class _registrationState extends State<registration> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _signUpEmailController.text,
           password: _signUpPasswordController.text);
-
 
       await FirebaseFirestore.instance
           .collection("users")
