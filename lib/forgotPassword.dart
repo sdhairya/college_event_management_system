@@ -40,13 +40,25 @@ class _forgotPasswordState extends State<forgotPassword> {
                   width: getWidth(kIsWeb ? 100 : double.infinity),
                   margin: EdgeInsets.only(
                       left: 20, top: MediaQuery.of(context).size.height * 0.12),
-                  child: const Text(
-                    'Forgot Password',
-                    style: TextStyle(
-                        fontSize: 40,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF1D2A3A)),
+
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                          padding: EdgeInsets.only(bottom: 3,right: 8),
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          icon: Icon(Icons.arrow_back_ios_new_rounded,size: 30,)),
+
+                      Text('Forgot Password ',
+                        style: TextStyle(
+                            fontSize: 33,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF1D2A3A)),)
+                    ],
                   ),
                 ),
                 Container(
@@ -126,35 +138,7 @@ class _forgotPasswordState extends State<forgotPassword> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 70, vertical: 5),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: Color(0x00000000),
-                                onSurface: Color(0x00000000),
-                                padding: EdgeInsets.all(3),
-                                textStyle: TextStyle(fontSize: 20),
-                                minimumSize: Size.fromHeight(50),
-                                shape: StadiumBorder(),
-                                enableFeedback: true,
-                              ),
-                              child: isLoading
-                                  ? const CircularProgressIndicator(
-                                      color: Colors.black,
-                                      backgroundColor: Colors.transparent,
-                                    )
-                                  : const Text('Back to login'),
-                              onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => MyApp()));
 
-                              },
-                            ),
-                          )),
                     ],
                   ),
                 ),

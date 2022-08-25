@@ -1,4 +1,6 @@
+import 'package:college_event_management/dashboardScreen.dart';
 import 'package:college_event_management/size_config.dart';
+import 'package:college_event_management/textfield_file.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -28,15 +30,30 @@ class _createEventState extends State<createEvent> {
                 Container(
                   height: getHeight(50),
                   width: getWidth(kIsWeb ? 100 : double.infinity),
-                  margin: EdgeInsets.only(left: 20,
-                  top: MediaQuery.of(context).size.height*0.12),
-                  child: const Text('Create Event',
-                  style: TextStyle(
-                      fontSize: 40,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF1D2A3A)),),
+                  margin: EdgeInsets.only(
+                      left: 20, top: MediaQuery.of(context).size.height * 0.12),
+
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                          padding: EdgeInsets.only(bottom: 3,right: 8),
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => dashboardScreen()));
+                          },
+                          icon: Icon(Icons.arrow_back_ios_new_rounded,size: 30,)),
+
+                      Text('Create Event ',
+                        style: TextStyle(
+                            fontSize: 35,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF1D2A3A)),)
+                    ],
+                  ),
                 ),
+
 
                 Container(
                   // height: getHeight(555),
@@ -58,13 +75,7 @@ class _createEventState extends State<createEvent> {
                       const SizedBox(
                         height: 10,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Event Name',
-                        ),
-                      ),
+                    const textfield_file(hint: "Enter Event Name", inputtype: TextInputType.text),
                       const SizedBox(
                         height: 30,
                       ),
@@ -74,14 +85,7 @@ class _createEventState extends State<createEvent> {
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Date',
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
+                      const textfield_file(hint: "Enter Date",inputtype: TextInputType.emailAddress),
                       const SizedBox(
                         height: 30,
                       ),
@@ -92,14 +96,7 @@ class _createEventState extends State<createEvent> {
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Event Location',
-                        ),
-                        keyboardType: TextInputType.text,
-                      ),
+                      const textfield_file(hint: "Enter Event Location",inputtype: TextInputType.text),
 
                       const SizedBox(
                         height: 30,
@@ -111,14 +108,7 @@ class _createEventState extends State<createEvent> {
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Event Charges',
-                        ),
-                        keyboardType: TextInputType.number,
-                      ),
+                      const textfield_file(hint: "Enter Event Charges",inputtype: TextInputType.number),
 
                       const SizedBox(
                         height: 30,
@@ -130,14 +120,8 @@ class _createEventState extends State<createEvent> {
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Event Description',
-                        ),
-                        keyboardType: TextInputType.multiline,
-                      ),
+                      const textfield_file(hint: "Enter Event Description",inputtype: TextInputType.multiline),
+
 
                       const SizedBox(
                         height: 30,

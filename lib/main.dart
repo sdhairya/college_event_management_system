@@ -148,6 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Text('    Phone Email\n',
                             style: TextStyle(
                                 fontSize: 16, color: Color(0xFF1D2A3A))),
+
                         TextField(
                           keyboardType: TextInputType.emailAddress,
                           controller: _emailController,

@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:ui';
 
+import 'package:college_event_management/emailVerification.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,8 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dashboardScreen.dart';
 import 'main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' as http;
 
 class registration extends StatefulWidget {
   const registration({Key? key}) : super(key: key);
@@ -25,7 +29,7 @@ class _registrationState extends State<registration> {
   TextEditingController _signUpEmailController = TextEditingController();
   TextEditingController _signUpPasswordController = TextEditingController();
   TextEditingController _signUpConfrimPasswordController =
-      TextEditingController();
+  TextEditingController();
   TextEditingController _signUpNameController = TextEditingController();
 
   @override
@@ -45,14 +49,32 @@ class _registrationState extends State<registration> {
                   height: getHeight(50),
                   width: getWidth(kIsWeb ? 100 : double.infinity),
                   margin: EdgeInsets.only(
-                      left: 20, top: MediaQuery.of(context).size.height * 0.12),
-                  child: const Text(
-                    'Register',
-                    style: TextStyle(
-                        fontSize: 40,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF1D2A3A)),
+                      left: 20, top: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.12),
+                  child: Row(
+                    children: <Widget>[
+                      IconButton(
+                          padding: EdgeInsets.only(bottom: 3, right: 8),
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
+                          icon: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            size: 30,
+                          )),
+                      Text(
+                        'Register ',
+                        style: TextStyle(
+                            fontSize: 35,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF1D2A3A)),
+                      )
+                    ],
                   ),
                 ),
                 Container(
@@ -64,7 +86,10 @@ class _registrationState extends State<registration> {
                   margin: EdgeInsets.only(
                       left: 20,
                       right: 20,
-                      top: MediaQuery.of(context).size.height * 0.06),
+                      top: MediaQuery
+                          .of(context)
+                          .size
+                          .height * 0.06),
 
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +179,7 @@ class _registrationState extends State<registration> {
                           ),
                           Text("I read and agree with"),
                           TextButton(
-                              onPressed: (){
+                              onPressed: () {
                                 terms();
                               },
                               child: const Text(
@@ -177,8 +202,9 @@ class _registrationState extends State<registration> {
                             alignment: Alignment.center,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                
-                                primary: isChecked ? Color(0xFF1D2A3A) : Color(0xFFFF7F7F7),
+                                primary: isChecked
+                                    ? Color(0xFF1D2A3A)
+                                    : Color(0xFFFF7F7F7),
                                 onSurface: Color(0xFF1D2A3A),
                                 padding: EdgeInsets.all(3),
                                 textStyle: TextStyle(fontSize: 20),
@@ -188,21 +214,25 @@ class _registrationState extends State<registration> {
                               ),
                               child: isLoading
                                   ? const CircularProgressIndicator(
-                                      color: Colors.white,
-                                      backgroundColor: Colors.transparent,
-                                    )
+                                color: Colors.white,
+                                backgroundColor: Colors.transparent,
+                              )
                                   : const Text('Register'),
-                              onPressed: isChecked ? ()
-                              async {
+                              onPressed: isChecked
+                                  ? () async {
                                 if (isLoading) return;
 
-                                if (_signUpEmailController.text.isNotEmpty) {
+                                if (_signUpEmailController
+                                    .text.isNotEmpty) {
                                   if (_signUpPasswordController.text ==
-                                      _signUpConfrimPasswordController.text) {
+                                      _signUpConfrimPasswordController
+                                          .text) {
                                     signUp();
+
                                   } else {
                                     Fluttertoast.showToast(
-                                        msg: "Confirm password don't match!!",
+                                        msg:
+                                        "Confirm password don't match!!",
                                         toastLength: Toast.LENGTH_SHORT,
                                         gravity: ToastGravity.BOTTOM,
                                         timeInSecForIosWeb: 1,
@@ -222,29 +252,8 @@ class _registrationState extends State<registration> {
                                       fontSize: 16.0);
                                   setState(() => isLoading = false);
                                 }
-                                // User? user = await loginUsingEmailPassword(
-                                //     email: _emailController.text,
-                                //     password: _passwordController.text,
-                                //     context: context);
-                                // print(user);
-                                // if (user != null) {
-                                //   setState(() => isLoading = false);
-                                //   Navigator.of(context).pushReplacement(
-                                //       MaterialPageRoute(
-                                //           builder: (context) =>
-                                //               dashboardScreen()));
-                                // } else {
-                                //   Fluttertoast.showToast(
-                                //       msg: "Enter Valid Email and Password",
-                                //       toastLength: Toast.LENGTH_SHORT,
-                                //       gravity: ToastGravity.BOTTOM,
-                                //       timeInSecForIosWeb: 1,
-                                //       backgroundColor: Colors.red,
-                                //       textColor: Colors.white,
-                                //       fontSize: 16.0);
-                                //   setState(() => isLoading = false);
-                                // }
-                              } : null,
+                              }
+                                  : null,
                             ),
                           )),
                     ],
@@ -252,7 +261,10 @@ class _registrationState extends State<registration> {
                 ),
                 Padding(
                     padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom)),
+                        bottom: MediaQuery
+                            .of(context)
+                            .viewInsets
+                            .bottom)),
               ],
             )
           ],
@@ -262,14 +274,18 @@ class _registrationState extends State<registration> {
   }
 
   String? _requiredValidator(String? text) {
-    if (text == null || text.trim().isEmpty) {
+    if (text == null || text
+        .trim()
+        .isEmpty) {
       return "This feild is required";
     }
     return null;
   }
 
   String? _confirmPasswordValidator(String? confirmPasswordText) {
-    if (confirmPasswordText == null || confirmPasswordText.trim().isEmpty) {
+    if (confirmPasswordText == null || confirmPasswordText
+        .trim()
+        .isEmpty) {
       return "This feild is required";
     }
 
@@ -282,24 +298,21 @@ class _registrationState extends State<registration> {
   Future signUp() async {
     setState(() => isLoading = true);
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
           email: _signUpEmailController.text,
           password: _signUpPasswordController.text);
 
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(FirebaseAuth.instance.currentUser?.uid)
-          .set({
-        'uid': FirebaseAuth.instance.currentUser?.uid,
-        'name': _signUpNameController.text,
-      });
-      setState(() => isLoading = false);
-      // await FirebaseFirestore.instance.collection("users").add({
+
+      // await FirebaseFirestore.instance
+      //     .collection("users")
+      //     .doc(FirebaseAuth.instance.currentUser?.uid)
+      //     .set({
       //   'uid': FirebaseAuth.instance.currentUser?.uid,
       //   'name': _signUpNameController.text,
       // });
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => MyApp()));
+      insertUser();
+
       // await FirebaseFirestore;
     } on FirebaseAuthException catch (e) {
       _handleSignUpError(e);
@@ -330,7 +343,8 @@ class _registrationState extends State<registration> {
 
     showDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (context) =>
+            AlertDialog(
               title: Text('Registration up failed!'),
               content: Text(messageToDisplay),
               actions: [
@@ -343,60 +357,100 @@ class _registrationState extends State<registration> {
             ));
   }
 
+  Future insertUser() async {
+    var userId = FirebaseAuth.instance.currentUser?.uid.toString();
+    try {
+
+      String uri = "https://convergence.uvpce.ac.in/C2K22/insert_user.php";
+      var res = await http.post(Uri.parse(uri), body: {
+      "firebaseId": userId,
+      "email": _signUpEmailController.text,
+      "userName": _signUpNameController.text,
+      "privilege": "student"
+      },
+      headers: {
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      });
+
+      var response = jsonDecode(res.body);
+
+      if(response["success"] == "true")
+        {
+          print("User added Successfully!!");
+          setState(() => isLoading = false);
+
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => HomePage()));
+        }
+      else{
+        print("some issue");
+        setState(() => isLoading = false);
+      }
+
+
+    }
+    catch (e) {
+      print(e.toString());
+    }
+  }
+
   void terms() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-
-        title: const Center(
-          child: Text(
-            "Terms & Conditions",
-            style: TextStyle(
-              fontSize: 15,
-              color: Color(0xFF1D2A3A),
-              fontWeight: FontWeight.bold,
+      builder: (context) =>
+          AlertDialog(
+            title: const Center(
+              child: Text(
+                "Terms & Conditions",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Color(0xFF1D2A3A),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
+            content: const SingleChildScrollView(
+              child: Text("1. Acknowledgment\n"
+                  "These are the Terms and Conditions governing the use of this Service and the agreement that operates"
+                  "between You and the Company. These Terms and Conditions set out the rights and obligations of all users"
+                  "regarding the use of the Service.\n\n"
+                  "2. User Accounts\n"
+                  "When You create an account with Us, You must provide Us information that is accurate, complete, and"
+                  "current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate"
+                  "termination of Your account on Our Service\n\n"
+                  "3. Termination\n"
+                  "We may terminate or suspend Your Account immediately, without prior notice or liability, for any reason"
+                  "whatsoever, including without limitation if You breach these Terms and Conditions.\n\n"
+                  "4. Payments\n"
+                  "Payment can be made through various payment methods we have available, such as Visa, MasterCard,"
+                  "Affinity Card, American Express cards or online payment methods (PayPal, for example)\n\n"
+                  "5. Content\n"
+                  "Our Service allows You to post Content. You are responsible for the Content that You post to the Service,"
+                  "including its legality, reliability, and appropriateness.\n\n"),
+            ),
+            actions: <Widget>[
+              ElevatedButton(
+                onPressed: Navigator
+                    .of(context)
+                    .pop,
+                child: const Text(
+                  'Ok',
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF1D2A3A),
+                  onSurface: Color(0xFF1D2A3A),
+                  padding: EdgeInsets.all(1),
+                  textStyle: TextStyle(fontSize: 20),
+                  shape: StadiumBorder(),
+                  enableFeedback: true,
+                ),
+              )
+            ],
           ),
-        ),
-        content: const SingleChildScrollView(
-          child: Text("1. Acknowledgment\n"
-              "These are the Terms and Conditions governing the use of this Service and the agreement that operates"
-              "between You and the Company. These Terms and Conditions set out the rights and obligations of all users"
-              "regarding the use of the Service.\n\n"
-              "2. User Accounts\n"
-              "When You create an account with Us, You must provide Us information that is accurate, complete, and"
-              "current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate"
-              "termination of Your account on Our Service\n\n"
-              "3. Termination\n"
-              "We may terminate or suspend Your Account immediately, without prior notice or liability, for any reason"
-              "whatsoever, including without limitation if You breach these Terms and Conditions.\n\n"
-              "4. Payments\n"
-              "Payment can be made through various payment methods we have available, such as Visa, MasterCard,"
-              "Affinity Card, American Express cards or online payment methods (PayPal, for example)\n\n"
-              "5. Content\n"
-              "Our Service allows You to post Content. You are responsible for the Content that You post to the Service,"
-              "including its legality, reliability, and appropriateness.\n\n"),
-        ),
-        actions: <Widget>[
-          ElevatedButton(
-            onPressed: Navigator.of(context).pop,
-            child: const Text(
-              'Ok',
-              style:
-              TextStyle(color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Color(0xFF1D2A3A),
-              onSurface: Color(0xFF1D2A3A),
-              padding: EdgeInsets.all(1),
-              textStyle: TextStyle(fontSize: 20),
-              shape: StadiumBorder(),
-              enableFeedback: true,
-            ),
-          )
-        ],
-      ),
-
     );
   }
+
+
 }
