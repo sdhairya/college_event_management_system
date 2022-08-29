@@ -1,6 +1,9 @@
-import 'package:college_event_management/addFaculty.dart';
+import 'package:college_event_management/addFaculty/addFaculty.dart';
+import 'package:college_event_management/size_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'createEvent.dart';
+import 'createEvent/createEvent.dart';
+
 
 class dashboardScreen extends StatefulWidget {
 
@@ -13,6 +16,7 @@ class dashboardScreen extends StatefulWidget {
 class _dashboardScreenState extends State<dashboardScreen> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(backgroundColor: Color(0xFF1D2A3A)),
       drawer: Drawer(
@@ -27,9 +31,26 @@ class _dashboardScreenState extends State<dashboardScreen> {
         ),
       ),
 
-      body: Center(
-        child: Text( "Welcome to Dashboard!!",),
-      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: getHeight(50),
+              width: getWidth(kIsWeb ? 100 : double.infinity),
+              padding: const EdgeInsets.only(top: 10),
+
+              child: Column(
+                children: [
+                  Text("Welcome Dhairya," , style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1D2A3A), fontSize: 25 ),),
+
+
+                ],
+              ),
+
+            )
+          ],
+        ),
+      )
     );
   }
 

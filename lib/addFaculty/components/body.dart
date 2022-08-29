@@ -1,16 +1,18 @@
-import 'package:college_event_management/dashboardScreen.dart';
-import 'package:college_event_management/size_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:college_event_management/size_config.dart';
+import 'addFaculty_components.dart';
 
-class addFaculty extends StatefulWidget {
-  const addFaculty({Key? key}) : super(key: key);
+import '../../dashboardScreen.dart';
+
+class body extends StatefulWidget {
+  const body({Key? key}) : super(key: key);
 
   @override
-  State<addFaculty> createState() => _addFacultyState();
+  State<body> createState() => _bodyState();
 }
 
-class _addFacultyState extends State<addFaculty> {
+class _bodyState extends State<body> {
   bool isLoading = false;
 
   @override
@@ -34,14 +36,14 @@ class _addFacultyState extends State<addFaculty> {
                   child: Row(
                     children: <Widget>[
                       IconButton(
-                        padding: EdgeInsets.only(bottom: 3,right: 8),
+                          padding: EdgeInsets.only(bottom: 3,right: 8),
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => dashboardScreen()));
                           },
                           icon: Icon(Icons.arrow_back_ios_new_rounded,size: 30,)),
-                      
+
                       Text('Add Faculty',
                         style: TextStyle(
                             fontSize: 35,
@@ -65,54 +67,34 @@ class _addFacultyState extends State<addFaculty> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('    Name',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
+                      const addFaculty_components().text("    Name"),
                       const SizedBox(
                         height: 10,
                       ),
-                      TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Name',
-                        ),
-                      ),
+                      const addFaculty_components().textField("Enter Name", TextInputType.text),
+
                       const SizedBox(
                         height: 30,
                       ),
-                      const Text('    Email',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
+                      const addFaculty_components().text("    Email"),
+
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Email',
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
+                      const addFaculty_components().textField("Enter Email", TextInputType.emailAddress),
+
+
                       const SizedBox(
                         height: 30,
                       ),
-                      const Text('    Phone Number',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
+                      const addFaculty_components().text("    Phone Number"),
+
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          hintText: 'Enter Phone NUmber',
-                        ),
-                        keyboardType: TextInputType.phone,
-                      ),
+                      const addFaculty_components().textField("Enter Phone Number", TextInputType.phone),
+
+
                       const SizedBox(
                         height: 30,
                       ),
@@ -133,9 +115,9 @@ class _addFacultyState extends State<addFaculty> {
                               ),
                               child: isLoading
                                   ? const CircularProgressIndicator(
-                                      color: Colors.white,
-                                      backgroundColor: Colors.transparent,
-                                    )
+                                color: Colors.white,
+                                backgroundColor: Colors.transparent,
+                              )
                                   : const Text('Add Faculty'),
                               onPressed: () async {
                                 if (isLoading) return;
