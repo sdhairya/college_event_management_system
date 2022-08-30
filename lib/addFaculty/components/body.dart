@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:college_event_management/size_config.dart';
+import '../addFaculty.dart';
 import 'addFaculty_components.dart';
 
 import '../../dashboardScreen.dart';
@@ -13,6 +14,10 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
+
+  TextEditingController _nameController  =  TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  bool temp = true;
   bool isLoading = false;
 
   @override
@@ -71,7 +76,7 @@ class _bodyState extends State<body> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const addFaculty_components().textField("Enter Name", TextInputType.text),
+                      const addFaculty_components().textField("Enter Name", TextInputType.text,_nameController),
 
                       const SizedBox(
                         height: 30,
@@ -81,19 +86,7 @@ class _bodyState extends State<body> {
                       const SizedBox(
                         height: 10,
                       ),
-                      const addFaculty_components().textField("Enter Email", TextInputType.emailAddress),
-
-
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const addFaculty_components().text("    Phone Number"),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const addFaculty_components().textField("Enter Phone Number", TextInputType.phone),
-
+                      const addFaculty_components().textField("Enter Email", TextInputType.emailAddress,_emailController),
                       const SizedBox(
                         height: 30,
                       ),
@@ -122,28 +115,9 @@ class _bodyState extends State<body> {
                                 if (isLoading) return;
 
                                 setState(() => isLoading = true);
-                                // User? user = await loginUsingEmailPassword(
-                                //     email: _emailController.text,
-                                //     password: _passwordController.text,
-                                //     context: context);
-                                // print(user);
-                                // if (user != null) {
-                                //   setState(() => isLoading = false);
-                                //   Navigator.of(context).pushReplacement(
-                                //       MaterialPageRoute(
-                                //           builder: (context) =>
-                                //               dashboardScreen()));
-                                // } else {
-                                //   Fluttertoast.showToast(
-                                //       msg: "Enter Valid Email and Password",
-                                //       toastLength: Toast.LENGTH_SHORT,
-                                //       gravity: ToastGravity.BOTTOM,
-                                //       timeInSecForIosWeb: 1,
-                                //       backgroundColor: Colors.red,
-                                //       textColor: Colors.white,
-                                //       fontSize: 16.0);
-                                //   setState(() => isLoading = false);
-                                // }
+                                addFaculty().addFacultyDetails(_nameController.text,_emailController.text);
+                                  // get();
+
                               },
                             ),
                           )),
@@ -157,4 +131,9 @@ class _bodyState extends State<body> {
       ),
     );
   }
+
+  // void get() async{
+  //
+  //   setState(() => isLoading=temp);
+  // }
 }
