@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../dashboardScreen.dart';
 import '../../forgotPassword.dart';
-import '../../registrtion.dart';
+import '../../registration/registrtion.dart';
 import '../../size_config.dart';
 
 class body extends StatefulWidget {

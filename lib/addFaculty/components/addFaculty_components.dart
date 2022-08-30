@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 class addFaculty_components extends StatelessWidget {
@@ -6,6 +8,23 @@ class addFaculty_components extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container();
+
+    Future dialog(){
+      return showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Registration up failed!'),
+            content: Text("abcd"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'))
+            ],
+          ));
+    }
+
   }
 
   Text text(String label){
@@ -24,4 +43,7 @@ class addFaculty_components extends StatelessWidget {
       ),
     );
   }
+
+
+
 }

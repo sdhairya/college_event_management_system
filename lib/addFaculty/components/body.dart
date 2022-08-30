@@ -94,7 +94,6 @@ class _bodyState extends State<body> {
                       ),
                       const addFaculty_components().textField("Enter Phone Number", TextInputType.phone),
 
-
                       const SizedBox(
                         height: 30,
                       ),

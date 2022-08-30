@@ -8,12 +8,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../login/components/body.dart';
 import '../dashboardScreen.dart';
 import '';
-import '../registrtion.dart';
+import '../registration/registrtion.dart';
 import '../forgotPassword.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+
     options: kIsWeb?FirebaseOptions(
       apiKey: "AIzaSyBZ1C4-OlfZ9es8wI11n67Pfn6-2jO3_Sk",
       appId: "1:218216942084:web:8177f1e389af6825edc351",
