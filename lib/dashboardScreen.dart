@@ -14,6 +14,7 @@ class dashboardScreen extends StatefulWidget {
 }
 
 class _dashboardScreenState extends State<dashboardScreen> {
+  int _index = 0;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -47,7 +48,36 @@ class _dashboardScreenState extends State<dashboardScreen> {
                 ],
               ),
 
-            )
+            ),
+            Container(
+              transform: Matrix4.translationValues(-100, 0, 0),
+              child: SizedBox(
+                height: 220, // card height
+                child: PageView.builder(
+                  itemCount: 10,
+                  controller: PageController(viewportFraction: 0.5),
+                  onPageChanged: (int index) =>
+                      setState(() => _index = index),
+                  itemBuilder: (_, i) {
+                    return Transform.scale(
+                      scaleX: 1,
+                      child: Card(
+                        margin: EdgeInsets.only(left: 20),
+                        elevation: 6,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                          child: Text(
+                            "Card ${i + 1}",
+                            style: TextStyle(fontSize: 32),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       )

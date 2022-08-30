@@ -93,14 +93,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const registration_components().textField("Enter Your Name", TextInputType.text, _signUpNameController,""),
-                      // TextField(
-                      //   controller: _signUpNameController,
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Your Name',
-                      //   ),
-                      // ),
+
                       const SizedBox(
                         height: 30,
                       ),
@@ -111,16 +104,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const registration_components().textField("Enter Email", TextInputType.emailAddress, _signUpEmailController,""),
-                      // TextFormField(
-                      //   controller: _signUpEmailController,
-                      //   validator: _requiredValidator,
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Email',
-                      //   ),
-                      //   keyboardType: TextInputType.emailAddress,
-                      // ),
+
                       const SizedBox(
                         height: 30,
                       ),
@@ -131,18 +115,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const registration_components().textField("Enter Password", TextInputType.visiblePassword, _signUpPasswordController,""),
-                      // TextFormField(
-                      //   controller: _signUpPasswordController,
-                      //   validator: _requiredValidator,
-                      //   // keyboardType: kebordtype,
-                      //   // obscureText: password,
-                      //
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Password',
-                      //   ),
-                      // ),
+
                       const SizedBox(
                         height: 30,
                       ),
@@ -153,16 +126,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const registration_components().textField("Enter Confirm Password", TextInputType.text, _signUpConfrimPasswordController, "confirmpassword"),
-                      // TextFormField(
-                      //   controller: _signUpConfrimPasswordController,
-                      //   validator: _confirmPasswordValidator,
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Confirm Password',
-                      //   ),
-                      //   keyboardType: TextInputType.number,
-                      // ),
+
                       Row(
                         children: <Widget>[
                           Checkbox(
@@ -218,8 +182,11 @@ class _bodyState extends State<body> {
                                   ? () async {
                                 if (isLoading) return;
 
+                                setState(() => isLoading = true);
+
+
                                 if (_signUpEmailController
-                                    .text.isNotEmpty) {
+                                    .text.isNotEmpty && _signUpNameController.text.isNotEmpty) {
                                   if (_signUpPasswordController.text ==
                                       _signUpConfrimPasswordController
                                           .text) {
@@ -265,20 +232,15 @@ class _bodyState extends State<body> {
     );
   }
 
+
+
+
   Future signUp() async {
-    setState(() => isLoading = false);
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _signUpEmailController.text,
           password: _signUpPasswordController.text);
 
-      // await FirebaseFirestore.instance
-      //     .collection("users")
-      //     .doc(FirebaseAuth.instance.currentUser?.uid)
-      //     .set({
-      //   'uid': FirebaseAuth.instance.currentUser?.uid,
-      //   'name': _signUpNameController.text,
-      // });
       insertUser();
 
       // await FirebaseFirestore;
@@ -329,7 +291,7 @@ class _bodyState extends State<body> {
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/insert_user.php";
       var res = await http.post(Uri.parse(uri), body: json.encode({
-        "firebaseId": userId,
+        "uid": userId,
         "email": _signUpEmailController.text,
         "userName": _signUpNameController.text,
         "privilege": "student"
@@ -343,20 +305,24 @@ class _bodyState extends State<body> {
       //print(response["firebaseId"]);
       //print(response);
       if (res.statusCode == 200) {
-        Fluttertoast.showToast(
-            msg:
-            "Success!!",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Registration'),
+              content: const Text("Registration Successful!!"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
         print("User added Successfully!!");
         // setState(() => isLoading = false);
 
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => HomePage()));
+
       } else {
         print("some issue");
         setState(() => isLoading = false);
