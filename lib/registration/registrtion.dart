@@ -122,6 +122,7 @@ class registration extends StatelessWidget {
 
         Navigator.of(body().createState().context).pushReplacement(
             MaterialPageRoute(builder: (context) => HomePage()));
+        HomePage();
       } else {
         print("some issue");
         // setState(() => isLoading = false);
