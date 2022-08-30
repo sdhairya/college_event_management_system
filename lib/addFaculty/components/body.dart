@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:college_event_management/login/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -45,9 +46,9 @@ class _bodyState extends State<body> {
                       IconButton(
                           padding: EdgeInsets.only(bottom: 3, right: 8),
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => dashboardScreen()));
+
+                            signOut();
+
                           },
                           icon: Icon(
                             Icons.arrow_back_ios_new_rounded,
@@ -246,6 +247,13 @@ class _bodyState extends State<body> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future signOut() async{
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (context) => HomePage()));
   }
 
 // Future addFacultyDetails(String name, String email) async {
