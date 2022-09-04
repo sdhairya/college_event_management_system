@@ -3,8 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../dashboardScreen.dart';
+import '../../dashboard/dashboardScreen.dart';
 import '../../forgotPassword.dart';
 import '../../registration/registrtion.dart';
 import '../../size_config.dart';
@@ -19,6 +20,9 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   bool _isobscure = true;
   bool isLoading = false;
+  bool _ischecked = false;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   static Future<User?> loginUsingEmailPassword(
       {required String email,
@@ -32,16 +36,23 @@ class _bodyState extends State<body> {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        print("No Usre Found For this Email");
+        print("No User Found For this Email");
       }
     }
     return user;
   }
 
+
+  @override
+  void initState() {
+    _loadUserEmailPassword();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
+
+
 
     SizeConfig().init(context);
     return Scaffold(
@@ -134,6 +145,28 @@ class _bodyState extends State<body> {
                               ),
                             )),
                         const SizedBox(
+                          height: 20,
+                        ),
+
+                        Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                          SizedBox(
+                              height: 24.0,
+                              width: 24.0,
+                                child: Checkbox(
+                                    value: _ischecked,
+                                    onChanged: (value) {
+                                      _handleRememeberme(value!);
+                                    },),
+                              ),
+                          SizedBox(width: 10.0),
+                          Text("Remember Me",
+                              style: TextStyle(
+                                  color: Color(0xff646464),
+                                  fontSize: 16,))
+                        ]),
+                        // Checkbox(value: _ischecked, onChanged: _handleRememeberme(_ischecked)),
+                        
+                        const SizedBox(
                           height: 30,
                         ),
                         Padding(
@@ -144,7 +177,6 @@ class _bodyState extends State<body> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   primary: Color(0xFF1D2A3A),
-                                  onSurface: Color(0xFF1D2A3A),
                                   padding: EdgeInsets.all(3),
                                   textStyle: TextStyle(fontSize: 20),
                                   minimumSize: Size.fromHeight(50),
@@ -236,4 +268,39 @@ class _bodyState extends State<body> {
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  Future<void> _handleRememeberme(bool value) async {
+    _ischecked = value;
+    SharedPreferences.getInstance().then(
+          (prefs) {
+        prefs.setBool("remember_me", value);
+        prefs.setString('email', _emailController.text);
+        prefs.setString('password', _passwordController.text);
+      },
+    );
+    setState(() {
+      _ischecked = value;
+    });
+  }
+
+  _loadUserEmailPassword() async{
+    try{
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
+      var _email = _prefs.getString("email") ?? "";
+      var _password  = _prefs.getString("password") ?? "";
+      var _rememberMe = _prefs.getBool("remember_me") ?? false;
+
+      if(_rememberMe){
+        setState(() {
+          _ischecked = true;
+        });
+        _emailController.text=_email;
+        _passwordController.text = _password;
+      }
+    }catch(e){
+      print(e);
+    }
+  }
+
+
 }

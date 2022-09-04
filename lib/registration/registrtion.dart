@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../registration/components/body.dart';
-import '../dashboardScreen.dart';
+import '../dashboard/dashboardScreen.dart';
 import '../login/main.dart';
 import 'package:college_event_management/registration/components/registration_components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

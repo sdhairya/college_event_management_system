@@ -1,4 +1,4 @@
-import 'package:college_event_management/dashboardScreen.dart';
+import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

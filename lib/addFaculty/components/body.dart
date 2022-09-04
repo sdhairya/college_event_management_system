@@ -10,7 +10,7 @@ import '../addFaculty.dart';
 import 'addFaculty_components.dart';
 import 'package:http/http.dart' as http;
 
-import '../../dashboardScreen.dart';
+import '../../dashboard/dashboardScreen.dart';
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);

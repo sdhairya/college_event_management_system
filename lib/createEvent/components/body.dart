@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../dashboardScreen.dart';
+import '../../dashboard/dashboardScreen.dart';
 import '../../size_config.dart';
 import 'package:college_event_management/createEvent/components/createEvent_components.dart';
 
@@ -15,48 +15,51 @@ class body extends StatefulWidget {
 
 class _bodyState extends State<body> {
   bool isLoading = false;
+  List<String> list = <String>['Tech', 'Talk', 'Funny', 'Sports'];
+  String dropdownValue = "Tech";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       resizeToAvoidBottomInset: false,
-
       body: SingleChildScrollView(
         reverse: true,
         child: Column(
           children: <Widget>[
             Column(
               children: [
-                const Align(alignment: Alignment(0, 0),),
+                const Align(
+                  alignment: Alignment(0, 0),
+                ),
                 Container(
                   height: getHeight(50),
                   width: getWidth(kIsWeb ? 100 : double.infinity),
                   margin: EdgeInsets.only(
                       left: 20, top: MediaQuery.of(context).size.height * 0.12),
-
                   child: Row(
                     children: <Widget>[
                       IconButton(
-                          padding: EdgeInsets.only(bottom: 3,right: 8),
+                          padding: EdgeInsets.only(bottom: 3, right: 8),
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => dashboardScreen()));
                           },
-                          icon: Icon(Icons.arrow_back_ios_new_rounded,size: 30,)),
-
-                      Text('Create Event ',
+                          icon: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            size: 30,
+                          )),
+                      Text(
+                        'Create Event ',
                         style: TextStyle(
                             fontSize: 35,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF1D2A3A)),)
+                            color: Color(0xFF1D2A3A)),
+                      )
                     ],
                   ),
                 ),
-
-
                 Container(
                   // height: getHeight(555),
                   width: getWidth(kIsWeb ? 100 : double.infinity),
@@ -72,55 +75,76 @@ class _bodyState extends State<body> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const createEvent_components().text("   Event Name"),
-                     // const Text('   Event Name',
-                     //      style: TextStyle(
-                     //           fontSize: 16, color: Color(0xFF1D2A3A))),
                       const SizedBox(
                         height: 10,
                       ),
-                      const createEvent_components().textField("Enter Event Name", TextInputType.text),
+                      const createEvent_components()
+                          .textField("Enter Event Name", TextInputType.text),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const createEvent_components().text("   Event Category"),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: getWidth(kIsWeb ? 100 : double.infinity),
+                      child: DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(color: Colors.black38)
+                          )
+                        ),
+                          items: list.map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem(
+                              child: Text(value),
+                              value: value,
+                            );
+                          }).toList(),
+                          value: dropdownValue,
+                          onChanged: (String? value) {
+                            setState(() {
+                              dropdownValue = value!;
+                            });
+                          }),),
                       const SizedBox(
                         height: 30,
                       ),
                       const createEvent_components().text("   Event Date"),
-
                       const SizedBox(
                         height: 10,
                       ),
-                      const createEvent_components().textField("Enter Date", TextInputType.emailAddress),
+                      const createEvent_components()
+                          .textField("Enter Date", TextInputType.emailAddress),
                       const SizedBox(
                         height: 30,
                       ),
                       const createEvent_components().text("   Event Location"),
-
                       const SizedBox(
                         height: 10,
                       ),
-                      const createEvent_components().textField("Enter Event Location", TextInputType.text),
-
+                      const createEvent_components().textField(
+                          "Enter Event Location", TextInputType.text),
                       const SizedBox(
                         height: 30,
                       ),
                       const createEvent_components().text("   Event Charges"),
-
-
                       const SizedBox(
                         height: 10,
                       ),
-                      const createEvent_components().textField("Enter Event Charges", TextInputType.number),
-
+                      const createEvent_components().textField(
+                          "Enter Event Charges", TextInputType.number),
                       const SizedBox(
                         height: 30,
                       ),
-                      const createEvent_components().text("   Event Description"),
-
-
+                      const createEvent_components()
+                          .text("   Event Description"),
                       const SizedBox(
                         height: 10,
                       ),
-                      const createEvent_components().textField("Enter Event Description", TextInputType.multiline),
-
-
+                      const createEvent_components().textField(
+                          "Enter Event Description", TextInputType.multiline),
                       const SizedBox(
                         height: 30,
                       ),
@@ -141,10 +165,10 @@ class _bodyState extends State<body> {
                               ),
                               child: isLoading
                                   ? const CircularProgressIndicator(
-                                color: Colors.white,
-                                backgroundColor: Colors.transparent,
-                              )
-                                  : const Text('Add Faculty'),
+                                      color: Colors.white,
+                                      backgroundColor: Colors.transparent,
+                                    )
+                                  : const Text('Create Event'),
                               onPressed: () async {
                                 if (isLoading) return;
 
@@ -177,14 +201,14 @@ class _bodyState extends State<body> {
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom)),
-
+                Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom)),
               ],
             )
           ],
         ),
       ),
-
     );
   }
 }

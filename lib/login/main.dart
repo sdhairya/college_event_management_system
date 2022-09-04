@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../login/components/body.dart';
-import '../dashboardScreen.dart';
+import '../dashboard/dashboardScreen.dart';
 import '';
 import '../registration/registrtion.dart';
 import '../forgotPassword.dart';
