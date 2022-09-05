@@ -205,14 +205,14 @@ class _bodyState extends State<body> {
           title: const Text('Settings'),
           onTap: () {},
         ),
-        ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text('Profile'),
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => profileDetails()));
-          },
-        ),
+        // ListTile(
+        //   leading: const Icon(Icons.settings),
+        //   title: const Text('Profile'),
+        //   onTap: () {
+        //     Navigator.of(context).pushReplacement(
+        //         MaterialPageRoute(builder: (context) => profileDetails()));
+        //   },
+        // ),
         ListTile(
           leading: const Icon(Icons.settings),
           title: const Text('Create Profile'),

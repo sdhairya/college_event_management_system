@@ -6,7 +6,8 @@ import '../../dashboard/dashboardScreen.dart';
 import '../../size_config.dart';
 
 class body extends StatefulWidget {
-  const body({Key? key}) : super(key: key);
+  final String name;
+  const body({Key? key, required this.name}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -72,7 +73,7 @@ class _bodyState extends State<body> {
                   SizedBox(width: 30,),
                   Column(
                     children: [
-                      profile_components().text("Dhairya Soni", FontWeight.bold, Color(0xFF1D2A3A), 26),
+                      profile_components().text(widget.name, FontWeight.bold, Color(0xFF1D2A3A), 26),
                       profile_components().text("Ahmedabad", FontWeight.normal, Color(0xFF1D2A3A), 22)
                     ],
                   )

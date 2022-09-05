@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../attendees/attendees.dart';
 import '../../dashboard/dashboardScreen.dart';
 import '../../size_config.dart';
 import 'eventDetails_components.dart';
@@ -106,8 +107,31 @@ class _bodyState extends State<body> {
                       SizedBox(
                         height: 25,
                       ),
-                      eventDetails_components().text("Show Attendees",
-                          FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                      InkWell(
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFD9D9D9),
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              eventDetails_components().text("Show Attendees",
+                                  FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                              // SizedBox(width: 20,),
+                              Icon(Icons.arrow_circle_right,color: Color(0xFF1D2A3A), size: 30,)
+                            ],
+                          ),
+                        ),
+
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(builder: (context) => attendees()));
+                        },
+                      ),
+
                       SizedBox(
                         height: 25,
                       ),
