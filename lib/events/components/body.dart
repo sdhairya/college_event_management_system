@@ -61,19 +61,17 @@ class _bodyState extends State<body> {
               padding: EdgeInsets.all(20),
               child: Flexible(
                 fit: FlexFit.loose,
-                child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: list.length,
-                  itemBuilder: (context, int index) {
-                    return buildCard(index, list);
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 20 / 14,
-                      crossAxisCount: kIsWeb ? 3 : 1,
-                      crossAxisSpacing: 50,
-                      mainAxisSpacing: 30),
-                ),
+                child: ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(12),
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return buildCard(index, list);
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 10,);
+                    }),
               ),
             )
           ],
@@ -83,46 +81,26 @@ class _bodyState extends State<body> {
   }
 
   Widget buildCard(int index, List list) => Container(
-        // padding: EdgeInsets.only(left: 10, top: 10,bottom: 10, right: 10),
+        padding: EdgeInsets.only(left: 40, top: 10,bottom: 10, right: 40),
         // margin: EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
-            border: Border.all(
-              color: Color(0xFF1D2A3A),
-              width: 1,
-            ),
+
             borderRadius: BorderRadius.circular(20),
-            color: Color(0xFFd9d8d4)),
+            color: Color(0xFFD9D9D9)),
         child: InkWell(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              flex: 6,
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20)),
-                    color: Colors.blueGrey),
-              ),
-            ),
-            Expanded(
-              flex: 4,
-              child: Container(
-                padding: EdgeInsets.only(left: 10, right: 10, top: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20)),
-                ),
-                child: Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    events_components().text("29th Nov 2022", FontWeight.normal, Color(0xFF1D2A3A), 14),
-                    SizedBox(height:5,),
                     events_components().text(list[index], FontWeight.bold, Color(0xFF1D2A3A), 20),
                     SizedBox(height: 5,),
-
+                    events_components().text("29th Nov 2022", FontWeight.normal, Color(0xFF1D2A3A), 14),
+                    SizedBox(height:5,),
                     Row(
                       children: [
                         events_components().icon(Icons.location_on),
@@ -131,8 +109,13 @@ class _bodyState extends State<body> {
                     )
                   ],
                 ),
-              ),
+                Icon(Icons.arrow_circle_right,size: 30,color: Color(0xFF1D2A3A),)
+              ],
             )
+            
+            
+
+
           ],
         ),
         onTap: (){
