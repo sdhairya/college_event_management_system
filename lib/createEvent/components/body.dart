@@ -17,6 +17,13 @@ class _bodyState extends State<body> {
   bool isLoading = false;
   List<String> list = <String>['Tech', 'Talk', 'Funny', 'Sports'];
   String dropdownValue = "Tech";
+  // name, category, date, location, charges, description
+  TextEditingController _eventNameController = TextEditingController();
+  // TextEditingController _eventCategoryController = TextEditingController();
+  TextEditingController _eventDateController = TextEditingController();
+  TextEditingController _eventLocationController = TextEditingController();
+  TextEditingController _eventChargesController = TextEditingController();
+  TextEditingController _eventDescriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +86,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const createEvent_components()
-                          .textField("Enter Event Name", TextInputType.text),
+                          .textField("Enter Event Name", TextInputType.text, _eventNameController),
                       const SizedBox(
                         height: 30,
                       ),
@@ -116,7 +123,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const createEvent_components()
-                          .textField("Enter Date", TextInputType.emailAddress),
+                          .textField("Enter Date", TextInputType.datetime, _eventDateController),
                       const SizedBox(
                         height: 30,
                       ),
@@ -125,7 +132,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const createEvent_components().textField(
-                          "Enter Event Location", TextInputType.text),
+                          "Enter Event Location", TextInputType.text, _eventLocationController),
                       const SizedBox(
                         height: 30,
                       ),
@@ -134,7 +141,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const createEvent_components().textField(
-                          "Enter Event Charges", TextInputType.number),
+                          "Enter Event Charges", TextInputType.number, _eventChargesController),
                       const SizedBox(
                         height: 30,
                       ),
@@ -144,7 +151,7 @@ class _bodyState extends State<body> {
                         height: 10,
                       ),
                       const createEvent_components().textField(
-                          "Enter Event Description", TextInputType.multiline),
+                          "Enter Event Description", TextInputType.multiline, _eventDescriptionController),
                       const SizedBox(
                         height: 30,
                       ),

@@ -11,12 +11,6 @@ class dashboard_components extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    navigate(){
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => eventDetails()));
-    }
-
     return Container();
   }
 
@@ -30,7 +24,7 @@ class dashboard_components extends StatelessWidget {
     );
   }
 
-  Container elevatedButton(bool _isClicked, String text) {
+  Container elevatedButton(bool _isClicked, String text, ) {
     return Container(
       child: Row(
         children: [

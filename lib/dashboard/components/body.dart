@@ -1,9 +1,13 @@
+import 'package:college_event_management/addCoordinator/components/body.dart';
+import 'package:college_event_management/createProfile/createProfile.dart';
+import 'package:college_event_management/profileDetails/profileDetails.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../addFaculty/addFaculty.dart';
 import '../../createEvent/createEvent.dart';
 import '../../eventDetails/eventDetails.dart';
+import '../../events/events.dart';
 import '../../size_config.dart';
 import '../dashboardScreen.dart';
 import 'dashboard_components.dart';
@@ -149,7 +153,7 @@ class _bodyState extends State<body> {
                       padding: const EdgeInsets.all(12),
                       itemCount: list.length,
                       itemBuilder: (context, index) {
-                        return buildCard(index, list);
+                        return buildCard(index,list: list);
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(width: 30);
@@ -201,11 +205,43 @@ class _bodyState extends State<body> {
           title: const Text('Settings'),
           onTap: () {},
         ),
+        ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('Profile'),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => profileDetails()));
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('Create Profile'),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => createProfile()));
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('My Events'),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => events()));
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('Add Coordinator'),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => addCoordinator()));
+          },
+        ),
       ],
     );
   }
 
-  Widget buildCard(int index, List list) => Container(
+  Widget buildCard(int index,{required List list}) => Container(
       decoration: BoxDecoration(
           color: Colors.black12, borderRadius: BorderRadius.circular(20)),
       width: 250,
@@ -270,7 +306,7 @@ class _bodyState extends State<body> {
         ),
         onTap: () {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => eventDetails()));
+              MaterialPageRoute(builder: (context) => eventDetails(l: list[index],)));
         },
       )
 

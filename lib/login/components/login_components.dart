@@ -50,7 +50,23 @@ class _login_componentsState extends State<login_components> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return TextFormField(
+      obscureText: _isobscure,
+      controller: _passwordController,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15)),
+          hintText: 'Enter Password',
+          suffixIcon: IconButton(
+            icon: Icon(_isobscure
+                ? Icons.visibility
+                : Icons.visibility_off),
+            onPressed: ()  => setState(() {
+              _isobscure=!_isobscure;
+            }),
+          )),
+      keyboardType: TextInputType.visiblePassword,
+    );
   }
 
   void togglePasswordVisibility() => setState(() {

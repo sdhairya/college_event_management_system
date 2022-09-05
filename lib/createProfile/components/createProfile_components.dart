@@ -3,23 +3,18 @@ import 'package:flutter/material.dart';
 var validator;
 TextEditingController _signUpPasswordController = TextEditingController();
 
-class registration_components extends StatefulWidget {
-  const registration_components({Key? key}) : super(key: key);
+class createProfile_components extends StatefulWidget {
+  const createProfile_components({Key? key}) : super(key: key);
 
   @override
-  State<registration_components> createState() => _registration_componentsState();
+  State<createProfile_components> createState() => _createProfile_componentsState();
 
 
 
 
-  Text text(String data, FontWeight fontWeight, Color color, double fontsize) {
-    return Text(
-      data,
-      style: TextStyle(
-          fontWeight: fontWeight,
-          color: color,
-          fontSize: fontsize),
-    );
+  Text text(String label) {
+    return Text(label,
+        style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A)));
   }
 
   TextFormField textField(String hint, TextInputType type, TextEditingController controller, String valid) {
@@ -63,7 +58,7 @@ class registration_components extends StatefulWidget {
 
 }
 
-class _registration_componentsState extends State<registration_components> {
+class _createProfile_componentsState extends State<createProfile_components> {
   @override
   Widget build(BuildContext context) {
     return Container();

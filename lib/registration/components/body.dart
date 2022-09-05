@@ -86,9 +86,10 @@ class _bodyState extends State<body> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('   User Name',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
+                      registration_components().text('   User Name', FontWeight.w600, Color(0xFF1D2A3A), 16),
+                      // const Text('   User Name',
+                      //     style: TextStyle(
+                      //         fontSize: 16, color: Color(0xFF1D2A3A))),
                       const SizedBox(
                         height: 10,
                       ),
@@ -104,65 +105,33 @@ class _bodyState extends State<body> {
                       const SizedBox(
                         height: 30,
                       ),
-                      const Text('    Registration Email',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
+                      registration_components().text('   Registration Email', FontWeight.w600, Color(0xFF1D2A3A), 16),
+
                       const SizedBox(
                         height: 10,
                       ),
                       const registration_components().textField("Enter Email", TextInputType.emailAddress, _signUpEmailController,""),
-                      // TextFormField(
-                      //   controller: _signUpEmailController,
-                      //   validator: _requiredValidator,
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Email',
-                      //   ),
-                      //   keyboardType: TextInputType.emailAddress,
-                      // ),
+
                       const SizedBox(
                         height: 30,
                       ),
-                      const Text('    Password',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
+                      registration_components().text('   Password', FontWeight.w600, Color(0xFF1D2A3A), 16),
+
                       const SizedBox(
                         height: 10,
                       ),
                       const registration_components().textField("Enter Password", TextInputType.visiblePassword, _signUpPasswordController,""),
-                      // TextFormField(
-                      //   controller: _signUpPasswordController,
-                      //   validator: _requiredValidator,
-                      //   // keyboardType: kebordtype,
-                      //   // obscureText: password,
-                      //
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Password',
-                      //   ),
-                      // ),
+
                       const SizedBox(
                         height: 30,
                       ),
-                      const Text('    Confirm Password',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
+                      registration_components().text('   Confirm Password', FontWeight.w600, Color(0xFF1D2A3A), 16),
+
                       const SizedBox(
                         height: 10,
                       ),
                       const registration_components().textField("Enter Confirm Password", TextInputType.text, _signUpConfrimPasswordController, "confirmpassword"),
-                      // TextFormField(
-                      //   controller: _signUpConfrimPasswordController,
-                      //   validator: _confirmPasswordValidator,
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Confirm Password',
-                      //   ),
-                      //   keyboardType: TextInputType.number,
-                      // ),
+         
                       Row(
                         children: <Widget>[
                           Checkbox(

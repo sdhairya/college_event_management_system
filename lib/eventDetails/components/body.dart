@@ -6,7 +6,9 @@ import '../../size_config.dart';
 import 'eventDetails_components.dart';
 
 class body extends StatefulWidget {
-  const body({Key? key}) : super(key: key);
+  final String l;
+
+  const body({Key? key, required this.l}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -83,7 +85,7 @@ class _bodyState extends State<body> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           eventDetails_components().text(
-                              "Flutter Event Conference",
+                              widget.l,
                               FontWeight.bold,
                               const Color(0xFF1D2A3A),
                               26),

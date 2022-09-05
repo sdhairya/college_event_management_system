@@ -49,6 +49,12 @@ class _bodyState extends State<body> {
     super.initState();
   }
 
+  void _toggle() {
+    setState(() {
+      _isobscure = !_isobscure;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -124,7 +130,7 @@ class _bodyState extends State<body> {
                                 icon: Icon(_isobscure
                                     ? Icons.visibility
                                     : Icons.visibility_off),
-                                onPressed: ()  => _isobscure = !_isobscure,
+                                onPressed: _toggle,
                               )),
                           keyboardType: TextInputType.visiblePassword,
                         ),

@@ -15,9 +15,10 @@ class createEvent_components extends StatelessWidget {
             fontSize: 16, color: Color(0xFF1D2A3A)));
   }
 
-  TextField textField(String hint, TextInputType type){
+  TextField textField(String hint, TextInputType type, TextEditingController controller){
     return  TextField(
       keyboardType: type,
+      controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15)),
