@@ -64,7 +64,7 @@ class _bodyState extends State<body> {
             Container(
               // height: 1000,
               width: getWidth(kIsWeb ? 230 : double.infinity),
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(0),
               child: Flexible(
                 fit: FlexFit.loose,
                 child: ListView.separated(
@@ -87,7 +87,7 @@ class _bodyState extends State<body> {
   }
 
   Widget buildCard(int index, List list) => Container(
-      padding: EdgeInsets.only(left: 40, top: 10,bottom: 10, right: 40),
+      padding: EdgeInsets.only(left: 15, top: 10,bottom: 10, right: 20),
       // margin: EdgeInsets.only(left: 50, right: 50),
       decoration: BoxDecoration(
 

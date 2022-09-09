@@ -20,9 +20,81 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
-
-  List<String> list = <String>['Tech', 'Talk', 'Funny', 'Sports',"Logical", "Coding"];
-
+  List<String> list = <String>[
+    "Infocrafts",
+    "Mech-Mechato",
+    "MathMagix",
+    "PetroX",
+    "Biotechnica",
+    "Civesta",
+    "ElectaBuzz",
+    "General Events",
+    "Maritech"
+  ];
+  List<List> Infocrafts = <List>[
+    [
+      "Project Presentation",
+      "Tech",
+      "9:30 AM - 2:30 PM",
+      "C-D",
+      [
+        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
+        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
+        [
+          "Prof. Dhiren Prajapati",
+          "dtp01@ganpatuniversity.ac.in",
+          "7016050788"
+        ],
+      ],
+      [
+        [
+          "Ayushi Gorai",
+          "Sem-7 CE",
+          "19012011014",
+          "ayushigorai19@gnu.ac.in",
+          "8141784691"
+        ],
+        [
+          "Vishnu Tak",
+          "Sem-5 CE",
+          "20012011181",
+          "vishnutak08@gmail.com",
+          "6378133765"
+        ],
+      ],
+    ],
+    [
+      "Project Presentation",
+      "Tech",
+      "9:30 AM - 2:30 PM",
+      "C-D",
+      [
+        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
+        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
+        [
+          "Prof. Dhiren Prajapati",
+          "dtp01@ganpatuniversity.ac.in",
+          "7016050788"
+        ],
+      ],
+      [
+        [
+          "Ayushi Gorai",
+          "Sem-7 CE",
+          "19012011014",
+          "ayushigorai19@gnu.ac.in",
+          "8141784691"
+        ],
+        [
+          "Vishnu Tak",
+          "Sem-5 CE",
+          "20012011181",
+          "vishnutak08@gmail.com",
+          "6378133765"
+        ],
+      ],
+    ]
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -55,33 +127,34 @@ class _bodyState extends State<body> {
                 padding: const EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
-                    dashboard_components().text("Welcome Dhairya,", FontWeight.bold, const Color(0xFF1D2A3A), 25),
+                    dashboard_components().text("Welcome Dhairya,",
+                        FontWeight.bold, const Color(0xFF1D2A3A), 25),
                     SizedBox(height: 20),
-
-
                   ],
                 ),
               ),
-
               Container(
-                width: getWidth(kIsWeb ? 250 : double.infinity),
+                  width: getWidth(kIsWeb ? 250 : double.infinity),
                   padding: EdgeInsets.only(left: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      dashboard_components().text("Find Events,", FontWeight.normal, const Color(0xFF1D2A3A), 16),
-                      SizedBox(height: 10,)
+                      dashboard_components().text("Find Events,",
+                          FontWeight.normal, const Color(0xFF1D2A3A), 16),
+                      SizedBox(
+                        height: 10,
+                      )
                     ],
-                  )
-              ),
-
+                  )),
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      width: getWidth(kIsWeb ? 225 : MediaQuery.of(context).size.width * 0.7),
+                      width: getWidth(kIsWeb
+                          ? 225
+                          : MediaQuery.of(context).size.width * 0.7),
                       child: dashboard_components().textFormField("Search"),
                     ),
                     SizedBox(
@@ -113,37 +186,38 @@ class _bodyState extends State<body> {
                   ],
                 ),
               ),
-
-              SizedBox(height: 40,),
-
+              SizedBox(
+                height: 40,
+              ),
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: dashboard_components().text("Categories", FontWeight.w300, Color(0xFF1D2A3A), 23),
+                child: dashboard_components()
+                    .text("Categories", FontWeight.w300, Color(0xFF1D2A3A), 23),
               ),
-
-
-              SizedBox(height: 20,),
-
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                    child: Row(
+                  child: Row(
                     children: [
-                      for (i in list) dashboard_components().elevatedButton(true, i.toString()),
+                      for (i in list)
+                        dashboard_components()
+                            .elevatedButton(true, i.toString()),
                     ],
                   ),
-                ) ,
-
+                ),
               ),
-
-              SizedBox(height: 40,),
-
+              SizedBox(
+                height: 40,
+              ),
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: dashboard_components().text("Events", FontWeight.w300, Color(0xFF1D2A3A), 23),
+                child: dashboard_components()
+                    .text("Events", FontWeight.w300, Color(0xFF1D2A3A), 23),
               ),
-
               Container(
                 child: SizedBox(
                   height: 320, // card height
@@ -151,9 +225,9 @@ class _bodyState extends State<body> {
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.all(12),
-                      itemCount: list.length,
+                      itemCount: Infocrafts.length,
                       itemBuilder: (context, index) {
-                        return buildCard(index,list: list);
+                        return buildCard(index, list: list);
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(width: 30);
@@ -241,7 +315,7 @@ class _bodyState extends State<body> {
     );
   }
 
-  Widget buildCard(int index,{required List list}) => Container(
+  Widget buildCard(int index, {required List list}) => Container(
       decoration: BoxDecoration(
           color: Colors.black12, borderRadius: BorderRadius.circular(20)),
       width: 250,
@@ -280,22 +354,20 @@ class _bodyState extends State<body> {
                   SizedBox(
                     height: 3,
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.location_on_sharp, size: 20),
-                      Text("Ahmedabad")
-                    ],
-                  )
                 ],
               ),
             ),
-            SizedBox(height: 5,),
             SizedBox(
-              width: 100,
+              height: 5,
+            ),
+            SizedBox(
+              width: 120,
               height: 30,
               child: ElevatedButton(
-                  onPressed: (){ createEvent();},
-                  child: const Text('Rs. 200'),
+                  onPressed: () {
+                    createEvent();
+                  },
+                  child: const Text('Register'),
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF1D2A3A),
                     onSurface: Color(0xFF1D2A3A),
@@ -306,11 +378,10 @@ class _bodyState extends State<body> {
           ],
         ),
         onTap: () {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => eventDetails(l: list[index],)));
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => eventDetails(
+                    l: list[index],
+                  )));
         },
-      )
-
-  );
-
+      ));
 }
