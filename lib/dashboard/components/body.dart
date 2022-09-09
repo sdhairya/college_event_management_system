@@ -40,11 +40,7 @@ class _bodyState extends State<body> {
       [
         ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
         ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
-        [
-          "Prof. Dhiren Prajapati",
-          "dtp01@ganpatuniversity.ac.in",
-          "7016050788"
-        ],
+        ["Prof. Dhiren Prajapati", "dtp01@ganpatuniversity.ac.in", "7016050788"]
       ],
       [
         [
@@ -62,6 +58,10 @@ class _bodyState extends State<body> {
           "20012011181",
         ],
       ],
+      "The project work constitutes a major component in most of the professional programmers. In this event the project should be related to the field of Computer science / Information Technology. Participants of this event are expected to demonstrate some real life projects. These projects may be carried out in some industry, research and development laboratories, "
+          "educational institutions or software companies by the participant. It is suggested that the project is to be chosen which should have some direct relevance in day-to-day activities. Participants have to show the actual working of their project.",
+      "1. Each team/member will be given 15 minutes to demonstrate their project work (10 minutes for presentation and 5 minutes for question and answer). \n\n2. Maximum 3 students per team/group are allowed.\n\n3. Any student from any college and from any branch is allowed to participate but the project should be oriented to computer technology or it may be using some sort of computer programming.\n\n4. Resources are to be managed by the team.\n\n5. Testing of the project will not be permitted on the day of the event.\n\n6. Event coordinators will not be responsible for any kind of failure.\n\n7. The decision of the judges would be final and binding.",
+      "1. Presentation, skills and strategies.\n2. Question answer round.\n3. Depth knowledge of the Project/topic\n4. Content and selection of projects/topics\n5. Marks will be given based on project complexity and team members.\n6. Acceptability\n7. Feasibility"
     ],
     [
       "Paper Presentation",

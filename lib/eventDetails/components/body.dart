@@ -106,6 +106,16 @@ class _bodyState extends State<body> {
                           const Color(0xFF1D2A3A),
                           18),
                       SizedBox(
+                        height: 20,
+                      ),
+                      eventDetails_components().text("Description",
+                          FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      eventDetails_components().text(widget.l[6].toString(),
+                          FontWeight.normal, const Color(0xFF1D2A3A), 15),
+                      SizedBox(
                         height: 25,
                       ),
                       InkWell(
@@ -146,8 +156,11 @@ class _bodyState extends State<body> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              eventDetails_components().text("Show Faculty Coordinators",
-                                  FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                              eventDetails_components().text(
+                                  "Show Faculty Coordinators",
+                                  FontWeight.bold,
+                                  const Color(0xFF1D2A3A),
+                                  22),
                               // SizedBox(width: 20,),
                               Icon(
                                 Icons.arrow_circle_right,
@@ -158,9 +171,11 @@ class _bodyState extends State<body> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.l[4],)));
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => coordinators(
+                                        l: widget.l[4],
+                                      )));
                         },
                       ),
                       SizedBox(
@@ -175,8 +190,11 @@ class _bodyState extends State<body> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              eventDetails_components().text("Show Student Coordinators",
-                                  FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                              eventDetails_components().text(
+                                  "Show Student Coordinators",
+                                  FontWeight.bold,
+                                  const Color(0xFF1D2A3A),
+                                  22),
                               // SizedBox(width: 20,),
                               Icon(
                                 Icons.arrow_circle_right,
@@ -189,12 +207,34 @@ class _bodyState extends State<body> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.l[5])));
+                                  builder: (context) =>
+                                      coordinators(l: widget.l[5])));
                         },
                       ),
                       SizedBox(
                         height: 15,
                       ),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+                      eventDetails_components().text("Rules/Regulation of Event",
+                          FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      eventDetails_components().text(widget.l[7].toString(),
+                          FontWeight.normal, const Color(0xFF1D2A3A), 15),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      eventDetails_components().text("Evaluation Criteria",
+                          FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      eventDetails_components().text(widget.l[8].toString(),
+                          FontWeight.normal, const Color(0xFF1D2A3A), 15),
                       SizedBox(
                         height: 25,
                       ),
