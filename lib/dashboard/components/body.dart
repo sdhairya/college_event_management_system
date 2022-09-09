@@ -261,6 +261,7 @@ class _bodyState extends State<body> {
             Container(
               padding: EdgeInsets.only(right: 15, left: 15, top: 10, bottom: 5),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [

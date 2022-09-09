@@ -30,7 +30,7 @@ class _bodyState extends State<body> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        reverse: true,
+        reverse: false,
         child: Column(
           children: <Widget>[
             Column(

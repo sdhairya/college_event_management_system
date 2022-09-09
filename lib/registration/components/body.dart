@@ -11,6 +11,7 @@ import '../../size_config.dart';
 import '../../terms.dart';
 import '../registrtion.dart';
 import 'package:http/http.dart' as http;
+import 'package:uuid/uuid.dart';
 
 TextEditingController _signUpEmailController = TextEditingController();
 TextEditingController _signUpPasswordController = TextEditingController();
@@ -28,6 +29,7 @@ class _bodyState extends State<body> {
 
   bool isLoading = false;
   bool isChecked = false;
+  var uuid = Uuid();
 
 
   @override
@@ -296,12 +298,13 @@ class _bodyState extends State<body> {
   Future insertUser() async {
     var userId = FirebaseAuth.instance.currentUser?.uid.toString();
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/insert_user.php";
+      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
       var res = await http.post(Uri.parse(uri), body: json.encode({
-        "firebaseId": userId,
+        "id": userId,
         "email": _signUpEmailController.text,
         "userName": _signUpNameController.text,
-        "privilege": "student"
+        "isStudent": 1,
+        "password": _signUpPasswordController.text
       }), headers: {
         "Accept":"application/json",
         "Access-Control-Allow-Origin": "*"

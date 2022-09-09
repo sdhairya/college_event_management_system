@@ -35,7 +35,6 @@ class registration extends StatelessWidget {
   }
 }
 
-
 // class registration extends StatefulWidget {
 //   const registration({Key? key}) : super(key: key);
 //
