@@ -49,22 +49,22 @@ class _bodyState extends State<body> {
       [
         [
           "Ayushi Gorai",
+          "ayushigorai19@gnu.ac.in",
+          "8141784691",
           "Sem-7 CE",
           "19012011014",
-          "ayushigorai19@gnu.ac.in",
-          "8141784691"
         ],
         [
           "Vishnu Tak",
+          "vishnutak08@gmail.com",
+          "6378133765",
           "Sem-5 CE",
           "20012011181",
-          "vishnutak08@gmail.com",
-          "6378133765"
         ],
       ],
     ],
     [
-      "Project Presentation",
+      "Paper Presentation",
       "Tech",
       "9:30 AM - 2:30 PM",
       "C-D",
@@ -227,7 +227,7 @@ class _bodyState extends State<body> {
                       padding: const EdgeInsets.all(12),
                       itemCount: Infocrafts.length,
                       itemBuilder: (context, index) {
-                        return buildCard(index, list: list);
+                        return buildCard(index, list: Infocrafts);
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(width: 30);
@@ -328,6 +328,7 @@ class _bodyState extends State<body> {
                   color: Colors.black45,
                   borderRadius: BorderRadius.circular(20)),
               child: SizedBox(
+                child: Image.asset('assets/event1.png'),
                 height: 170,
                 width: 250,
               ),
@@ -339,17 +340,17 @@ class _bodyState extends State<body> {
                 children: [
                   Row(
                     children: [
-                      Text("29 Nov, 2022"),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text("12:00 PM"),
+                      // Text("29 Nov, 2022"),
+                      // SizedBox(
+                      //   width: 5,
+                      // ),
+                      Text(list[index][2]),
                     ],
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(list[index],
+                  Text(list[index][0].toString(),
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   SizedBox(
                     height: 3,
@@ -367,7 +368,7 @@ class _bodyState extends State<body> {
                   onPressed: () {
                     createEvent();
                   },
-                  child: const Text('Register'),
+                  child: Text("Register"),
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF1D2A3A),
                     onSurface: Color(0xFF1D2A3A),

@@ -1,3 +1,4 @@
+import 'package:college_event_management/coordinators/coordinators.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ import '../../size_config.dart';
 import 'eventDetails_components.dart';
 
 class body extends StatefulWidget {
-  final String l;
+  final List l;
 
   const body({Key? key, required this.l}) : super(key: key);
 
@@ -85,25 +86,25 @@ class _bodyState extends State<body> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          eventDetails_components().text(
-                              widget.l,
-                              FontWeight.bold,
-                              const Color(0xFF1D2A3A),
-                              26),
-                          eventDetails_components().text("Rs. 200",
+                          eventDetails_components().text(widget.l[0],
+                              FontWeight.bold, const Color(0xFF1D2A3A), 26),
+                          eventDetails_components().text(widget.l[1],
                               FontWeight.bold, const Color(0xFF1D2A3A), 24),
                         ],
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      eventDetails_components().text("29th Nov",
+                      eventDetails_components().text(widget.l[2],
                           FontWeight.normal, const Color(0xFF1D2A3A), 18),
                       SizedBox(
                         height: 5,
                       ),
-                      eventDetails_components().text("Surat, Gujarat",
-                          FontWeight.normal, const Color(0xFF1D2A3A), 18),
+                      eventDetails_components().text(
+                          "Time Slot : " + widget.l[3].toString(),
+                          FontWeight.normal,
+                          const Color(0xFF1D2A3A),
+                          18),
                       SizedBox(
                         height: 25,
                       ),
@@ -112,61 +113,122 @@ class _bodyState extends State<body> {
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               color: Color(0xFFD9D9D9),
-                            borderRadius: BorderRadius.circular(20)
-                          ),
-
+                              borderRadius: BorderRadius.circular(20)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               eventDetails_components().text("Show Attendees",
                                   FontWeight.bold, const Color(0xFF1D2A3A), 22),
                               // SizedBox(width: 20,),
-                              Icon(Icons.arrow_circle_right,color: Color(0xFF1D2A3A), size: 30,)
+                              Icon(
+                                Icons.arrow_circle_right,
+                                color: Color(0xFF1D2A3A),
+                                size: 30,
+                              )
                             ],
                           ),
                         ),
-
                         onTap: () {
                           Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => attendees()));
+                              MaterialPageRoute(
+                                  builder: (context) => attendees()));
                         },
                       ),
-
-                      SizedBox(
-                        height: 25,
-                      ),
-                      eventDetails_components().text("Details",
-                          FontWeight.normal, const Color(0xFF1D2A3A), 26),
                       SizedBox(
                         height: 15,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 15, right: 5),
-                        child: eventDetails_components().text(
-                            "Starts \n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n Ends",
-                            FontWeight.bold,
-                            const Color(0xFF1D2A3A),
-                            20),
-                      ),
-                      Align(alignment: Alignment.center,
-                      child:SizedBox(
-                        width: getWidth(kIsWeb ? 100 : double.infinity),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xFF1D2A3A),
-                              onSurface: Color(0xFF1D2A3A),
-                              padding: EdgeInsets.all(3),
-                              textStyle: TextStyle(fontSize: 20),
-                              minimumSize: Size.fromHeight(50),
-                              shape: StadiumBorder(),
-                              enableFeedback: true,
-                            ),
-                            child: const Text('Book Event'),
-                            onPressed: () {}
+                      InkWell(
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFD9D9D9),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              eventDetails_components().text("Show Faculty Coordinators",
+                                  FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                              // SizedBox(width: 20,),
+                              Icon(
+                                Icons.arrow_circle_right,
+                                color: Color(0xFF1D2A3A),
+                                size: 30,
+                              )
+                            ],
+                          ),
                         ),
-                      ),)
-
-
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => coordinators(l: widget.l[4],)));
+                        },
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      InkWell(
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFD9D9D9),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              eventDetails_components().text("Show Student Coordinators",
+                                  FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                              // SizedBox(width: 20,),
+                              Icon(
+                                Icons.arrow_circle_right,
+                                color: Color(0xFF1D2A3A),
+                                size: 30,
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => coordinators(l: widget.l[5])));
+                        },
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      // eventDetails_components().text("Details",
+                      //     FontWeight.normal, const Color(0xFF1D2A3A), 26),
+                      // SizedBox(
+                      //   height: 15,
+                      // ),
+                      // Padding(
+                      //   padding: EdgeInsets.only(left: 15, right: 5),
+                      //   child: eventDetails_components().text(
+                      //       "Starts \n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n Ends",
+                      //       FontWeight.bold,
+                      //       const Color(0xFF1D2A3A),
+                      //       20),
+                      // ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: getWidth(kIsWeb ? 100 : double.infinity),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF1D2A3A),
+                                onSurface: Color(0xFF1D2A3A),
+                                padding: EdgeInsets.all(3),
+                                textStyle: TextStyle(fontSize: 20),
+                                minimumSize: Size.fromHeight(50),
+                                shape: StadiumBorder(),
+                                enableFeedback: true,
+                              ),
+                              child: const Text('Book Event'),
+                              onPressed: () {}),
+                        ),
+                      )
                     ],
                   ),
                 )
@@ -181,7 +243,7 @@ class _bodyState extends State<body> {
   Widget buildCard() => Container(
         decoration: BoxDecoration(
             color: Colors.black12, borderRadius: BorderRadius.circular(20)),
-    width: getWidth(kIsWeb ? 100 : MediaQuery.of(context).size.width * 0.8),
+        width: getWidth(kIsWeb ? 100 : MediaQuery.of(context).size.width * 0.8),
         height: 250,
       );
 }

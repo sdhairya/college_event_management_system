@@ -2,7 +2,7 @@ import 'package:college_event_management/eventDetails/components/body.dart';
 import 'package:flutter/material.dart';
 
 class eventDetails extends StatelessWidget {
-  final String l;
+  final List l;
 
   const eventDetails({Key? key, required this.l}) : super(key: key);
 
