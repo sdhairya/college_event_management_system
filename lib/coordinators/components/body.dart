@@ -13,7 +13,8 @@ import 'package:college_event_management/coordinators/components/coordinators.da
 class body extends StatefulWidget {
 
   final List l;
-  const body({Key? key, required this.l}) : super(key: key);
+  final List previousScreen_data;
+  const body({Key? key, required this.l, required this.previousScreen_data}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -44,7 +45,7 @@ class _bodyState extends State<body> {
                       padding: EdgeInsets.only(bottom: 3, right: 8),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => dashboardScreen()));
+                            builder: (context) => eventDetails(l: widget.previousScreen_data)));
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_rounded,

@@ -11,7 +11,8 @@ import '../../size_config.dart';
 import 'attendees_components.dart';
 
 class body extends StatefulWidget {
-  const body({Key? key}) : super(key: key);
+  final List previousScreen_data;
+  const body({Key? key, required this.previousScreen_data}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -44,7 +45,7 @@ class _bodyState extends State<body> {
                       padding: EdgeInsets.only(bottom: 3, right: 8),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => dashboardScreen()));
+                            builder: (context) => eventDetails(l: widget.previousScreen_data)));
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_rounded,

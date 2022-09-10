@@ -1,6 +1,5 @@
 import 'package:college_event_management/addCoordinator/components/body.dart';
 import 'package:college_event_management/createProfile/createProfile.dart';
-import 'package:college_event_management/profileDetails/profileDetails.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +10,7 @@ import '../../events/events.dart';
 import '../../size_config.dart';
 import '../dashboardScreen.dart';
 import 'dashboard_components.dart';
+import 'package:college_event_management/eventData.dart' as data;
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   List<String> list = <String>[
     "Infocrafts",
-    "Mech-Mechato",
+    "MechMechato",
     "MathMagix",
     "PetroX",
     "Biotechnica",
@@ -31,70 +31,13 @@ class _bodyState extends State<body> {
     "General Events",
     "Maritech"
   ];
-  List<List> Infocrafts = <List>[
-    [
-      "Project Presentation",
-      "Tech",
-      "9:30 AM - 2:30 PM",
-      "C-D",
-      [
-        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
-        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
-        [
-          "Prof. Dhiren Prajapati",
-          "dtp01@ganpatuniversity.ac.in",
-          "7016050788"
-        ],
-      ],
-      [
-        [
-          "Ayushi Gorai",
-          "ayushigorai19@gnu.ac.in",
-          "8141784691",
-          "Sem-7 CE",
-          "19012011014",
-        ],
-        [
-          "Vishnu Tak",
-          "vishnutak08@gmail.com",
-          "6378133765",
-          "Sem-5 CE",
-          "20012011181",
-        ],
-      ],
-    ],
-    [
-      "Paper Presentation",
-      "Tech",
-      "9:30 AM - 2:30 PM",
-      "C-D",
-      [
-        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
-        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
-        [
-          "Prof. Dhiren Prajapati",
-          "dtp01@ganpatuniversity.ac.in",
-          "7016050788"
-        ],
-      ],
-      [
-        [
-          "Ayushi Gorai",
-          "Sem-7 CE",
-          "19012011014",
-          "ayushigorai19@gnu.ac.in",
-          "8141784691"
-        ],
-        [
-          "Vishnu Tak",
-          "Sem-5 CE",
-          "20012011181",
-          "vishnutak08@gmail.com",
-          "6378133765"
-        ],
-      ],
-    ]
+
+  List event=[
+    data.Infocrafts,
+    data.MechMechato,
+    data.MathMagix
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +82,7 @@ class _bodyState extends State<body> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      dashboard_components().text("Find Events,",
+                      dashboard_components().text("",
                           FontWeight.normal, const Color(0xFF1D2A3A), 16),
                       SizedBox(
                         height: 10,
@@ -210,30 +153,49 @@ class _bodyState extends State<body> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 40,
-              ),
+              // SizedBox(
+              //   height: 40,
+              // ),
+              // Container(
+              //   width: getWidth(kIsWeb ? 250 : double.infinity),
+              //   child: dashboard_components()
+              //       .text("Infocrafts", FontWeight.w300, Color(0xFF1D2A3A), 23),
+              // ),
+              // Container(
+              //   child: SizedBox(
+              //     height: 320, // card height
+              //     width: getWidth(kIsWeb ? 250 : double.infinity),
+              //     child: ListView.separated(
+              //         scrollDirection: Axis.horizontal,
+              //         padding: const EdgeInsets.all(12),
+              //         itemCount: data.Infocrafts.length,
+              //         itemBuilder: (context, index) {
+              //           return buildCard(index, list: data.Infocrafts);
+              //         },
+              //         separatorBuilder: (context, index) {
+              //           return const SizedBox(width: 30);
+              //         }),
+              //   ),
+              // ),
+
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: dashboard_components()
-                    .text("Events", FontWeight.w300, Color(0xFF1D2A3A), 23),
-              ),
-              Container(
-                child: SizedBox(
-                  height: 320, // card height
-                  width: getWidth(kIsWeb ? 250 : double.infinity),
+                child: Flexible(
+                  fit: FlexFit.loose,
                   child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.all(12),
-                      itemCount: Infocrafts.length,
-                      itemBuilder: (context, index) {
-                        return buildCard(index, list: Infocrafts);
-                      },
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(width: 30);
-                      }),
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: list.length,
+                    itemBuilder: (context, index){
+                      return buildView(index, list);
+                    },
+                    separatorBuilder: (context, index){
+                      return const SizedBox(height: 10,);
+                    },
+                  ),
                 ),
-              ),
+              )
+
             ],
           ),
         ));
@@ -314,6 +276,40 @@ class _bodyState extends State<body> {
       ],
     );
   }
+
+  Widget buildView(int index, List list) => Container(
+    width: getWidth(kIsWeb ? 250 : double.infinity),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 40,
+        ),
+        Container(
+          width: getWidth(kIsWeb ? 250 : double.infinity),
+          child: dashboard_components()
+              .text(list[index], FontWeight.w300, Color(0xFF1D2A3A), 23),
+        ),
+        Container(
+
+          child: SizedBox(
+            height: 320, // card height
+            width: getWidth(kIsWeb ? 250 : double.infinity),
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.all(12),
+                itemCount: event[index].length,
+                itemBuilder: (context, index1) {
+                  return buildCard(index1, list: event[index]);
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(width: 30);
+                }),
+          ),
+        ),
+      ],
+    ),
+  );
 
   Widget buildCard(int index, {required List list}) => Container(
       decoration: BoxDecoration(
