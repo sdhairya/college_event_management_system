@@ -108,6 +108,17 @@ class _bodyState extends State<body> {
                       SizedBox(
                         height: 25,
                       ),
+                      eventDetails_components().text("Description",
+                          FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      eventDetails_components().text(widget.l[6],
+                          FontWeight.normal, const Color(0xFF1D2A3A), 15),
+
+                      SizedBox(
+                        height: 15,
+                      ),
                       InkWell(
                         child: Container(
                           padding: EdgeInsets.all(10),
@@ -193,24 +204,28 @@ class _bodyState extends State<body> {
                         },
                       ),
                       SizedBox(
+                        height: 30,
+                      ),
+                      eventDetails_components().text("Rules/Regulation of Event",
+                          FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                      SizedBox(
                         height: 15,
                       ),
+                      eventDetails_components().text(widget.l[7],
+                          FontWeight.normal, const Color(0xFF1D2A3A), 15),
                       SizedBox(
                         height: 25,
                       ),
-                      // eventDetails_components().text("Details",
-                      //     FontWeight.normal, const Color(0xFF1D2A3A), 26),
-                      // SizedBox(
-                      //   height: 15,
-                      // ),
-                      // Padding(
-                      //   padding: EdgeInsets.only(left: 15, right: 5),
-                      //   child: eventDetails_components().text(
-                      //       "Starts \n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n Ends",
-                      //       FontWeight.bold,
-                      //       const Color(0xFF1D2A3A),
-                      //       20),
-                      // ),
+                      eventDetails_components().text("Evaluation Criteria",
+                          FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      eventDetails_components().text(widget.l[8],
+                          FontWeight.normal, const Color(0xFF1D2A3A), 15),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Align(
                         alignment: Alignment.center,
                         child: SizedBox(
@@ -228,7 +243,11 @@ class _bodyState extends State<body> {
                               child: const Text('Book Event'),
                               onPressed: () {}),
                         ),
-                      )
+
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
                     ],
                   ),
                 )

@@ -68,37 +68,7 @@ class _bodyState extends State<body> {
       "1. Each team/member will be given 15 minutes to demonstrate their project work (10 minutes for presentation and 5 minutes for question and answer). \n\n2. Maximum 3 students per team/group are allowed.\n\n3. Any student from any college and from any branch is allowed to participate but the project should be oriented to computer technology or it may be using some sort of computer programming.\n\n4. Resources are to be managed by the team.\n\n5. Testing of the project will not be permitted on the day of the event.\n\n6. Event coordinators will not be responsible for any kind of failure.\n\n7. The decision of the judges would be final and binding.",
       "1. Presentation, skills and strategies.\n2. Question answer round.\n3. Depth knowledge of the Project/topic\n4. Content and selection of projects/topics\n5. Marks will be given based on project complexity and team members.\n6. Acceptability\n7. Feasibility"
     ],
-    [
-      "Paper Presentation",
-      "Tech",
-      "9:30 AM - 2:30 PM",
-      "C-D",
-      [
-        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
-        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
-        [
-          "Prof. Dhiren Prajapati",
-          "dtp01@ganpatuniversity.ac.in",
-          "7016050788"
-        ],
-      ],
-      [
-        [
-          "Ayushi Gorai",
-          "Sem-7 CE",
-          "19012011014",
-          "ayushigorai19@gnu.ac.in",
-          "8141784691"
-        ],
-        [
-          "Vishnu Tak",
-          "Sem-5 CE",
-          "20012011181",
-          "vishnutak08@gmail.com",
-          "6378133765"
-        ],
-      ],
-    ]
+
   ];
 
 
