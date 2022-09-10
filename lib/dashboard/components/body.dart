@@ -1,5 +1,6 @@
 import 'package:college_event_management/addCoordinator/components/body.dart';
 import 'package:college_event_management/createProfile/createProfile.dart';
+import 'package:college_event_management/profileDetails/profileDetails.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,6 @@ import '../../events/events.dart';
 import '../../size_config.dart';
 import '../dashboardScreen.dart';
 import 'dashboard_components.dart';
-import 'package:college_event_management/eventData.dart' as data;
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   List<String> list = <String>[
     "Infocrafts",
-    "MechMechato",
+    "Mech-Mechato",
     "MathMagix",
     "PetroX",
     "Biotechnica",
@@ -31,13 +31,70 @@ class _bodyState extends State<body> {
     "General Events",
     "Maritech"
   ];
-
-  List event=[
-    data.Infocrafts,
-    data.MechMechato,
-    data.MathMagix
+  List<List> Infocrafts = <List>[
+    [
+      "Project Presentation",
+      "Tech",
+      "9:30 AM - 2:30 PM",
+      "C-D",
+      [
+        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
+        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
+        ["Prof. Dhiren Prajapati", "dtp01@ganpatuniversity.ac.in", "7016050788"]
+      ],
+      [
+        [
+          "Ayushi Gorai",
+          "ayushigorai19@gnu.ac.in",
+          "8141784691",
+          "Sem-7 CE",
+          "19012011014",
+        ],
+        [
+          "Vishnu Tak",
+          "vishnutak08@gmail.com",
+          "6378133765",
+          "Sem-5 CE",
+          "20012011181",
+        ],
+      ],
+      "The project work constitutes a major component in most of the professional programmers. In this event the project should be related to the field of Computer science / Information Technology. Participants of this event are expected to demonstrate some real life projects. These projects may be carried out in some industry, research and development laboratories, "
+          "educational institutions or software companies by the participant. It is suggested that the project is to be chosen which should have some direct relevance in day-to-day activities. Participants have to show the actual working of their project.",
+      "1. Each team/member will be given 15 minutes to demonstrate their project work (10 minutes for presentation and 5 minutes for question and answer). \n\n2. Maximum 3 students per team/group are allowed.\n\n3. Any student from any college and from any branch is allowed to participate but the project should be oriented to computer technology or it may be using some sort of computer programming.\n\n4. Resources are to be managed by the team.\n\n5. Testing of the project will not be permitted on the day of the event.\n\n6. Event coordinators will not be responsible for any kind of failure.\n\n7. The decision of the judges would be final and binding.",
+      "1. Presentation, skills and strategies.\n2. Question answer round.\n3. Depth knowledge of the Project/topic\n4. Content and selection of projects/topics\n5. Marks will be given based on project complexity and team members.\n6. Acceptability\n7. Feasibility"
+    ],
+    [
+      "Paper Presentation",
+      "Tech",
+      "9:30 AM - 2:30 PM",
+      "C-D",
+      [
+        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
+        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
+        [
+          "Prof. Dhiren Prajapati",
+          "dtp01@ganpatuniversity.ac.in",
+          "7016050788"
+        ],
+      ],
+      [
+        [
+          "Ayushi Gorai",
+          "Sem-7 CE",
+          "19012011014",
+          "ayushigorai19@gnu.ac.in",
+          "8141784691"
+        ],
+        [
+          "Vishnu Tak",
+          "Sem-5 CE",
+          "20012011181",
+          "vishnutak08@gmail.com",
+          "6378133765"
+        ],
+      ],
+    ]
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +139,7 @@ class _bodyState extends State<body> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      dashboard_components().text("",
+                      dashboard_components().text("Find Events,",
                           FontWeight.normal, const Color(0xFF1D2A3A), 16),
                       SizedBox(
                         height: 10,
@@ -153,49 +210,30 @@ class _bodyState extends State<body> {
                   ),
                 ),
               ),
-              // SizedBox(
-              //   height: 40,
-              // ),
-              // Container(
-              //   width: getWidth(kIsWeb ? 250 : double.infinity),
-              //   child: dashboard_components()
-              //       .text("Infocrafts", FontWeight.w300, Color(0xFF1D2A3A), 23),
-              // ),
-              // Container(
-              //   child: SizedBox(
-              //     height: 320, // card height
-              //     width: getWidth(kIsWeb ? 250 : double.infinity),
-              //     child: ListView.separated(
-              //         scrollDirection: Axis.horizontal,
-              //         padding: const EdgeInsets.all(12),
-              //         itemCount: data.Infocrafts.length,
-              //         itemBuilder: (context, index) {
-              //           return buildCard(index, list: data.Infocrafts);
-              //         },
-              //         separatorBuilder: (context, index) {
-              //           return const SizedBox(width: 30);
-              //         }),
-              //   ),
-              // ),
-
+              SizedBox(
+                height: 40,
+              ),
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: Flexible(
-                  fit: FlexFit.loose,
+                child: dashboard_components()
+                    .text("Events", FontWeight.w300, Color(0xFF1D2A3A), 23),
+              ),
+              Container(
+                child: SizedBox(
+                  height: 320, // card height
+                  width: getWidth(kIsWeb ? 250 : double.infinity),
                   child: ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: list.length,
-                    itemBuilder: (context, index){
-                      return buildView(index, list);
-                    },
-                    separatorBuilder: (context, index){
-                      return const SizedBox(height: 10,);
-                    },
-                  ),
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.all(12),
+                      itemCount: Infocrafts.length,
+                      itemBuilder: (context, index) {
+                        return buildCard(index, list: Infocrafts);
+                      },
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(width: 30);
+                      }),
                 ),
-              )
-
+              ),
             ],
           ),
         ));
@@ -276,40 +314,6 @@ class _bodyState extends State<body> {
       ],
     );
   }
-
-  Widget buildView(int index, List list) => Container(
-    width: getWidth(kIsWeb ? 250 : double.infinity),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 40,
-        ),
-        Container(
-          width: getWidth(kIsWeb ? 250 : double.infinity),
-          child: dashboard_components()
-              .text(list[index], FontWeight.w300, Color(0xFF1D2A3A), 23),
-        ),
-        Container(
-
-          child: SizedBox(
-            height: 320, // card height
-            width: getWidth(kIsWeb ? 250 : double.infinity),
-            child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.all(12),
-                itemCount: event[index].length,
-                itemBuilder: (context, index1) {
-                  return buildCard(index1, list: event[index]);
-                },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(width: 30);
-                }),
-          ),
-        ),
-      ],
-    ),
-  );
 
   Widget buildCard(int index, {required List list}) => Container(
       decoration: BoxDecoration(

@@ -131,7 +131,7 @@ class _bodyState extends State<body> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => attendees(previousScreen_data: widget.l,)));
+                                  builder: (context) => attendees()));
                         },
                       ),
                       SizedBox(
@@ -160,7 +160,7 @@ class _bodyState extends State<body> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.l[4],previousScreen_data: widget.l,)));
+                                  builder: (context) => coordinators(l: widget.l[4],)));
                         },
                       ),
                       SizedBox(
@@ -189,7 +189,7 @@ class _bodyState extends State<body> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.l[5], previousScreen_data: widget.l,)));
+                                  builder: (context) => coordinators(l: widget.l[5])));
                         },
                       ),
                       SizedBox(
