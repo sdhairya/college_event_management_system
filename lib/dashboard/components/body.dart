@@ -28,14 +28,21 @@ class _bodyState extends State<body> {
     "Biotechnica",
     "Civesta",
     "ElectaBuzz",
-    "General Events",
-    "Maritech"
+    "Maritech",
+    "GeneralxEvents",
+
   ];
 
   List event=[
     data.Infocrafts,
     data.MechMechato,
-    data.MathMagix];
+    data.MathMagix,
+    data.PetroX,
+    data.Civesta,
+    data.ElectaBuzz,
+    data.Maritech,
+    data.GeneralEvents
+  ];
   List<List> Infocrafts = <List>[
     [
       "Project Presentation",
