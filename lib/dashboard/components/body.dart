@@ -29,7 +29,7 @@ class _bodyState extends State<body> {
     "Civesta",
     "ElectaBuzz",
     "Maritech",
-    "GeneralxEvents",
+    "GeneralEvents",
 
   ];
 
@@ -38,6 +38,7 @@ class _bodyState extends State<body> {
     data.MechMechato,
     data.MathMagix,
     data.PetroX,
+    data.Biotechnica,
     data.Civesta,
     data.ElectaBuzz,
     data.Maritech,

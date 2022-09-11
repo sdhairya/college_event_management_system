@@ -656,8 +656,8 @@ List<List> PetroX = <List>[
     ],
     [
       [
-        "Jeet Patel"
-            "jeetkumarpatel18@gnu.ac.in",
+        "Jeet Patel",
+        "jeetkumarpatel18@gnu.ac.in",
         "8511512798",
         "5",
         "21172182016",
@@ -677,8 +677,8 @@ List<List> PetroX = <List>[
     ],
     [
       [
-        "Hilay Patel"
-            "hilaypatel20@gnu.ac.in",
+        "Hilay Patel",
+        "hilaypatel20@gnu.ac.in",
         "7043736620",
         "5",
         "20012181004",
@@ -698,8 +698,8 @@ List<List> PetroX = <List>[
     ],
     [
       [
-        "Deep Patel"
-            "deepkumarjpatel18@gnu.ac.in",
+        "Deep Patel",
+        "deepkumarjpatel18@gnu.ac.in",
         "7984060358",
         "5",
         "21172182010",
@@ -719,8 +719,8 @@ List<List> PetroX = <List>[
     ],
     [
       [
-        "Nihar Patel"
-            "niharpatel18@gnu.ac.in",
+        "Nihar Patel",
+        "niharpatel18@gnu.ac.in",
         "9574344022",
         "5",
         "21012182008",
@@ -732,12 +732,388 @@ List<List> PetroX = <List>[
   ],
 ];
 
-List<List> Biotechnica = <List>[];
+List<List> Biotechnica = <List>[
+  [
+    "Technoworkshop",
+    "Tech",
+    "14/10/22\n1:30-3:30",
+    "B",
+    [
+      ["Prof. R.K. Patel", "raksha.patel@ganpatuniversity.ac.in", "9974019570"],
+    ],
+    [
+      [
+        "Yash Chaudhary",
+        "yashchaudhary6987@gmail.com",
+        "9313167343",
+        "5",
+        "20012052001",
+      ],
+    ],
+    "Capital Equipment of Cardiac OT",
+    "1. Registration will be based on first come first serve basis\n2. Certificate will be given to the each participant",
+    "NA",
+  ],
+  [
+    "Innovative Mania",
+    "Tech",
+    "14/10/22\n9:30-12:00",
+    "A",
+    [
+      ["Himal Chitara", "hbc02@ganpatuniversity.ac.in", "7621816969"],
+      ["Devarshi Pandya", "dyp01@ganpatuniversity.ac.in", "8511947772"],
+    ],
+    [
+      [
+        "Esha Desai",
+        "eshadesai19@gnu.ac.in",
+        "7043313328",
+        "3",
+        "19171411007",
+      ],
+    ],
+    "We welcome new innovative ideas And Provide Stage For the Students So they can Perform their Innovative Ideas & Represent Their Models.",
+    "1. The project may be undertaken by individual student or in group not exceeding three members. \n2. There will be 2 stage assessments of Projects for final selection. \nI. PHASE I, which is Pre-assessment stage, Based on the project abstract submitted by you.\nII. PHASE II which is final assessment stage, Based on Video demonstration of working of project send by you. \n\n3.The participants will have to send their Project abstract on or before 05 oct 2022, 4:00 PM to hbc02@ganpatuniversity.ac.in with the Title of your project. \n4. There should be a title, name of team members, college name, email address and mobile number at the top of the abstract.\n5. The abstract will be selected on the basis of; \nI. Addresses the critical challenges of the current health care scenario. \nII. Innovation - either replacing the current technology or your own idea. \nIII. Economic and feasible aspects.\n\n6. After the selection of the abstract, the participants must make a video demonstrating the working of their project and send it in CD/DVD on or before 10 October 2022, 4:00 PM to the event coordinator.\n7. Shortlisted projects for participation in the competition will be informed by e-mail & published in our website from time to time. \n8. You must Give your Requirements list in Advanced.",
+    "Result should be based on innovation , problem identification , good knowledge of software ,  Project Result should be cleared.",
+  ],
+  [
+    "Quizophile",
+    "Tech",
+    "15/10/22\n12:30-3:00",
+    "D",
+    [
+      ["Prof.Heena Patel", "hkp01@ganpatuniversity.ac.in", "9737177328"],
+      ["Prof.Vaishvi Patel", "vp02@ganpatuniversity.ac.in", "9687610024"],
+    ],
+    [
+      [
+        "Bhoomi Patel",
+        "bhoomipatel2234@gmail.com",
+        "9106895553",
+        "7",
+        "20012052007",
+      ],
+    ],
+    "There will be a quiz competition between participants based on technical area, current affairs , film & media etc .It will be having   4 rounds of the quiz consist of different formats like rapid fire round , Buzzer round, audio &visual round and general around. ",
+    "1. General Round :In this round each team has its own quota of 6 questions and other questions passed to it from the previous team that did not answer. A team gets 30 seconds to answer the question intended for it, and is awarded 30 points for answering  it.\n\n2. Rapid Fire round: In this round each team will be asked 10 questions one after another. On the immediate completion of a question, each team gets 5 seconds to answer it. If a team is not able to answer a question, they can pass it for the next question. There is no team discussion in this round. 10 points is awarded for the correct answer.\n\n3. Buzzer Round : 10 questions will be fired at all the teams one after another. The teams can discuss among themselves and then press the buzzer/bell to answer the question first. No discussion is allowed after pressing the buzzer. The question has to be answered in 20 seconds. If a question is not answered by the first team who pressed the bell. The team that pressed the bell next gets to answer. The team that presses the buzzer/bell first gets a chance to answer it. 10 points for the correct answer and minus 5 points for the wrong answer. If a team doesn’t answer or gives wrong answers after they press buzzer they also lose 5 points.\n\n4. Audio-Visual round : Each Team will be shown a picture with a quotation. The team has to complete the quotation. The team has 15 seconds to complete the quotation. The teams will be made to listen to an audio clip. The team has to guess the name of the song or sing certain lines from the song as asked by the quiz master. Questions will not be passed to the next team.",
+    "Maximum correct answer gets the point .",
+  ],
+  [
+    "Poster Presentation",
+    "Tech",
+    "15/10/22\n9:30-12:00",
+    "C",
+    [
+      ["DIPA JARECHA", "dmj01@ganpatuniversity.ac.in", "9409413600"],
+      ["HIMAL CHITARA", "hbc02@ganpatuniversity.ac.in", "7621816969"],
+    ],
+    [
+      [
+        "Simran Yadav",
+        "simranyadav21@gnu.ac.in ",
+        "8469895076",
+        "3",
+        "21012051025",
+      ],
+    ],
+    "Students will display their poster and will be available for viewers to answer their questions.",
+    "1. Each Participant or each group can post only one Poster.\n2. Idea and content should be original.\n3. It should be Relevant to the theme.\n4. Text and graphics should be clear and readable by the 2feet away.\n5. Size of poster should be A2 (16.5 * 23.4).\n6. Title should be relevant and short.\n7. Maximum 3 students are allowed in each groups.",
+    "1. Ability to Stand Alone\n2. Overall Visual Appeal \n3.Quality of Graphics\n4.Appropriate and Relevant Content 5.Oral Presentation of Poster.",
+  ],
+];
 
-List<List> Civesta = <List>[];
+List<List> Civesta = <List>[
+  [
+    "Block Structure",
+    "Tech",
+    "15/10/22",
+    "NA",
+    [
+      ["Prof. Hitesh Sonarghare", "has01@ganpatuniversity.ac.in", "9737704296"],
+      ["Prof. Paresh Patel", "php01@ganpatuniversity.ac.in", "9898420360"],
+    ],
+    [
+      [
+        "Drashtant Thori",
+        "drashtantthori19@gnu.ac.in",
+        "7778008888",
+        "VII",
+        "19012071032",
+      ],
+      [
+        "Patel Poojan Arvindbhai",
+        "poojanpatel20@gnu.ac.in",
+        "9638529956",
+        "V",
+        "20012071014",
+      ],
+      [
+        "Patel Bhavya Harshadbhai",
+        "bhavyahpatel20@gnu.ac.in",
+        "9924571088",
+        "V",
+        "20012071022",
+      ],
+    ],
+    "Students had to participate in group of five. This event consisted of creating a structure with the provided number of wooden cubes. Total Number of blocks provided: 50 nos.Time of construction for each team:10min.",
+    "1. Students count should be 5 only.\n2. Students should be present on 10 min before their event starts.\n3. Any team are caught in misbehaviour with the     co-ordinators are eligible to get disqualified.\n4. Any delay in construction of structure will be eligible to lose points.",
+    "1. 1st Round: One block is to be removed by one of the participant of the same group as per asked by the judges. \n2. The stabled structure at the end of the round1will be winner and promoted to 2nd round.\n3. In 2nd round also, procedure of 1st round will be repeated and so on the round will be continued till last.\n4. Total 5 group at a time will participated at a time. The winner of each batch will be promoted ahead to compete with winner of other batch.\n5. The last structure standing will be declared winner.",
+  ],
+  [
+    "Poster Presentation",
+    "Tech",
+    "15/10/22",
+    "NA",
+    [
+      [
+        "Prof. Durgesh Kumar Singh",
+        "ds02@ganpatuniversity.ac.in",
+        "8320699640"
+      ],
+      ["Prof. Kamlesh R Damdoo", "krd01@ganpatuniversity.ac.in", "8460270839"],
+    ],
+    [
+      [
+        "Patel Himani Dharmendrabhai",
+        "himanidpatel19@gnu.ac.in",
+        "9016035350",
+        "VII",
+        "19012071027",
+      ],
+      [
+        "Solanki Pratik Haribhai",
+        "pratikkumarsolanki19@gnu.ac.in",
+        "9510719871",
+        "VII",
+        "19012071023",
+      ],
+      [
+        "Mavi Yogeshbhai Rameshbhai"
+            "yogeshmavi326@gmail.com",
+        "6352195246",
+        "V",
+        "21012072036",
+      ],
+    ],
+    "The objective behind organisation of poster making competition is to bring out the creative expression of students and to gauge their knowledge and awareness of various trends of sustainable development",
+    "Each group (maximum 2 participants) can post only one Poster that should be printed/drawn from the home. The poster must be made on the A2 size (16.5 * 23.4 inches) sheet with margins (0.5 inches).Poster can be made using pencil, crayon, watercolour, oil paint, etc. Photographs, wires, other 3D objects, print-outs is also acceptable. The Topic of poster and theme should be clearly mentioned at the Top Margin of the Poster.Name, Class, College of the Participants must be written on bottom-left portion of poster . These details should be same as in registration form.",
+    "1. Relevance to the theme.\n2. Originality.\n3. Artistic composition.\n4. Creativity.\n5. Message conveyed by the poster.\n6. Effectiveness in communicating the intended message.",
+  ],
+  [
+    "Float The Boat",
+    "Tech",
+    "14/10/22",
+    "",
+    [
+      [
+        "Prof. Jagdish Khatik",
+        "jk01@ganpatuniversity.ac.in",
+        "9057599906/8741035420"
+      ],
+      ["Prof. Tushar Shrivastva", "ts01@ganpatuniversity.ac.in", "8800562394"],
+    ],
+    [
+      [
+        "Patel Kunj KamaleshKumar",
+        "kunjkpatel18@gnu.ac.in",
+        "9016035350",
+        "V",
+        "9106909374",
+      ],
+      [
+        "Joshi Shani",
+        "shanijoshi18@gun.ac.in",
+        "9687842224",
+        "V",
+        "21012072068",
+      ],
+      [
+        "Rajput Nirali RajendraSinh",
+        "niralirajput18@gnu.ac.in",
+        "6356349795",
+        "V",
+        "21012072067",
+      ],
+    ],
+    "Participants have to build a Boat by using Paper, Wooden Ice cream stick and Fevicol Only. Material for the same will be provided by us on same day of competition. Maximum dimension of the Boat: Length = 20 cm; Width = 14 cm, height = 14 cm. Load will be applied laterally at the centre of the boat. Model which carries maximum load without sinking will be declared as winner",
+    "1. Only boat has to be built.\n2. Materials will be provided from the institute on same day of competition. Team can physically alter by cutting, notching, sanding or bending to make proper fitting connection. Materials may not be painted, covered, coated, or soaked in anything except water\n3. 3 to 5 members are allowed in a team.\n4. Only First 25 teams are allowed to participate on First come first get basis.\n5. Maximum dimension of the Boat: Length = 20 cm; Width = 14 cm, height = 14 cm. \n6. Violation of any rules will be followed by instant disqualification\n7. Teams must submit their Boats sharply on or before 12:00 noon for inspection. 15 minutes extra shall be provided to modify the boat if it does not meets the given specifications.\n8. Participants must carry their own scissors, scale and other craft related items.",
+    "1. Load will be applied laterally at the centre of the boat.\n2. Model that carries maximum load without sinking will be declared as winner.\n3. The final decision lies in the hands of the judges. The decision of judges cannot be challenged.",
+  ],
+];
 
-List<List> ElectaBuzz = <List>[];
+List<List> ElectaBuzz = <List>[
+  [
+    "CIRCUIT ASSEMBLY",
+    "Tech",
+    "15 0ct 2022\n9:30 am to 3pm",
+    "",
+    [
+      ["Prof.N.N.Patel", "nnp01@ganpatuniversity.ac.in", "9586795841"],
+    ],
+    [
+      [
+        " Hardik Prajapati",
+        "hardikprajapati20@gnu.ac.in",
+        "9909104966",
+        "7",
+        "20012082026",
+      ],
+    ],
+    "This is the event where participants should design and development of electrical field related circuit.",
+    "1. A tool kit of Electronics Devices will provide to the team.\n2. Participants will have to assemble the circuit before given time limit.\n3. They will have to assemble right circuit on bread board or PCB.\n4. Ranking to the them will be given on the basis of time bound assembly work and technical knowledge.\n5. First three ranker  will be winner.",
+    "Circuit proper connection and satisfied result.",
+  ],
+  [
+    "MOCK INTERVIEW",
+    "Tech",
+    "15 0ct 2022\n9 am to 2 pm",
+    "",
+    [
+      ["Prof.N.N.Patel", "nnp01@ganpatuniversity.ac.in", "9586795841"],
+    ],
+    [
+      [
+        "Smit Patel",
+        "smithpatel20@gnu.ac.in",
+        "7016901145",
+        "7",
+        "20012082030",
+      ],
+    ],
+    "This is the event where student will appear in a Mock Test, Group Discussion & Mock Interview.",
+    "1. Eligibility for Junior Electrical Engineer level: Student from diploma final year and B.Tech/B.E. Second year.\n2. Eligibility for Deputy Electrical Engineer level: Student from B.Tech/B.E. Third year and final year. \n3. Eligibility for Senior Electrical Engineer level: Student from B.Tech/B.E. Final year and M.Tech/M.E.\n4. Participants should come in a formal dress code and bring only photocopy of necessary documents with their identification proof.\n\nElimination Round-\n1. A technical test of 30 Marks will be conducted.\n2. Total time duration will be 20 Minutes.\n3. Student who will be shortlisted can proceed in the next round.  \n\nGroup Discussion\n1. From the short listed participants, groups for discussion will be formed on the basis of online test raking. \n2. The individual performance during group discussion will be judged by penal of experts.\n3. Student who will be shortlisted can proceed in the next round.  \n\nInterview-\nA panel of experts will ask technical, managerial and general knowledge related questions and will give their Judgment.",
+    "Participants written test and technical knowledge.",
+  ],
+  [
+    "PROJECTRON",
+    "Tech",
+    "14 0ct 2022\n11:30 am to 3pm",
+    "",
+    [
+      ["Prof.N.N.Patel", "nnp01@ganpatuniversity.ac.in", "9586795841"],
+    ],
+    [
+      [
+        "Vaibhav Patel",
+        "vaibhavpatel20@gnu.ac.in",
+        "8140003787",
+        "7",
+        "20012082021",
+      ],
+    ],
+    "This is the event where student will present their Project Model.",
+    "1. Maximum three participants are allowed per team.\n2. Model of project must be required.\n3. Model for PROJECTRON must be related to Electrical Engineering.\n4. The total time duration for explaining the model will be 10 minutes.(8 minutes for explanation + 2 minutes for question-answer)\n5. Participants from same institutes and department can form a team.\n6. All the participants will be awarded      participation certificate. Certificate of Excellence will be awarded to Winning teams\n7. Measuring instruments & required supply should be provided by us only, other instruments and model equipment’s will not provide.\n8. Working model of PROJECTRON should bring in campus at your own risk, no fund will provided if damaged caused by other external reasons or during the demonstration in event.",
+    "Ranking for PROJECTRON will be given by Judge panel.",
+  ],
+  [
+    "THINK BEYOND",
+    "Tech",
+    "14 0ct 2022\n11:45 am to 4 pm",
+    "",
+    "",
+    [
+      ["Prof.N.N.Patel", "nnp01@ganpatuniversity.ac.in", "9586795841"],
+    ],
+    [
+      [
+        "Harshil Patel",
+        "harshilkumarpatel20@gnu.ac.in",
+        "9979272106",
+        "7",
+        "20012082018",
+      ],
+    ],
+    "This is the event where student will present their Innovative Idea.",
+    "1. Idea must reflect the innovativeness and its feasibility of the project.\n2. Maximum three participants are allowed per team.\n3. Each group have to prepare a chart or model or poster approximately A2 size.\n4. The total time duration for explaining the idea and time will be given only 10 minutes (8 minutes for explanation + 2 minutes for question-answer)\n5. Participants from same institutes and department can form a team.\n6. All the participants will be awarded participation certificate.\n7. Certificate of Excellence will be awarded to Winning teams.\n\nDesign & Layout Specification\n1. The poster should be designed on the A2 size sheet.\n2. A banner displaying your poster Title, Name and College should be positioned at Top-Centre of the board.",
+    "Ranking for event  will be given by Judge panel.",
+  ],
+];
 
-List<List> Maritech = <List>[];
+List<List> Maritech = <List>[
+  [
+    "Boat Racing",
+    "Tech",
+    "14/10/2022",
+    "A",
+    [
+      ["Hardik A. Patel", "hap09@ganpatuniversity.ac.in", "9106593769"],
+    ],
+    [
+      [
+        "Anurag Kumar",
+        "annusinghal456@gmail.com",
+        "9799024921",
+        "5th Sem",
+        "20012091001",
+      ],
+      [
+        "Raj Kumar Gadhiya",
+        "gadhiyarajkumar1020@gmail.com",
+        "7600321021",
+        "5th Sem",
+        "20012091002",
+      ],
+    ],
+    "Complete your race without sinking your boat which may eliminate your boat. \n\nRound 1:-\n1. Place your RC boat in water track.\\n3. The obstacles will be minimum in the first round.\n\nRound 2:-\n1. The obstacles will much more in this round.\n2. The first three participants will be awarded.\n3. Complete your race in minimum time.",
+    "1. This is the open contest and anyone can take part .\n2. The team should not have more than 3 students.\n3. The maximum width of the RC boat is 20cm.\n4. The maximum length of the RC boat is 45cm.\n5. The maximum voltage of  the RC boat is 12V. \n6. The RC boat made by students only, Readymade boat  should not allowed.\n7. Engine power boats are strictly not permitted.\n8. Participants are not allowed to make any changes in the boat after participating in first round.\n9. Any damaged to the RC boat, owners will be responsible.\n10. Only one team member will allow to control the remote of the boat, controller should not be change through the event.\n11. The penalty of 15seconds will be added, if the team member will touch the boat after putting the RC boat in water..\n12. The time will not stop until  the race will complete.",
+    "Round 1:-\n1. Complete your race in minimum time.\n2. Hand touch will increase your time by 10 seconds\n3. Maximum three hand touch will allowed.\n\nRound 2:-\n1. Complete your race in minimum time.\n2. Hand touch will increase your time by 15 seconds\n3. Maximum two hand touch will allowed.",
+  ],
+  [
+    "Workshop of Ship building",
+    "Tech",
+    "14/10/2022 and 15/10/2022",
+    "A-E",
+    [
+      ["Mihir A. Patel", "map04@ganpatuniversity.ac.in", "8160670003"],
+    ],
+    [
+      [
+        "Akash Singh",
+        "akashsingh20@gnu.ac.in",
+        "9918263121",
+        "5th Sem",
+        "21012092005",
+      ],
+      [
+        "Nirjar Sarkar",
+        "nirjharsarkar20@gnu.ac.in",
+        "8583038477",
+        "5th Sem",
+        "21012092012",
+      ],
+    ],
+    "NA",
+    "NA",
+    "NA",
+  ],
+  [
+    "SHIP-PROJECT",
+    "Tech",
+    "14/10/2022",
+    "A-B",
+    [
+      ["Prof. Jirendra Rawat", "jsr01@ganpatuniversity.ac.in", "9558107108"],
+    ],
+    [
+      [
+        "Gajjar Abhi",
+        "abhi260603@gmil.com",
+        "6352777986",
+        "5th Sem",
+        "21012092002",
+      ],
+      [
+        "Savaliya Jay",
+        "savaliyajay099@gmail.com",
+        "8866859948",
+        "5th Sem",
+        "21012092004",
+      ],
+    ],
+    "NA",
+    "NA",
+    "NA",
+  ],
+];
 
 List<List> GeneralEvents = <List>[];
