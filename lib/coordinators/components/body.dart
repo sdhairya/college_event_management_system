@@ -1,3 +1,4 @@
+import 'package:college_event_management/hms/event.dart';
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
 
@@ -13,7 +14,7 @@ import 'package:college_event_management/coordinators/components/coordinators.da
 class body extends StatefulWidget {
 
   final List l;
-  final List previousScreen_data;
+  final EventData previousScreen_data;
   const body({Key? key, required this.l, required this.previousScreen_data}) : super(key: key);
 
   @override

@@ -1,8 +1,9 @@
+import 'package:college_event_management/hms/event.dart';
 import 'package:flutter/material.dart';
 import 'package:college_event_management/attendees/components/body.dart';
 
 class attendees extends StatefulWidget {
-  final List previousScreen_data;
+  final EventData previousScreen_data;
   const attendees({Key? key, required this.previousScreen_data}) : super(key: key);
 
   @override

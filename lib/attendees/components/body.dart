@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 
 import '../../dashboard/dashboardScreen.dart';
 import '../../eventDetails/eventDetails.dart';
+import '../../hms/event.dart';
 import '../../size_config.dart';
 import 'attendees_components.dart';
 
 class body extends StatefulWidget {
-  final List previousScreen_data;
+  final EventData previousScreen_data;
   const body({Key? key, required this.previousScreen_data}) : super(key: key);
 
   @override

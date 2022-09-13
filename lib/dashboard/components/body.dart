@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:college_event_management/addCoordinator/components/body.dart';
 import 'package:college_event_management/createProfile/createProfile.dart';
+import 'package:college_event_management/hms/event_parser.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +10,7 @@ import '../../addFaculty/addFaculty.dart';
 import '../../createEvent/createEvent.dart';
 import '../../eventDetails/eventDetails.dart';
 import '../../events/events.dart';
+import '../../hms/event.dart';
 import '../../size_config.dart';
 import '../dashboardScreen.dart';
 import 'dashboard_components.dart';
@@ -20,70 +24,10 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
-  List<String> list = <String>[
-    "Infocrafts",
-    "MechMechato",
-    "MathMagix",
-    "PetroX",
-    "Biotechnica",
-    "Civesta",
-    "ElectaBuzz",
-    "Maritech",
-    "GeneralEvents",
-
-  ];
-
-  Map<String,List> event={};
-
-
-
-  List<List> Infocrafts = <List>[
-    [
-      "Project Presentation",
-      "Tech",
-      "9:30 AM - 2:30 PM",
-      "C-D",
-      [
-        ["Prof. Rachana Modi", "rvm02@ganpatuniversity.ac.in", "9825015094"],
-        ["Prof. Satish Maurya", "skm02@ganpatuniversity.ac.in", "9196116503"],
-        ["Prof. Dhiren Prajapati", "dtp01@ganpatuniversity.ac.in", "7016050788"]
-      ],
-      [
-        [
-          "Ayushi Gorai",
-          "ayushigorai19@gnu.ac.in",
-          "8141784691",
-          "Sem-7 CE",
-          "19012011014",
-        ],
-        [
-          "Vishnu Tak",
-          "vishnutak08@gmail.com",
-          "6378133765",
-          "Sem-5 CE",
-          "20012011181",
-        ],
-      ],
-      "The project work constitutes a major component in most of the professional programmers. In this event the project should be related to the field of Computer science / Information Technology. Participants of this event are expected to demonstrate some real life projects. These projects may be carried out in some industry, research and development laboratories, "
-          "educational institutions or software companies by the participant. It is suggested that the project is to be chosen which should have some direct relevance in day-to-day activities. Participants have to show the actual working of their project.",
-      "1. Each team/member will be given 15 minutes to demonstrate their project work (10 minutes for presentation and 5 minutes for question and answer). \n\n2. Maximum 3 students per team/group are allowed.\n\n3. Any student from any college and from any branch is allowed to participate but the project should be oriented to computer technology or it may be using some sort of computer programming.\n\n4. Resources are to be managed by the team.\n\n5. Testing of the project will not be permitted on the day of the event.\n\n6. Event coordinators will not be responsible for any kind of failure.\n\n7. The decision of the judges would be final and binding.",
-      "1. Presentation, skills and strategies.\n2. Question answer round.\n3. Depth knowledge of the Project/topic\n4. Content and selection of projects/topics\n5. Marks will be given based on project complexity and team members.\n6. Acceptability\n7. Feasibility"
-    ],
-
-  ];
-@override
+  List<EventDeptData> eventList = [];
+  @override
   void initState() {
-    event.addAll({
-      list[0]:data.Infocrafts,
-      list[1]:data.MechMechato,
-      list[2]:data.MathMagix,
-      list[3]:data.PetroX,
-      list[4]:data.Biotechnica,
-      list[5]:data.Civesta,
-      list[6]:data.ElectaBuzz,
-      list[7]:data.Maritech,
-      list[8]:data.GeneralEvents
-    });
+    eventList.clear();
     super.initState();
   }
 
@@ -91,6 +35,14 @@ class _bodyState extends State<body> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var i;
+    if(eventList.isEmpty) {
+      EventParser().getDeptEventList().then((value) {
+        debugPrint(":::HMS:::Event_Data:::$value");
+        setState(() {
+          eventList = value;
+        });
+      });
+    }
     return Scaffold(
         appBar: AppBar(backgroundColor: Color(0xFF1D2A3A)),
         drawer: Drawer(
@@ -194,9 +146,9 @@ class _bodyState extends State<body> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      for (i in list)
+                      for (i in eventList)
                         dashboard_components()
-                            .elevatedButton(true, i.toString()),
+                            .elevatedButton(true, i.name.toString()),
                     ],
                   ),
                 ),
@@ -229,7 +181,7 @@ class _bodyState extends State<body> {
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
                 child:
-                buildCategoriesListWithoutScroll(list)
+                buildCategoriesListWithoutScroll(eventList)
 
 
                 ),
@@ -239,7 +191,7 @@ class _bodyState extends State<body> {
           ),
         ));
   }
-  Widget buildWrapProductList(List eventListData)
+  Widget buildWrapProductList(List<EventData> eventListData)
   {
     return
       Flexible(
@@ -334,13 +286,13 @@ class _bodyState extends State<body> {
       ],
     );
   }
-  Widget buildCategoriesListWithoutScroll(List<String> list) {
+  Widget buildCategoriesListWithoutScroll(List<EventDeptData> list) {
     return
-      Column(children:list.map((e) => buildView(e,event[e]!)).toList()
+      Column(children:list.map((e) => buildView(e.name,e.eventList)).toList()
       )
     ;
   }
-  Widget buildView(String categoryName,List eventListData) => Container(
+  Widget buildView(String categoryName,List<EventData> eventListData) => Container(
     width: getWidth(kIsWeb ? 250 : double.infinity),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,7 +329,7 @@ class _bodyState extends State<body> {
     ),
   );
 
-  Widget buildCard(element) => Container(
+  Widget buildCard(EventData element) => Container(
       decoration: BoxDecoration(
           color: Colors.black12, borderRadius: BorderRadius.circular(20)),
       width: 250,
@@ -390,7 +342,7 @@ class _bodyState extends State<body> {
                   color: Colors.black45,
                   borderRadius: BorderRadius.circular(20)),
               child: SizedBox(
-                child: Image.asset('assets/event1.png'),
+                child: Image.asset(element.logo.isEmpty?'assets/event1.png':element.logo),
                 height: 170,
                 width: 250,
               ),
@@ -406,13 +358,13 @@ class _bodyState extends State<body> {
                       // SizedBox(
                       //   width: 5,
                       // ),
-                      Text(element[2]),
+                      Text(element.date +"\n" + element.time),
                     ],
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(element[0].toString(),
+                  Text(element.name,
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   SizedBox(
                     height: 3,
