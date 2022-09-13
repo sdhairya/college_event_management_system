@@ -45,7 +45,7 @@ class _bodyState extends State<body> {
                       padding: EdgeInsets.only(bottom: 3, right: 8),
                       onPressed: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => eventDetails(l: widget.previousScreen_data)));
+                            builder: (context) => eventDetails(inputList: widget.previousScreen_data)));
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_rounded,

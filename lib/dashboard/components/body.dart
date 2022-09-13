@@ -33,17 +33,10 @@ class _bodyState extends State<body> {
 
   ];
 
-  List event=[
-    data.Infocrafts,
-    data.MechMechato,
-    data.MathMagix,
-    data.PetroX,
-    data.Biotechnica,
-    data.Civesta,
-    data.ElectaBuzz,
-    data.Maritech,
-    data.GeneralEvents
-  ];
+  Map<String,List> event={};
+
+
+
   List<List> Infocrafts = <List>[
     [
       "Project Presentation",
@@ -78,7 +71,21 @@ class _bodyState extends State<body> {
     ],
 
   ];
-
+@override
+  void initState() {
+    event.addAll({
+      list[0]:data.Infocrafts,
+      list[1]:data.MechMechato,
+      list[2]:data.MathMagix,
+      list[3]:data.PetroX,
+      list[4]:data.Biotechnica,
+      list[5]:data.Civesta,
+      list[6]:data.ElectaBuzz,
+      list[7]:data.Maritech,
+      list[8]:data.GeneralEvents
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +137,7 @@ class _bodyState extends State<body> {
                       )
                     ],
                   )),
-              Container(
+              /*Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +176,7 @@ class _bodyState extends State<body> {
                         onPressed: () {})
                   ],
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: 40,
               ),
@@ -221,27 +228,37 @@ class _bodyState extends State<body> {
 
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: Flexible(
-                  fit: FlexFit.loose,
-                  child: ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: list.length,
-                    itemBuilder: (context, index){
-                      return buildView(index, list);
-                    },
-                    separatorBuilder: (context, index){
-                      return const SizedBox(height: 10,);
-                    },
-                  ),
+                child:
+                buildCategoriesListWithoutScroll(list)
+
+
                 ),
-              )
+
 
             ],
           ),
         ));
   }
-
+  Widget buildWrapProductList(List eventListData)
+  {
+    return
+      Flexible(
+          child:
+          SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child:Wrap(
+                alignment: WrapAlignment.spaceEvenly,
+                  spacing: getWidth(20),
+                  runSpacing: getHeight(20),
+                  direction: Axis.horizontal,
+                  children: eventListData.map((e) {
+                    return buildCard(e);
+                  }).toList(),
+              )
+          )
+      )
+    ;
+  }
   buildHeader(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
@@ -317,11 +334,17 @@ class _bodyState extends State<body> {
       ],
     );
   }
-
-  Widget buildView(int index, List list) => Container(
+  Widget buildCategoriesListWithoutScroll(List<String> list) {
+    return
+      Column(children:list.map((e) => buildView(e,event[e]!)).toList()
+      )
+    ;
+  }
+  Widget buildView(String categoryName,List eventListData) => Container(
     width: getWidth(kIsWeb ? 250 : double.infinity),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
           height: 40,
@@ -329,30 +352,32 @@ class _bodyState extends State<body> {
         Container(
           width: getWidth(kIsWeb ? 250 : double.infinity),
           child: dashboard_components()
-              .text(list[index], FontWeight.w300, Color(0xFF1D2A3A), 23),
+              .text(categoryName, FontWeight.w300, Color(0xFF1D2A3A), 23),
         ),
         Container(
-
-          child: SizedBox(
+          child:
+          /*SizedBox(
             height: 320, // card height
             width: getWidth(kIsWeb ? 250 : double.infinity),
-            child: ListView.separated(
+            child:*/
+            buildWrapProductList(eventListData)
+            /*ListView.separated(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.all(12),
-                itemCount: event[index].length,
+                itemCount: eventListData.length,
                 itemBuilder: (context, index1) {
-                  return buildCard(index1, list: event[index]);
+                  return buildCard(eventListData[index1]);
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(width: 30);
-                }),
-          ),
+                }),*/
+          //),
         ),
       ],
     ),
   );
 
-  Widget buildCard(int index, {required List list}) => Container(
+  Widget buildCard(element) => Container(
       decoration: BoxDecoration(
           color: Colors.black12, borderRadius: BorderRadius.circular(20)),
       width: 250,
@@ -381,13 +406,13 @@ class _bodyState extends State<body> {
                       // SizedBox(
                       //   width: 5,
                       // ),
-                      Text(list[index][2]),
+                      Text(element[2]),
                     ],
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(list[index][0].toString(),
+                  Text(element[0].toString(),
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   SizedBox(
                     height: 3,
@@ -418,7 +443,7 @@ class _bodyState extends State<body> {
         onTap: () {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => eventDetails(
-                    l: list[index],
+                    inputList: element,
                   )));
         },
       ));

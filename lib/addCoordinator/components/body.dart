@@ -2,7 +2,7 @@ import 'package:college_event_management/addCoordinator/components/addCoordinato
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../login/main.dart';
+import '../../main.dart';
 import '../../size_config.dart';
 
 

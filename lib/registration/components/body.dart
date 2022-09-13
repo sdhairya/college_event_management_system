@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../login/main.dart';
+import '../../main.dart';
 import '../../size_config.dart';
 import '../../terms.dart';
 import '../registrtion.dart';

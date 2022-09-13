@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:college_event_management/login/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../../main.dart';
 import '../addFaculty.dart';
 import 'addFaculty_components.dart';
 import 'package:http/http.dart' as http;

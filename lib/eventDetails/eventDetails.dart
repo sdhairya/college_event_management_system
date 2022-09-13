@@ -2,13 +2,13 @@ import 'package:college_event_management/eventDetails/components/body.dart';
 import 'package:flutter/material.dart';
 
 class eventDetails extends StatelessWidget {
-  final List l;
+  final List inputList;
 
-  const eventDetails({Key? key, required this.l}) : super(key: key);
+  const eventDetails({Key? key, required this.inputList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return body(l: l);
+    return body(inputList: inputList);
   }
 }
 

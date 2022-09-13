@@ -8,9 +8,9 @@ import '../../size_config.dart';
 import 'eventDetails_components.dart';
 
 class body extends StatefulWidget {
-  final List l;
+  final List inputList;
 
-  const body({Key? key, required this.l}) : super(key: key);
+  const body({Key? key, required this.inputList}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -86,22 +86,22 @@ class _bodyState extends State<body> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          eventDetails_components().text(widget.l[0],
+                          eventDetails_components().text(widget.inputList[0],
                               FontWeight.bold, const Color(0xFF1D2A3A), 26),
-                          eventDetails_components().text(widget.l[1],
+                          eventDetails_components().text(widget.inputList[1],
                               FontWeight.bold, const Color(0xFF1D2A3A), 24),
                         ],
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      eventDetails_components().text(widget.l[2],
+                      eventDetails_components().text(widget.inputList[2],
                           FontWeight.normal, const Color(0xFF1D2A3A), 18),
                       SizedBox(
                         height: 5,
                       ),
                       eventDetails_components().text(
-                          "Time Slot : " + widget.l[3].toString(),
+                          "Time Slot : " + widget.inputList[3].toString(),
                           FontWeight.normal,
                           const Color(0xFF1D2A3A),
                           18),
@@ -113,7 +113,7 @@ class _bodyState extends State<body> {
                       SizedBox(
                         height: 15,
                       ),
-                      eventDetails_components().text(widget.l[6],
+                      eventDetails_components().text(widget.inputList[6],
                           FontWeight.normal, const Color(0xFF1D2A3A), 15),
 
                       SizedBox(
@@ -142,7 +142,7 @@ class _bodyState extends State<body> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => attendees(previousScreen_data: widget.l,)));
+                                  builder: (context) => attendees(previousScreen_data: widget.inputList,)));
                         },
                       ),
                       SizedBox(
@@ -171,7 +171,7 @@ class _bodyState extends State<body> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.l[4],previousScreen_data: widget.l,)));
+                                  builder: (context) => coordinators(l: widget.inputList[4],previousScreen_data: widget.inputList,)));
                         },
                       ),
                       SizedBox(
@@ -200,7 +200,7 @@ class _bodyState extends State<body> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.l[5], previousScreen_data: widget.l,)));
+                                  builder: (context) => coordinators(l: widget.inputList[5], previousScreen_data: widget.inputList,)));
                         },
                       ),
                       SizedBox(
@@ -211,7 +211,7 @@ class _bodyState extends State<body> {
                       SizedBox(
                         height: 15,
                       ),
-                      eventDetails_components().text(widget.l[7],
+                      eventDetails_components().text(widget.inputList[7],
                           FontWeight.normal, const Color(0xFF1D2A3A), 15),
                       SizedBox(
                         height: 25,
@@ -221,7 +221,7 @@ class _bodyState extends State<body> {
                       SizedBox(
                         height: 15,
                       ),
-                      eventDetails_components().text(widget.l[8],
+                      eventDetails_components().text(widget.inputList[8],
                           FontWeight.normal, const Color(0xFF1D2A3A), 15),
                       SizedBox(
                         height: 20,

@@ -16,7 +16,7 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
-  List<String> list = <String>['Infocrats', 'Mech-Mechato', 'MATHMAGIX', 'PetroX',"Biotechnical", "CIVESTA","Electabuzz","General Events","MARITECH"];
+  List<String> list1 = <String>['Infocrats', 'Mech-Mechato', 'MATHMAGIX', 'PetroX',"Biotechnical", "CIVESTA","Electabuzz","General Events","MARITECH"];
   // List<String> infocrats =  <String>["PROJECT PRESENTATION",
   //   "PAPER PRESENTATION",
   //   "POSTER PRESENTATION",
@@ -32,7 +32,6 @@ class _bodyState extends State<body> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        reverse: false,
         child: Column(
           children: [
             const Align(
@@ -69,20 +68,9 @@ class _bodyState extends State<body> {
             Container(
               // height: 1000,
               width: getWidth(kIsWeb ? 230 : double.infinity),
-              padding: EdgeInsets.all(0),
               child: Flexible(
                 fit: FlexFit.loose,
-                child: ListView.separated(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(12),
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return buildCard(index, list);
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: 10,);
-                    }),
+                child: getCardList()
               ),
             )
           ],
@@ -90,8 +78,16 @@ class _bodyState extends State<body> {
       ),
     );
   }
-
-  Widget buildCard(int index, List list) => Container(
+  Widget getCardList(){
+    return buildListWithoutScroll(list1);
+  }
+  Widget buildListWithoutScroll(List list) {
+    return
+      Column(children:list.map((e) => buildCard(e)).toList()
+      )
+    ;
+  }
+  Widget buildCard(String e) => Container(
         padding: EdgeInsets.only(left: 30, top: 10,bottom: 10, right: 30),
         // margin: EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
@@ -108,7 +104,7 @@ class _bodyState extends State<body> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    events_components().text(list[index], FontWeight.bold, Color(0xFF1D2A3A), 20),
+                    events_components().text(e, FontWeight.bold, Color(0xFF1D2A3A), 20),
                     SizedBox(height: 5,),
                     events_components().text("29th Nov 2022", FontWeight.normal, Color(0xFF1D2A3A), 14),
                     SizedBox(height:5,),
@@ -129,9 +125,10 @@ class _bodyState extends State<body> {
 
           ],
         ),
-        onTap: (){
+        /*onTap: (){
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => eventDetails(l: list[index],)));
-        },)
+              MaterialPageRoute(builder: (context) => eventDetails(inputList: e,)));
+        }*/
+            )
       );
 }

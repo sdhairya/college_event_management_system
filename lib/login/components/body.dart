@@ -57,47 +57,33 @@ class _bodyState extends State<body> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     SizeConfig().init(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
+        child:
             //Login Text Container
+        Container(
+        margin: EdgeInsets.only(
+        left: getWidth(150),
+            right: getWidth(150),
+    top: getPercentHeight(12)),
+    child:
             Column(
               children: [
                 const Align(alignment: Alignment(0, 0)),
-                Container(
-                    height: getHeight(50),
-                    width: getWidth(kIsWeb ? 100 : double.infinity),
-                    margin: EdgeInsets.only(
-                        left: 20,
-                        top: MediaQuery.of(context).size.height * 0.12),
-                    child: const Text(
+                 const Text(
                       'Login',
                       style: TextStyle(
                           fontSize: 40,
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF1D2A3A)),
-                    )),
-                Container(
-                    height: getHeight(555),
-                    width: getWidth(kIsWeb ? 100 : double.infinity),
-                    // width: kIsWeb ? 600 : double.infinity,
-                    // constraints: BoxConstraints(maxWidth: 1000),
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                        left: 20,
-                        right: 20,
-                        top: MediaQuery.of(context).size.height * 0.1),
-                    child: Column(
+                    ),
+                Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('    Phone Email\n',
+                        const Text('Phone Email\n',
                             style: TextStyle(
                                 fontSize: 16, color: Color(0xFF1D2A3A))),
                         login_components().textField("Enter Email Address", TextInputType.emailAddress, _emailController),
@@ -111,13 +97,12 @@ class _bodyState extends State<body> {
                         //     hintText: 'Enter Email Address',
                         //   ),
                         // ),
-                        const SizedBox(
-                          height: 30,
+                        SizedBox(
+                          height: getPercentHeight(1),
                         ),
 
-                        const Text('    Password\n',
-                            style: TextStyle(
-                                fontSize: 16, color: Color(0xFF1D2A3A))),
+                        const Text('Password\n',
+                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
                         // const login_components().textField_pass("Enter Password", TextInputType.visiblePassword,_passwordController),
                         TextFormField(
                           obscureText: _isobscure,
@@ -175,10 +160,8 @@ class _bodyState extends State<body> {
                         const SizedBox(
                           height: 30,
                         ),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 70, vertical: 5),
-                            child: Container(
+
+                        Container(
                               alignment: Alignment.center,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -224,7 +207,8 @@ class _bodyState extends State<body> {
                                   }
                                 },
                               ),
-                            )),
+                            )
+                        ,
                         Align(
                           // alignment: Alignment(0, 0.5),
                             child: TextButton(
@@ -263,13 +247,12 @@ class _bodyState extends State<body> {
 
 
                       ],
-                    )),
+                    )
+
+
               ],
             ),
-
-            //Email Container
-          ],
-        ),
+        )
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
