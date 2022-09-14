@@ -63,19 +63,34 @@ class _bodyState extends State<body> {
       body: SingleChildScrollView(
         child:
             //Login Text Container
-        Container(
-        margin: EdgeInsets.only(
-        left: getWidth(150),
-            right: getWidth(150),
-    top: getPercentHeight(12)),
-    child:
+        LayoutBuilder(
+        builder: (context, constraints) {
+      return AnimatedContainer(
+        duration: Duration(milliseconds: 500),
+
+        padding: constraints.maxWidth < 500 ? EdgeInsets.zero : const EdgeInsets.all(30.0),
+        child: Center(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                  vertical: 30.0, horizontal: 25.0
+              ),
+              constraints: BoxConstraints(
+                maxWidth: 500,
+              ),
+              decoration: BoxDecoration(
+
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child:
             Column(
               children: [
-                const Align(alignment: Alignment(0, 0)),
+                Image.asset('assets/images/Convergence 2022_cropped_mini.png', ),
                  const Text(
+                   textAlign: TextAlign.center,
                       'Login',
                       style: TextStyle(
                           fontSize: 40,
+
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF1D2A3A)),
@@ -139,22 +154,23 @@ class _bodyState extends State<body> {
                           height: 20,
                         ),
 
-                        Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                          SizedBox(
-                              height: 24.0,
-                              width: 24.0,
-                                child: Checkbox(
+
+                          CheckboxListTile(
+
+                            controlAffinity: ListTileControlAffinity.leading,
+                            title: const Text("Remember Me",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Color(0xff646464),
+                                  fontSize: 16,)),
                                     value: _ischecked,
                                     onChanged: (value) {
                                       _handleRememeberme(value!);
                                     },),
-                              ),
-                          SizedBox(width: 10.0),
-                          Text("Remember Me",
-                              style: TextStyle(
-                                  color: Color(0xff646464),
-                                  fontSize: 16,))
-                        ]),
+
+
+
+
                         // Checkbox(value: _ischecked, onChanged: _handleRememeberme(_ischecked)),
                         
                         const SizedBox(
@@ -209,31 +225,29 @@ class _bodyState extends State<body> {
                               ),
                             )
                         ,
-                        Align(
+
                           // alignment: Alignment(0, 0.5),
-                            child: TextButton(
-                              onPressed: () {
+                            GestureDetector(
+                              onTap: () {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             registration()));
                               },
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Align(alignment: Alignment.center),
-                                  Text(
+                              child: const Center(
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(text:"Register",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w900,
+                                              color: Color(0xFF1D2A3A)),)
+                                      ],
+                                      text:
                                     "Don't have an account? ",
                                     style: TextStyle(color: Color(0xFF1D2A3A)),
                                   ),
-                                  Text(
-                                    "Register",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        color: Color(0xFF1D2A3A)),
-                                  )
-                                ],
+
                               ),
                               // child: const Text(
                               //   "Register",
@@ -253,7 +267,10 @@ class _bodyState extends State<body> {
               ],
             ),
         )
-      ),
+      ),);
+        }
+        )
+      )
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
