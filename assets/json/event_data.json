@@ -50,7 +50,7 @@
         "time": "11:30 AM - 2:00 PM",
         "category": [{"category":"A"}],
         "venue_of_event": "Classroom No: NBGF-002 & 003, New Engineering Building, UVPCE",
-        "logo_image": "",
+        "logo_image": "assets/images/infocrates_white_mini.png",
         "description": "The paper presentation aims at giving a platform to young engineers to fuel their brains to ideate ideas that never existed. The event intends to encourage inventions, innovation, and research to promote their application for development in the computer and IT sectors of Engineering. Participants of this event are expected to prepare a paper about a real-life project topic or area and present it in front of experts.",
         "rules": [
           {"rule": "1. Each team consists of at most 2 members only."},
@@ -87,7 +87,7 @@
         "time": "11:00AM - 3:00 PM",
         "category": [{"category":"D"},{"category": "E"}],
         "venue_of_event": "Classroom No: Seminar Hall, New Engineering Building, UVPCE",
-        "logo_image": "assets/",
+        "logo_image": "assets/images/infocrates_white_mini.png",
         "description": "Participants are free to choose and select any technical topic of their interest. Give first priority to the latest technologies. The size of the posters should be A1 sized (841*594 mm) sheet.",
         "rules": [
           {"rule": "1. Poster Size must be A1 size (841*594 mm) (33.1 x 23.4 in). You can use Paper or chart papers or any other materials as per requirements. You can print-out pictures but content should be written manually."},
@@ -311,44 +311,1120 @@
           {"name": "","mail_id": "","mobile_no": "","branch_sem": "","enrollment_no": ""},
           {"name": "","mail_id": "","mobile_no": "","branch_sem": "","enrollment_no": ""}
         ]
+      },
+      {
+        "name": "Cosplay (GDSC)",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "12:30 AM - 3:30 PM",
+        "category": [{"category":"A"},{"category": "B"}],
+        "venue_of_event": "Classroom No: Seminar Hall, New Engineering Building, UVPCE",
+        "logo_image": "assets/",
+		"description": "A costume party with mimicry contests, best-dressed competition, quizzes and photobooth.Theme: Movies (Hollywood,Bollywood,etc.)",
+        "rules": [
+          {"rule": "1. Participants should be dressed according to the theme."},
+          {"rule": "2. Participants should be dressed according to the theme."},
+          {"rule": "3. Attendees are expected to act responsibly with their cosplay props"}
+          
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Mimicry contest: The participants will be asked to mimic the characters they have dressed up as and the participants will be evaluated on the basis of their performance. Also participants will be evaluated on the basis of the accuracy of their costumes with the character (best dressed)."}
+       
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Priyanka Patel","mail_id": "pkp02@ganpatuniversity.ac.in","mobile_no": "9638974312"},
+          {"name": "Prof. Urmila Patel","mail_id": "urmila.patel@ganpatuniversity.ac.in","mobile_no": "9909911838"}
+  
+        ],
+        "student_coordinator":
+        [
+          {"name": "Ms. Khushi Mehta","mail_id": "khushimehta20@gnu.ac.in","mobile_no": "7359769974","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531014"},
+          {"name": "Ms. Vidhi Parikh","mail_id": "vidhiparikh20@gnu.ac.in","mobile_no": "7284842191","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531021"},
+          {"name": "Ms. Alauki Patel","mail_id": "alaukipatel20@gnu.ac.in","mobile_no": "9586502555","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531022"},
+          {"name": "Mr. Dhruv Somani","mail_id": "dhruvsomani20@gnu.ac.in ","mobile_no": "9408220400","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531033"}
+
+        ]
+      },
+
+      {
+        "name": "Ideathon (GDSC)",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "10:00 AM - 1:30 PM",
+        "category": [{"category":"C"},{"category": "D"}],
+        "venue_of_event": "Classroom No: PG Seminar Hall, New Engineering Building, UVPCE",
+        "logo_image": "assets/",
+		"description": "It is a short, intensive, workshop-like experience for students. Participants work in teams and use design thinking and innovative learning practices to ideate and collaborate on possible solutions.\nTeam size : 4 members (max)\n\nFocused topics :  Internet of things (IoT),Cyber Security,HealthCare,Entertainment,Agriculture,General(Any),Automobile(Electric Vehicales etc.).",
+        "rules": [
+          {"rule": "1. Pitch deck that will be submitted in the 1st round should be adhering to the provided format"},
+          {"rule": "2. For the 2nd round :Presentation time should not exceed 5 mins and Every member in the team is advised to be prepared for questions/answers from the panel"},
+          {"rule": "3. Outfit : Formal (Indian/Western)"},
+          {"rule": "4. Every team should carry at least one laptop of their own."}
+  
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. As per the judgements and suggestions of the Panel members the winner will be chosen. The winners will get prizes and the 1st prize winner will get 15 min. 1 on 1 interaction time with our panel members for mentorship."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Bhoomika Rathod","mail_id": "2. Mr. Viki Patel","mobile_no": "9106776024"},
+          {"name": "Mr. Viki Patel","mail_id": "vkp02@ganpatuniversity.ac.in","mobile_no": "9724950271"}
+       
+        ],
+        "student_coordinator":
+        [
+          {"name": "Ms. Khushi Mehta","mail_id": "khushimehta20@gnu.ac.in","mobile_no": "7359769974","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531014"},
+          {"name": "Ms. Vidhi Parikh","mail_id": "vidhiparikh20@gnu.ac.in","mobile_no": "7284842191","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531021"},
+          {"name": "Mr. Saurav Gupta","mail_id": "sauravgupta21@gnu.ac.in","mobile_no": "9586206207","branch_sem": "Sem-3-CE","enrollment_no": "21012011135"},
+          {"name": "Mr. Jevin Kardani","mail_id": "jevinkardani20@gnu.ac.in","mobile_no": "9737286356","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531012"}
+        ]
       }
     ]
   },
   {
+    "name": "MechMechato",
+    "logo": "",
+    "poster": "",
+    "events": [
+	
+	{
+        "name": "One Day Workshop on Basics of 3D Printing",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "10:00 AM - 3:00 PM",
+        "category": [{"category":"C"},{"category": "D"}],
+        "venue_of_event": "Smart Classroom, 3D Printing CoE",
+        "logo_image": "assets/",
+		"description":"3D Printing is an Additive Manufacturing technique that creates a physical object from a virtual 3D CAD model by depositing successive layers of material. Unlike your desktop printers, these print the object in a 3-dimensional format.\nIn this workshop, we will be covering 3d Printing or rapid prototyping, from designing your own parts to building your own printers!\n\nEsteemed speaker: \n1. Dr. Pavan Kumar G (Associate professor, PDPU)\n2. Mr. Dhruvil (Design engineer, UTPAL 3D Systems)",
+
+        "rules": [
+          {"rule": "NA"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "NA"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Achyut Trivedi","mail_id": "avt01@ganpatuniversity.ac.in","mobile_no": "9265018153"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Pratham Joshi","mail_id": "prathamjoshi21@gnu.ac.in","mobile_no": "7874080178","branch_sem": "Sem-5 MC","enrollment_no": "21012042018"}
+        ]
+      },
+      {
+        "name": "Robo Soccer",
+        "type": "Tech",
+        "date": "14th October 2022\n15th October 2022",
+        "time": "9:00 AM - 4:00 PM",
+        "category": [{"category":"A"},{"category": "E"}],
+        "venue_of_event": "Ganpat University Behind ship ",
+        "logo_image": "assets/",
+		"description": "This event is a platform to make innovative soccer robots that employ creative pushing  mechanisms.",
+        "rules": [
+          {"rule": "1. All the matches will be knockout matches "},
+          {"rule": "2. A team can consist of a maximum of 4 members. "},
+          {"rule": "3. Members of different institutions can also form a team. "},
+          {"rule": "4. Any kind of damage to the arena will not be entertained, and if done, the robot will be immediately disqualified."},
+          {"rule": "5. All the required accessories have to be brought by the participants."},
+          {"rule": "6. No technical assistance will be provided by the coordinators during the time of the event "},
+          {"rule": "7. No practice runs will be provided."},
+          {"rule": "8. Use of an IC engine in any form is NOT allowed. "},
+          {"rule": "9. Human interference (e.g. touching the robot) during the game is not allowed. "},
+          {"rule": "10. Unfair game may lead to disqualification of the team will be decided by the Coordinator of the event."},
+          {"rule": "11. The robot should not harm the opponent or the field. Constantly harming the arena may lead to disqualification."},
+          {"rule": "12. In case of power supply AC source of 220V will be provided but participants have to bring adaptor by their own "},
+          {"rule": "13. Decision of the Event Coordinators will be treated as final. "},
+          {"rule": "14. The robot should not completely hold the ball."},
+          {"rule": "15. Only one registration allowed for one team."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. The participant who scores maximum points within specified time limit will be qualified. (NOTE :- 1 GOAL =1 POINT) OR The Team who scores maximum goals first will be winner of the round "},
+          {"rule": "2. Time limit for the round will be disclosed on the day of event. "},
+          {"rule": "3. The goal is counted only when the ball crosses the goal line. "},
+          {"rule": "4. There will be a penalty if the robot touches the boundaries or the obstacles. "},
+          {"rule": "5. If ball goes outside the arena then the bot will be fined -2 point as penalty"},
+          {"rule": "6. The details of the other rounds will be disclosed on the day of the event by the coordinators."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. J.K.Prajapati","mail_id": "jitendra.prajapati@ganpatuniversity.ac.in","mobile_no": "6355959545"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Patel Monark","mail_id": "morarkpatel.m@gmail.com","mobile_no": "8128825548","branch_sem": "Sem-7 MC","enrollment_no": "190120410219"}
+        ]
+      },
+      {
+        "name": "MAZE RUNNER",
+        "type": "Tech",
+        "date": "14th October 2022\n15th October 2022",
+        "time": "11:00 AM - 3:00 PM",
+        "category": [{"category":"A"},{"category": "E"}],
+        "venue_of_event": "Ground Besides The Ship ",
+        "logo_image": "assets/",
+		"description": "Here's a chance to live those days back again when you used to play video games like Pacman, Rescue Rover, Dangerous Dave, Catacomb 3D and many others. Today, you just remember the scenario of the game but forgotten the name. But this time you are not going to play them in virtual world but you will play those games in real world. So, let your inner child comes back again and explore those games in reality. Participants will be able to learn team coordination, technical knowledge about robot construction.\nGet Ready to Run, the Maze Was Just Beginning.",
+        "rules": [
+          {"rule": "1. Task:Design a robot either wired or wireless within the specified dimensions that can operated manually and can travel through all turns of the maze. The robot that will complete the challenges in least time will bethe winner. Think your robot can overcome any obstacle-big or small in the least possible time."},
+          {"rule": "2. Robot Specifications:\n1) The maximum dimension of the robot can be 30 cm x 30cm x20 cm (l x b x h).\n2) The robot may be wired or wireless.\n3) The length of the wire (for wired bots) should be long enough to cover the whole track and wire should remain slack during the complete run.\n4) Maximum weight must not exceed 5 kg.\n5) The participants will be provided with 220 Volts, 50Hzstandard AC supply. Participants will have to themselves arrange for adaptor or batteries.\n6) The machine must not be made from Lego parts, or any ready-made kit, if we find such machine it will be disqualified."},
+          {"rule": "3. BATTERIES & POWER:\n1) The machine must be powered electrically only. Use of IC engine is not allowed. \n2) Batteries must be sealed, immobilized electrolyte type (gel cell, lithium, NiCad, or dry cells).\n3) The electric voltage anywhere in the machine should not be more then 12V DC at any point of time."},
+          {"rule": "4. GENERAL RULES:\n1) This is maze event so fastest and most balanced robot will win.\n2) Robot should be as per the given specifications.\n3) Each team can have maximum three members. Students from different institutes can form a team.\n4) Each member of the team must contain the identity card of his/her respected institute.\n5) The robot should not damage the arena. \n6) No test practice will be allowed on the arena. \n7) The robot must not leave behind any of its parts during the run; else it will result in disqualification \n8) Unethical behaviour could lead to disqualification. Faculty co-ordinators have all the rights to take final decision for any matter during the event. \n9) Judge's decision will be considered final. \n10) Certificates of Participation will be given to all the teams that will participate in the event, but not to the teams which get disqualified due to disobeying any of the competition rules. *Co–ordination committee reserves the right to add or update any rule before start of the event."},
+          {"rule": "5. TRACK SPECIFICATION:\n1) The track surface and course line may have unevenness. \n2) There will be certain obstacles in the race track which will try to slow down the robot.\n3) Arena will consist of mud, slippery surfaces, bumps etc."},
+          {"rule": "6. GAME RULES:\n1) The competition is based on time trail system.\n2) The top team from qualifying round makes it to the next round on basis of time trials. \n3) The game is divided into 3 rounds.\n\nROUND 1: Participants have to reach the centre of maze in minimum time by controlling the robot following the path given to them in chit."},
+          {"rule": "7. ROUND 1: Participants have to reach the centre of maze in minimum time by controlling the robot following the path given to them in chit."},
+          {"rule": "8. ROUND 2: Participants have to follow the directions given to them in chit and reach the centre of the maze in order to burst the balloon. The balloon will also have another chit that consists of directions to come out of the maze which must be followed by the participants."},
+          {"rule": "7. ROUND 3: Two robots of opposite teams will enter into the maze together from opposite side and have to bust the balloon which is at the centre of maze while following the directions given to them in the chit.\n\n3) Wires should remain slack during the course of the run. Pulling the wire to aid the robot in traversing may lead to disqualification.\n4) If any of the robots starts off before start up call, the counter would be restarted and the machines will get a second chance. If repeated again then team will be disqualified.\n5) Your robot must be ready when call is made for your team.\n6) Team members will be allowed only three times to touch or reset their robots position during the run. However, this will lead to a time penalty and timer will not stop during this course of action.\n7) Machine must not contain any readymade kits, pneumatic &hydraulic systems, IC engines.\n8) Decision about your robot will be taken by the organizers.\n9) No team will get a second chance after completing the track with poor score."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. As mentioned in the rulebook."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. M.K.Trivedi","mail_id": "mkt01@ganpatuniversity.ac.in","mobile_no": "9687485583"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Vinit B.Mehta","mail_id": "vinitmehta19@gnu.ac.in","mobile_no": "9979133543","branch_sem": "VII-ME","enrollment_no": "19012031010"},
+          {"name": "Devda Jaypalsinh","mail_id": "jaypalsinhdevda19@gnu.ac.in","mobile_no": "8849728314","branch_sem": "VII-MC","enrollment_no": "19012041004"}
+        ]
+      },
+      {
+        "name": "Aeromodeling competition",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "9:00 AM - 4:00 PM",
+        "category": [{"category":"C"},{"category": "E"}],
+        "venue_of_event": "Ganpat university football ground",
+        "logo_image": "assets/",
+		"description":"Round 1\n\n1. Takeoff RC plane.\n2. After Takeoff, you have to make complete circuit (circle) in Air. (Diameter of circle=2.5ft, Inner side=4ft and outer side of circle=5.5ft) \n3. Land your RC plane.\n4. Crash landing will result in elimination.\n5. If needed maximum two hand touches are allowed. However, clock will not be stopped. Single hand touch will have penalty of 1 point.\n\nRound 2\n1. This round checks for the ability to control Aircraft through obstacles. Complete this round without collision will lead to success in next round. Steps are as follows:\n2. Takeoff RC plane.\n3. Fly your RC plane through the pillars. Distance between two pillars = 15ft and height of  Your RC plane must not fly over pole height.\n4. There are three pillars through which your plane shall pass in zigzag way.\n5. When your RC plane pass between two pillars, you get 1 check point.\n6. Land your RC plane.\n\nRound 2: must be completed in single trial. No extra trials are permitted.\n1. In case of collision with pillar, no check point will be given. If plane falls down then team will also lose landing points as given below.\n\nRound 3\n1. In this final round, the team’s ability to drop payload at target point will be checked.\n2. Takeoff RC plane.\n3. The coordinator will give you payload. You have to drop that payload in given place.\n4. After dropping payload, you have to land your RC plane.\n5. The size of payload is 5cm*5cm*5cm and weight will be around 100gm. The payload is made of Wooden material.\n6. The plane shall smooth land.",
+
+        "rules": [
+          {"rule": "1. Only existing students of any Diploma or B.Tech. course may participate in this competition."},
+          {"rule": "2. The team must not have more than four students."},
+          {"rule": "3. Maximum wingspan of RC plane= 60 inches."},
+          {"rule": "4. Minimum wingspan of RC plane= 42 inches. "},
+          {"rule": "5. Maximum weight of RC plane = 1500 grams."},
+          {"rule": "6. Maximum Voltage of RC plane battery =12.6 Volt (3s Battery)"},
+          {"rule": "7. Readymade RC Planes or any brand RC Planes are not allowed."},
+          {"rule": "8. Only designed and fabricated RC Planes will be allowed."},
+          {"rule": "9. Engine powered planes are strictly not permitted."},
+          {"rule": "10. The participants are not allowed to make any changes in their RC plane after participating in the first round."},
+          {"rule": "11. The battery terminals should be protected so that they do not cause fire in the battery, failure will lead to direct disqualification."},
+          {"rule": "12. Any damage to the RC plane will be the owner's responsibility."},
+          {"rule": "13. Flight controller will not be allowed only manual control plane will allowed if find then coordinator will decide what to do."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "Round 1 \nTime limit: 120 sec\nPoints earned: \nComplete Circle: 3 points\nSmooth Landing: 2 points."},
+          {"rule": "Round 2 \nTime limit: 120 sec\nEach Check Point: 1 point (Max points = 3)"},
+          {"rule": "Round 3\\nMiddle Box: 20 point, \nSmooth landing: 5 point\nTime limit: 90 sec"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Trushar R. Shah","mail_id": "trushar.shah@ganpatuniversity.ac.in","mobile_no": "7383928401"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Prerak Patel","mail_id": "prerakpatel19@gnu.ac.in","mobile_no": "94094 70275","branch_sem": "VII-MC","enrollment_no": "19012041021"},
+          {"name": "Vishv Raval","mail_id": "vishvraval20@gnu.ac.in","mobile_no": "98250 99946","branch_sem": "V-MC","enrollment_no": "20012041022"},
+          {"name": "Meet Gandhi","mail_id": "meetgandhi21@gnu.ac.in","mobile_no": "84600 39293","branch_sem": "NA","enrollment_no": "NA"}
+        ]
+      },
+      {
+        "name": "Computer Vision using Jetson Nano",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "10:00 AM - 3:30 PM",
+        "category": [{"category": "B"}],
+        "venue_of_event": "Seminar Hall, ME/MC Dept.",
+        "logo_image": "assets/",
+		"description":"It is the multi-disciplinary hands-on workshop to train participants on CV using Embedded System.Students will be guided for software installationbefore the event. The session will begin withtheory on SBC. Then students will have hands ontraining on GPIO and camera programming usingJetson Nano Board. Simple tasks related tocomputer vision will be assigned to students fortheir practice. Event may be ended with certificatesdistribution.",
+
+        "rules": [
+          {"rule": "1. Components will be shared by group of students."},
+          {"rule": "2. Number of students are limited by availability ofcomponents. So, chance will be given on first comefirst serve basis."},
+          {"rule": "3. Students shall bring their own laptop."},
+          {"rule": "4. Students are advised to register atleast 30 minbefore the workshop begins."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "NA"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Trushar R. Shah","mail_id": "trushar.shah@ganpatuniversity.ac.in","mobile_no": "7383928401"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Faldu Shyam","mail_id": "shyamfaldu5857@gmail.com","mobile_no": "7227095850","branch_sem": "VII-MC","enrollment_no": "20012042003"},
+          {"name": "Smit Savaliya","mail_id": "smitsavaliya2001@gmail.com","mobile_no": "8160508826","branch_sem": "VII-MC","enrollment_no": "20012042023"},
+          {"name": "Jay Vala","mail_id": "jay432000vala@gmail.com","mobile_no": "9409410883","branch_sem": "NA","enrollment_no": "NA"},
+          {"name": "Vatsal Shah","mail_id": "vatsalshah20@gnu.ac.in","mobile_no": "6353479992","branch_sem": "NA","enrollment_no": "NA"},
+          {"name": "Vishwas Kumbhani","mail_id": "vishvaskumbhani20@gnu.ac.in","mobile_no": "9737057037","branch_sem": "NA","enrollment_no": "NA"}
+        ]
+      },
+      {
+        "name": "CAD CONCURRENCE",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "10:00 AM - 3:30 PM",
+        "category": [{"category": "B"}],
+        "venue_of_event": "New building , cad lab - 005",
+        "logo_image": "assets/",
+		"description": "Theme based presentation of conceptual model",
+        "rules": [
+          {"rule": "1. Model must be completed in part, assembly, and mechanism"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Screen test in solidworks and best model represent"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof.Amit S. Patel","mail_id": "asp02@ganpatuniversity.ac.in","mobile_no": "9925560036"},
+          {"name": "Prof.Uchit J Patel","mail_id": "ujp02@ganpatuniversity.ac.in","mobile_no": "9426781460"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Faldu Shyam","mail_id": "shyamfaldu5857@gmail.com","mobile_no": "7227095850","branch_sem": "VII-MC","enrollment_no": "20012042003"},
+          {"name": "Patel Smit Kamleshbhai","mail_id": "smitkpatel20@gnu.ac.in","mobile_no": "7990917445","branch_sem": "V- ME","enrollment_no": "20012031008"},
+          {"name": "Patel Dharmik","mail_id": "dharmik2142@gmail.com","mobile_no": "8140270317","branch_sem": "NA","enrollment_no": "NA"},
+          {"name": "Kunal lathigara","mail_id": "kunalathigara499499@gmail.com","mobile_no": "7567499499","branch_sem": "NA","enrollment_no": "NA"}
+        ]
+      },
+      {
+        "name": "AUTOMOBILE WORKSHOP",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "10:00 AM - 3:00 PM",
+        "category": [{"category":"A"},{"category": "B"}],
+        "venue_of_event": "B.S.P.P  AUTOMOBILE WORKSHOP",
+        "logo_image": "assets/",
+		"description":"OBD Car Scanning\nWheel Balancing \nSpark Plug testing\nGeneral Vehicle check-up",
+
+        "rules": [
+          {"rule": "1. Follow workshop safety rules."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "NA"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Noel Macwan","mail_id": "nmm01@ganpatuniversity.ac.in","mobile_no": "9998699022"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "PRAJAPATI RAJKUMAR GUNVANTBHAI","mail_id": "rajkumarprajapati20@gnu.ac.in","mobile_no": "7043618284","branch_sem": "VII-AUTO","enrollment_no": "20012162021"},
+          {"name": "PATEL UTSAV BIPINBHAI","mail_id": "utsavbpatel20@gnu.ac.in","mobile_no": "7046886121","branch_sem": "VII-AUTO","enrollment_no": "20012162014"}
+        ]
+      },
+      {
+        "name": "Ansys - The art of Simulation",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "9:00 AM - 4:00 PM",
+        "category": [{"category":"A"},{"category": "B"}],
+        "venue_of_event": "",
+        "logo_image": "assets/",
+		"description":"ANSYS Multi-Tool Demonstration, analysis and Simulation.At last, a task is given to all the participants and winning prize will be distributed according",
+
+        "rules": [
+          {"rule": "1. Personal Laptop with ANSYS Installed"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Review of the given task and results will be decided by the experts"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Viranchi shastri","mail_id": "vhs01@ganpatuniversity.ac.in","mobile_no": "9601474825"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Lathigara kunal","mail_id": "kunallathigara20@gnu.ac.in","mobile_no": "7567499499","branch_sem": "VII-MC","enrollment_no": "20012042010"},
+          {"name": "jay vala","mail_id": "jayvala20@gnu.ac.in","mobile_no": "9409410883","branch_sem": "VII-MC","enrollment_no": "20012042029"},
+          {"name": "Smit savaliya","mail_id": "smitsavaliya20@gnu.ac.in","mobile_no": "9099438356","branch_sem": "VII-MC","enrollment_no": "20012042023"}
+        ]
+      },
+      {
+        "name": "TECH QUIZ",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "10:00 AM - 2:00 PM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "MECHANICAL DEP.",
+        "logo_image": "assets/",
+		"description":"General knowledge, general awareness and current affairs based quiz competition open for all.",
+
+        "rules": [
+          {"rule": "NA"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "NA"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof.Punit Bansal","mail_id": "pgb01@ganpatuniversity.ac.in","mobile_no": "9427850207"},
+          {"name": "Prof. Vipul Patel","mail_id": "vpp04@ganpatuniversity.ac.in","mobile_no": "9879850391"},
+          {"name": "Prof.A.V.Patel","mail_id": "avp01@ganpatuniversity.ac.in","mobile_no": "9937396964"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "RAJ PARESHBHAI PITHVA","mail_id": "rajpithva70@gmail.com","mobile_no": "8401413130","branch_sem": "V-MC","enrollment_no": "21012042015"},
+          {"name": "SAKET VIKRANT SALECHA","mail_id": "vasujain1946@gmail.com","mobile_no": "9772754354","branch_sem": "V-MC","enrollment_no": "20012041023"},
+          {"name": "GUPTA DAKSH","mail_id": "daksh7819@gmail.com","mobile_no": "7265950896","branch_sem": "III-ME","enrollment_no": "NA"},
+          {"name": "AJAY KAPOOR","mail_id": "ajaykapoor4774@gmail.com","mobile_no": "9173003217","branch_sem": "III-ME","enrollment_no": "NA"}
+        ]
+      }
+      ]
+  },
+
+
+  {
     "name": "MathMagix",
     "logo": "",
     "poster": "",
-    "events": []
+    "events": [
+
+      {
+        "name": "MathQuizzire",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "11:00AM - 1:00 PM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "Agriculture Wing, U V P C E, Ganpat University",
+        "logo_image": "assets/",
+		    "description": "The game is in two rounds: elimination and final.\n\nStage I: Elimination round\n1. There will be a written test for all participating students. \n2. The written test will be of 20 minutes.\n3. Questions will check the mathematical ability of participating students.\n4. Top 10 students will be selected for final round based on points they have gained in written test.\n\nStage II: Final round\n1. In Final round there are 3 sub rounds listed below.\n2. For Each question student have only 30 seconds in each round. For correct answer, the students will earn 10 points. In case of wrong answer, the team will lose 5 points. \n3. Students can pass the question. In case of passing, if any students answer the question correctly will eligible to earn 5 points. In case of wrong answer, the students will lose 5 points.\n4. There will be 2 rounds of asking questions to top 10 students.\n5. After these two rounds of asking questions, 5 students from top 10 will be elimimated.\n6. Rest of top 5 students will have to play buzzer round. For Each question student have only 30 secs. \n7. Winner will be decided at the same time when all the rounds get completed.",
+        "rules": [
+          {"rule": "1. It is an individual event."},
+          {"rule": "2. Only first 150 students is allowed for this events "},
+          {"rule": "3. Final decision regarding any matter lies in the hands of the judges and is binding."},
+          {"rule": "4. Any students violating the above rules is subject to direct elimination."},
+          {"rule": "5. Elimination round is applicable if number of participating teams are more than 10."}
+       
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. The game is in two rounds: elimination and final. In Elimination round 10 students selected out of 150 based on marks in written exam"},
+          {"rule": "2. Three students are selected out of 10 in final round and give the rank."}
+  
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Dr. Harshad R. Patel","mail_id": "hrp19@ganpatuniversity.ac.in","mobile_no": "9727413159"}
+       
+        ],
+        "student_coordinator":
+        [
+          {"name": "Shabnam Ansari","mail_id": "Not Available","mobile_no": "968738952","branch_sem": "Sem-3 CE-IT","enrollment_no": "21012021005"}
+        ]
+      },
+
+      {
+        "name": "Mathematical Modeling",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "2:00 AM - 4:00 PM",
+        "category": [{"category":"E"}],
+        "venue_of_event": "",
+        "logo_image": "assets/",
+		"description":     "The game is in a single round. Each team or each participant will get only one chance to present their model/poster. \nStudent must present Model or Poster related application in Mathematics.\nPoster may be handmade or printed.\nThe results will be declared on the same day for the Model/Poster.",
+        "rules": [
+          {"rule": "1. It can be a team event or an individual candidate can participate in this event. A team can comprise of maximum four members."},
+          {"rule": "2. The members of the team should be from the same institute."},
+          {"rule": "3. Final decision regarding any matter lies in the hands of the judges and is binding."},
+          {"rule": "4. Any team violating the above rules is subject to direct elimination."}
+          
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. The game is in a single round. Each team or each participant will get only one chance to present their model/poster. "},
+          {"rule": "2. Three students are selected out of 10 and give the rank."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Dr. Harshad R. Patel","mail_id": "hrp19@ganpatuniversity.ac.in","mobile_no": "9727413159"}
+       
+        ],
+        "student_coordinator":
+        [
+          {"name": "Modi Krish","mail_id": "Not Available","mobile_no": "88141590802","branch_sem": "Sem-3 CE-IT","enrollment_no": "21012021050"}
+        ]
+      }
+    ]
   },
+
+
   {
     "name": "PetroX",
     "logo": "",
     "poster": "",
-    "events": []
+    "events": [
+      {
+        "name": "Magic Fluid Model\n Event-A: Aqua Rocket",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "01.30 PM to 03.30 PM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "Aqua Rocket- Needs ground / clay surface area with at least 100 m length and 30 m width",
+        "logo_image": "assets/",
+		"description": "Technical event",
+        "rules": [
+          {"rule": "1. Students should not use any kind of battery for running the car. The only energy source for the car to move is a chemical reaction"},
+          {"rule": "2. Students should not use hazardous chemicals"},
+          {"rule": "3. The car should be an autonomous vehicle and should not be controlled remotely."},
+          {"rule": "4. Track dimensions will be 20 meter long and 3 meter wide."},
+          {"rule": "5. It should not touch/cross the boundary line. Otherwise, it is not considered a qualified attempt by the team."},
+          {"rule": "6. Every team has given two chances and the best of two is the criteria based on a qualified attempt.  "},
+          {"rule": "7. This event is open to all branches of engineering."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Every team has given two chances and the best of two is the criteria based on a qualified attempt for Event-A "}
+         
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Kiran S. Verma","mail_id": "ksv01@ganpatuniversity.ac.in","mobile_no": "9898784722"}
+         
+        ],
+        "student_coordinator":
+        [
+          {"name": "Manan Patel (Event A)","mail_id": "manannpatel18@gnu.ac.in","mobile_no": "6355390345","branch_sem": "5","enrollment_no": "21172182019"}
+   
+        ]
+      },
+
+      {
+        "name": "Magic Fluid Model\n Event-B: Smart Chemo-Car",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "11.30 AM to 01.30 PM",
+        "category": [{"category":"D"}],
+        "venue_of_event": "Smart Chemo-Car- Needs smooth hard surface with at least 25 m length and 6 m width",
+        "logo_image": "assets/",
+		"description": "Technical event",
+        "rules": [
+          {"rule": "1. The theme of this event is to prepare a model plastic material rocket using water as its reaction mass. "},
+          {"rule": "2. The water is forced out by a pressurized gas, typically compressed air and manual system only utilized for pressurized system. "},
+          {"rule": "3. This event is open to all branches of engineering. "}
+          
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Every team has given two chances and the best of two is the criteria based on a qualified attempt for Event-B."}
+         
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Kiran S. Verma","mail_id": "ksv01@ganpatuniversity.ac.in","mobile_no": "9898784722"}
+         
+        ],
+        "student_coordinator":
+        [
+          {"name": "Manan Patel (Event A)","mail_id": "manannpatel18@gnu.ac.in","mobile_no": "6355390345","branch_sem": "5","enrollment_no": "21172182019"}
+   
+        ]
+      },
+
+      {
+        "name": "Model Presentation",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "01:30 PM to 03:30 PM",
+        "category": [{"category": "B"}],
+        "venue_of_event": "BSPP Institute Ground floor, ",
+        "logo_image": "assets/",
+		"description":   "Students can make working as well as non-working models related to Petrochemical, Chemical and Petroleum industries, etc.",
+        "rules": [
+          {"rule": "1. Maximum no. of participants per team are 4."},
+          {"rule": "2. The team should display their project throughout the event schedule. Failing this the team may be liable for disqualification."},
+          {"rule": "3. Participants should bring their requirements along with them on the day of the event."},
+          {"rule": "4. The decision of the judges will be final and no sort of disputes will be entertained."},
+          {"rule": "5. Student should inform us at the time of registration for requirement of space/tables to keep the model, electricity requirement and etc."}
+          
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Perfection of model"},
+          {"rule": "2. Presentation of design concept"},
+          {"rule": "3. Standard detailing practices"}
+
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Anil B. Mundhe","mail_id": "abm01@ganpatuniversity.ac.in","mobile_no": "9888801310"}
+         
+        ],
+        "student_coordinator":
+        [
+          {"name": "Jeet Patel","mail_id": "jeetkumarpatel18@gnu.ac.in","mobile_no": "8511512798","branch_sem": "5","enrollment_no": "21172182016"}
+
+        ]
+      },
+
+      {
+        "name": "Poster Presentation",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "09:00 AM to 11:00 AM",
+        "category": [{"category":"C"}],
+        "venue_of_event": "Petrochemical lab-1, BSPP building",
+        "logo_image": "assets/",
+		"description":  "Presentations usually consist of affixing the research poster to a portable board with the researcher in attendance answering questions posed by passing colleagues.",
+        "rules": [
+          {"rule": "1. Layout and format must be organized and concise"},
+          {"rule": "2. Use brief and simple language, better to avoid text altogether"},
+          {"rule": "3. Present your (one!) message in a clear and logical way"},
+          {"rule": "4. Choose a catchy but conceptual title"},
+          {"rule": "5. Get rid of unnecessary details"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Overall Visual"},
+          {"rule": "2. Overall Content"},
+          {"rule": "3. Overall Oral"},
+          {"rule": "4. Overall Impact"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Mayur J. Patel","mail_id": "mjp05@ganpatuniversity.ac.in","mobile_no": "9638199166"}
+
+        ],
+        "student_coordinator":
+        [
+          {"name": "Hilay Patel","mail_id": "hilaypatel20@gnu.ac.in","mobile_no": "7043736620","branch_sem": "5","enrollment_no": "20012181004"}
+
+        ]
+      },
+
+      {
+        "name": "Tech Quid",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "02:00 PM to 04:00 PM",
+        "category": [{"category":"E"}],
+        "venue_of_event": "BSPP Class Room 220",
+        "logo_image": "assets/",
+		"description": "The quiz can be described as a type of game where competitors try their best to answer the questions in less time. The quiz is not about random topics, it's about specific topics",
+        "rules": [
+          {"rule": "1. General Round – Each team - quota of 4 questions. In this round each team has its own quota of 4 questions and other questions passed to it from the previous team that did not answer. A team gets 30 seconds to answer the question intended for it, and is awarded 20 points for answering it. If the team, the question intended for gives a wrong answer, the quiz master will give the correct answer. If the team that the question intended for passes it. The next team/s get 15 seconds to answer it and is awarded 10 points for the right answer. The team members can discuss before giving the answer. If a team cannot answer a question they can pass it or after 30 seconds it gets automatically passed to the next team. If a team is answering a question and the time passes, then the team gets to complete the answer and is awarded points for the right answer. There is no negative marking for wrong answer. No buzzer is used in this round"},
+          {"rule": "2. Rapid Fire Round – Each team quota of 10 questions. In this round each team will be asked 10 questions one after another. On the immediate completion of a question, each team gets 5 seconds to answer it. If a team is not able to answer a question, they can pass it for the next question. There is no team discussion in this round. 10 points is awarded for the correct answer. No negative points for the wrong answer. Once a question is passed the team cannot give an answer later."},
+          {"rule": "3. Buzzer Round – Ten questions in all 10 questions will be fired at all the teams one after anotherThe teams can discuss among themselves and then press the buzzer/bell to answer the question first. No discussion is allowed after pressing the buzzer. The team that presses the buzzer/bell first gets a chance to answer it. 10 points for the correct answer and minus 5 points for the wrong answer. If a team doesn’t answer or gives a wrong answers after they press buzzer they also lose 5 points. If a team presses the buzzer before the question is over they will be asked to answer it without the question being completed. The question has to be answered in 20 seconds. If a question is not answered by the first team who pressed the bell. The team that pressed the bell next gets to answer. There are no choices in this round. If two teams press the buzzer/bell together there will be a pull of cards to decide who gets the chance to answer if. If the first team answers it correctly they get a point. If they give a wrong answer they lose 5 points and the next team that pressed the buzzer gets to answer."},
+          {"rule": "4. In case of a tie. In case of a tie after the 4th round, the tied teams get into a buzzer/bell round. Rules are similar to buzzer round If a team answer right they get 25 points. If they answer wrong they get minus 25 points."}
+          
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. High point score group will be the winner"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Dr. Deoashish Panjiara","mail_id": "dp01@ganpatuniversity.ac.in","mobile_no": "7984060358"}
+
+        ],
+        "student_coordinator":
+        [
+          {"name": "Deep Patel","mail_id": "deepkumarjpatel18@gnu.ac.in","mobile_no": "7984060358","branch_sem": "5","enrollment_no": "21172182010"}
+        ]
+      },
+
+      {
+        "name": "Group Discussion",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "9:30 AM - 2:30 PM",
+        "category": [{"category":"E"}],
+        "venue_of_event": "Room No. 111",
+        "logo_image": "assets/",
+		"description":  "A group discussion is a discussion between a group of participants on a given subject.\n\nA group discussion typically forms a part of the selection process used by organisations and educational institutions. The candidates talk about the given topic to present facts, opinions and conclusions",
+        "rules": [
+          {"rule": "1. Duration of screening event (if required): 6 minutes (1 minute for thinking and 5 minutes actual GD) for 5/10 candidates group."},
+          {"rule": "2. Mobile phone, electronic gadget, paper/stationery items etc. are not allowed"},
+          {"rule": "3. Duration of event: 11minutes (1minute for thinking and 10 minutes actual GD) for decided candidates group."},
+          {"rule": "4. You will be informed about last two minutes."},
+          {"rule": "5. Criticize ideas, not individuals"},
+          {"rule": "6. Avoid blame, speculation, and inflammatory language."},
+          {"rule": "7. Listen respectfully, without interrupting."},
+          {"rule": "8. Avoid assumptions about any member of the class or generalizations about social groups. Do not ask individuals to speak for their (perceived) social group."},
+          {"rule": "9. You are accountable for our words and their impact."},
+          {"rule": "10. Personal information that comes up in the conversation should be kept confidential."}
+
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Interpersonal communication skills, "},
+          {"rule": "2. confidence in public speaking, "},
+          {"rule": "3. team spirit, "},
+          {"rule": "4. leadership abilities,"},
+          {"rule": "5. social behaviour and"},
+          {"rule": "6. problem-solving skills"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Vijay N. Patel","mail_id": "vnp02@ganpatuniversity.ac.in","mobile_no": "9979487201"}
+   
+        ],
+        "student_coordinator":
+        [
+          {"name": "Nihar Patel","mail_id": "niharpatel18@gnu.ac.in","mobile_no": "9574344022","branch_sem": "5","enrollment_no": "21012182008"}
+        ]
+      }
+    
+    ]
   },
+
+
+
   {
     "name": "Biotechnica",
     "logo": "",
     "poster": "",
-    "events": []
+    "events": [
+
+      {
+        "name": "Technoworkshop",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "1:30 pM - 3:30 PM",
+        "category": [{"category":"B"}],
+        "venue_of_event": "Biomedical Instruments Laboratory",
+        "logo_image": "assets/",
+		"description":     "Capital Equipment of Cardiac OT",
+        "rules": [
+          {"rule": "1. Registration will be based on first come first serve basis"},
+          {"rule": "2. Certificate will be given to the each participant"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "NA"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. R.K. Patel","mail_id": "raksha.patel@ganpatuniversity.ac.in","mobile_no": "9974019570"}
+  
+        ],
+        "student_coordinator":
+        [
+          {"name": "Yash Chaudhary","mail_id": "yashchaudhary6987@gmail.com","mobile_no": "9313167343","branch_sem": "5","enrollment_no": "20012052001"}
+
+        ]
+      },
+
+      {
+        "name": "Innovative Mania",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "9:30 AM - 12:00 PM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "Biomedical Lab",
+        "logo_image": "assets/",
+		    "description":     "We welcome new innovative ideas And Provide Stage For the Students So they can Perform their Innovative Ideas & Represent Their Models.",
+        "rules": [
+          {"rule": "1. The project may be undertaken by individual student or in group not exceeding three members."},
+          {"rule": "2. There will be 2 stage assessments of Projects for final selection. \nI. PHASE I, which is Pre-assessment stage, Based on the project abstract submitted by you.\nII. PHASE II which is final assessment stage, Based on Video demonstration of working of project send by you.\n"},
+          {"rule": "3. 3.The participants will have to send their Project abstract on or before 05 oct 2022, 4:00 PM to hbc02@ganpatuniversity.ac.in with the Title of your project."},
+          {"rule": "4. There should be a title, name of team members, college name, email address and mobile number at the top of the abstract."},
+          {"rule": "5. The abstract will be selected on the basis of; \nI. Addresses the critical challenges of the current health care scenario. \nII. Innovation - either replacing the current technology or your own idea. \nIII. Economic and feasible aspects.\n"},
+          {"rule": "6. After the selection of the abstract, the participants must make a video demonstrating the working of their project and send it in CD/DVD on or before 10 October 2022, 4:00 PM to the event coordinator."},
+          {"rule": "7. Shortlisted projects for participation in the competition will be informed by e-mail & published in our website from time to time."},
+          {"rule": "8. You must Give your Requirements list in Advanced."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Result should be based on innovation , problem identification , good knowledge of software ,  Project Result should be cleared"}
+          
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Himal Chitara","mail_id": "hbc02@ganpatuniversity.ac.in","mobile_no": "7621816969"},
+          {"name": "Devarshi Pandya","mail_id": "dyp01@ganpatuniversity.ac.in","mobile_no": "8511947772"}
+
+        ],
+        "student_coordinator":
+        [
+          {"name": "Esha Desai","mail_id": "eshadesai19@gnu.ac.in","mobile_no": "7043313328","branch_sem": "3","enrollment_no": "19171411007"}
+        ]
+      },
+
+
+      {
+        "name": "Quizophile",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "12:30 PM - 3:00 PM",
+        "category": [{"category": "D"}],
+        "venue_of_event": "LAB 118A or Classroom 119",
+        "logo_image": "assets/",
+		"description":     "There will be a quiz competition between participants based on technical area, current affairs , film & media etc .It will be having   4 rounds of the quiz consist of different formats like rapid fire round , Buzzer round, audio &visual round and general around. ",
+        "rules": [
+          {"rule": "1. General Round :In this round each team has its own quota of 6 questions and other questions passed to it from the previous team that did not answer. A team gets 30 seconds to answer the question intended for it, and is awarded 30 points for answering  it."},
+          {"rule": "2. Rapid Fire round: In this round each team will be asked 10 questions one after another. On the immediate completion of a question, each team gets 5 seconds to answer it. If a team is not able to answer a question, they can pass it for the next question. There is no team discussion in this round. 10 points is awarded for the correct answer."},
+          {"rule": "3. Buzzer Round : 10 questions will be fired at all the teams one after another. The teams can discuss among themselves and then press the buzzer/bell to answer the question first. No discussion is allowed after pressing the buzzer. The question has to be answered in 20 seconds. If a question is not answered by the first team who pressed the bell. The team that pressed the bell next gets to answer. The team that presses the buzzer/bell first gets a chance to answer it. 10 points for the correct answer and minus 5 points for the wrong answer. If a team doesn’t answer or gives wrong answers after they press buzzer they also lose 5 points."},
+          {"rule": "4. Audio-Visual round : Each Team will be shown a picture with a quotation. The team has to complete the quotation. The team has 15 seconds to complete the quotation. The teams will be made to listen to an audio clip. The team has to guess the name of the song or sing certain lines from the song as asked by the quiz master. Questions will not be passed to the next team."}
+          
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Maximum correct answer gets the point ."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof.Heena Patel","mail_id": "hkp01@ganpatuniversity.ac.in","mobile_no": "9737177328"},
+          {"name": "Prof.Vaishvi Patel","mail_id": "vp02@ganpatuniversity.ac.in","mobile_no": "9687610024"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Bhoomi Patel","mail_id": "bhoomipatel2234@gmail.com","mobile_no": "9106895553","branch_sem": "7","enrollment_no": "20012052007"}
+        ]
+      },
+
+      {
+        "name": "Poster Presentation",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "9:30 AM - 12:00 PM",
+        "category": [{"category":"C"}],
+        "venue_of_event": "Biomedical Lab",
+        "logo_image": "assets/",
+		"description":  "Students will display their poster and will be available for viewers to answer their questions.",
+        "rules": [
+          {"rule": "1. Each Participant or each group can post only one Poster"},
+          {"rule": "2. Idea and content should be original."},
+          {"rule": "3. It should be Relevant to the theme."},
+          {"rule": "4. Text and graphics should be clear and readable by the 2feet away."},
+          {"rule": "5. Size of poster should be A2 (16.5 * 23.4)."},
+          {"rule": "6. Title should be relevant and short."},
+          {"rule": "7. Maximum 3 students are allowed in each groups."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Ability to Stand Alone"},
+          {"rule": "2. Overall Visual Appeal 3.Quality of Graphics"},
+          {"rule": "3. Appropriate and Relevant Content"},
+          {"rule": "4. Quality of Graphics"},
+          {"rule": "5. Oral Presentation of Poster"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "DIPA JARECHA","mail_id": "dmj01@ganpatuniversity.ac.in","mobile_no": "9409413600"},
+          {"name": "HIMAL CHITARA","mail_id": "hbc02@ganpatuniversity.ac.in","mobile_no": "7621816969"}
+
+        ],
+        "student_coordinator":
+        [
+          {"name": "Simran Yadav","mail_id": "simranyadav21@gnu.ac.in","mobile_no": "8469895076","branch_sem": "3","enrollment_no": "21012051025"}
+
+        ]
+      }
+    ]
   },
   {
     "name": "Civesta",
     "logo": "",
     "poster": "",
-    "events": []
+    "events": [
+      {
+      "name": "Block Structure",
+      "type": "Tech",
+      "date": "15th October 2022",
+      "time": "9:30 AM - 3:20 PM",
+      "category": [{"category":"C"},{"category": "D"},{"category": "D"}],
+      "venue_of_event": "Classroom  or lab both preferred",
+      "logo_image": "assets/",
+  "description":"Students had to participate in group of five. This event consisted of creating a structure with the provided number of wooden cubes. Total Number of blocks provided: 50 nos.Time of construction for each team:10min.",
+
+      "rules": [
+        {"rule": "1. Students have to participate in a group of 5."},
+        {"rule": "2. Materials will be provided to them."},
+        {"rule": "3. A 3 storey structure has to be prepared by the team with the help  of wooden rods and steel winders"},
+        {"rule": "4. Criteria for structure: Height of the structure:80-90cm, Cross section of structure in plan: 25cm*25cm"}
+      ],
+      "evaluation_criteria": [
+        {"rule": "1. 1st Round: One block is to be removed by one of the participant of the same group as per asked by the judges."},
+        {"rule": "2. The stabled structure at the end of the round1will be winner and promoted to 2nd round."},
+        {"rule": "3. In 2nd round also, procedure of 1st round will be repeated and so on the round will be continued till last."},
+        {"rule": "4. Total 5 group at a time will participated at a time. The winner of each batch will be promoted ahead to compete with winner of other batch."},
+        {"rule": "5. The last structure standing will be declared winner."}
+      ],
+      "faculty_coordinator":
+      [
+        {"name": "Prof. Hitesh Sonarghare","mail_id": "has01@ganpatuniversity.ac.in","mobile_no": "9737704296"},
+        {"name": "Prof. Paresh Patel","mail_id": "php01@ganpatuniversity.ac.in","mobile_no": "9898420360"}
+      ],
+      "student_coordinator":
+      [
+        {"name": "Drashtant Thori","mail_id": "drashtantthori19@gnu.ac.in","mobile_no": "7778008888","branch_sem": "VII","enrollment_no": "19012071032"},
+        {"name": "Patel Poojan Arvindbhai","mail_id": "poojanpatel20@gnu.ac.in","mobile_no": "9638529956","branch_sem": "V","enrollment_no": "20012071014"},
+        {"name": "Patel Bhavya Harshadbhai","mail_id": "bhavyahpatel20@gnu.ac.in","mobile_no": "9924571088","branch_sem": "V","enrollment_no": "20012071022"}
+      ]
+    },
+    {
+      "name": "Poster Presentation",
+      "type": "Tech",
+      "date": "14th October 2022",
+      "time": "10:30 AM - 3:20 PM",
+      "category": [{"category":"A"},{"category": "B"}],
+      "venue_of_event": "MB006 UVPCE",
+      "logo_image": "assets/",
+  "description":"The objective behind organisation of poster making competition is to bring out the creative expression of students and to gauge their knowledge and awareness of various trends of sustainable development",
+
+      "rules": [
+        {"rule": "1. Each group (maximum 2 participants) can post only one Poster that should be printed/drawn from the home. The poster must be made on the A2 size (16.5 * 23.4 inches) sheet with margins (0.5 inches).Poster can be made using pencil, crayon, watercolour, oil paint, etc. Photographs, wires, other 3D objects, print-outs is also acceptable. The Topic of poster and theme should be clearly mentioned at the Top Margin of the Poster.Name, Class, College of the Participants must be written on bottom-left portion of poster . These details should be same as in registration form."}
+      ],
+      "evaluation_criteria": [
+        {"rule": "1. Relevance to the theme."},
+        {"rule": "2. Originality."},
+        {"rule": "3. Artistic composition."},
+        {"rule": "4. Creativity."},
+        {"rule": "5. Message conveyed by the poster."},
+        {"rule": "6. Effectiveness in communicating the intended message."}
+      ],
+      "faculty_coordinator":
+      [
+        {"name": "Prof. Durgesh Kumar Singh","mail_id": "ds02@ganpatuniversity.ac.in","mobile_no": "8320699640"},
+        {"name": "Prof. Kamlesh R Damdoo","mail_id": "krd01@ganpatuniversity.ac.in","mobile_no": "8460270839"}
+      ],
+      "student_coordinator":
+      [
+        {"name": "Patel Himani Dharmendrabhai","mail_id": "himanidpatel19@gnu.ac.in","mobile_no": "9016035350","branch_sem": "VII","enrollment_no": "19012071027"},
+        {"name": "Solanki Pratik Haribhai","mail_id": "pratikkumarsolanki19@gnu.ac.in","mobile_no": "9510719871","branch_sem": "VII","enrollment_no": "19012071023"},
+        {"name": "Mavi Yogeshbhai Rameshbhai","mail_id": "yogeshmavi326@gmail.com","mobile_no": "6352195246","branch_sem": "V","enrollment_no": "21012072036"}
+      ]
+    },
+    {
+      "name": "Float The Boat",
+      "type": "Tech",
+      "date": "14th October 2022",
+      "time": "9:30 AM - 3:30 PM",
+      "category": [{"category":"A"},{"category": "B"}],
+      "venue_of_event": "MBOO6",
+      "logo_image": "assets/",
+  "description":"Participants have to build a Boat by using Paper, Wooden Ice cream stick and Fevicol Only. Material for the same will be provided by us on same day of competition. Maximum dimension of the Boat: Length = 20 cm; Width = 14 cm, height = 14 cm. Load will be applied laterally at the centre of the boat. Model which carries maximum load without sinking will be declared as winner",
+
+      "rules": [
+        {"rule": "1. Only boat has to be built."},
+        {"rule": "2. Materials will be provided from the institute on same day of competition. Team can physically alter by cutting, notching, sanding or bending to make proper fitting connection. Materials may not be painted, covered, coated, or soaked in anything except water"},
+        {"rule": "3. 3 to 5 members are allowed in a team."},
+        {"rule": "4. Only First 25 teams are allowed to participate on First come first get basis"},
+        {"rule": "5. Maximum dimension of the Boat: Length = 20 cm; Width = 14 cm, height = 14 cm. "},
+        {"rule": "6. Violation of any rules will be followed by instant disqualification"},
+        {"rule": "7. Teams must submit their Boats sharply on or before 12:00 noon for inspection. 15 minutes extra shall be provided to modify the boat if it does not meets the given specifications."},
+        {"rule": "8. Participants must carry their own scissors, scale and other craft related items."}
+      ],
+      "evaluation_criteria": [
+        {"rule": "1. Load will be applied laterally at the centre of the boat."},
+        {"rule": "2. Model that carries maximum load without sinking will be declared as winner."},
+        {"rule": "3. The final decision lies in the hands of the judges. The decision of judges cannot be challenge."} 
+      ],
+      "faculty_coordinator":
+      [
+        {"name": "Prof. Jagdish Khatik","mail_id": "jk01@ganpatuniversity.ac.in","mobile_no": "9057599906/8741035420"},
+        {"name": "Prof. Tushar Shrivastva","mail_id": "ts01@ganpatuniversity.ac.in","mobile_no": "8800562394"}
+      ],
+      "student_coordinator":
+      [
+        {"name": "Patel Kunj KamaleshKumar","mail_id": "kunjkpatel18@gnu.ac.in","mobile_no": "9016035350","branch_sem": "V","enrollment_no": "9106909374"},
+        {"name": "Joshi Shani","mail_id": "shanijoshi18@gun.ac.in","mobile_no": "9687842224","branch_sem": "V","enrollment_no": "21012072068"},
+        {"name": "Rajput Nirali RajendraSinh","mail_id": "niralirajput18@gnu.ac.in","mobile_no": "6356349795","branch_sem": "V","enrollment_no": "21012072067"}
+      ]
+    }
+    
+  ]
   },
   {
     "name": "ElectaBuzz",
     "logo": "",
     "poster": "",
-    "events": []
+    "events": [
+
+      {
+        "name": "CIRCUIT ASSEMBLY",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "9:30 AM - 3:00 PM",
+        "category": [{"category":"C"},{"category": "D"}],
+        "venue_of_event": "EED,UVPCE",
+        "logo_image": "assets/",
+		"description":   "This is the event where participants should design and development of electrical field related circuit.",
+        "rules": [
+          {"rule": "1. A tool kit of Electronics Devices will provide to the team."},
+          {"rule": "2. Participants will have to assemble the circuit before given time limit."},
+          {"rule": "3. They will have to assemble right circuit on bread board or PCB."},
+          {"rule": "4. Ranking to the them will be given on the basis of time bound assembly work and technical knowledge."},
+          {"rule": "5. First three ranker  will be winner."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Circuit proper connection and satisfied result."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof.N.N.Patel","mail_id": "nnp01@ganpatuniversity.ac.in","mobile_no": "9586795841"}
+    
+        ],
+        "student_coordinator":
+        [
+          {"name": "Hardik Prajapati","mail_id": "hardikprajapati20@gnu.ac.in","mobile_no": "9909104966","branch_sem": "7","enrollment_no": "20012082026"}
+        ]
+      },
+
+      {
+        "name": "MOCK INTERVIEW",
+        "type": "Tech",
+        "date": "1th October 2022",
+        "time": "9: AM - 2:0 PM",
+        "category": [{"category":"C"},{"category": "D"}],
+        "venue_of_event": "EED,UVPCE",
+        "logo_image": "assets/",
+		"description":     "This is the event where student will appear in a Mock Test, Group Discussion & Mock Interview.",
+        "rules": [
+          {"rule": "1. Eligibility for Junior Electrical Engineer level: Student from diploma final year and B.Tech/B.E. Second year."},
+          {"rule": "2. Eligibility for Deputy Electrical Engineer level: Student from B.Tech/B.E. Third year and final year."},
+          {"rule": "3. Eligibility for Senior Electrical Engineer level: Student from B.Tech/B.E. Final year and M.Tech/M.E."},
+          {"rule": "4. Participants should come in a formal dress code and bring only photocopy of necessary documents with their identification proof."},
+          {"rule": "5. \nElimination Round-\n1. A technical test of 30 Marks will be conducted.\n2. Total time duration will be 20 Minutes.\n3. Student who will be shortlisted can proceed in the next round.  \n"},
+          {"rule": "6. Group Discussion\n1. From the short listed participants, groups for discussion will be formed on the basis of online test raking. \n2. The individual performance during group discussion will be judged by penal of experts.\n3. Student who will be shortlisted can proceed in the next round.  \n"},
+          {"rule": "7. Interview:\nA panel of experts will ask technical, managerial and general knowledge related questions and will give their Judgment."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Participants written test and technical knowledge."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof.N.N.Patel","mail_id": "nnp01@ganpatuniversity.ac.in","mobile_no": "9586795841"}
+    
+        ],
+        "student_coordinator":
+        [
+          {"name": "Smit Patel","mail_id": "smithpatel20@gnu.ac.in","mobile_no": "7016901145","branch_sem": "7","enrollment_no": "20012082030"}
+
+        ]
+      },
+      {
+        "name": "PROJECTRON",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "11:30 AM - 3:00 PM",
+        "category": [{"category": "A"},{"category":"B"}],
+        "venue_of_event": "EED,UVPCE",
+        "logo_image": "assets/",
+		"description": "This is the event where student will present their Project Model.",
+        "rules": [
+          {"rule": "1. Maximum three participants are allowed per team."},
+          {"rule": "2. Model of project must be required."},
+          {"rule": "3. Model for PROJECTRON must be related to Electrical Engineering."},
+          {"rule": "4. The total time duration for explaining the model will be 10 minutes.(8 minutes for explanation + 2 minutes for question-answer)"},
+          {"rule": "5. Participants from same institutes and department can form a team."},
+          {"rule": "6. All the participants will be awarded      participation certificate. Certificate of Excellence will be awarded to Winning teams"},
+          {"rule": "7. Measuring instruments & required supply should be provided by us only, other instruments and model equipment’s will not provide."},
+          {"rule":"8. Working model of PROJECTRON should bring in campus at your own risk, no fund will provided if damaged caused by other external reasons or during the demonstration in event."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "Ranking for PROJECTRON will be given by Judge panel."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof.N.N.Patel","mail_id": "nnp01@ganpatuniversity.ac.in","mobile_no": "9586795841"}
+    
+        ],
+        "student_coordinator":
+        [
+          {"name": "Vaibhav Patel","mail_id": "vaibhavpatel20@gnu.ac.in","mobile_no": "8140003787","branch_sem": "7","enrollment_no": "20012082021"}
+        ]
+      },
+      {
+        "name": "THINK BEYOND",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "11:30 AM - 4:00 PM",
+        "category": [{"category":"A"},{"category": "B"}],
+        "venue_of_event": "EED,UVPCE",
+        "logo_image": "assets/",
+		"description": "This is the event where student will present their Innovative Idea.",
+        "rules": [
+          {"rule": "1. Idea must reflect the innovativeness and its feasibility of the project."},
+          {"rule": "2. Maximum three participants are allowed per team."},
+          {"rule": "3. Each group have to prepare a chart or model or poster approximately A2 size."},
+          {"rule": "4. The total time duration for explaining the idea and time will be given only 10 minutes (8 minutes for explanation + 2 minutes for question-answer)"},
+          {"rule": "5. Participants from same institutes and department can form a team."},
+          {"rule": "6. All the participants will be awarded participation certificate."},
+          {"rule": "7. Certificate of Excellence will be awarded to Winning teams."},
+          {"rule":"\nDesign & Layout Specification\n1. The poster should be designed on the A2 size sheet.\n2. A banner displaying your poster Title, Name and College should be positioned at Top-Centre of the board."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "Ranking for event  will be given by Judge panel."}
+          
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof.N.N.Patel","mail_id": "nnp01@ganpatuniversity.ac.in","mobile_no": "9586795841"}
+    
+        ],
+        "student_coordinator":
+        [
+          {"name": "Harshil Patel","mail_id": "harshilkumarpatel20@gnu.ac.in","mobile_no": "9979272106","branch_sem": "7","enrollment_no": "20012082018"}
+        ]
+      }
+    ]
   },
   {
     "name": "Maritech",
     "logo": "",
     "poster": "",
-    "events": []
+    "events": [
+
+      {
+        "name": "Boat Racing",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "10.00 AM to 01.00 PM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "Near Marine Workshop",
+        "logo_image": "assets/",
+		"description":     "Complete your race without sinking your boat which may eliminate your boat. \n\nRound 1:-\n1. Place your RC boat in water track.\\n3. The obstacles will be minimum in the first round.\n\nRound 2:-\n1. The obstacles will much more in this round.\n2. The first three participants will be awarded.\n3. Complete your race in minimum time.",
+        "rules": [
+          {"rule": "1. This is the open contest and anyone can take part ."},
+          {"rule": "2. The team should not have more than 3 students."},
+          {"rule": "3. The maximum width of the RC boat is 20cm."},
+          {"rule": "4. The maximum length of the RC boat is 45cm "},
+          {"rule": "5. The maximum voltage of  the RC boat is 12V."},
+          {"rule": "6. The RC boat made by students only, Readymade boat  should not allowed."},
+          {"rule": "7. Engine power boats are strictly not permitted."},
+          {"rule": "8. Participants are not allowed to make any changes in the boat after participating in first round."},
+          {"rule": "9. Any damaged to the RC boat, owners will be responsible."},
+          {"rule": "10. Only one team member will allow to control the remote of the boat, controller should not be change through the event."},
+          {"rule": "11. The penalty of 15seconds will be added, if the team member will touch the boat after putting the RC boat in water.."},
+          {"rule": "12. The time will not stop until  the race will complete."}
+        ],
+        "evaluation_criteria": [
+          {"rule": "Round 1:-\n1. Complete your race in minimum time.\n2. Hand touch will increase your time by 10 seconds\n3. Maximum three hand touch will allowed."},
+          {"rule": "\nRound 2:-\n1. Complete your race in minimum time.\n2. Hand touch will increase your time by 15 seconds\n3. Maximum two hand touch will allowed."}
+      
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Hardik A. Patel","mail_id": "hap09@ganpatuniversity.ac.in","mobile_no": "9106593769"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Anurag Kumar","mail_id": "annusinghal456@gmail.com","mobile_no": "9799024921","branch_sem": "5th Sem","enrollment_no": "20012091001"},
+          {"name": "Raj Kumar Gadhiya","mail_id": "gadhiyarajkumar1020@gmail.com","mobile_no": "7600321021","branch_sem": "5th Sem","enrollment_no": "20012091002"}
+        ]
+      },
+
+      {
+        "name": "Workshop of Ship building",
+        "type": "Tech",
+        "date": "14th October 2022/15th October 2022",
+        "time": "9:30 AM - 4:00 PM",
+        "category": [{"category":"A"},{"category": "B"},{"category": "C"},{"category": "D"},{"category": "E"}],
+        "venue_of_event": "Ship-Building Competion",
+        "logo_image": "assets/",
+		"description": "Participants will be provided with all the materials required to build the ship.They will be guided by the co-ordinators.After the completion of the ship-building the ship would have to go through floating test.Every participant will be provided with certificate.Ship building will commence on 14th followed by floating test on 15th of oct 2022.All the ships will be judged without any partiality  by the judges.The decision of the judges would be final.There would be two rounds in this event.Every participating group would be charged a participation fees of 500/- rupees only.Participants has to bare an additional fee of 250/- rupees after the last date of registration i.e. 13/10/22.",
+        "rules": [
+          {"rule": "NA"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "NA"}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Mihir A. Patel","mail_id": "map04@ganpatuniversity.ac.in","mobile_no": "8160670003"},
+          {"name": "","mail_id": "","mobile_no": ""},
+          {"name": "","mail_id": "","mobile_no": ""}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Akash Singh","mail_id": "akashsingh20@gnu.ac.in","mobile_no": "9918263121","branch_sem": "5th Sem","enrollment_no": "21012092005"},
+          {"name": "Nirjar Sarkar","mail_id": "nirjharsarkar20@gnu.ac.in","mobile_no": "8583038477","branch_sem": "5th Sem","enrollment_no": "21012092012"}
+        ]
+      }
+    ]
   },
   {
     "name": "GeneralEvents",
