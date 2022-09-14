@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/login/components/login_components.dart';
 import 'package:college_event_management/payment/payment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../dashboard/dashboardScreen.dart';
 import '../../forgotPassword.dart';
 import '../../registration/registrtion.dart';
