@@ -426,7 +426,7 @@ class _bodyState extends State<body> {
 
         if (flag == "0") {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => payment()));
+              MaterialPageRoute(builder: (context) => dashboardScreen()));
         } else if (flag == "1") {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => dashboardScreen()));
