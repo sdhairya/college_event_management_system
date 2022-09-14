@@ -23,13 +23,16 @@ class _bodyState extends State<body> {
   bool isLoading = false;
   bool isChecked = true;
   TextEditingController _createProfileFirstNameController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController _createProfileLastNameController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController _createProfileMobileController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController _createProfileEmailController = TextEditingController();
-  TextEditingController _createProfileDOBController = TextEditingController();
+  TextEditingController _createProfileSemController = TextEditingController();
+  TextEditingController _createProfileBranchController = TextEditingController();
+  TextEditingController _createProfileCollegeController = TextEditingController();
+  TextEditingController _createProfileAddressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +55,8 @@ class _bodyState extends State<body> {
                   IconButton(
                       padding: EdgeInsets.only(bottom: 3, right: 8),
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (context) => dashboardScreen()));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => dashboardScreen()));
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_new_rounded,
@@ -71,92 +73,92 @@ class _bodyState extends State<body> {
                 ],
               ),
             ),
-            Container(
-                margin: EdgeInsets.only(
-                    left: 0, top: MediaQuery.of(context).size.height * 0.12),
-                child: CircleAvatar(
-                    radius: 80,
-                    child: _pickedimage == null
-                        ? null
-                        : ClipOval(
-
-                        child: kIsWeb
-                            ? Image.memory(
-                          width: double.maxFinite,
-                          height: double.maxFinite,
-                          webImage,
-                          fit: BoxFit.fill,
-                        )
-                            : Image.file(
-                          width: double.maxFinite,
-                          height: double.maxFinite,
-                          _pickedimage!,
-                          fit: BoxFit.fill,
-                        )))
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: TextButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.edit),
-                      Text("Edit"),
-                    ],
-                  ),
-                  onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => Dialog(
-                          child: Container(
-                            width: double.minPositive,
-                            padding: EdgeInsets.all(20),
-                            height: 150,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      shape: CircleBorder(),
-                                      enableFeedback: true,
-                                      alignment: Alignment.center,
-                                      primary: Colors.white70,
-                                      padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
-                                    ),
-                                    onPressed: () {
-                                      _getFromGallery();
-                                      Navigator.pop(context);
-                                    },
-                                    child: Column(
-                                      children: [
-                                        Icon(Icons.image,size: 50, color: Colors.deepOrange),
-                                        Text("Gallery",style: TextStyle(fontSize: 16, color: Colors.black),)
-                                      ],
-                                    )),
-
-                                Visibility(child: SizedBox(width: 30,), visible: kIsWeb ? false : true,),
-                                Visibility(child: ElevatedButton(
-
-                                    style: ElevatedButton.styleFrom(
-                                      shape: CircleBorder(),
-                                      enableFeedback: true,
-                                      alignment: Alignment.center,
-                                      primary: Colors.white70,
-                                      padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
-                                    ),
-                                    onPressed: () {
-                                      _getFromCamera();
-                                      Navigator.pop(context);
-                                    },
-                                    child: Column(
-                                      children: [
-                                        Icon(Icons.camera_alt,size: 50, color: Colors.deepOrange),
-                                        Text("Camera", style: TextStyle(color: Colors.black,fontSize: 16),)
-                                      ],
-                                    )), visible: kIsWeb ? false : true,)
-                              ],
-                            ),
-                          )))),
-            ),
+            // Container(
+            //     margin: EdgeInsets.only(
+            //         left: 0, top: MediaQuery.of(context).size.height * 0.12),
+            //     child: CircleAvatar(
+            //         radius: 80,
+            //         child: _pickedimage == null
+            //             ? null
+            //             : ClipOval(
+            //
+            //             child: kIsWeb
+            //                 ? Image.memory(
+            //               width: double.maxFinite,
+            //               height: double.maxFinite,
+            //               webImage,
+            //               fit: BoxFit.fill,
+            //             )
+            //                 : Image.file(
+            //               width: double.maxFinite,
+            //               height: double.maxFinite,
+            //               _pickedimage!,
+            //               fit: BoxFit.fill,
+            //             )))
+            // ),
+            // Container(
+            //   alignment: Alignment.center,
+            //   child: TextButton(
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: const [
+            //           Icon(Icons.edit),
+            //           Text("Edit"),
+            //         ],
+            //       ),
+            //       onPressed: () => showDialog(
+            //           context: context,
+            //           builder: (context) => Dialog(
+            //               child: Container(
+            //                 width: double.minPositive,
+            //                 padding: EdgeInsets.all(20),
+            //                 height: 150,
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.center,
+            //                   children: [
+            //                     ElevatedButton(
+            //                         style: ElevatedButton.styleFrom(
+            //                           shape: CircleBorder(),
+            //                           enableFeedback: true,
+            //                           alignment: Alignment.center,
+            //                           primary: Colors.white70,
+            //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
+            //                         ),
+            //                         onPressed: () {
+            //                           _getFromGallery();
+            //                           Navigator.pop(context);
+            //                         },
+            //                         child: Column(
+            //                           children: [
+            //                             Icon(Icons.image,size: 50, color: Colors.deepOrange),
+            //                             Text("Gallery",style: TextStyle(fontSize: 16, color: Colors.black),)
+            //                           ],
+            //                         )),
+            //
+            //                     Visibility(child: SizedBox(width: 30,), visible: kIsWeb ? false : true,),
+            //                     Visibility(child: ElevatedButton(
+            //
+            //                         style: ElevatedButton.styleFrom(
+            //                           shape: CircleBorder(),
+            //                           enableFeedback: true,
+            //                           alignment: Alignment.center,
+            //                           primary: Colors.white70,
+            //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
+            //                         ),
+            //                         onPressed: () {
+            //                           _getFromCamera();
+            //                           Navigator.pop(context);
+            //                         },
+            //                         child: Column(
+            //                           children: [
+            //                             Icon(Icons.camera_alt,size: 50, color: Colors.deepOrange),
+            //                             Text("Camera", style: TextStyle(color: Colors.black,fontSize: 16),)
+            //                           ],
+            //                         )), visible: kIsWeb ? false : true,)
+            //                   ],
+            //                 ),
+            //               )))),
+            // ),
             Container(
               // height: getHeight(555),
               width: getWidth(kIsWeb ? 100 : double.infinity),
@@ -220,15 +222,55 @@ class _bodyState extends State<body> {
                   const SizedBox(
                     height: 30,
                   ),
-                  const Text('    Date of Birth',
+                  const Text('    Branch',
                       style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
                   const SizedBox(
                     height: 10,
                   ),
                   const createProfile_components().textField(
-                      "Enter Date of Birth",
+                      "Enter Branch Name",
                       TextInputType.datetime,
-                      _createProfileDOBController,
+                      _createProfileBranchController,
+                      ""),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Text('    Semester',
+                      style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const createProfile_components().textField(
+                      "Enter Semester",
+                      TextInputType.datetime,
+                      _createProfileSemController,
+                      ""),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Text('    College Name',
+                      style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const createProfile_components().textField(
+                      "Enter College Name",
+                      TextInputType.datetime,
+                      _createProfileCollegeController,
+                      ""),
+                  const SizedBox(
+                    height: 30,
+                  ),
+
+                  const Text('    Address',
+                      style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const createProfile_components().textField(
+                      "Enter Address",
+                      TextInputType.datetime,
+                      _createProfileAddressController,
                       ""),
                   const SizedBox(
                     height: 30,
@@ -251,38 +293,38 @@ class _bodyState extends State<body> {
                           child: const Text('Create Profile'),
                           onPressed: isChecked
                               ? () async {
-                            if (isLoading) return;
+                                  if (isLoading) return;
 
-                            // if (_signUpEmailController
-                            //     .text.isNotEmpty) {
-                            //   if (_signUpPasswordController.text ==
-                            //       _signUpConfrimPasswordController
-                            //           .text) {
-                            //     signUp();
-                            //   } else {
-                            //     Fluttertoast.showToast(
-                            //         msg:
-                            //         "Confirm password don't match!!",
-                            //         toastLength: Toast.LENGTH_SHORT,
-                            //         gravity: ToastGravity.BOTTOM,
-                            //         timeInSecForIosWeb: 1,
-                            //         backgroundColor: Colors.red,
-                            //         textColor: Colors.white,
-                            //         fontSize: 16.0);
-                            //     setState(() => isLoading = false);
-                            //   }
-                            // } else {
-                            //   Fluttertoast.showToast(
-                            //       msg: "Any field can not be empty!!",
-                            //       toastLength: Toast.LENGTH_SHORT,
-                            //       gravity: ToastGravity.BOTTOM,
-                            //       timeInSecForIosWeb: 1,
-                            //       backgroundColor: Colors.red,
-                            //       textColor: Colors.white,
-                            //       fontSize: 16.0);
-                            //   setState(() => isLoading = false);
-                            // }
-                          }
+                                  // if (_signUpEmailController
+                                  //     .text.isNotEmpty) {
+                                  //   if (_signUpPasswordController.text ==
+                                  //       _signUpConfrimPasswordController
+                                  //           .text) {
+                                  //     signUp();
+                                  //   } else {
+                                  //     Fluttertoast.showToast(
+                                  //         msg:
+                                  //         "Confirm password don't match!!",
+                                  //         toastLength: Toast.LENGTH_SHORT,
+                                  //         gravity: ToastGravity.BOTTOM,
+                                  //         timeInSecForIosWeb: 1,
+                                  //         backgroundColor: Colors.red,
+                                  //         textColor: Colors.white,
+                                  //         fontSize: 16.0);
+                                  //     setState(() => isLoading = false);
+                                  //   }
+                                  // } else {
+                                  //   Fluttertoast.showToast(
+                                  //       msg: "Any field can not be empty!!",
+                                  //       toastLength: Toast.LENGTH_SHORT,
+                                  //       gravity: ToastGravity.BOTTOM,
+                                  //       timeInSecForIosWeb: 1,
+                                  //       backgroundColor: Colors.red,
+                                  //       textColor: Colors.white,
+                                  //       fontSize: 16.0);
+                                  //   setState(() => isLoading = false);
+                                  // }
+                                }
                               : null,
                         ),
                       )),
@@ -309,7 +351,7 @@ class _bodyState extends State<body> {
       // );
       if (image != null) {
         var f = await image.readAsBytes();
-        setState(()  {
+        setState(() {
           webImage = f;
           _pickedimage = File("a");
         });
@@ -346,5 +388,4 @@ class _bodyState extends State<body> {
     }
     print(_pickedimage);
   }
-
 }

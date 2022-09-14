@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-
 import 'event.dart';
+
 
 class EventParser{
   List<String> getCategoryList(records){

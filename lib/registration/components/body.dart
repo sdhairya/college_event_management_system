@@ -29,7 +29,7 @@ class _bodyState extends State<body> {
 
   bool isLoading = false;
   bool isChecked = false;
-  // var uuid = Uuid();
+  var uuid = Uuid();
 
 
   @override
@@ -300,7 +300,7 @@ class _bodyState extends State<body> {
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
       var res = await http.post(Uri.parse(uri), body: json.encode({
-        "id": userId,
+        "id": uuid.v4(),
         "email": _signUpEmailController.text,
         "userName": _signUpNameController.text,
         "isStudent": 1,
