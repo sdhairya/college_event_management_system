@@ -38,309 +38,327 @@ class _bodyState extends State<body> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        reverse: false,
-        child: LayoutBuilder(builder: (context, constraints) {
-          return AnimatedContainer(duration: const Duration(milliseconds: 500),
-          padding: constraints.maxWidth < 500 ? EdgeInsets.zero : const EdgeInsets.all(30.0),
-          child: Center(
-            child: Container(
-              padding:  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 25.0),
-              constraints: const BoxConstraints(
-                maxWidth: 500,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              child: Column(
-                children: [
-                  const Align(
-                    alignment: Alignment(0, 0),
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: ListTile(
-                      leading: IconButton(
-                          padding: const EdgeInsets.only(bottom: 3, right: 8),
-                          onPressed: () {
-                            //
-                            // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            //     builder: (context) => dashboardScreen()));
-                          },
-                          icon: Icon(
-                            color: Color(0xFF1D2A3A),
-                            Icons.arrow_back_ios_new_rounded,
-                            size: 30,
-                          )),
-                      title:  const Text(
-                        'Create Profile ',
-                        style: TextStyle(
-                            fontSize: 35,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF1D2A3A)),
-                      ),
-                    )
-
-                  ),
-                  // Container(
-                  //     margin: EdgeInsets.only(
-                  //         left: 0, top: MediaQuery.of(context).size.height * 0.12),
-                  //     child: CircleAvatar(
-                  //         radius: 80,
-                  //         child: _pickedimage == null
-                  //             ? null
-                  //             : ClipOval(
-                  //
-                  //             child: kIsWeb
-                  //                 ? Image.memory(
-                  //               width: double.maxFinite,
-                  //               height: double.maxFinite,
-                  //               webImage,
-                  //               fit: BoxFit.fill,
-                  //             )
-                  //                 : Image.file(
-                  //               width: double.maxFinite,
-                  //               height: double.maxFinite,
-                  //               _pickedimage!,
-                  //               fit: BoxFit.fill,
-                  //             )))
-                  // ),
-                  // Container(
-                  //   alignment: Alignment.center,
-                  //   child: TextButton(
-                  //       child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.center,
-                  //         children: const [
-                  //           Icon(Icons.edit),
-                  //           Text("Edit"),
-                  //         ],
-                  //       ),
-                  //       onPressed: () => showDialog(
-                  //           context: context,
-                  //           builder: (context) => Dialog(
-                  //               child: Container(
-                  //                 width: double.minPositive,
-                  //                 padding: EdgeInsets.all(20),
-                  //                 height: 150,
-                  //                 child: Row(
-                  //                   mainAxisAlignment: MainAxisAlignment.center,
-                  //                   children: [
-                  //                     ElevatedButton(
-                  //                         style: ElevatedButton.styleFrom(
-                  //                           shape: CircleBorder(),
-                  //                           enableFeedback: true,
-                  //                           alignment: Alignment.center,
-                  //                           primary: Colors.white70,
-                  //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
-                  //                         ),
-                  //                         onPressed: () {
-                  //                           _getFromGallery();
-                  //                           Navigator.pop(context);
-                  //                         },
-                  //                         child: Column(
-                  //                           children: [
-                  //                             Icon(Icons.image,size: 50, color: Colors.deepOrange),
-                  //                             Text("Gallery",style: TextStyle(fontSize: 16, color: Colors.black),)
-                  //                           ],
-                  //                         )),
-                  //
-                  //                     Visibility(child: SizedBox(width: 30,), visible: kIsWeb ? false : true,),
-                  //                     Visibility(child: ElevatedButton(
-                  //
-                  //                         style: ElevatedButton.styleFrom(
-                  //                           shape: CircleBorder(),
-                  //                           enableFeedback: true,
-                  //                           alignment: Alignment.center,
-                  //                           primary: Colors.white70,
-                  //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
-                  //                         ),
-                  //                         onPressed: () {
-                  //                           _getFromCamera();
-                  //                           Navigator.pop(context);
-                  //                         },
-                  //                         child: Column(
-                  //                           children: [
-                  //                             Icon(Icons.camera_alt,size: 50, color: Colors.deepOrange),
-                  //                             Text("Camera", style: TextStyle(color: Colors.black,fontSize: 16),)
-                  //                           ],
-                  //                         )), visible: kIsWeb ? false : true,)
-                  //                   ],
-                  //                 ),
-                  //               )))),
-                  // ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    alignment: Alignment.center,
+          reverse: false,
+          child: LayoutBuilder(builder: (context, constraints) {
+            return AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                padding: constraints.maxWidth < 500
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.all(30.0),
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 30.0, horizontal: 25.0),
+                    constraints: const BoxConstraints(
+                      maxWidth: 500,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('   First Name',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField(
-                            "Enter First Name",
-                            TextInputType.text,
-                            _createProfileFirstNameController,
-                            ""),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text('    Last Name',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField("Enter Last Name",
-                            TextInputType.text, _createProfileLastNameController, ""),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text('    Mobile Number',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField(
-                            "Enter Mobile Number",
-                            TextInputType.phone,
-                            _createProfileMobileController,
-                            ""),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text('    Email',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField(
-                            "Enter Email",
-                            TextInputType.emailAddress,
-                            _createProfileEmailController,
-                            ""),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text('    Branch',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField(
-                            "Enter Branch Name",
-                            TextInputType.datetime,
-                            _createProfileBranchController,
-                            ""),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text('    Semester',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField(
-                            "Enter Semester",
-                            TextInputType.datetime,
-                            _createProfileSemController,
-                            ""),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text('    College Name',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField(
-                            "Enter College Name",
-                            TextInputType.datetime,
-                            _createProfileCollegeController,
-                            ""),
-                        const SizedBox(
-                          height: 30,
-                        ),
-
-                        const Text('    Address',
-                            style: TextStyle(fontSize: 16, color: Color(0xFF1D2A3A))),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        const createProfile_components().textField(
-                            "Enter Address",
-                            TextInputType.datetime,
-                            _createProfileAddressController,
-                            ""),
-                        const SizedBox(
-                          height: 30,
+                        const Align(
+                          alignment: Alignment(0, 0),
                         ),
                         Container(
-                              alignment: Alignment.center,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xFF1D2A3A),
-                                  onSurface: const Color(0xFF1D2A3A),
-                                  padding: const EdgeInsets.all(3),
-                                  textStyle: const TextStyle(fontSize: 20),
-                                  minimumSize: const Size.fromHeight(50),
-                                  shape: const StadiumBorder(),
-                                  enableFeedback: true,
-                                ),
-                                onPressed: isChecked
-                                    ? () async {
-                                  if (isLoading) return;
-                                  createStuProfile();
-
-
-                                  // if (_signUpEmailController
-                                  //     .text.isNotEmpty) {
-                                  //   if (_signUpPasswordController.text ==
-                                  //       _signUpConfrimPasswordController
-                                  //           .text) {
-                                  //     signUp();
-                                  //   } else {
-                                  //     Fluttertoast.showToast(
-                                  //         msg:
-                                  //         "Confirm password don't match!!",
-                                  //         toastLength: Toast.LENGTH_SHORT,
-                                  //         gravity: ToastGravity.BOTTOM,
-                                  //         timeInSecForIosWeb: 1,
-                                  //         backgroundColor: Colors.red,
-                                  //         textColor: Colors.white,
-                                  //         fontSize: 16.0);
-                                  //     setState(() => isLoading = false);
-                                  //   }
-                                  // } else {
-                                  //   Fluttertoast.showToast(
-                                  //       msg: "Any field can not be empty!!",
-                                  //       toastLength: Toast.LENGTH_SHORT,
-                                  //       gravity: ToastGravity.BOTTOM,
-                                  //       timeInSecForIosWeb: 1,
-                                  //       backgroundColor: Colors.red,
-                                  //       textColor: Colors.white,
-                                  //       fontSize: 16.0);
-                                  //   setState(() => isLoading = false);
-                                  // }
-                                }
-                                    : null,
-                                child: const Text('Create Profile'),
+                            alignment: Alignment.topLeft,
+                            child: ListTile(
+                              leading: IconButton(
+                                  padding: const EdgeInsets.only(
+                                      bottom: 3, right: 8),
+                                  onPressed: () {
+                                    //
+                                    // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                    //     builder: (context) => dashboardScreen()));
+                                  },
+                                  icon: Icon(
+                                    color: Color(0xFF1D2A3A),
+                                    Icons.arrow_back_ios_new_rounded,
+                                    size: 30,
+                                  )),
+                              title: const Text(
+                                'Create Profile ',
+                                style: TextStyle(
+                                    fontSize: 35,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF1D2A3A)),
                               ),
-                            ),
+                            )
+
+                        ),
+                        // Container(
+                        //     margin: EdgeInsets.only(
+                        //         left: 0, top: MediaQuery.of(context).size.height * 0.12),
+                        //     child: CircleAvatar(
+                        //         radius: 80,
+                        //         child: _pickedimage == null
+                        //             ? null
+                        //             : ClipOval(
+                        //
+                        //             child: kIsWeb
+                        //                 ? Image.memory(
+                        //               width: double.maxFinite,
+                        //               height: double.maxFinite,
+                        //               webImage,
+                        //               fit: BoxFit.fill,
+                        //             )
+                        //                 : Image.file(
+                        //               width: double.maxFinite,
+                        //               height: double.maxFinite,
+                        //               _pickedimage!,
+                        //               fit: BoxFit.fill,
+                        //             )))
+                        // ),
+                        // Container(
+                        //   alignment: Alignment.center,
+                        //   child: TextButton(
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.center,
+                        //         children: const [
+                        //           Icon(Icons.edit),
+                        //           Text("Edit"),
+                        //         ],
+                        //       ),
+                        //       onPressed: () => showDialog(
+                        //           context: context,
+                        //           builder: (context) => Dialog(
+                        //               child: Container(
+                        //                 width: double.minPositive,
+                        //                 padding: EdgeInsets.all(20),
+                        //                 height: 150,
+                        //                 child: Row(
+                        //                   mainAxisAlignment: MainAxisAlignment.center,
+                        //                   children: [
+                        //                     ElevatedButton(
+                        //                         style: ElevatedButton.styleFrom(
+                        //                           shape: CircleBorder(),
+                        //                           enableFeedback: true,
+                        //                           alignment: Alignment.center,
+                        //                           primary: Colors.white70,
+                        //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
+                        //                         ),
+                        //                         onPressed: () {
+                        //                           _getFromGallery();
+                        //                           Navigator.pop(context);
+                        //                         },
+                        //                         child: Column(
+                        //                           children: [
+                        //                             Icon(Icons.image,size: 50, color: Colors.deepOrange),
+                        //                             Text("Gallery",style: TextStyle(fontSize: 16, color: Colors.black),)
+                        //                           ],
+                        //                         )),
+                        //
+                        //                     Visibility(child: SizedBox(width: 30,), visible: kIsWeb ? false : true,),
+                        //                     Visibility(child: ElevatedButton(
+                        //
+                        //                         style: ElevatedButton.styleFrom(
+                        //                           shape: CircleBorder(),
+                        //                           enableFeedback: true,
+                        //                           alignment: Alignment.center,
+                        //                           primary: Colors.white70,
+                        //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
+                        //                         ),
+                        //                         onPressed: () {
+                        //                           _getFromCamera();
+                        //                           Navigator.pop(context);
+                        //                         },
+                        //                         child: Column(
+                        //                           children: [
+                        //                             Icon(Icons.camera_alt,size: 50, color: Colors.deepOrange),
+                        //                             Text("Camera", style: TextStyle(color: Colors.black,fontSize: 16),)
+                        //                           ],
+                        //                         )), visible: kIsWeb ? false : true,)
+                        //                   ],
+                        //                 ),
+                        //               )))),
+                        // ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('   First Name',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter First Name",
+                                  TextInputType.text,
+                                  _createProfileFirstNameController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Last Name',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Last Name",
+                                  TextInputType.text,
+                                  _createProfileLastNameController, ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Mobile Number',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Mobile Number",
+                                  TextInputType.phone,
+                                  _createProfileMobileController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Email',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Email",
+                                  TextInputType.emailAddress,
+                                  _createProfileEmailController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Branch',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Branch Name",
+                                  TextInputType.datetime,
+                                  _createProfileBranchController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Semester',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Semester",
+                                  TextInputType.datetime,
+                                  _createProfileSemController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    College Name',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter College Name",
+                                  TextInputType.datetime,
+                                  _createProfileCollegeController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+
+                              const Text('    Address',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Address",
+                                  TextInputType.datetime,
+                                  _createProfileAddressController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                alignment: Alignment.center,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: const Color(0xFF1D2A3A),
+                                    onSurface: const Color(0xFF1D2A3A),
+                                    padding: const EdgeInsets.all(3),
+                                    textStyle: const TextStyle(fontSize: 20),
+                                    minimumSize: const Size.fromHeight(50),
+                                    shape: const StadiumBorder(),
+                                    enableFeedback: true,
+                                  ),
+                                  onPressed: isChecked
+                                      ? () async {
+                                    if (isLoading) return;
+                                    createStuProfile();
+
+
+                                    // if (_signUpEmailController
+                                    //     .text.isNotEmpty) {
+                                    //   if (_signUpPasswordController.text ==
+                                    //       _signUpConfrimPasswordController
+                                    //           .text) {
+                                    //     signUp();
+                                    //   } else {
+                                    //     Fluttertoast.showToast(
+                                    //         msg:
+                                    //         "Confirm password don't match!!",
+                                    //         toastLength: Toast.LENGTH_SHORT,
+                                    //         gravity: ToastGravity.BOTTOM,
+                                    //         timeInSecForIosWeb: 1,
+                                    //         backgroundColor: Colors.red,
+                                    //         textColor: Colors.white,
+                                    //         fontSize: 16.0);
+                                    //     setState(() => isLoading = false);
+                                    //   }
+                                    // } else {
+                                    //   Fluttertoast.showToast(
+                                    //       msg: "Any field can not be empty!!",
+                                    //       toastLength: Toast.LENGTH_SHORT,
+                                    //       gravity: ToastGravity.BOTTOM,
+                                    //       timeInSecForIosWeb: 1,
+                                    //       backgroundColor: Colors.red,
+                                    //       textColor: Colors.white,
+                                    //       fontSize: 16.0);
+                                    //   setState(() => isLoading = false);
+                                    // }
+                                  }
+                                      : null,
+                                  child: const Text('Create Profile'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery
+                                    .of(context)
+                                    .viewInsets
+                                    .bottom)),
                       ],
                     ),
                   ),
-                  Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom)),
-                ],
-              ),
-            ),
-          ));
-        })
+                ));
+          })
 
 
       ),
@@ -430,32 +448,34 @@ class _bodyState extends State<body> {
       if (res.statusCode == 404) {
         showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Error'),
-              content: Text("User Not Found !!"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Ok'))
-              ],
-            ));
+            builder: (context) =>
+                AlertDialog(
+                  title: Text('Error'),
+                  content: Text("User Not Found !!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Error'),
-              content: Text("Bed Request!!"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Ok'))
-              ],
-            ));
+            builder: (context) =>
+                AlertDialog(
+                  title: Text('Error'),
+                  content: Text("Bed Request!!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
 
@@ -464,4 +484,5 @@ class _bodyState extends State<body> {
     } catch (e) {
       print(e.toString());
     }
+  }
 }

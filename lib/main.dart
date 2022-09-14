@@ -10,8 +10,6 @@ import '../dashboard/dashboardScreen.dart';
 import '';
 import '../registration/registrtion.dart';
 import '../forgotPassword.dart';
-import 'hms/login/login_page.dart';
-import 'hms/login/login_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
