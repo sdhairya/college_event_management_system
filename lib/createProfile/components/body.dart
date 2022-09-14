@@ -1,9 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'package:college_event_management/dashboard/dashboardScreen.dart';
+import 'package:college_event_management/size_config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'createProfile_components.dart';
+import 'package:http/http.dart' as http;
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -286,6 +293,8 @@ class _bodyState extends State<body> {
                                 onPressed: isChecked
                                     ? () async {
                                   if (isLoading) return;
+                                  createStuProfile();
+
 
                                   // if (_signUpEmailController
                                   //     .text.isNotEmpty) {
@@ -386,4 +395,73 @@ class _bodyState extends State<body> {
     }
     print(_pickedimage);
   }
+
+  Future createStuProfile() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    var stuid = studata.getString("stuid");
+
+    print(stuid);
+
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "sid": stuid,
+            "firstName": _createProfileFirstNameController.text,
+            "lastName": _createProfileLastNameController.text,
+            "email": _createProfileEmailController.text,
+            "mobile": _createProfileMobileController.text,
+            "college": _createProfileCollegeController.text,
+            "branch": _createProfileBranchController.text,
+            "sem": _createProfileSemController.text,
+            "address": _createProfileAddressController.text,
+            "flag": 1
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text("User Not Found !!"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text("Bed Request!!"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+
+
+      }
+    } catch (e) {
+      print(e.toString());
+    }
 }

@@ -352,6 +352,12 @@ class _bodyState extends State<body> {
         print(response);
 
         if (uid != "") {
+
+          SharedPreferences studata = await SharedPreferences.getInstance();
+
+          studata.setString("stuid", uid);
+          studata.setString("stuName", response["username"]);
+
           checkProfile(uid);
           Fluttertoast.showToast(
               msg: "Success!!",
