@@ -38,201 +38,217 @@ class _bodyState extends State<body> {
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         reverse: true,
-        child: Column(
-          children: <Widget>[
+        child:LayoutBuilder(builder: (context, constraints) {
+          return AnimatedContainer(duration: Duration(milliseconds: 500),
+            padding: constraints.maxWidth < 500 ? EdgeInsets.zero : const EdgeInsets.all(30.0),
+          child: Center(
+            child: Container(
+              padding:  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 25.0),
+                constraints: const BoxConstraints(
+                  maxWidth: 500,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+              child:  Column(
+            children: <Widget>[
             Column(
-              children: [
-                const Align(
-                  alignment: Alignment(0, 0),
+            children: [
+            const Align(
+            alignment: Alignment(0, 0),
+          ),
+
+            Container(
+              child: ListTile(
+                leading: IconButton(
+                    padding: EdgeInsets.only(bottom: 3, right: 8),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()));
+                    },
+                    icon: const Icon(
+                      color: Color(0xFF1D2A3A),
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 30,
+                    )),
+                title: const Text(
+                  'Register ',
+                  style: TextStyle(
+                      fontSize: 35,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF1D2A3A)),
                 ),
-                Container(
-                  height: getHeight(50),
-                  width: getWidth(kIsWeb ? 100 : double.infinity),
-                  margin: EdgeInsets.only(
-                      left: 20, top: MediaQuery.of(context).size.height * 0.12),
-                  child: Row(
-                    children: <Widget>[
-                      IconButton(
-                          padding: EdgeInsets.only(bottom: 3, right: 8),
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            size: 30,
-                          )),
-                      Text(
-                        'Register ',
-                        style: TextStyle(
-                            fontSize: 35,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF1D2A3A)),
-                      )
-                    ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  registration_components().text('   User Name', FontWeight.w600, Color(0xFF1D2A3A), 16),
+                  // const Text('   User Name',
+                  //     style: TextStyle(
+                  //         fontSize: 16, color: Color(0xFF1D2A3A))),
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-                Container(
-                  // height: getHeight(555),
-                  width: getWidth(kIsWeb ? 100 : double.infinity),
-                  // width: kIsWeb ? 600 : double.infinity,
-                  // constraints: BoxConstraints(maxWidth: 1000),
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: MediaQuery.of(context).size.height * 0.06),
+                  const registration_components().textField("Enter Your Name", TextInputType.text, _signUpNameController,""),
+                  // TextField(
+                  //   controller: _signUpNameController,
+                  //   decoration: InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(15)),
+                  //     hintText: 'Enter Your Name',
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  registration_components().text('   Registration Email', FontWeight.w600, Color(0xFF1D2A3A), 16),
 
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      registration_components().text('   User Name', FontWeight.w600, Color(0xFF1D2A3A), 16),
-                      // const Text('   User Name',
-                      //     style: TextStyle(
-                      //         fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const registration_components().textField("Enter Your Name", TextInputType.text, _signUpNameController,""),
-                      // TextField(
-                      //   controller: _signUpNameController,
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //     hintText: 'Enter Your Name',
-                      //   ),
-                      // ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      registration_components().text('   Registration Email', FontWeight.w600, Color(0xFF1D2A3A), 16),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const registration_components().textField("Enter Email", TextInputType.emailAddress, _signUpEmailController,""),
 
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const registration_components().textField("Enter Email", TextInputType.emailAddress, _signUpEmailController,""),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  registration_components().text('   Password', FontWeight.w600, Color(0xFF1D2A3A), 16),
 
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      registration_components().text('   Password', FontWeight.w600, Color(0xFF1D2A3A), 16),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const registration_components().textField("Enter Password", TextInputType.visiblePassword, _signUpPasswordController,""),
 
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const registration_components().textField("Enter Password", TextInputType.visiblePassword, _signUpPasswordController,""),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  registration_components().text('   Confirm Password', FontWeight.w600, Color(0xFF1D2A3A), 16),
 
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      registration_components().text('   Confirm Password', FontWeight.w600, Color(0xFF1D2A3A), 16),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const registration_components().textField("Enter Confirm Password", TextInputType.text, _signUpConfrimPasswordController, "confirmpassword"),
+                CheckboxListTile(
+                  title:  const Text.rich(
+                      TextSpan(
+                        children: [
 
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const registration_components().textField("Enter Confirm Password", TextInputType.text, _signUpConfrimPasswordController, "confirmpassword"),
-         
-                      Row(
-                        children: <Widget>[
-                          Checkbox(
-                            value: this.isChecked,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                this.isChecked = value!;
-                              });
-                            },
-                          ),
-                          Text("I read and agree with"),
-                          TextButton(
-                              onPressed: () {
-                                terms();
-                              },
-                              child: const Text(
-                                "Terms & Conditions",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Color(0xFF1D2A3A),
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline),
-                              ))
+                          TextSpan(
+                              text: "Terms & Conditions",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color(0xFF1D2A3A),
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline)
+                          )
                         ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 70, vertical: 5),
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: isChecked
-                                    ? Color(0xFF1D2A3A)
-                                    : Color(0xFFFF7F7F7),
-                                onSurface: Color(0xFF1D2A3A),
-                                padding: EdgeInsets.all(3),
-                                textStyle: TextStyle(fontSize: 20),
-                                minimumSize: Size.fromHeight(50),
-                                shape: StadiumBorder(),
-                                enableFeedback: true,
-                              ),
-                              child: isLoading
-                                  ? const CircularProgressIndicator(
-                                color: Colors.white,
-                                backgroundColor: Colors.transparent,
-                              )
-                                  : const Text('Register'),
-                              onPressed: isChecked
-                                  ? () async {
-                                if (isLoading) return;
-
-                                if (_signUpEmailController
-                                    .text.isNotEmpty) {
-                                  if (_signUpPasswordController.text ==
-                                      _signUpConfrimPasswordController
-                                          .text) {
-                                    signUp();
-                                  } else {
-                                    Fluttertoast.showToast(
-                                        msg:
-                                        "Confirm password don't match!!",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.red,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
-                                    setState(() => isLoading = false);
-                                  }
-                                } else {
-                                  Fluttertoast.showToast(
-                                      msg: "Any field can not be empty!!",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
-                                  setState(() => isLoading = false);
-                                }
-                              }
-                                  : null,
-                            ),
-                          )),
-                    ],
+                        text: "I read and agree with",
+                      )
+                    // Text("I read and agree with"),
+                    // TextButton(
+                    //     onPressed: () {
+                    //       terms();
+                    //     },
+                    //     child: const Text(
+                    //       "Terms & Conditions",
+                    //       style: TextStyle(
+                    //           fontSize: 15,
+                    //           color: Color(0xFF1D2A3A),
+                    //           fontWeight: FontWeight.bold,
+                    //           decoration: TextDecoration.underline),
+                    //     ))
                   ),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: this.isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      this.isChecked = value!;
+                    });
+                  },
+
                 ),
-                Padding(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom)),
-              ],
-            )
+
+                  const SizedBox(
+                    height: 30,
+                  ),
+
+                 Container(
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: isChecked
+                                ? Color(0xFF1D2A3A)
+                                : Color(0xFFFF7F7F7),
+                            onSurface: Color(0xFF1D2A3A),
+                            padding: EdgeInsets.all(3),
+                            textStyle: TextStyle(fontSize: 20),
+                            minimumSize: Size.fromHeight(50),
+                            shape: StadiumBorder(),
+                            enableFeedback: true,
+                          ),
+                          child: isLoading
+                              ? const CircularProgressIndicator(
+                            color: Colors.white,
+                            backgroundColor: Colors.transparent,
+                          )
+                              : const Text('Register'),
+                          onPressed: isChecked
+                              ? () async {
+                            if (isLoading) return;
+
+                            if (_signUpEmailController
+                                .text.isNotEmpty) {
+                              if (_signUpPasswordController.text ==
+                                  _signUpConfrimPasswordController
+                                      .text) {
+                                signUp();
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg:
+                                    "Confirm password don't match!!",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                setState(() => isLoading = false);
+                              }
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: "Any field can not be empty!!",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                              setState(() => isLoading = false);
+                            }
+                          }
+                              : null,
+                        ),
+                      ),
+                ],
+              ),
+            ),
+            Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom)),
+            ],
+          )
           ],
-        ),
-      ),
+          ),
+            )),
+          );
+        })),
     );
   }
 

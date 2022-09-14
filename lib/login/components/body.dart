@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/login/components/login_components.dart';
+import 'package:college_event_management/payment/payment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -171,9 +172,9 @@ class _bodyState extends State<body> {
 
                       // Checkbox(value: _ischecked, onChanged: _handleRememeberme(_ischecked)),
 
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      // const SizedBox(
+                      //   height: 30,
+                      // ),
 
                       Container(
                         alignment: Alignment.center,
@@ -422,7 +423,7 @@ class _bodyState extends State<body> {
 
         if (flag == "0") {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => createProfile()));
+              MaterialPageRoute(builder: (context) => payment()));
         } else if (flag == "1") {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => dashboardScreen()));
