@@ -1,6 +1,13 @@
+import 'dart:convert';
+
 import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/payment/components/payment_components.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../dashboard/dashboardScreen.dart';
+import '../payment.dart';
 
 enum SingingCharacter { Yes, No }
 int amt=100;
@@ -18,11 +25,15 @@ class _bodyState extends State<body> {
   bool isChecked = false;
   int certificate = 0;
   int lunch = 0;
+  var stuid;
+  var type;
   SingingCharacter? _certificate = SingingCharacter.No;
   SingingCharacter? _lunch = SingingCharacter.No;
 
+
   @override
   Widget build(BuildContext context) {
+    getGstAmt();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -103,7 +114,7 @@ class _bodyState extends State<body> {
                                         onChanged: (SingingCharacter? value) {
                                           setState(() {
                                             _certificate = value;
-                                            certificate=100;
+                                            certificate=1;
                                             amount(certificate,lunch);
                                           });
                                         }),
@@ -203,10 +214,93 @@ class _bodyState extends State<body> {
     );
   }
 
+  Future getGstAmt() async{
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    stuid = studata.getString("stuid");
+
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/countGst.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "id": stuid
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text("User Not Found!"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+        setState(() => isLoading = false);
+
+      } else if (res.statusCode == 442) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text("Bed Request!!"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+        setState(() => isLoading = false);
+
+      } else if (res.statusCode == 200) {
+        var response = json.decode(res.body);
+        type = response["studentType"];
+        print(type);
+        print(response);
+
+
+      } else {
+        print("some issue");
+        setState(() => isLoading = false);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   void amount(int certificate, int lunch) {
     int fixed=100;
-    setState(() {
-      amt=fixed+certificate+lunch;
-    });
+
+    if (type == "gnu") {
+      setState(() {
+        amt=fixed+lunch;
+      });
+    } else if(type == "nongnu") {
+      setState(() {
+        amt=fixed+lunch;
+        amt = (amt + (amt*0.18)) as int;
+      });
+
+    }
+    else{
+      print("some issue");
+      setState(() => isLoading = false);
+
+    }
+
   }
 }
