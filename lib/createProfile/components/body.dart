@@ -518,7 +518,7 @@ class _bodyState extends State<body> {
                         },
                         child: Text('Ok'))
                   ],
-                ));
+                );
         setState(() => isLoading = false);
       } else if (res.statusCode == 442) {
         showDialog(
@@ -548,4 +548,4 @@ class _bodyState extends State<body> {
 
   }
   }
-}
+
