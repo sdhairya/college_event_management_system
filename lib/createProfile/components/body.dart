@@ -507,6 +507,18 @@ class _bodyState extends State<body> {
       if (res.statusCode == 404) {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => payment()));
+            builder: (context) =>
+                AlertDialog(
+                  title: Text('Error'),
+                  content: Text("User Not Found !!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 442) {
         showDialog(
@@ -534,5 +546,6 @@ class _bodyState extends State<body> {
       print(e.toString());
     }
 
+  }
   }
 }
