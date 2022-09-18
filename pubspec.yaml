@@ -38,6 +38,7 @@ dependencies:
   http: ^0.13.3
 #  url_launcher: ^6.0.20
   cupertino_icons: ^1.0.2
+  responsive_grid: ^2.1.0
   firebase_crashlytics: ^2.8.7
   firebase_auth: ^3.6.3
   image_picker: ^0.8.5+3
@@ -46,6 +47,7 @@ dependencies:
   js: ^0.6.2
   shared_preferences:
   uuid: ^3.0.6
+
 
 
 #firebase database

@@ -23,7 +23,6 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   File? _pickedimage;
   Uint8List webImage = Uint8List(8);
-  var stuid;
 
   bool isLoading = false;
   bool isChecked = true;
@@ -418,12 +417,12 @@ class _bodyState extends State<body> {
 
   Future createStuProfile() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
-    stuid = studata.getString("stuid");
+    var stuid = studata.getString("stuid");
 
     print(stuid);
 
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/studentProfile.php";
+      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "sid": stuid,
@@ -480,72 +479,11 @@ class _bodyState extends State<body> {
                 ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-          checkPayment();
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
 
-  Future checkPayment() async{
-    try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/checkPayment.php";
-      var res = await http.post(Uri.parse(uri),
-          body: json.encode({
-            "id": stuid
-          }),
-          headers: {
-            "Accept": "application/json",
-            "Access-Control-Allow-Origin": "*"
-          },
-          encoding: Encoding.getByName('utf-8'));
-      print(res.statusCode);
-      //  var response = json.decode(res.body);
-
-      //print(response["firebaseId"]);
-      //print(response);
-      if (res.statusCode == 404) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => payment()));
-            builder: (context) =>
-                AlertDialog(
-                  title: Text('Error'),
-                  content: Text("User Not Found !!"),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Ok'))
-                  ],
-                );
-        setState(() => isLoading = false);
-      } else if (res.statusCode == 442) {
-        showDialog(
-            context: context,
-            builder: (context) =>
-                AlertDialog(
-                  title: Text('Error'),
-                  content: Text("Bed Request!!"),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Ok'))
-                  ],
-                ));
-        setState(() => isLoading = false);
-      } else if (res.statusCode == 200) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => dashboardScreen()));
-        setState(() => isLoading = false);
 
       }
     } catch (e) {
       print(e.toString());
     }
-
   }
-  }
-
+}

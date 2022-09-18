@@ -190,33 +190,39 @@ class _bodyState extends State<body> {
                                   backgroundColor: Colors.transparent,
                                 )
                               : const Text('LogIn'),
-                          onPressed: () async {
-                            if (isLoading) return;
-
-                            setState(() => isLoading = true);
-                            userLogin();
-                            // User? user = await loginUsingEmailPassword(
-                            //     email: _emailController.text,
-                            //     password: _passwordController.text,
-                            //     context: context);
-                            // print(user);
-                            // if (user != null) {
-                            //   setState(() => isLoading = false);
-                            //   Navigator.of(context).pushReplacement(
-                            //       MaterialPageRoute(
-                            //           builder: (context) => dashboardScreen()));
-                            // } else {
-                            //   Fluttertoast.showToast(
-                            //       msg: "Enter Valid Email and Password",
-                            //       toastLength: Toast.LENGTH_SHORT,
-                            //       gravity: ToastGravity.BOTTOM,
-                            //       timeInSecForIosWeb: 1,
-                            //       backgroundColor: Colors.red,
-                            //       textColor: Colors.white,
-                            //       fontSize: 16.0);
-                            //   setState(() => isLoading = false);
-                            // }
+                          onPressed:() {
+                            Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) => dashboardScreen()));
                           },
+                          // onPressed: () async {
+                          //   if (isLoading) return;
+                          //
+                          //   setState(() => isLoading = true);
+                          //   //dashboardScreen();
+                          //   userLogin();
+                          //   // User? user = await loginUsingEmailPassword(
+                          //   //     email: _emailController.text,
+                          //   //     password: _passwordController.text,
+                          //   //     context: context);
+                          //   // print(user);
+                          //   // if (user != null) {
+                          //   //   setState(() => isLoading = false);
+                          //   //   Navigator.of(context).pushReplacement(
+                          //   //       MaterialPageRoute(
+                          //   //           builder: (context) => dashboardScreen()));
+                          //   // } else {
+                          //   //   Fluttertoast.showToast(
+                          //   //       msg: "Enter Valid Email and Password",
+                          //   //       toastLength: Toast.LENGTH_SHORT,
+                          //   //       gravity: ToastGravity.BOTTOM,
+                          //   //       timeInSecForIosWeb: 1,
+                          //   //       backgroundColor: Colors.red,
+                          //   //       textColor: Colors.white,
+                          //   //       fontSize: 16.0);
+                          //   //   setState(() => isLoading = false);
+                          //   // }
+                          // },
                         ),
                       ),
 

@@ -87,7 +87,8 @@ class _bodyState extends State<body> {
       )
     ;
   }
-  Widget buildCard(String e) => Container(
+  Widget buildCard(String e) =>
+      Container(
         padding: EdgeInsets.only(left: 30, top: 10,bottom: 10, right: 30),
         // margin: EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
