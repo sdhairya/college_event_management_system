@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../createProfile/createProfile.dart';
 import '../../dashboard/dashboardScreen.dart';
 import '../../forgotPassword.dart';
 import '../../registration/registrtion.dart';
@@ -23,6 +24,7 @@ class _bodyState extends State<body> {
   bool _isobscure = true;
   bool isLoading = false;
   bool _ischecked = false;
+  var uid;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -190,39 +192,39 @@ class _bodyState extends State<body> {
                                   backgroundColor: Colors.transparent,
                                 )
                               : const Text('LogIn'),
-                          onPressed:() {
-                            Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (context) => dashboardScreen()));
-                          },
-                          // onPressed: () async {
-                          //   if (isLoading) return;
-                          //
-                          //   setState(() => isLoading = true);
-                          //   //dashboardScreen();
-                          //   userLogin();
-                          //   // User? user = await loginUsingEmailPassword(
-                          //   //     email: _emailController.text,
-                          //   //     password: _passwordController.text,
-                          //   //     context: context);
-                          //   // print(user);
-                          //   // if (user != null) {
-                          //   //   setState(() => isLoading = false);
-                          //   //   Navigator.of(context).pushReplacement(
-                          //   //       MaterialPageRoute(
-                          //   //           builder: (context) => dashboardScreen()));
-                          //   // } else {
-                          //   //   Fluttertoast.showToast(
-                          //   //       msg: "Enter Valid Email and Password",
-                          //   //       toastLength: Toast.LENGTH_SHORT,
-                          //   //       gravity: ToastGravity.BOTTOM,
-                          //   //       timeInSecForIosWeb: 1,
-                          //   //       backgroundColor: Colors.red,
-                          //   //       textColor: Colors.white,
-                          //   //       fontSize: 16.0);
-                          //   //   setState(() => isLoading = false);
-                          //   // }
+                          // onPressed:() {
+                          //   Navigator.of(context).pushReplacement(
+                          //               MaterialPageRoute(
+                          //                   builder: (context) => dashboardScreen()));
                           // },
+                          onPressed: () async {
+                            if (isLoading) return;
+
+                            setState(() => isLoading = true);
+                            //dashboardScreen();
+                            userLogin();
+                            // User? user = await loginUsingEmailPassword(
+                            //     email: _emailController.text,
+                            //     password: _passwordController.text,
+                            //     context: context);
+                            // print(user);
+                            // if (user != null) {
+                            //   setState(() => isLoading = false);
+                            //   Navigator.of(context).pushReplacement(
+                            //       MaterialPageRoute(
+                            //           builder: (context) => dashboardScreen()));
+                            // } else {
+                            //   Fluttertoast.showToast(
+                            //       msg: "Enter Valid Email and Password",
+                            //       toastLength: Toast.LENGTH_SHORT,
+                            //       gravity: ToastGravity.BOTTOM,
+                            //       timeInSecForIosWeb: 1,
+                            //       backgroundColor: Colors.red,
+                            //       textColor: Colors.white,
+                            //       fontSize: 16.0);
+                            //   setState(() => isLoading = false);
+                            // }
+                          },
                         ),
                       ),
 
@@ -350,7 +352,7 @@ class _bodyState extends State<body> {
 
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
-        var uid = response["id"];
+        uid = response["id"];
         print(uid);
         print(response);
 
@@ -432,10 +434,9 @@ class _bodyState extends State<body> {
 
         if (flag == "0") {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => dashboardScreen()));
-        } else if (flag == "1") {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => dashboardScreen()));
+              MaterialPageRoute(builder: (context) => createProfile()));
+        } else if (flag == "1") { 
+          checkPayment();
         } else {
           print("somthing wrong");
         }
@@ -447,4 +448,70 @@ class _bodyState extends State<body> {
       print(e.toString());
     }
   }
+
+  Future checkPayment() async{
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/checkPayment.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "id": uid
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      var temp = res.statusCode;
+      print("paymentCode  $temp");
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        // Navigator.of(context).pushReplacement(
+        //     MaterialPageRoute(builder: (context) => payment()));
+        //     builder: (context) =>
+        //         AlertDialog(
+        //           title: Text('Error'),
+        //           content: Text("User Not Found !!"),
+        //           actions: [
+        //             TextButton(
+        //                 onPressed: () {
+        //                   Navigator.of(context).pop();
+        //                 },
+        //                 child: Text('Ok'))
+        //           ],
+        //         );
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => payment()));
+
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+            context: context,
+            builder: (context) =>
+                AlertDialog(
+                  title: Text('Error'),
+                  content: Text("Bed Request!!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+            Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => dashboardScreen()));
+        setState(() => isLoading = false);
+
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+
+  }
+
 }

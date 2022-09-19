@@ -11,10 +11,11 @@ class payment_components extends StatelessWidget {
   Text text(String data, FontWeight fontWeight, Color color, double fontsize) {
     return Text(
       data,
+
       style: TextStyle(
           fontWeight: fontWeight,
           color: color,
-          fontSize: fontsize),
+          fontSize: fontsize)
     );
   }
 

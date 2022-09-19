@@ -5,12 +5,16 @@ import 'package:college_event_management/payment/components/payment_components.d
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+
 
 import '../../dashboard/dashboardScreen.dart';
 import '../payment.dart';
 
 enum SingingCharacter { Yes, No }
-int amt=100;
+
+int amt = 100;
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -21,12 +25,16 @@ class body extends StatefulWidget {
 
 class _bodyState extends State<body> {
 
+
   bool isLoading = false;
   bool isChecked = false;
   int certificate = 0;
   int lunch = 0;
+  int islunch=0;
   var stuid;
   var type;
+
+
   SingingCharacter? _certificate = SingingCharacter.No;
   SingingCharacter? _lunch = SingingCharacter.No;
 
@@ -114,8 +122,8 @@ class _bodyState extends State<body> {
                                         onChanged: (SingingCharacter? value) {
                                           setState(() {
                                             _certificate = value;
-                                            certificate=1;
-                                            amount(certificate,lunch);
+                                            certificate = 1;
+                                            amount(certificate, lunch);
                                           });
                                         }),
                                     RadioListTile(
@@ -125,8 +133,8 @@ class _bodyState extends State<body> {
                                         onChanged: (SingingCharacter? value) {
                                           setState(() {
                                             _certificate = value;
-                                            certificate=0;
-                                            amount(certificate,lunch);
+                                            certificate = 0;
+                                            amount(certificate, lunch);
                                           });
                                         }),
                                   ],
@@ -149,8 +157,10 @@ class _bodyState extends State<body> {
                                         onChanged: (SingingCharacter? value) {
                                           setState(() {
                                             _lunch = value;
-                                            lunch=150;
-                                            amount(certificate,lunch);
+                                            islunch = 1;
+                                            lunch = 150;
+
+                                            amount(certificate, lunch);
                                           });
                                         }),
                                     RadioListTile(
@@ -160,16 +170,17 @@ class _bodyState extends State<body> {
                                         onChanged: (SingingCharacter? value) {
                                           setState(() {
                                             _lunch = value;
-                                            lunch=0;
-                                            amount(certificate,lunch);
+                                            islunch= 0;
+                                            lunch = 0;
+                                            amount(certificate, lunch);
                                           });
                                         }),
                                   ],
                                 ),
 
-                              SizedBox(height: 20,),
+                                SizedBox(height: 20,),
 
-                                Text("Amount : $amt", ),
+                                Text("Amount : $amt",),
 
                                 SizedBox(height: 20,),
 
@@ -191,7 +202,9 @@ class _bodyState extends State<body> {
                                       backgroundColor: Colors.transparent,
                                     )
                                         : const Text('Make Payment'),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      makePayment();
+                                    },
                                   ),
                                 ),
                               ],
@@ -214,7 +227,7 @@ class _bodyState extends State<body> {
     );
   }
 
-  Future getGstAmt() async{
+  Future getGstAmt() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
     stuid = studata.getString("stuid");
 
@@ -237,42 +250,40 @@ class _bodyState extends State<body> {
       if (res.statusCode == 404) {
         showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Error'),
-              content: Text("User Not Found!"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Ok'))
-              ],
-            ));
+            builder: (context) =>
+                AlertDialog(
+                  title: Text('Error'),
+                  content: Text("User Not Found!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
-
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text('Error'),
-              content: Text("Bed Request!!"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Ok'))
-              ],
-            ));
+            builder: (context) =>
+                AlertDialog(
+                  title: Text('Error'),
+                  content: Text("Bed Request!!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
-
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
         type = response["studentType"];
         print(type);
         print(response);
-
-
       } else {
         print("some issue");
         setState(() => isLoading = false);
@@ -283,24 +294,54 @@ class _bodyState extends State<body> {
   }
 
   void amount(int certificate, int lunch) {
-    int fixed=100;
+    int fixed = 100;
 
     if (type == "gnu") {
       setState(() {
-        amt=fixed+lunch;
+        amt = fixed + lunch;
       });
-    } else if(type == "nongnu") {
+    } else if (type == "nongnu") {
       setState(() {
-        amt=fixed+lunch;
-        amt = (amt + (amt*0.18)) as int;
+        amt = fixed + lunch;
+        amt = (amt + (amt * 0.18)) as int;
       });
-
     }
-    else{
+    else {
       print("some issue");
       setState(() => isLoading = false);
-
     }
+  }
 
+  Future makePayment() async{
+    showDialog(
+        context: context,
+        builder: (context) =>
+            AlertDialog(
+              title: Text('Error'),
+              content: Text("Sid: $stuid\nAmount: $amt"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+
+
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/payment.php?sid=$stuid&isLunchIncluded=$islunch";
+
+      final Uri url = Uri.parse(uri);
+
+      if (await canLaunchUrl(url))
+        await launchUrl(url);
+      else
+        // can't launch url, there is some error
+        throw "Could not launch $url";
+    }
+    catch (e) {
+      print(e.toString());
+    }
   }
 }

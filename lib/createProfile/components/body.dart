@@ -23,6 +23,7 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   File? _pickedimage;
   Uint8List webImage = Uint8List(8);
+  var stuid;
 
   bool isLoading = false;
   bool isChecked = true;
@@ -417,12 +418,12 @@ class _bodyState extends State<body> {
 
   Future createStuProfile() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
-    var stuid = studata.getString("stuid");
+    stuid = studata.getString("stuid");
 
     print(stuid);
 
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
+      String uri = "https://convergence.uvpce.ac.in/C2K22/studentProfile.php";
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "sid": stuid,
@@ -485,5 +486,7 @@ class _bodyState extends State<body> {
     } catch (e) {
       print(e.toString());
     }
+
   }
-}
+  }
+

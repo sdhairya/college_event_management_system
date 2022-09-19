@@ -47,6 +47,7 @@ dependencies:
   js: ^0.6.2
   shared_preferences:
   uuid: ^3.0.6
+  url_launcher: ^6.1.5
 
 
 
