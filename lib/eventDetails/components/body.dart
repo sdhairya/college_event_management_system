@@ -1,6 +1,7 @@
 import 'package:college_event_management/coordinators/coordinators.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../attendees/attendees.dart';
 import '../../dashboard/dashboardScreen.dart';
@@ -19,6 +20,8 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
+
+  var stuid;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -248,7 +251,9 @@ class _bodyState extends State<body> {
                                             enableFeedback: true,
                                           ),
                                           child: const Text('Book Event'),
-                                          onPressed: () {}),
+                                          onPressed: () {
+                                            bookEvent();
+                                          }),
                                     ),
 
                                   ),
@@ -279,4 +284,30 @@ class _bodyState extends State<body> {
         width: getWidth(kIsWeb ? 100 : MediaQuery.of(context).size.width * 0.8),
         height: 250,
       );
+
+  Future bookEvent() async{
+
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    stuid = studata.getString("stuid");
+    var eventName = widget.eventDetails.name;
+    var deptName = widget.deptName;
+
+    showDialog(
+        context: context,
+        builder: (context) =>
+            AlertDialog(
+              title: Text('Error'),
+              content: Text("Event Name: $eventName\nDeptName: $deptName"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+
+
+
+  }
 }

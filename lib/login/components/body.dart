@@ -498,7 +498,6 @@ class _bodyState extends State<body> {
             setState(() => isLoading = false);
           }
 
-
       }
     } catch (e) {
       print(e.toString());
