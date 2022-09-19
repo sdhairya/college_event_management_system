@@ -251,25 +251,25 @@ class _bodyState extends State<body> {
         ));
   }
 
-  Widget buildWrapProductList(List<EventData> eventListData) {
-    return
-      Flexible(
-          child:
-          SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Wrap(
-                alignment: WrapAlignment.spaceEvenly,
-                spacing: getWidth(20),
-                runSpacing: getHeight(20),
-                direction: Axis.horizontal,
-                children: eventListData.map((e) {
-                  return buildCard(e);
-                }).toList(),
-              )
-          )
-      )
-    ;
-  }
+  // Widget buildWrapProductList(List<EventData> eventListData) {
+  //   return
+  //     Flexible(
+  //         child:
+  //         SingleChildScrollView(
+  //             scrollDirection: Axis.vertical,
+  //             child: Wrap(
+  //               alignment: WrapAlignment.spaceEvenly,
+  //               spacing: getWidth(20),
+  //               runSpacing: getHeight(20),
+  //               direction: Axis.horizontal,
+  //               children: eventListData.map((e) {
+  //                 return buildCard(e);
+  //               }).toList(),
+  //             )
+  //         )
+  //     )
+  //   ;
+  // }
 
   buildHeader(BuildContext context) {
     return Container(
@@ -472,79 +472,79 @@ class _bodyState extends State<body> {
     );
   }
 
-  Widget buildCard(EventData element) =>
-      Container(
-          decoration: BoxDecoration(
-              color: Colors.black12, borderRadius: BorderRadius.circular(20)),
-          width: 250,
-          height: 320,
-          child: InkWell(
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.black45,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: SizedBox(
-                    child: Image.asset(
-                        element.logo.isEmpty ? 'assets/event1.png' : element
-                            .logo),
-                    height: 170,
-                    width: 250,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(
-                      right: 15, left: 15, top: 10, bottom: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          // Text("29 Nov, 2022"),
-                          // SizedBox(
-                          //   width: 5,
-                          // ),
-                          Text(element.date + "\n" + element.time),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(element.name,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      SizedBox(
-                        height: 3,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                SizedBox(
-                  width: 120,
-                  height: 30,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        createEvent();
-                      },
-                      child: Text("Register"),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF1D2A3A),
-                        onSurface: Color(0xFF1D2A3A),
-                        textStyle: TextStyle(fontSize: 20),
-                        shape: StadiumBorder(),
-                      )),
-                )
-              ],
-            ),
-            onTap: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) =>
-                      eventDetails(
-                        inputList: element,
-                      )));
-            },
-          ));
+  // Widget buildCard(EventData element) =>
+  //     Container(
+  //         decoration: BoxDecoration(
+  //             color: Colors.black12, borderRadius: BorderRadius.circular(20)),
+  //         width: 250,
+  //         height: 320,
+  //         child: InkWell(
+  //           child: Column(
+  //             children: [
+  //               Container(
+  //                 decoration: BoxDecoration(
+  //                     color: Colors.black45,
+  //                     borderRadius: BorderRadius.circular(20)),
+  //                 child: SizedBox(
+  //                   child: Image.asset(
+  //                       element.logo.isEmpty ? 'assets/event1.png' : element
+  //                           .logo),
+  //                   height: 170,
+  //                   width: 250,
+  //                 ),
+  //               ),
+  //               Container(
+  //                 padding: EdgeInsets.only(
+  //                     right: 15, left: 15, top: 10, bottom: 5),
+  //                 child: Column(
+  //                   crossAxisAlignment: CrossAxisAlignment.start,
+  //                   children: [
+  //                     Row(
+  //                       children: [
+  //                         // Text("29 Nov, 2022"),
+  //                         // SizedBox(
+  //                         //   width: 5,
+  //                         // ),
+  //                         Text(element.date + "\n" + element.time),
+  //                       ],
+  //                     ),
+  //                     SizedBox(
+  //                       height: 5,
+  //                     ),
+  //                     Text(element.name,
+  //                         style: TextStyle(fontWeight: FontWeight.bold)),
+  //                     SizedBox(
+  //                       height: 3,
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //               SizedBox(
+  //                 height: 5,
+  //               ),
+  //               SizedBox(
+  //                 width: 120,
+  //                 height: 30,
+  //                 child: ElevatedButton(
+  //                     onPressed: () {
+  //                       createEvent();
+  //                     },
+  //                     child: Text("Register"),
+  //                     style: ElevatedButton.styleFrom(
+  //                       primary: Color(0xFF1D2A3A),
+  //                       onSurface: Color(0xFF1D2A3A),
+  //                       textStyle: TextStyle(fontSize: 20),
+  //                       shape: StadiumBorder(),
+  //                     )),
+  //               )
+  //             ],
+  //           ),
+  //           onTap: () {
+  //             Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //                 builder: (context) =>
+  //                     eventDetails(
+  //                       inputList: element, deptName: ,
+  //                     )));
+  //           },
+  //         ));
 }
