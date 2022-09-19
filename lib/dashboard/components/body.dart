@@ -13,6 +13,7 @@ import '../../eventDetails/eventDetails.dart';
 import '../../events/events.dart';
 import '../../hms/event.dart';
 import '../../size_config.dart';
+import '../../timerScreen/timer.dart';
 import '../dashboardScreen.dart';
 import 'dashboard_components.dart';
 import 'package:college_event_management/eventsList/eventList.dart';
@@ -310,8 +311,10 @@ class _bodyState extends State<body> {
         ),
         ListTile(
           leading: const Icon(Icons.settings),
-          title: const Text('Settings'),
-          onTap: () {},
+          title: const Text('Timer'),
+          onTap: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => timer()));
+          },
         ),
         // ListTile(
         //   leading: const Icon(Icons.settings),

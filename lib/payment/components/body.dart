@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/payment/components/payment_components.dart';
+import 'package:college_event_management/timerScreen/timer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -203,6 +204,7 @@ class _bodyState extends State<body> {
                                     )
                                         : const Text('Make Payment'),
                                     onPressed: () {
+                                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => timer()));
                                       makePayment();
                                     },
                                   ),
@@ -317,7 +319,7 @@ class _bodyState extends State<body> {
         context: context,
         builder: (context) =>
             AlertDialog(
-              title: Text('Error'),
+              title: Text('Confirmation'),
               content: Text("Sid: $stuid\nAmount: $amt"),
               actions: [
                 TextButton(
