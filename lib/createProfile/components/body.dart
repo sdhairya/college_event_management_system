@@ -27,14 +27,20 @@ class _bodyState extends State<body> {
 
   bool isLoading = false;
   bool isChecked = true;
-  TextEditingController _createProfileFirstNameController = TextEditingController();
-  TextEditingController _createProfileLastNameController = TextEditingController();
-  TextEditingController _createProfileMobileController = TextEditingController();
+  TextEditingController _createProfileFirstNameController =
+      TextEditingController();
+  TextEditingController _createProfileLastNameController =
+      TextEditingController();
+  TextEditingController _createProfileMobileController =
+      TextEditingController();
   TextEditingController _createProfileEmailController = TextEditingController();
   TextEditingController _createProfileSemController = TextEditingController();
-  TextEditingController _createProfileBranchController = TextEditingController();
-  TextEditingController _createProfileCollegeController = TextEditingController();
-  TextEditingController _createProfileAddressController = TextEditingController();
+  TextEditingController _createProfileBranchController =
+      TextEditingController();
+  TextEditingController _createProfileCollegeController =
+      TextEditingController();
+  TextEditingController _createProfileAddressController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +92,7 @@ class _bodyState extends State<body> {
                                     fontWeight: FontWeight.w600,
                                     color: Color(0xFF1D2A3A)),
                               ),
-                            )
-
-                        ),
+                            )),
                         // Container(
                         //     margin: EdgeInsets.only(
                         //         left: 0, top: MediaQuery.of(context).size.height * 0.12),
@@ -206,7 +210,8 @@ class _bodyState extends State<body> {
                               const createProfile_components().textField(
                                   "Enter Last Name",
                                   TextInputType.text,
-                                  _createProfileLastNameController, ""),
+                                  _createProfileLastNameController,
+                                  ""),
                               const SizedBox(
                                 height: 30,
                               ),
@@ -280,7 +285,6 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-
                               const Text('    Address',
                                   style: TextStyle(
                                       fontSize: 16, color: Color(0xFF1D2A3A))),
@@ -309,40 +313,39 @@ class _bodyState extends State<body> {
                                   ),
                                   onPressed: isChecked
                                       ? () async {
-                                    if (isLoading) return;
-                                    createStuProfile();
+                                          if (isLoading) return;
+                                          createStuProfile();
 
-
-                                    // if (_signUpEmailController
-                                    //     .text.isNotEmpty) {
-                                    //   if (_signUpPasswordController.text ==
-                                    //       _signUpConfrimPasswordController
-                                    //           .text) {
-                                    //     signUp();
-                                    //   } else {
-                                    //     Fluttertoast.showToast(
-                                    //         msg:
-                                    //         "Confirm password don't match!!",
-                                    //         toastLength: Toast.LENGTH_SHORT,
-                                    //         gravity: ToastGravity.BOTTOM,
-                                    //         timeInSecForIosWeb: 1,
-                                    //         backgroundColor: Colors.red,
-                                    //         textColor: Colors.white,
-                                    //         fontSize: 16.0);
-                                    //     setState(() => isLoading = false);
-                                    //   }
-                                    // } else {
-                                    //   Fluttertoast.showToast(
-                                    //       msg: "Any field can not be empty!!",
-                                    //       toastLength: Toast.LENGTH_SHORT,
-                                    //       gravity: ToastGravity.BOTTOM,
-                                    //       timeInSecForIosWeb: 1,
-                                    //       backgroundColor: Colors.red,
-                                    //       textColor: Colors.white,
-                                    //       fontSize: 16.0);
-                                    //   setState(() => isLoading = false);
-                                    // }
-                                  }
+                                          // if (_signUpEmailController
+                                          //     .text.isNotEmpty) {
+                                          //   if (_signUpPasswordController.text ==
+                                          //       _signUpConfrimPasswordController
+                                          //           .text) {
+                                          //     signUp();
+                                          //   } else {
+                                          //     Fluttertoast.showToast(
+                                          //         msg:
+                                          //         "Confirm password don't match!!",
+                                          //         toastLength: Toast.LENGTH_SHORT,
+                                          //         gravity: ToastGravity.BOTTOM,
+                                          //         timeInSecForIosWeb: 1,
+                                          //         backgroundColor: Colors.red,
+                                          //         textColor: Colors.white,
+                                          //         fontSize: 16.0);
+                                          //     setState(() => isLoading = false);
+                                          //   }
+                                          // } else {
+                                          //   Fluttertoast.showToast(
+                                          //       msg: "Any field can not be empty!!",
+                                          //       toastLength: Toast.LENGTH_SHORT,
+                                          //       gravity: ToastGravity.BOTTOM,
+                                          //       timeInSecForIosWeb: 1,
+                                          //       backgroundColor: Colors.red,
+                                          //       textColor: Colors.white,
+                                          //       fontSize: 16.0);
+                                          //   setState(() => isLoading = false);
+                                          // }
+                                        }
                                       : null,
                                   child: const Text('Create Profile'),
                                 ),
@@ -352,18 +355,13 @@ class _bodyState extends State<body> {
                         ),
                         Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery
-                                    .of(context)
-                                    .viewInsets
-                                    .bottom)),
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom)),
                       ],
                     ),
                   ),
                 ));
-          })
-
-
-      ),
+          })),
     );
   }
 
@@ -450,8 +448,7 @@ class _bodyState extends State<body> {
       if (res.statusCode == 404) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
                   title: Text('Error'),
                   content: Text("User Not Found !!"),
                   actions: [
@@ -466,8 +463,49 @@ class _bodyState extends State<body> {
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
+                  title: Text('Error'),
+                  content: Text("Bed Request!!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {}
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future checkPayment() async {
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/checkPayment.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({"id": stuid}),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      var temp = res.statusCode;
+      print("paymentCode  $temp");
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => payment()));
+
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
                   title: Text('Error'),
                   content: Text("Bed Request!!"),
                   actions: [
@@ -480,13 +518,18 @@ class _bodyState extends State<body> {
                 ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
+        var response = json.decode(res.body);
 
-
+        print(response["sid"]);
+        print(response);
+        if (response["sid"] == stuid) {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => dashboardScreen()));
+          setState(() => isLoading = false);
+        }
       }
     } catch (e) {
       print(e.toString());
     }
-
   }
-  }
-
+}
