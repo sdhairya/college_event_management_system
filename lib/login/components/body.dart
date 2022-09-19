@@ -463,26 +463,12 @@ class _bodyState extends State<body> {
           encoding: Encoding.getByName('utf-8'));
       var temp = res.statusCode;
       print("paymentCode  $temp");
-      //  var response = json.decode(res.body);
+      var response = json.decode(res.body);
 
       //print(response["firebaseId"]);
       //print(response);
-      if (res.statusCode == 404) {
-        // Navigator.of(context).pushReplacement(
-        //     MaterialPageRoute(builder: (context) => payment()));
-        //     builder: (context) =>
-        //         AlertDialog(
-        //           title: Text('Error'),
-        //           content: Text("User Not Found !!"),
-        //           actions: [
-        //             TextButton(
-        //                 onPressed: () {
-        //                   Navigator.of(context).pop();
-        //                 },
-        //                 child: Text('Ok'))
-        //           ],
-        //         );
-        Navigator.of(context).pushReplacement(
+      if (res.statusCode == 404 || response["sid"] == "") {
+            Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => payment()));
 
         setState(() => isLoading = false);
@@ -503,9 +489,15 @@ class _bodyState extends State<body> {
                 ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
+        print(response["sid"]);
+
+        if(response["sid"] == uid)
+          {
             Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => dashboardScreen()));
-        setState(() => isLoading = false);
+                MaterialPageRoute(builder: (context) => dashboardScreen()));
+            setState(() => isLoading = false);
+          }
+
 
       }
     } catch (e) {
