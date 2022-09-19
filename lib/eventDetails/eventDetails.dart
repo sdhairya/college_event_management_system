@@ -5,12 +5,13 @@ import '../hms/event.dart';
 
 class eventDetails extends StatelessWidget {
   final EventData inputList;
+  final String deptName;
 
-  const eventDetails({Key? key, required this.inputList}) : super(key: key);
+  const eventDetails({Key? key, required this.inputList, required this.deptName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return body(eventDetails: inputList);
+    return body(eventDetails: inputList, deptName: deptName,);
   }
 }
 

@@ -10,8 +10,9 @@ import 'eventDetails_components.dart';
 
 class body extends StatefulWidget {
   final EventData eventDetails;
+  final String deptName;
 
-  const body({Key? key, required this.eventDetails}) : super(key: key);
+  const body({Key? key, required this.eventDetails, required this.deptName}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();

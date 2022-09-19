@@ -145,7 +145,7 @@ class _bodyState extends State<body> {
 
 
           onTap: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => eventDetails(inputList: element))).then((value) => null);
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => eventDetails(inputList: element, deptName: widget.categoryName,))).then((value) => null);
 
           // Replacement(
           //     MaterialPageRoute(builder: (context) => eventDetails(inputList: element)));
