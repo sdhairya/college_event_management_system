@@ -25,13 +25,16 @@ class body extends StatefulWidget {
 
   @override
   State<body> createState() => _bodyState();
+
 }
 
 class _bodyState extends State<body> {
   List<EventDeptData> eventlist = [];
+  var stuName;
 
   @override
   void initState() {
+
     eventlist.clear();
     super.initState();
   }
