@@ -179,19 +179,7 @@ class _bodyState extends State<body> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (i in eventlist)
-                        dashboard_components()
-                            .elevatedButton(true, i.name.toString()),
-                    ],
-                  ),
-                ),
-              ),
+
               // SizedBox(
               //   height: 40,
               // ),

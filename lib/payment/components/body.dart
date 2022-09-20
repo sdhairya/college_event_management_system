@@ -8,14 +8,12 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
-
 import '../../dashboard/dashboardScreen.dart';
 import '../payment.dart';
 
 enum SingingCharacter { Yes, No }
 
-int amt = 100;
+int amt = 0;
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -25,24 +23,25 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
-
+  void initState() {
+    super.initState();
+    getGstAmt();
+  }
 
   bool isLoading = false;
   bool isChecked = false;
   int certificate = 0;
   int lunch = 0;
-  int islunch=0;
+  int islunch = 0;
   var stuid;
   var type;
 
-
-  SingingCharacter? _certificate = SingingCharacter.No;
-  SingingCharacter? _lunch = SingingCharacter.No;
-
+  SingingCharacter? _certificate = null;
+  SingingCharacter? _lunch = null;
 
   @override
   Widget build(BuildContext context) {
-    getGstAmt();
+    // getGstAmt();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -55,174 +54,206 @@ class _bodyState extends State<body> {
                 : const EdgeInsets.all(30.0),
             child: Center(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 30.0, horizontal: 25.0),
-                  constraints: const BoxConstraints(
-                    maxWidth: 500,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment(0, 0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 25.0),
+              constraints: const BoxConstraints(
+                maxWidth: 500,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment(0, 0),
+                      ),
+                      Container(
+                        child: ListTile(
+                          leading: IconButton(
+                              padding: EdgeInsets.only(bottom: 3, right: 8),
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => createProfile()));
+                              },
+                              icon: Icon(
+                                color: Color(0xFF1D2A3A),
+                                Icons.arrow_back_ios_new_rounded,
+                                size: 30,
+                              )),
+                          title: const Text(
+                            'Payment ',
+                            style: TextStyle(
+                                fontSize: 35,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF1D2A3A)),
                           ),
-
-                          Container(
-                            child: ListTile(
-                              leading: IconButton(
-                                  padding: EdgeInsets.only(bottom: 3, right: 8),
-                                  onPressed: () {
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                createProfile()));
-                                  },
-                                  icon: Icon(
-                                    color: Color(0xFF1D2A3A),
-                                    Icons.arrow_back_ios_new_rounded,
-                                    size: 30,
-                                  )),
-                              title: const Text(
-                                'Payment ',
-                                style: TextStyle(
-                                    fontSize: 35,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF1D2A3A)),
-                              ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            payment_components().text(
+                                'Do you want to have hardcopy of certificate ?',
+                                FontWeight.w600,
+                                Color(0xFF1D2A3A),
+                                16),
+                            // const Text('   User Name',
+                            //     style: TextStyle(
+                            //         fontSize: 16, color: Color(0xFF1D2A3A))),
+                            const SizedBox(
+                              height: 10,
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                            Column(
                               children: [
-                                payment_components().text(
-                                    'Do you want to have hardcopy of certificate ?',
-                                    FontWeight.w600, Color(0xFF1D2A3A), 16),
-                                // const Text('   User Name',
-                                //     style: TextStyle(
-                                //         fontSize: 16, color: Color(0xFF1D2A3A))),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-
-                                Column(
-                                  children: [
-                                    RadioListTile(
-                                        title: Text("Yes"),
-                                        value: SingingCharacter.Yes,
-                                        groupValue: _certificate,
-                                        onChanged: (SingingCharacter? value) {
-                                          setState(() {
-                                            _certificate = value;
-                                            certificate = 1;
-                                            amount(certificate, lunch);
-                                          });
-                                        }),
-                                    RadioListTile(
-                                        title: Text("No"),
-                                        value: SingingCharacter.No,
-                                        groupValue: _certificate,
-                                        onChanged: (SingingCharacter? value) {
-                                          setState(() {
-                                            _certificate = value;
-                                            certificate = 0;
-                                            amount(certificate, lunch);
-                                          });
-                                        }),
-                                  ],
-                                ),
-
-                                payment_components().text(
-                                    'Do you want to include lunch ?',
-                                    FontWeight.w600, Color(0xFF1D2A3A), 16),
-
-                                const SizedBox(
-                                  height: 10,
-                                ),
-
-                                Column(
-                                  children: [
-                                    RadioListTile(
-                                        title: Text("Yes"),
-                                        value: SingingCharacter.Yes,
-                                        groupValue: _lunch,
-                                        onChanged: (SingingCharacter? value) {
-                                          setState(() {
-                                            _lunch = value;
-                                            islunch = 1;
-                                            lunch = 150;
-
-                                            amount(certificate, lunch);
-                                          });
-                                        }),
-                                    RadioListTile(
-                                        title: Text("No"),
-                                        value: SingingCharacter.No,
-                                        groupValue: _lunch,
-                                        onChanged: (SingingCharacter? value) {
-                                          setState(() {
-                                            _lunch = value;
-                                            islunch= 0;
-                                            lunch = 0;
-                                            amount(certificate, lunch);
-                                          });
-                                        }),
-                                  ],
-                                ),
-
-                                SizedBox(height: 20,),
-
-                                Text("Amount : $amt",),
-
-                                SizedBox(height: 20,),
-
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Color(0xFF1D2A3A),
-                                      onSurface: Color(0xFF1D2A3A),
-                                      padding: EdgeInsets.all(3),
-                                      textStyle: TextStyle(fontSize: 20),
-                                      minimumSize: Size.fromHeight(50),
-                                      shape: StadiumBorder(),
-                                      enableFeedback: true,
-                                    ),
-                                    child: isLoading
-                                        ? const CircularProgressIndicator(
-                                      color: Colors.white,
-                                      backgroundColor: Colors.transparent,
-                                    )
-                                        : const Text('Make Payment'),
-                                    onPressed: () {
-                                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => timer()));
-                                      makePayment();
-                                    },
-                                  ),
-                                ),
+                                RadioListTile(
+                                    title: Text("Yes"),
+                                    value: SingingCharacter.Yes,
+                                    groupValue: _certificate,
+                                    onChanged: (SingingCharacter? value) {
+                                      setState(() {
+                                        _certificate = value;
+                                        certificate = 1;
+                                        print(_certificate);
+                                        // amount(certificate, lunch);
+                                      });
+                                    }),
+                                RadioListTile(
+                                    title: Text("No"),
+                                    value: SingingCharacter.No,
+                                    groupValue: _certificate,
+                                    onChanged: (SingingCharacter? value) {
+                                      setState(() {
+                                        _certificate = value;
+                                        certificate = 0;
+                                        print(_certificate);
+                                        // amount(certificate, lunch);
+                                      });
+                                    }),
                               ],
                             ),
-                          ),
-                          Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: MediaQuery
-                                      .of(context)
-                                      .viewInsets
-                                      .bottom)),
-                        ],
-                      )
+
+                            payment_components().text(
+                                'Do you want to include lunch ?',
+                                FontWeight.w600,
+                                Color(0xFF1D2A3A),
+                                16),
+
+                            const SizedBox(
+                              height: 10,
+                            ),
+
+                            Column(
+                              children: [
+                                RadioListTile(
+                                    title: Text("Yes"),
+                                    value: SingingCharacter.Yes,
+                                    groupValue: _lunch,
+                                    onChanged: (SingingCharacter? value) {
+                                      setState(() {
+                                        _lunch = value;
+                                        islunch = 1;
+                                        lunch = 150;
+                                        print(_lunch);
+                                        amount(certificate, lunch);
+                                      });
+                                    }),
+                                RadioListTile(
+                                    title: Text("No"),
+                                    value: SingingCharacter.No,
+                                    groupValue: _lunch,
+                                    onChanged: (SingingCharacter? value) {
+                                      setState(() {
+                                        _lunch = value;
+                                        islunch = 0;
+                                        lunch = 0;
+                                        print(_lunch);
+                                        amount(certificate, lunch);
+                                      });
+                                    }),
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 20,
+                            ),
+
+                            Text(
+                              "Amount : $amt",
+                            ),
+
+                            SizedBox(
+                              height: 20,
+                            ),
+
+                            Container(
+                              alignment: Alignment.center,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xFF1D2A3A),
+                                  onSurface: Color(0xFF1D2A3A),
+                                  padding: EdgeInsets.all(3),
+                                  textStyle: TextStyle(fontSize: 20),
+                                  minimumSize: Size.fromHeight(50),
+                                  shape: StadiumBorder(),
+                                  enableFeedback: true,
+                                ),
+                                child: isLoading
+                                    ? const CircularProgressIndicator(
+                                        color: Colors.white,
+                                        backgroundColor: Colors.transparent,
+                                      )
+                                    : const Text('Make Payment'),
+                                onPressed: () {
+                                  if (_lunch == null || _certificate == null) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                          title: Text('Error'),
+                                          content: Text("All fields are required!!"),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Ok'))
+                                          ],
+                                        ));
+
+                                  }
+                                  else{
+                                    updateCpoy();
+
+                                    // Navigator.of(context).pushReplacement(
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) => timer()));
+                                    //makePayment();
+                                  }
+
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              bottom:
+                                  MediaQuery.of(context).viewInsets.bottom)),
                     ],
-                  ),
-                )),
+                  )
+                ],
+              ),
+            )),
           );
         }),
       ),
@@ -236,9 +267,7 @@ class _bodyState extends State<body> {
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/countGst.php";
       var res = await http.post(Uri.parse(uri),
-          body: json.encode({
-            "id": stuid
-          }),
+          body: json.encode({"id": stuid}),
           headers: {
             "Accept": "application/json",
             "Access-Control-Allow-Origin": "*"
@@ -252,8 +281,7 @@ class _bodyState extends State<body> {
       if (res.statusCode == 404) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
                   title: Text('Error'),
                   content: Text("User Not Found!"),
                   actions: [
@@ -268,8 +296,7 @@ class _bodyState extends State<body> {
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
                   title: Text('Error'),
                   content: Text("Bed Request!!"),
                   actions: [
@@ -307,32 +334,98 @@ class _bodyState extends State<body> {
         amt = fixed + lunch;
         amt = (amt + (amt * 0.18)) as int;
       });
-    }
-    else {
+    } else {
       print("some issue");
       setState(() => isLoading = false);
     }
   }
 
-  Future makePayment() async{
-    showDialog(
-        context: context,
-        builder: (context) =>
-            AlertDialog(
-              title: Text('Confirmation'),
-              content: Text("Sid: $stuid\nAmount: $amt"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Ok'))
-              ],
-            ));
+  Future updateCpoy() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    stuid = studata.getString("stuid");
+    var _lunchState;
+    var _certificateType;
+    print(stuid);
+    if (_lunch == SingingCharacter.Yes) {
+      _lunchState = "Yes";
+      print(_lunchState);
+    } else if (_lunch == SingingCharacter.No) {
+      _lunchState = "No";
+      print(_lunchState);
+    } else {
+      print("Something Wrong");
+    }
 
+    if (_certificate == SingingCharacter.Yes) {
+      _certificateType = 1;
+      print(_certificateType);
+    } else if (_certificate == SingingCharacter.No) {
+      _certificateType = 0;
+      print(_certificateType);
+    } else {
+      print("Something Wrong");
+    }
 
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/payment.php?sid=$stuid&isLunchIncluded=$islunch";
+      String uri = "https://convergence.uvpce.ac.in/C2K22/lunchAndcopy.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "sid": stuid,
+            "certificateType": _certificateType,
+            "lunch": _lunchState
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('Error'),
+                  content: Text("User Not Found !!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('Error'),
+                  content: Text("Bed Request!!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+        makePayment();
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future makePayment() async {
+    try {
+      String uri =
+          "https://convergence.uvpce.ac.in/C2K22/payment.php?sid=$stuid&isLunchIncluded=$islunch";
 
       final Uri url = Uri.parse(uri);
 
@@ -341,8 +434,7 @@ class _bodyState extends State<body> {
       else
         // can't launch url, there is some error
         throw "Could not launch $url";
-    }
-    catch (e) {
+    } catch (e) {
       print(e.toString());
     }
   }

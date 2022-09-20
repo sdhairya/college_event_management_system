@@ -93,14 +93,13 @@ class _bodyState extends State<body> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      eventDetails_components().text(widget.eventDetails.name,
-                                          FontWeight.bold, const Color(0xFF1D2A3A), 26),
-                                      eventDetails_components().text(widget.eventDetails.type,
+                                  ListTile(
+                                    leading: eventDetails_components().text(widget.eventDetails.name,
+                                        FontWeight.bold, const Color(0xFF1D2A3A), 26),
+
+                                      trailing:eventDetails_components().text(widget.eventDetails.type,
                                           FontWeight.bold, const Color(0xFF1D2A3A), 24),
-                                    ],
+
                                   ),
                                   SizedBox(
                                     height: 10,
@@ -129,90 +128,79 @@ class _bodyState extends State<body> {
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  InkWell(
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFFD9D9D9),
-                                          borderRadius: BorderRadius.circular(20)),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          eventDetails_components().text("Show Attendees",
-                                              FontWeight.bold, const Color(0xFF1D2A3A), 22),
-                                          // SizedBox(width: 20,),
-                                          Icon(
-                                            Icons.arrow_circle_right,
-                                            color: Color(0xFF1D2A3A),
-                                            size: 30,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    /*onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => attendees(previousScreen_data: widget.eventDetails,)));
-                        },*/
-                                  ),
+                        //           InkWell(
+                        //             child: Container(
+                        //               padding: EdgeInsets.all(10),
+                        //               decoration: BoxDecoration(
+                        //                   color: Color(0xFFD9D9D9),
+                        //                   borderRadius: BorderRadius.circular(20)),
+                        //               child: Row(
+                        //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //                 children: [
+                        //                   eventDetails_components().text("Show Attendees",
+                        //                       FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                        //                   // SizedBox(width: 20,),
+                        //                   Icon(
+                        //                     Icons.arrow_circle_right,
+                        //                     color: Color(0xFF1D2A3A),
+                        //                     size: 30,
+                        //                   )
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //             /*onTap: () {
+                        //   Navigator.of(context).pushReplacement(
+                        //       MaterialPageRoute(
+                        //           builder: (context) => attendees(previousScreen_data: widget.eventDetails,)));
+                        // },*/
+                        //           ),
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  InkWell(
-                                    child: Container(
+                                  Container(
+                                      width: double.maxFinite,
                                       padding: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           color: Color(0xFFD9D9D9),
                                           borderRadius: BorderRadius.circular(20)),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           eventDetails_components().text("Show Faculty Coordinators",
                                               FontWeight.bold, const Color(0xFF1D2A3A), 22),
-                                          // SizedBox(width: 20,),
-                                          Icon(
-                                            Icons.arrow_circle_right,
-                                            color: Color(0xFF1D2A3A),
-                                            size: 30,
+
+                                          Container(
+                                            child: buildListWithoutScroll(widget.eventDetails.facultyCoordinator),
                                           )
+                                          // SizedBox(width: 20,),
                                         ],
                                       ),
                                     ),
-                                    /*onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.eventDetails[4],previousScreen_data: widget.eventDetails,)));
-                        },*/
-                                  ),
+
+
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  InkWell(
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
+                                  Container(
+                                    width: double.maxFinite,
+                                    padding: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           color: Color(0xFFD9D9D9),
                                           borderRadius: BorderRadius.circular(20)),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           eventDetails_components().text("Show Student Coordinators",
                                               FontWeight.bold, const Color(0xFF1D2A3A), 22),
                                           // SizedBox(width: 20,),
-                                          Icon(
-                                            Icons.arrow_circle_right,
-                                            color: Color(0xFF1D2A3A),
-                                            size: 30,
+                                          Container(
+                                            child: buildListWithoutScrollStudent(widget.eventDetails.studentCoordinator),
                                           )
                                         ],
                                       ),
                                     ),
-                                    /*onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.eventDetails[5], previousScreen_data: widget.eventDetails,)));
-                        },*/
-                                  ),
+
+
                                   SizedBox(
                                     height: 30,
                                   ),
@@ -309,5 +297,79 @@ class _bodyState extends State<body> {
 
 
 
+  }
+
+  Widget buildListWithoutScroll(List<FacultyData> facultyCoordinator) {
+    return Column(
+      children: facultyCoordinator.map((e) => buildList(e)).toList(),
+    );
+  }
+
+  Widget buildListWithoutScrollStudent(List<StudentData> StudentCoordinator) {
+    return Column(
+      children: StudentCoordinator.map((e) => buildListStudent(e)).toList(),
+    );
+  }
+
+  Widget buildList(FacultyData e) {
+    return Container(
+      padding: EdgeInsets.only(left: 20),
+     child: Column(
+       crossAxisAlignment: CrossAxisAlignment.start,
+       children: [
+         SizedBox(height: 20,),
+         eventDetails_components().text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
+         SizedBox(height: 10,),
+         Wrap(
+               direction: Axis.horizontal,
+               spacing: 10,
+               children: [
+                 Icon(Icons.mail, size: 15,),
+                 eventDetails_components().text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
+               ],
+             ),
+         SizedBox(height: 10,),
+         Wrap(
+           direction: Axis.horizontal,
+           spacing: 10,
+           children: [
+             Icon(Icons.phone, size: 15,),
+             eventDetails_components().text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
+           ],
+         ),
+       ],
+     ),
+    );
+  }
+
+  Widget buildListStudent(StudentData e) {
+    return Container(
+      padding: EdgeInsets.only(left: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 20,),
+          eventDetails_components().text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
+          SizedBox(height: 10,),
+          Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            children: [
+              Icon(Icons.mail, size: 15,),
+              eventDetails_components().text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
+            ],
+          ),
+          SizedBox(height: 10,),
+          Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            children: [
+              Icon(Icons.phone, size: 15,),
+              eventDetails_components().text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
