@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/payment/components/payment_components.dart';
+import 'package:college_event_management/payment_timer/payment_status_screen.dart';
 import 'package:college_event_management/timerScreen/timer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -455,10 +456,16 @@ class _bodyState extends State<body> {
       final Uri url = Uri.parse(uri);
 
       if (await canLaunchUrl(url))
+        {
         await launchUrl(url);
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => PaymentStatusScreen()));
+        setState(() => isLoading = false);
+        }
       else
         // can't launch url, there is some error
         throw "Could not launch $url";
+
     } catch (e) {
       // print(e.toString());
     }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:college_event_management/login/components/login_components.dart';
 import 'package:college_event_management/payment/payment.dart';
+import 'package:college_event_management/verify_otp/verify_otp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -384,22 +385,25 @@ class _bodyState extends State<body> {
 
           studata.setString("stuid", uid);
           studata.setString("stuName", response["username"]);
-
-          // checkProfile(uid);
-          Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (context) => dashboardScreen()));
-          Fluttertoast.showToast(
-            msg: "Success!!",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-          // setState(() => isLoading = false);
-
+          if (response["isVerified"] == "0") {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => VerifyOTPScreen()));
+          } else if (response["isVerified"] == "1") {
+            checkProfile(uid);
+            // Navigator.of(context).pushReplacement(
+            //                 MaterialPageRoute(
+            //                     builder: (context) => dashboardScreen()));
+            Fluttertoast.showToast(
+              msg: "Success!!",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+            // setState(() => isLoading = false);
+          }
         } else {
           print("some issue");
           setState(() => isLoading = false);

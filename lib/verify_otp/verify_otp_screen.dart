@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:college_event_management/login/components/login_components.dart';
+import 'package:college_event_management/login/login.dart';
+import 'package:college_event_management/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -26,11 +28,13 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   final activeColor = Color(0xFF0F151E);
   final inactiveColor = Color(0xFF1D2A3A);
   var resendOTPBtnColor;
+  var stuid;
+  var stuidLogin;
 
   var isTimerActive = true;
   late final snackBar;
   var uid;
-  TextEditingController _emailController = TextEditingController();
+  TextEditingController _OTPController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
   int count = 120;
@@ -92,7 +96,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
               ),
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     textAlign: TextAlign.center,
                     'Verify OTP',
                     style: TextStyle(
@@ -115,7 +119,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                         ),
                       ),
                       login_components().textField("Enter OTP",
-                          TextInputType.emailAddress, _emailController),
+                          TextInputType.emailAddress, _OTPController),
                       Align(
                         alignment: Alignment(1, 0),
                         child: TextButton(
@@ -164,12 +168,10 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                               : const Text('Verify OTP'),
                           onPressed: () async {
                             if (isLoading) return;
-
                             setState(() => isLoading = true);
 
-                            if (_emailController.text.isNotEmpty &&
-                                _passwordController.text.isNotEmpty) {
-                              userLogin();
+                            if (_OTPController.text.isNotEmpty) {
+                              verfiyOTP();
                             } else {
                               showDialog(
                                   context: context,
@@ -206,14 +208,34 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     timer?.cancel();
   }
 
-  Future userLogin() async {
+  Future verfiyOTP() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    // var temp = studata.getString("otpUserID");
+
+    // var temp1 = studata.getString("stuid");
+
+    stuid = studata.getString("stuid");
+    print(stuid);
+
+    // if (temp
+    //       .toString()
+    //       .isNotEmpty) {
+    //     stuid = temp.toString();
+    //   }
+    //   else if (temp1
+    //       .toString()
+    //       .isNotEmpty) {
+    //     stuid = temp1.toString();
+    //   }
+    //   else if (temp1.isEmpty)
+    //     print("Somthing worng with otpUserID!!");
+    // }
+
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/login.php";
+      String uri =
+          "https://convergence.uvpce.ac.in/C2K22/auth/otp_verification.php";
       var res = await http.post(Uri.parse(uri),
-          body: json.encode({
-            "email": _emailController.text,
-            "password": _passwordController.text
-          }),
+          body: json.encode({"sid": stuid, "otp": _OTPController.text}),
           headers: {
             "Accept": "application/json",
             "Access-Control-Allow-Origin": "*"
@@ -257,34 +279,51 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
-        uid = response["id"];
-        print(uid);
-        // print(response);
+        print(response["message"]);
 
-        if (uid != "") {
-          SharedPreferences studata = await SharedPreferences.getInstance();
-
-          studata.setString("stuid", uid);
-          studata.setString("stuName", response["username"]);
-
-          // checkProfile(uid);
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => dashboardScreen()));
-          Fluttertoast.showToast(
-            msg: "Success!!",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0,
+        if (response["message"] == "Email Successfully Verified!") {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Verification'),
+              content: Text(response["message"]),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'),
+                )
+              ],
+            ),
           );
-          // setState(() => isLoading = false);
-
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => LoginScreen()));
+          setState(() => isLoading = false);
+        } else if (response["message"] ==
+            "Wrong Verification code! Please enter valid code.") {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text(response["message"]),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'),
+                )
+              ],
+            ),
+          );
+          setState(() => isLoading = false);
         } else {
-          print("some issue");
+          print("Somthing worng in Otp verification!");
           setState(() => isLoading = false);
         }
+
+        // setState(() => isLoading = false);
       } else {
         print("some issue");
         setState(() => isLoading = false);

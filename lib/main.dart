@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginScreen(),
         '/dashboard': (context) => const dashboardScreen(),
         '/register': (context) => const registration(),
-        '/verify_otp' : (context) => const VerifyOTPScreen(),
-        '/payment_status' : (context) => const PaymentStatusScreen(),
+        // '/verify_otp' : (context) => const VerifyOTPScreen(),
+        // '/payment_status' : (context) => const PaymentStatusScreen(),
       },
 
 

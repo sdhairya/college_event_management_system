@@ -14,49 +14,50 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   //Login Function
-
-  Future<bool> isLoggedIn() async {
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
-    String? studentId = _prefs.getString("stuid");
-
-    if (studentId != null) {
-      return true;
-    }
-    return false;
-  }
+  //
+  // Future<bool> isLoggedIn() async {
+  //   SharedPreferences _prefs = await SharedPreferences.getInstance();
+  //   String? studentId = _prefs.getString("stuid");
+  //
+  //   if (studentId != null) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: isLoggedIn(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Center(
-            child: Text(
-              '${snapshot.error} occurred',
-              style: TextStyle(fontSize: 18),
-            ),
-          );
-        } else if (snapshot.hasData) {
-          final isLoggedIn = snapshot.data as bool;
-          // print("\nDaaaaaaaaaaaaaaaaaaaaaaaaaaaaaata: $isLoggedIn");
-
-
-          if (isLoggedIn) {
-            return dashboard_body.body();
-          } else {
-            return login_body.body();
-          }
-        } else {
-          return SizedBox(
-            width: 60,
-            height: 60,
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
-      },
-    );
+    return login_body.body();
+    // return FutureBuilder(
+    //   future: isLoggedIn(),
+    //   builder: (context, snapshot) {
+    //     if (snapshot.hasError) {
+    //       return Center(
+    //         child: Text(
+    //           '${snapshot.error} occurred',
+    //           style: TextStyle(fontSize: 18),
+    //         ),
+    //       );
+    //     } else if (snapshot.hasData) {
+    //       final isLoggedIn = snapshot.data as bool;
+    //       // print("\nDaaaaaaaaaaaaaaaaaaaaaaaaaaaaaata: $isLoggedIn");
+    //
+    //
+    //       if (isLoggedIn) {
+    //         return dashboard_body.body();
+    //       } else {
+    //         return login_body.body();
+    //       }
+    //     } else {
+    //       return SizedBox(
+    //         width: 60,
+    //         height: 60,
+    //         child: CircularProgressIndicator(
+    //           backgroundColor: Colors.red,
+    //         ),
+    //       );
+    //     }
+    //   },
+    // );
   }
 }

@@ -321,7 +321,7 @@ class _bodyState extends State<body> {
                                       ? () async {
                                     setState(() => isLoading = true);
 
-                                    if (isLoading) return;
+                                    // if (isLoading) return;
                                           if (_createProfileFirstNameController
                                                   .text.isNotEmpty &&
                                               _createProfileLastNameController

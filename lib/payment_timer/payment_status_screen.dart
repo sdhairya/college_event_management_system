@@ -24,6 +24,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
   final activeColor = Color(0xFF0F151E);
   final inactiveColor = Color(0xFF1D2A3A);
   var resendOTPBtnColor;
+  var stuid;
   bool isPaymentDone = false;
 
   var isTimerActive = true;
@@ -32,7 +33,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
-  int count = 10;
+  int count = 300;
   Timer? timer;
   Timer? callbackTimer;
 
@@ -100,7 +101,6 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
               child: Column(
                 children: [
                   const Text(
-                    textAlign: TextAlign.center,
                     'Payment Status',
                     style: TextStyle(
                         fontSize: 40,
@@ -151,88 +151,52 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
     callbackTimer?.cancel();
   }
 
-  checkPaymentStatus() async {
+  Future checkPaymentStatus() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+
+    stuid = studata.getString("stuid");
+    print(stuid);
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/login.php";
+      String uri = "https://convergence.uvpce.ac.in/C2K22/checkPayment.php";
       var res = await http.post(Uri.parse(uri),
-          body: json.encode({
-            "email": _emailController.text,
-            "password": _passwordController.text
-          }),
+          body: json.encode({"id": stuid}),
           headers: {
             "Accept": "application/json",
             "Access-Control-Allow-Origin": "*"
           },
           encoding: Encoding.getByName('utf-8'));
-      print(res.statusCode);
+      var temp = res.statusCode;
+      print("paymentCode  $temp");
+      var response = json.decode(res.body);
 
-      if (res.statusCode == 404) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Error'),
-            content: Text("User Not Found Check your Email Or Password!"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('Ok'),
-              )
-            ],
-          ),
-        );
-        setState(() => isLoading = false);
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404 || response["sid"] == "") {
+
       } else if (res.statusCode == 442) {
         showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Error'),
-            content: Text("Bed Request!!"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('Ok'),
-              )
-            ],
-          ),
-        );
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: Text('Error'),
+                  content: Text("Bed Request!!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-        var response = json.decode(res.body);
-        uid = response["id"];
-        print(uid);
-        // print(response);
+        print(response["sid"]);
 
-        if (uid != "") {
-          SharedPreferences studata = await SharedPreferences.getInstance();
 
-          studata.setString("stuid", uid);
-          studata.setString("stuName", response["username"]);
-
-          // checkProfile(uid);
+          print("Navigating to dashboard");
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => dashboardScreen()));
-          Fluttertoast.showToast(
-            msg: "Success!!",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
+              MaterialPageRoute(builder: (context) => const dashboardScreen()));
           // setState(() => isLoading = false);
 
-        } else {
-          print("some issue");
-          setState(() => isLoading = false);
-        }
-      } else {
-        print("some issue");
-        setState(() => isLoading = false);
       }
     } catch (e) {
       print(e.toString());
