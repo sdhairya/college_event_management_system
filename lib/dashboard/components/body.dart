@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:college_event_management/addCoordinator/components/body.dart';
 import 'package:college_event_management/createProfile/createProfile.dart';
+import 'package:college_event_management/eventsList/eventList.dart';
 import 'package:college_event_management/hms/event_parser.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -70,12 +71,11 @@ class _bodyState extends State<body> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     var i;
-    final widthCount = (MediaQuery
-        .of(context)
-        .size
-        .width ~/ 250).toInt();
+    final widthCount = (MediaQuery.of(context).size.width ~/ 250).toInt();
 
     final minCount = 2;
+
+
 
     if (eventlist.isEmpty) {
       EventParser().getDeptEventList().then((value) {
@@ -112,7 +112,7 @@ class _bodyState extends State<body> {
                 padding: const EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
-                    dashboard_components().text("Welcome $stuName,",
+                    dashboard_components().text("Welcome Dhairya,",
                         FontWeight.bold, const Color(0xFF1D2A3A), 25),
                     SizedBox(height: 20),
                   ],
@@ -233,8 +233,6 @@ class _bodyState extends State<body> {
               //         childAspectRatio: 2,),);
               //   })
               // )
-
-
             ],
           ),
         ));
@@ -263,10 +261,7 @@ class _bodyState extends State<body> {
   buildHeader(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        top: MediaQuery
-            .of(context)
-            .padding
-            .top,
+        top: MediaQuery.of(context).padding.top,
       ),
     );
   }
@@ -287,7 +282,10 @@ class _bodyState extends State<body> {
           title: const Text('Create Event'),
           onTap: () {
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => createEvent()));
+              MaterialPageRoute(
+                builder: (context) => createEvent(),
+              ),
+            );
           },
         ),
         ListTile(
@@ -295,14 +293,21 @@ class _bodyState extends State<body> {
           title: const Text('Add Faculty'),
           onTap: () {
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => addFaculty()));
+              MaterialPageRoute(
+                builder: (context) => addFaculty(),
+              ),
+            );
           },
         ),
         ListTile(
           leading: const Icon(Icons.settings),
           title: const Text('Timer'),
           onTap: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => timer()));
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => timer(),
+              ),
+            );
           },
         ),
         // ListTile(
@@ -366,36 +371,61 @@ class _bodyState extends State<body> {
       ),
     );
     Column(
-        children: list.map((e) => buildView(e.name, e.eventList, cols)).toList()
-    )
-    ;
+        children:
+            list.map((e) => buildView(e.name, e.eventList, cols)).toList());
   }
 
-  Widget buildC(String categoryName, List<EventData> eventListData,
-      String logo,) =>
+  Widget buildC(
+    String categoryName,
+    List<EventData> eventListData,
+    String logo,
+  ) =>
       InkWell(
         child: Column(
           children: [
             CircleAvatar(
-              radius: kIsWeb ? SizeConfig.screenWidth! * 0.05 : SizeConfig.screenWidth! * 0.16,
+              radius: kIsWeb
+                  ? SizeConfig.screenWidth! * 0.05
+                  : SizeConfig.screenWidth! * 0.16,
               child: ClipOval(
-                child: Image.asset(
-                  logo.isEmpty ? 'assets/event1.png' : logo, fit: BoxFit.fill,
-                  height: double.maxFinite,
-                  width: double.maxFinite,),
+                child:
+                // kIsWeb
+                //     ?
+                Image.network(
+                        logo.isEmpty
+                            ? assetURL + 'assets/event1.png'
+                            : assetURL + logo,
+                        fit: BoxFit.fill,
+                        height: double.maxFinite,
+                        width: double.maxFinite,
+                      )
+                    // : Image.asset(
+                    //     logo.isEmpty ? 'assets/event1.png' : logo,
+                    //     fit: BoxFit.fill,
+                    //     height: double.maxFinite,
+                    //     width: double.maxFinite,
+                    //   ),
               ),
-
             ),
-            dashboard_components()
-                .text(
-                categoryName, FontWeight.w300, Color(0xFF1D2A3A),
-                23),
+            dashboard_components().text(
+              categoryName,
+              FontWeight.w300,
+              Color(0xFF1D2A3A),
+              23,
+            ),
           ],
         ),
 
         onTap: () {
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => eventList(eventListData: eventListData,categoryName: categoryName,logo: logo.isEmpty ? 'assets/event1.png' : logo,)));
+            MaterialPageRoute(
+              builder: (context) => eventList(
+                eventListData: eventListData,
+                categoryName: categoryName,
+                logo: logo.isEmpty ? 'assets/event1.png' : logo,
+              ),
+            ),
+          );
         },
       );
 
@@ -423,25 +453,24 @@ class _bodyState extends State<body> {
                 return GridView.builder(
                   itemCount: 1,
                   shrinkWrap: true,
-                  itemBuilder: (context, index) =>
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            child: Image.asset("assets/event1.png"),
-                          ),
-                          dashboard_components()
-                              .text(
-                              categoryName, FontWeight.w300, Color(0xFF1D2A3A),
-                              23),
-                        ],
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      CircleAvatar(
+                        child: Image.asset("assets/event1.png"),
                       ),
+                      dashboard_components().text(
+                          categoryName, FontWeight.w300, Color(0xFF1D2A3A), 23),
+                    ],
+                  ),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: max(widthCount, minCount),
-                    childAspectRatio: 2,),);
+                    childAspectRatio: 2,
+                  ),
+                );
               })
-            // dashboard_components()
-            //     .text(categoryName, FontWeight.w300, Color(0xFF1D2A3A), 23),
-          ),
+              // dashboard_components()
+              //     .text(categoryName, FontWeight.w300, Color(0xFF1D2A3A), 23),
+              ),
           // Container(
           //   child:
           //   /*SizedBox(

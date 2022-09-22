@@ -40,7 +40,7 @@ class _emailVerificationState extends State<emailVerification> {
 
       sendVerificationEmail();
     // WidgetsBinding.instance.addPostFrameCallback((_) => SnackBar(content: Text("Email Sent")));
-      print("Email send");
+    //   print("Email send");
       timer = Timer.periodic(Duration(seconds: 3), (_) => checkEmailVerified());
     }
   }

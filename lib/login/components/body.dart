@@ -204,26 +204,24 @@ class _bodyState extends State<body> {
 
                             setState(() => isLoading = true);
 
-                            if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty)
-
-                              {
-                                userLogin();
-
-                              }
-                            else{
+                            if (_emailController.text.isNotEmpty &&
+                                _passwordController.text.isNotEmpty) {
+                              userLogin();
+                            } else {
                               showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                    title: Text('Error'),
-                                    content: Text("All fields are required!!"),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text('Ok'))
-                                    ],
-                                  ));
+                                        title: Text('Error'),
+                                        content:
+                                            Text("All fields are required!!"),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('Ok'))
+                                        ],
+                                      ));
                             }
                             //dashboardScreen();
                             // User? user = await loginUsingEmailPassword(
@@ -343,39 +341,43 @@ class _bodyState extends State<body> {
 
       if (res.statusCode == 404) {
         showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text("User Not Found Check your Email Or Password!"),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Ok'))
-                  ],
-                ));
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("User Not Found Check your Email Or Password!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
         setState(() => isLoading = false);
       } else if (res.statusCode == 442) {
         showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text("Bed Request!!"),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Ok'))
-                  ],
-                ));
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("Bed Request!!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
         uid = response["id"];
         print(uid);
-        print(response);
+        // print(response);
 
         if (uid != "") {
           SharedPreferences studata = await SharedPreferences.getInstance();
@@ -388,13 +390,14 @@ class _bodyState extends State<body> {
                           MaterialPageRoute(
                               builder: (context) => dashboardScreen()));
           Fluttertoast.showToast(
-              msg: "Success!!",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
+            msg: "Success!!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
           // setState(() => isLoading = false);
 
         } else {
@@ -417,7 +420,8 @@ class _bodyState extends State<body> {
           body: json.encode({"id": uid}),
           headers: {
             "Accept": "application/json",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            'Accept': '*/*'
           },
           encoding: Encoding.getByName('utf-8'));
 

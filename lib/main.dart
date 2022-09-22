@@ -1,15 +1,9 @@
-import 'package:college_event_management/size_config.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import '../login/components/body.dart';
 import '../dashboard/dashboardScreen.dart';
-import '';
 import '../registration/registrtion.dart';
-import '../forgotPassword.dart';
+import 'login/login.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +31,9 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => const LoginScreen(),
         '/dashboard': (context) => const dashboardScreen(),
+        '/register': (context) => const registration(),
       },
 
       // title: 'Flutter Demo',
@@ -80,23 +75,6 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
-  }
-}
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  //Login Function
-
-  @override
-  Widget build(BuildContext context) {
-
-    return body();
   }
 
 

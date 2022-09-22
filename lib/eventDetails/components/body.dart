@@ -358,7 +358,7 @@ class _bodyState extends State<body> {
         //makePayment();
       }
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
 
 
