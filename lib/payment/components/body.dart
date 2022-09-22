@@ -23,10 +23,10 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
-  void initState() {
-    super.initState();
-    getGstAmt();
-  }
+  // void initState() {
+  //   super.initState();
+  //   getGstAmt();
+  // }
 
   bool isLoading = false;
   bool isChecked = false;
@@ -41,7 +41,7 @@ class _bodyState extends State<body> {
 
   @override
   Widget build(BuildContext context) {
-    // getGstAmt();
+    getGstAmt();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -74,9 +74,23 @@ class _bodyState extends State<body> {
                           leading: IconButton(
                               padding: EdgeInsets.only(bottom: 3, right: 8),
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => createProfile()));
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                          title: Text('Convergence2K22'),
+                                          content: Text(
+                                              "You can not go futher untill you done your payment!!"),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Ok'))
+                                          ],
+                                        ));
+                                //   Navigator.of(context).pushReplacement(
+                                //       MaterialPageRoute(
+                                //           builder: (context) => createProfile()));
                               },
                               icon: Icon(
                                 color: Color(0xFF1D2A3A),
@@ -218,19 +232,19 @@ class _bodyState extends State<body> {
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                          title: Text('Error'),
-                                          content: Text("All fields are required!!"),
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text('Ok'))
-                                          ],
-                                        ));
-
-                                  }
-                                  else{
+                                              title: Text('Error'),
+                                              content: Text(
+                                                  "All fields are required!!"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: Text('Ok'))
+                                              ],
+                                            ));
+                                  } else {
                                     updateCpoy();
 
                                     // Navigator.of(context).pushReplacement(
@@ -238,7 +252,6 @@ class _bodyState extends State<body> {
                                     //         builder: (context) => timer()));
                                     //makePayment();
                                   }
-
                                 },
                               ),
                             ),
@@ -322,22 +335,34 @@ class _bodyState extends State<body> {
     }
   }
 
-  void amount(int certificate, int lunch) {
+  Future amount(int certificate, int lunch) async {
     int fixed = 100;
+    setState(() {
+      amt = fixed + lunch;
+    });
 
-    if (type == "gnu") {
-      setState(() {
-        amt = fixed + lunch;
-      });
-    } else if (type == "nongnu") {
-      setState(() {
-        amt = fixed + lunch;
-        amt = (amt + (amt * 0.18)) as int;
-      });
+    if (type == "nongnu") {
+      if (lunch == 0) {
+        amt = 118;
+      } else if (lunch == 150) {
+        amt = 295;
+      } else {
+        print("Somthing Worng");
+      }
     } else {
-      print("some issue");
-      setState(() => isLoading = false);
+      print("Student Type Was Not Found!!");
     }
+    // if (type == "gnu") {
+    //
+    // } else if (type == "nongnu") {
+    //   setState(() {
+    //     amt = fixed + lunch;
+    //     amt = (amt + (amt * 0.18)) as int;
+    //   });
+    // } else {
+    //   print("some issue");
+    //   setState(() => isLoading = false);
+    // }
   }
 
   Future updateCpoy() async {

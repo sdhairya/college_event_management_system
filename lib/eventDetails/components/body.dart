@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:college_event_management/coordinators/coordinators.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import '../../dashboard/dashboardScreen.dart';
 import '../../hms/event.dart';
 import '../../size_config.dart';
 import 'eventDetails_components.dart';
+import 'package:http/http.dart' as http;
 
 class body extends StatefulWidget {
   final EventData eventDetails;
@@ -20,6 +23,7 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
+  bool isLoading = false;
 
   var stuid;
   @override
@@ -238,7 +242,12 @@ class _bodyState extends State<body> {
                                             shape: StadiumBorder(),
                                             enableFeedback: true,
                                           ),
-                                          child: const Text('Book Event'),
+                                          child:  isLoading
+                                              ? const CircularProgressIndicator(
+                                            color: Colors.white,
+                                            backgroundColor: Colors.transparent,
+                                          )
+                                              : const Text('Book Event'),
                                           onPressed: () {
                                             bookEvent();
                                           }),
@@ -278,14 +287,49 @@ class _bodyState extends State<body> {
     SharedPreferences studata = await SharedPreferences.getInstance();
     stuid = studata.getString("stuid");
     var eventName = widget.eventDetails.name;
+
     var deptName = widget.deptName;
 
-    showDialog(
-        context: context,
-        builder: (context) =>
-            AlertDialog(
+    // showDialog(
+    //     context: context,
+    //     builder: (context) =>
+    //         AlertDialog(
+    //           title: Text('Error'),
+    //           content: Text("Event Name: $eventName\nDeptName: $deptName"),
+    //           actions: [
+    //             TextButton(
+    //                 onPressed: () {
+    //                   Navigator.of(context).pop();
+    //                 },
+    //                 child: Text('Ok'))
+    //           ],
+    //         ));
+
+
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/lunchAndcopy.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "sid": stuid,
+            "event_name": eventName,
+            "department_name": deptName
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
               title: Text('Error'),
-              content: Text("Event Name: $eventName\nDeptName: $deptName"),
+              content: Text("User Not Found !!"),
               actions: [
                 TextButton(
                     onPressed: () {
@@ -294,6 +338,28 @@ class _bodyState extends State<body> {
                     child: Text('Ok'))
               ],
             ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text("Bed Request!!"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+        //makePayment();
+      }
+    } catch (e) {
+      print(e.toString());
+    }
 
 
 
