@@ -6,6 +6,7 @@ import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/hms/event_parser.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../addFaculty/addFaculty.dart';
 import '../../createEvent/createEvent.dart';
@@ -37,6 +38,7 @@ class _bodyState extends State<body> {
 
     eventlist.clear();
     super.initState();
+    _loadName();
   }
 
   List<String> eventsCategories = <String>[
@@ -63,10 +65,10 @@ class _bodyState extends State<body> {
     "A much, much longer text that will still fit"
   ];
 
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var i;
     final widthCount = (MediaQuery
         .of(context)
         .size
@@ -84,17 +86,17 @@ class _bodyState extends State<body> {
     }
     return Scaffold(
         appBar: AppBar(backgroundColor: Color(0xFF1D2A3A)),
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                buildHeader(context),
-                buildMenuItems(context),
-              ],
-            ),
-          ),
-        ),
+        // drawer: Drawer(
+        //   child: SingleChildScrollView(
+        //     child: Column(
+        //       crossAxisAlignment: CrossAxisAlignment.stretch,
+        //       children: <Widget>[
+        //         buildHeader(context),
+        //         buildMenuItems(context),
+        //       ],
+        //     ),
+        //   ),
+        // ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
           child: Column(
@@ -109,7 +111,7 @@ class _bodyState extends State<body> {
                 padding: const EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
-                    dashboard_components().text("Welcome Dhairya,",
+                    dashboard_components().text("Welcome $stuName,",
                         FontWeight.bold, const Color(0xFF1D2A3A), 25),
                     SizedBox(height: 20),
                   ],
@@ -461,6 +463,11 @@ class _bodyState extends State<body> {
         ],
       ),
     );
+  }
+
+  _loadName() async{
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    stuName=_prefs.getString("stuName") ?? "";
   }
 
   // Widget buildCard(EventData element) =>
