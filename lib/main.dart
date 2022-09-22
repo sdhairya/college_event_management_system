@@ -1,4 +1,4 @@
-import 'package:college_event_management/verify_otp/timer.dart';
+import 'package:college_event_management/payment_timer/payment_status_screen.dart';
 import 'package:college_event_management/verify_otp/verify_otp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -11,7 +11,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
 
-    options: kIsWeb?FirebaseOptions(
+    options: kIsWeb?const FirebaseOptions(
       apiKey: "AIzaSyBZ1C4-OlfZ9es8wI11n67Pfn6-2jO3_Sk",
       appId: "1:218216942084:web:8177f1e389af6825edc351",
         messagingSenderId: "218216942084",
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => const dashboardScreen(),
         '/register': (context) => const registration(),
         '/verify_otp' : (context) => const VerifyOTPScreen(),
+        '/payment_status' : (context) => const PaymentStatusScreen(),
       },
 
 

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math';
 
 import 'package:college_event_management/addCoordinator/components/body.dart';
@@ -7,20 +6,15 @@ import 'package:college_event_management/eventsList/eventList.dart';
 import 'package:college_event_management/hms/event_parser.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../addFaculty/addFaculty.dart';
 import '../../createEvent/createEvent.dart';
-import '../../eventDetails/eventDetails.dart';
 import '../../events/events.dart';
 import '../../hms/event.dart';
 import '../../size_config.dart';
 import '../../timerScreen/timer.dart';
 import '../dashboardScreen.dart';
 import 'dashboard_components.dart';
-import 'package:college_event_management/eventsList/eventList.dart';
-import 'package:responsive_grid/responsive_grid.dart';
-import 'package:college_event_management/eventData.dart' as data;
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -70,7 +64,6 @@ class _bodyState extends State<body> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    var i;
     final widthCount = (MediaQuery.of(context).size.width ~/ 250).toInt();
 
     final minCount = 2;
@@ -86,7 +79,7 @@ class _bodyState extends State<body> {
       });
     }
     return Scaffold(
-        appBar: AppBar(backgroundColor: Color(0xFF1D2A3A)),
+        appBar: AppBar(backgroundColor: Color(0xFF1D2A3A),automaticallyImplyLeading: false,),
         // drawer: Drawer(
         //   child: SingleChildScrollView(
         //     child: Column(
@@ -370,9 +363,6 @@ class _bodyState extends State<body> {
             ),
       ),
     );
-    Column(
-        children:
-            list.map((e) => buildView(e.name, e.eventList, cols)).toList());
   }
 
   Widget buildC(
@@ -495,10 +485,6 @@ class _bodyState extends State<body> {
     );
   }
 
-  _loadName() async{
-    SharedPreferences _prefs = await SharedPreferences.getInstance();
-    stuName=_prefs.getString("stuName") ?? "";
-  }
 
   // Widget buildCard(EventData element) =>
   //     Container(
