@@ -311,9 +311,17 @@ class _bodyState extends State<body> {
                                     shape: const StadiumBorder(),
                                     enableFeedback: true,
                                   ),
+                                  child: isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white,
+                                          backgroundColor: Colors.transparent,
+                                        )
+                                      : const Text('Create Profile'),
                                   onPressed: isChecked
                                       ? () async {
-                                          if (isLoading) return;
+                                    setState(() => isLoading = true);
+
+                                    if (isLoading) return;
                                           if (_createProfileFirstNameController
                                                   .text.isNotEmpty &&
                                               _createProfileLastNameController
@@ -331,23 +339,24 @@ class _bodyState extends State<body> {
                                               _createProfileCollegeController
                                                   .text.isNotEmpty) {
                                             createStuProfile();
-
-                                          }
-                                          else{
+                                          } else {
                                             showDialog(
                                                 context: context,
-                                                builder: (context) => AlertDialog(
-                                                  title: Text('Error'),
-                                                  content: Text("All fields are required!!"),
-                                                  actions: [
-                                                    TextButton(
-                                                        onPressed: () {
-                                                          Navigator.of(context).pop();
-                                                        },
-                                                        child: Text('Ok'))
-                                                  ],
-                                                ));
-
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                      title: Text('Error'),
+                                                      content: Text(
+                                                          "All fields are required!!"),
+                                                      actions: [
+                                                        TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: Text('Ok'))
+                                                      ],
+                                                    ));
                                           }
 
                                           // if (_signUpEmailController
@@ -381,7 +390,6 @@ class _bodyState extends State<body> {
                                           // }
                                         }
                                       : null,
-                                  child: const Text('Create Profile'),
                                 ),
                               ),
                             ],
