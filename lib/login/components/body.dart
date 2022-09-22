@@ -383,7 +383,10 @@ class _bodyState extends State<body> {
           studata.setString("stuid", uid);
           studata.setString("stuName", response["username"]);
 
-          checkProfile(uid);
+          // checkProfile(uid);
+          Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (context) => dashboardScreen()));
           Fluttertoast.showToast(
               msg: "Success!!",
               toastLength: Toast.LENGTH_SHORT,
