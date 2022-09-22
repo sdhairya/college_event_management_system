@@ -1,3 +1,5 @@
+import 'package:college_event_management/verify_otp/timer.dart';
+import 'package:college_event_management/verify_otp/verify_otp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +36,9 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginScreen(),
         '/dashboard': (context) => const dashboardScreen(),
         '/register': (context) => const registration(),
+        '/verify_otp' : (context) => const VerifyOTPScreen(),
       },
+
 
       // title: 'Flutter Demo',
       // theme: ThemeData(

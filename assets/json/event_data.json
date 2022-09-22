@@ -39,8 +39,8 @@
         ],
         "student_coordinator":
         [
-          {"name": "Ms. Ayushi Gorai","mail_id": "Mr. ayushigorai19@gnu.ac.in","mobile_no": "8141784691","branch_sem": "Sem-7 CE","enrollment_no": "19012011014"},
-          {"name": "Ms. Ayushi Gorai","mail_id": "Mr. ayushigorai19@gnu.ac.in","mobile_no": "8141784691","branch_sem": "Sem-7 CE","enrollment_no": "19012011014"}
+          {"name": "Ms. Ayushi Gorai","mail_id": "ayushigorai19@gnu.ac.in","mobile_no": "8141784691","branch_sem": "Sem-7 CE","enrollment_no": "19012011014"},
+          {"name": "Mr. Vishnu Tak","mail_id": "vishnutak08@gmail.com","mobile_no": "6378133765","branch_sem": "Sem-5 CE","enrollment_no": "20012011181"}
         ]
       },
       {
@@ -348,7 +348,7 @@
         "time": "10:00 AM - 3:00 PM",
         "category": [{"category":"C"},{"category": "D"}],
         "venue_of_event": "Smart Classroom, 3D Printing CoE",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/one_day_workshop_logo.jpeg",
         "description":"3D Printing is an Additive Manufacturing technique that creates a physical object from a virtual 3D CAD model by depositing successive layers of material. Unlike your desktop printers, these print the object in a 3-dimensional format.\nIn this workshop, we will be covering 3d Printing or rapid prototyping, from designing your own parts to building your own printers!\n\nEsteemed speaker: \n1. Dr. Pavan Kumar G (Associate professor, PDPU)\n2. Mr. Dhruvil (Design engineer, UTPAL 3D Systems)",
 
         "rules": [
@@ -371,7 +371,7 @@
         "type": "Tech",
         "date": "14th October 2022\n15th October 2022",
         "time": "9:00 AM - 4:00 PM",
-        "category": [{"category":"A"},{"category": "E"}],
+        "category": [{"category":"A"},{"category": "B"},{"category": "C"},{"category": "D"},{"category": "E"}],
         "venue_of_event": "Ganpat University Behind ship ",
         "logo_image": "assets/images/robo_soccer.jpg",
         "description": "This event is a platform to make innovative soccer robots that employ creative pushing  mechanisms.",
@@ -414,7 +414,7 @@
         "type": "Tech",
         "date": "14th October 2022\n15th October 2022",
         "time": "11:00 AM - 3:00 PM",
-        "category": [{"category":"A"},{"category": "E"}],
+        "category": [{"category":"A"},{"category": "B"},{"category": "C"},{"category": "D"},{"category": "E"}],
         "venue_of_event": "Ground Besides The Ship ",
         "logo_image": "assets/images/maze_runner_logo.png",
         "description": "Here's a chance to live those days back again when you used to play video games like Pacman, Rescue Rover, Dangerous Dave, Catacomb 3D and many others. Today, you just remember the scenario of the game but forgotten the name. But this time you are not going to play them in virtual world but you will play those games in real world. So, let your inner child comes back again and explore those games in reality. Participants will be able to learn team coordination, technical knowledge about robot construction.\nGet Ready to Run, the Maze Was Just Beginning.",
@@ -447,7 +447,7 @@
         "type": "Tech",
         "date": "15th October 2022",
         "time": "9:00 AM - 4:00 PM",
-        "category": [{"category":"C"},{"category": "E"}],
+        "category": [{"category":"C"},{"category":"D"},{"category": "E"}],
         "venue_of_event": "Ganpat university football ground",
         "logo_image": "assets/images/aeromodeling_competition_logo.jpg",
         "description":"Round 1\n\n1. Takeoff RC plane.\n2. After Takeoff, you have to make complete circuit (circle) in Air. (Diameter of circle=2.5ft, Inner side=4ft and outer side of circle=5.5ft) \n3. Land your RC plane.\n4. Crash landing will result in elimination.\n5. If needed maximum two hand touches are allowed. However, clock will not be stopped. Single hand touch will have penalty of 1 point.\n\nRound 2\n1. This round checks for the ability to control Aircraft through obstacles. Complete this round without collision will lead to success in next round. Steps are as follows:\n2. Takeoff RC plane.\n3. Fly your RC plane through the pillars. Distance between two pillars = 15ft and height of  Your RC plane must not fly over pole height.\n4. There are three pillars through which your plane shall pass in zigzag way.\n5. When your RC plane pass between two pillars, you get 1 check point.\n6. Land your RC plane.\n\nRound 2: must be completed in single trial. No extra trials are permitted.\n1. In case of collision with pillar, no check point will be given. If plane falls down then team will also lose landing points as given below.\n\nRound 3\n1. In this final round, the team’s ability to drop payload at target point will be checked.\n2. Takeoff RC plane.\n3. The coordinator will give you payload. You have to drop that payload in given place.\n4. After dropping payload, you have to land your RC plane.\n5. The size of payload is 5cm*5cm*5cm and weight will be around 100gm. The payload is made of Wooden material.\n6. The plane shall smooth land.",
@@ -490,7 +490,7 @@
         "time": "10:00 AM - 3:30 PM",
         "category": [{"category": "B"}],
         "venue_of_event": "Seminar Hall, ME/MC Dept.",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/jetson_nano_logo.jpeg",
         "description":"It is the multi-disciplinary hands-on workshop to train participants on CV using Embedded System.Students will be guided for software installationbefore the event. The session will begin withtheory on SBC. Then students will have hands ontraining on GPIO and camera programming usingJetson Nano Board. Simple tasks related tocomputer vision will be assigned to students fortheir practice. Event may be ended with certificatesdistribution.",
 
         "rules": [
@@ -522,7 +522,7 @@
         "time": "10:00 AM - 3:30 PM",
         "category": [{"category": "B"}],
         "venue_of_event": "New building , cad lab - 005",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/cad_concurrence_logo.jpeg",
         "description": "Theme based presentation of conceptual model",
         "rules": [
           {"rule": "1. Model must be completed in part, assembly, and mechanism"}
@@ -550,7 +550,7 @@
         "time": "10:00 AM - 3:00 PM",
         "category": [{"category":"A"},{"category": "B"}],
         "venue_of_event": "B.S.P.P  AUTOMOBILE WORKSHOP",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/automobile_workshop_logo.jpeg",
         "description":"OBD Car Scanning\nWheel Balancing \nSpark Plug testing\nGeneral Vehicle check-up",
 
         "rules": [
@@ -576,7 +576,7 @@
         "time": "9:00 AM - 4:00 PM",
         "category": [{"category":"A"},{"category": "B"}],
         "venue_of_event": "",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/ansys_logo.jpeg",
         "description":"ANSYS Multi-Tool Demonstration, analysis and Simulation.At last, a task is given to all the participants and winning prize will be distributed according",
 
         "rules": [
@@ -603,7 +603,7 @@
         "time": "10:00 AM - 2:00 PM",
         "category": [{"category":"A"}],
         "venue_of_event": "MECHANICAL DEP.",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/tech_quiz_logo.jpeg",
         "description":"General knowledge, general awareness and current affairs based quiz competition open for all.",
 
         "rules": [
@@ -705,7 +705,7 @@
 
   {
     "name": "PetroX",
-    "logo": "",
+    "logo": "assets/images/petrox_department_logo.png",
     "poster": "",
     "events": [
       {
@@ -920,7 +920,7 @@
 
   {
     "name": "Biotechnica",
-    "logo": "",
+    "logo": "assets/images/biotechnica_logo.png",
     "poster": "",
     "events": [
 
@@ -931,7 +931,7 @@
         "time": "1:30 pM - 3:30 PM",
         "category": [{"category":"B"}],
         "venue_of_event": "Biomedical Instruments Laboratory",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/technoworkshop_logo.png",
         "description":     "Capital Equipment of Cardiac OT",
         "rules": [
           {"rule": "1. Registration will be based on first come first serve basis"},
@@ -959,7 +959,7 @@
         "time": "11:00 AM - 1:00 PM",
         "category": [{"category":"A"}],
         "venue_of_event": "Biomedical Lab",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/Innovativemania_logo.png",
         "description":     "We welcome new innovative ideas And Provide Stage For the Students So they can Perform their Innovative Ideas & Represent Their Models.",
         "rules": [
           {"rule": "1. The project may be undertaken by individual student or in group not exceeding three members."},
@@ -995,7 +995,7 @@
         "time": "11:30 PM - 1:30 PM",
         "category": [{"category": "D"}],
         "venue_of_event": "LAB 118A or Classroom 119",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/quizophile_logo.png",
         "description":     "There will be a quiz competition between participants based on technical area, current affairs , film & media etc .It will be having   4 rounds of the quiz consist of different formats like rapid fire round , Buzzer round, audio &visual round and general around. ",
         "rules": [
           {"rule": "1. General Round :In this round each team has its own quota of 6 questions and other questions passed to it from the previous team that did not answer. A team gets 30 seconds to answer the question intended for it, and is awarded 30 points for answering  it."},
@@ -1025,7 +1025,7 @@
         "time": "9:00 AM - 11:00 PM",
         "category": [{"category":"C"}],
         "venue_of_event": "Biomedical Lab",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/poster_presentation_logo_biotechnica.jpg",
         "description":  "Students will display their poster and will be available for viewers to answer their questions.",
         "rules": [
           {"rule": "1. Each Participant or each group can post only one Poster"},
@@ -1059,7 +1059,7 @@
   },
   {
     "name": "Civesta",
-    "logo": "",
+    "logo": "assets/images/civesta_logo.png",
     "poster": "",
     "events": [
       {
@@ -1172,7 +1172,7 @@
   },
   {
     "name": "ElectaBuzz",
-    "logo": "",
+    "logo": "assets/images/electrabuzz_logo.JPG",
     "poster": "",
     "events": [
 
@@ -1318,7 +1318,7 @@
         "time": "10.00 AM to 01.00 PM",
         "category": [{"category":"A"}],
         "venue_of_event": "Near Marine Workshop",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/boat_racing_logo.png",
         "description":     "Complete your race without sinking your boat which may eliminate your boat. \n\nRound 1:-\n1. Place your RC boat in water track.\\n3. The obstacles will be minimum in the first round.\n\nRound 2:-\n1. The obstacles will much more in this round.\n2. The first three participants will be awarded.\n3. Complete your race in minimum time.",
         "rules": [
           {"rule": "1. This is the open contest and anyone can take part ."},
@@ -1357,7 +1357,7 @@
         "time": "9:30 AM - 4:00 PM",
         "category": [{"category":"A"},{"category": "B"},{"category": "C"},{"category": "D"},{"category": "E"}],
         "venue_of_event": "Ship-Building Competion",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/Workshop_of_Ship_building.jpg",
         "description": "Participants will be provided with all the materials required to build the ship.They will be guided by the co-ordinators.After the completion of the ship-building the ship would have to go through floating test.Every participant will be provided with certificate.Ship building will commence on 14th followed by floating test on 15th of oct 2022.All the ships will be judged without any partiality  by the judges.The decision of the judges would be final.There would be two rounds in this event.Every participating group would be charged a participation fees of 500/- rupees only.Participants has to bare an additional fee of 250/- rupees after the last date of registration i.e. 13/10/22.",
         "rules": [
           {"rule": "NA"}

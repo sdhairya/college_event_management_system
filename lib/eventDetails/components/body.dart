@@ -25,6 +25,9 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   bool isLoading = false;
 
+  String assetURL = 'https://convergence.uvpce.ac.in/register/assets/';
+
+
   var stuid;
   @override
   Widget build(BuildContext context) {
@@ -79,7 +82,7 @@ class _bodyState extends State<body> {
                               child: SizedBox(
                                 height: 250, // card height
                                 width: getWidth(kIsWeb ? 250 : double.infinity),
-                                child: Image.asset(widget.eventDetails.logo),
+                                child: Image.network(assetURL + widget.eventDetails.logo),
                                 // ListView.separated(
                                 //     scrollDirection: Axis.horizontal,
                                 //     padding: const EdgeInsets.all(12),

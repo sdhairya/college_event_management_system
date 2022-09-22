@@ -456,7 +456,7 @@ class _bodyState extends State<body> {
                   itemBuilder: (context, index) => Column(
                     children: [
                       CircleAvatar(
-                        child: Image.asset("assets/event1.png"),
+                        child: Image.network(assetURL + "assets/event1.png"),
                       ),
                       dashboard_components().text(
                           categoryName, FontWeight.w300, Color(0xFF1D2A3A), 23),
