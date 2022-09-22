@@ -314,7 +314,41 @@ class _bodyState extends State<body> {
                                   onPressed: isChecked
                                       ? () async {
                                           if (isLoading) return;
-                                          createStuProfile();
+                                          if (_createProfileFirstNameController
+                                                  .text.isNotEmpty &&
+                                              _createProfileLastNameController
+                                                  .text.isNotEmpty &&
+                                              _createProfileEmailController
+                                                  .text.isNotEmpty &&
+                                              _createProfileAddressController
+                                                  .text.isNotEmpty &&
+                                              _createProfileSemController
+                                                  .text.isNotEmpty &&
+                                              _createProfileMobileController
+                                                  .text.isNotEmpty &&
+                                              _createProfileBranchController
+                                                  .text.isNotEmpty &&
+                                              _createProfileCollegeController
+                                                  .text.isNotEmpty) {
+                                            createStuProfile();
+
+                                          }
+                                          else{
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) => AlertDialog(
+                                                  title: Text('Error'),
+                                                  content: Text("All fields are required!!"),
+                                                  actions: [
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                        child: Text('Ok'))
+                                                  ],
+                                                ));
+
+                                          }
 
                                           // if (_signUpEmailController
                                           //     .text.isNotEmpty) {
@@ -475,7 +509,9 @@ class _bodyState extends State<body> {
                   ],
                 ));
         setState(() => isLoading = false);
-      } else if (res.statusCode == 200) {}
+      } else if (res.statusCode == 200) {
+        checkPayment();
+      }
     } catch (e) {
       print(e.toString());
     }

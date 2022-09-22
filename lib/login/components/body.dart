@@ -203,8 +203,29 @@ class _bodyState extends State<body> {
                             if (isLoading) return;
 
                             setState(() => isLoading = true);
+
+                            if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty)
+
+                              {
+                                userLogin();
+
+                              }
+                            else{
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text('Error'),
+                                    content: Text("All fields are required!!"),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Ok'))
+                                    ],
+                                  ));
+                            }
                             //dashboardScreen();
-                            userLogin();
                             // User? user = await loginUsingEmailPassword(
                             //     email: _emailController.text,
                             //     password: _passwordController.text,

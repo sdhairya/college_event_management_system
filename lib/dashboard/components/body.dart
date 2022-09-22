@@ -21,15 +21,18 @@ class body extends StatefulWidget {
 
   @override
   State<body> createState() => _bodyState();
+
 }
 
 class _bodyState extends State<body> {
   List<EventDeptData> eventlist = [];
+  var stuName;
 
   String assetURL = 'https://convergence.uvpce.ac.in/register/assets/';
 
   @override
   void initState() {
+
     eventlist.clear();
     super.initState();
   }
@@ -171,19 +174,7 @@ class _bodyState extends State<body> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (i in eventlist)
-                        dashboard_components()
-                            .elevatedButton(true, i.name.toString()),
-                    ],
-                  ),
-                ),
-              ),
+
               // SizedBox(
               //   height: 40,
               // ),

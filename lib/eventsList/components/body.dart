@@ -113,7 +113,7 @@ class _bodyState extends State<body> {
 
   Widget buildList(EventData element) {
     return  Container(
-        padding: EdgeInsets.only(left: 5, top: 10,bottom: 5, right: 30),
+        padding: EdgeInsets.only(left: 5, top: 10,bottom: 5, right: 0),
         margin: EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
 
@@ -128,7 +128,8 @@ class _bodyState extends State<body> {
                       eventsList_components().text(element.name, FontWeight.bold, Color(0xFF1D2A3A), 20),
                       SizedBox(height: 5,),
                       eventsList_components().text(element.date, FontWeight.normal, Color(0xFF1D2A3A), 14),
-                      ListTile(horizontalTitleGap: -4,
+                      ListTile(horizontalTitleGap: 0,
+                          contentPadding: EdgeInsets.zero,
                           dense: true,
                           leading: eventsList_components().icon(Icons.location_on),
                           title: eventsList_components().text(element.venue, FontWeight.normal, Color(0xFF1D2A3A), 14),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:college_event_management/coordinators/coordinators.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import '../../dashboard/dashboardScreen.dart';
 import '../../hms/event.dart';
 import '../../size_config.dart';
 import 'eventDetails_components.dart';
+import 'package:http/http.dart' as http;
 
 class body extends StatefulWidget {
   final EventData eventDetails;
@@ -20,6 +23,7 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
+  bool isLoading = false;
 
   var stuid;
   @override
@@ -93,14 +97,13 @@ class _bodyState extends State<body> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      eventDetails_components().text(widget.eventDetails.name,
-                                          FontWeight.bold, const Color(0xFF1D2A3A), 26),
-                                      eventDetails_components().text(widget.eventDetails.type,
+                                  ListTile(
+                                    leading: eventDetails_components().text(widget.eventDetails.name,
+                                        FontWeight.bold, const Color(0xFF1D2A3A), 26),
+
+                                      trailing:eventDetails_components().text(widget.eventDetails.type,
                                           FontWeight.bold, const Color(0xFF1D2A3A), 24),
-                                    ],
+
                                   ),
                                   SizedBox(
                                     height: 10,
@@ -129,90 +132,79 @@ class _bodyState extends State<body> {
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  InkWell(
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFFD9D9D9),
-                                          borderRadius: BorderRadius.circular(20)),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          eventDetails_components().text("Show Attendees",
-                                              FontWeight.bold, const Color(0xFF1D2A3A), 22),
-                                          // SizedBox(width: 20,),
-                                          Icon(
-                                            Icons.arrow_circle_right,
-                                            color: Color(0xFF1D2A3A),
-                                            size: 30,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    /*onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => attendees(previousScreen_data: widget.eventDetails,)));
-                        },*/
-                                  ),
+                        //           InkWell(
+                        //             child: Container(
+                        //               padding: EdgeInsets.all(10),
+                        //               decoration: BoxDecoration(
+                        //                   color: Color(0xFFD9D9D9),
+                        //                   borderRadius: BorderRadius.circular(20)),
+                        //               child: Row(
+                        //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //                 children: [
+                        //                   eventDetails_components().text("Show Attendees",
+                        //                       FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                        //                   // SizedBox(width: 20,),
+                        //                   Icon(
+                        //                     Icons.arrow_circle_right,
+                        //                     color: Color(0xFF1D2A3A),
+                        //                     size: 30,
+                        //                   )
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //             /*onTap: () {
+                        //   Navigator.of(context).pushReplacement(
+                        //       MaterialPageRoute(
+                        //           builder: (context) => attendees(previousScreen_data: widget.eventDetails,)));
+                        // },*/
+                        //           ),
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  InkWell(
-                                    child: Container(
+                                  Container(
+                                      width: double.maxFinite,
                                       padding: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           color: Color(0xFFD9D9D9),
                                           borderRadius: BorderRadius.circular(20)),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           eventDetails_components().text("Show Faculty Coordinators",
                                               FontWeight.bold, const Color(0xFF1D2A3A), 22),
-                                          // SizedBox(width: 20,),
-                                          Icon(
-                                            Icons.arrow_circle_right,
-                                            color: Color(0xFF1D2A3A),
-                                            size: 30,
+
+                                          Container(
+                                            child: buildListWithoutScroll(widget.eventDetails.facultyCoordinator),
                                           )
+                                          // SizedBox(width: 20,),
                                         ],
                                       ),
                                     ),
-                                    /*onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.eventDetails[4],previousScreen_data: widget.eventDetails,)));
-                        },*/
-                                  ),
+
+
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  InkWell(
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
+                                  Container(
+                                    width: double.maxFinite,
+                                    padding: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           color: Color(0xFFD9D9D9),
                                           borderRadius: BorderRadius.circular(20)),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           eventDetails_components().text("Show Student Coordinators",
                                               FontWeight.bold, const Color(0xFF1D2A3A), 22),
                                           // SizedBox(width: 20,),
-                                          Icon(
-                                            Icons.arrow_circle_right,
-                                            color: Color(0xFF1D2A3A),
-                                            size: 30,
+                                          Container(
+                                            child: buildListWithoutScrollStudent(widget.eventDetails.studentCoordinator),
                                           )
                                         ],
                                       ),
                                     ),
-                                    /*onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => coordinators(l: widget.eventDetails[5], previousScreen_data: widget.eventDetails,)));
-                        },*/
-                                  ),
+
+
                                   SizedBox(
                                     height: 30,
                                   ),
@@ -250,7 +242,12 @@ class _bodyState extends State<body> {
                                             shape: StadiumBorder(),
                                             enableFeedback: true,
                                           ),
-                                          child: const Text('Book Event'),
+                                          child:  isLoading
+                                              ? const CircularProgressIndicator(
+                                            color: Colors.white,
+                                            backgroundColor: Colors.transparent,
+                                          )
+                                              : const Text('Book Event'),
                                           onPressed: () {
                                             bookEvent();
                                           }),
@@ -290,14 +287,49 @@ class _bodyState extends State<body> {
     SharedPreferences studata = await SharedPreferences.getInstance();
     stuid = studata.getString("stuid");
     var eventName = widget.eventDetails.name;
+
     var deptName = widget.deptName;
 
-    showDialog(
-        context: context,
-        builder: (context) =>
-            AlertDialog(
+    // showDialog(
+    //     context: context,
+    //     builder: (context) =>
+    //         AlertDialog(
+    //           title: Text('Error'),
+    //           content: Text("Event Name: $eventName\nDeptName: $deptName"),
+    //           actions: [
+    //             TextButton(
+    //                 onPressed: () {
+    //                   Navigator.of(context).pop();
+    //                 },
+    //                 child: Text('Ok'))
+    //           ],
+    //         ));
+
+
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/lunchAndcopy.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "sid": stuid,
+            "event_name": eventName,
+            "department_name": deptName
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
               title: Text('Error'),
-              content: Text("Event Name: $eventName\nDeptName: $deptName"),
+              content: Text("User Not Found !!"),
               actions: [
                 TextButton(
                     onPressed: () {
@@ -306,8 +338,104 @@ class _bodyState extends State<body> {
                     child: Text('Ok'))
               ],
             ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text("Bed Request!!"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Ok'))
+              ],
+            ));
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+        //makePayment();
+      }
+    } catch (e) {
+      print(e.toString());
+    }
 
 
 
+  }
+
+  Widget buildListWithoutScroll(List<FacultyData> facultyCoordinator) {
+    return Column(
+      children: facultyCoordinator.map((e) => buildList(e)).toList(),
+    );
+  }
+
+  Widget buildListWithoutScrollStudent(List<StudentData> StudentCoordinator) {
+    return Column(
+      children: StudentCoordinator.map((e) => buildListStudent(e)).toList(),
+    );
+  }
+
+  Widget buildList(FacultyData e) {
+    return Container(
+      padding: EdgeInsets.only(left: 20),
+     child: Column(
+       crossAxisAlignment: CrossAxisAlignment.start,
+       children: [
+         SizedBox(height: 20,),
+         eventDetails_components().text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
+         SizedBox(height: 10,),
+         Wrap(
+               direction: Axis.horizontal,
+               spacing: 10,
+               children: [
+                 Icon(Icons.mail, size: 15,),
+                 eventDetails_components().text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
+               ],
+             ),
+         SizedBox(height: 10,),
+         Wrap(
+           direction: Axis.horizontal,
+           spacing: 10,
+           children: [
+             Icon(Icons.phone, size: 15,),
+             eventDetails_components().text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
+           ],
+         ),
+       ],
+     ),
+    );
+  }
+
+  Widget buildListStudent(StudentData e) {
+    return Container(
+      padding: EdgeInsets.only(left: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 20,),
+          eventDetails_components().text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
+          SizedBox(height: 10,),
+          Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            children: [
+              Icon(Icons.mail, size: 15,),
+              eventDetails_components().text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
+            ],
+          ),
+          SizedBox(height: 10,),
+          Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            children: [
+              Icon(Icons.phone, size: 15,),
+              eventDetails_components().text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
