@@ -105,7 +105,7 @@ class _bodyState extends State<body> {
                 padding: const EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
-                    dashboard_components().text("Welcome Dhairya,",
+                    dashboard_components().text("Welcome Hardik,",
                         FontWeight.bold, const Color(0xFF1D2A3A), 25),
                     SizedBox(height: 20),
                   ],

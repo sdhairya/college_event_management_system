@@ -129,6 +129,8 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                                   .showSnackBar(snackBar);
                             } else {
                               // Call here function to resend the OTP
+
+                              resendVerificationEmail();
                             }
                           },
                           child: Text(
@@ -282,6 +284,113 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
         print(response["message"]);
 
         if (response["message"] == "Email Successfully Verified!") {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Verification'),
+              content: Text(response["message"]),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'),
+                )
+              ],
+            ),
+          );
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => LoginScreen()));
+          setState(() => isLoading = false);
+        } else if (response["message"] ==
+            "Wrong Verification code! Please enter valid code.") {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Error'),
+              content: Text(response["message"]),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Ok'),
+                )
+              ],
+            ),
+          );
+          setState(() => isLoading = false);
+        } else {
+          print("Somthing worng in Otp verification!");
+          setState(() => isLoading = false);
+        }
+
+        // setState(() => isLoading = false);
+      } else {
+        print("some issue");
+        setState(() => isLoading = false);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future resendVerificationEmail() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    stuid = studata.getString("stuid");
+    print(stuid);
+
+    try {
+      String uri =
+          "https://convergence.uvpce.ac.in/C2K22/auth/otp_verification_resendemail.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({"sid": stuid}),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+
+      if (res.statusCode == 404) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("User Not Found Check your Email Or Password!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("Bed Request!!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+        var response = json.decode(res.body);
+        print(response["message"]);
+
+        if (response["message"] == "Email Successfully sent!") {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
