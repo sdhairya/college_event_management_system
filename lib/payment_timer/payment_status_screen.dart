@@ -172,7 +172,6 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
       //print(response["firebaseId"]);
       //print(response);
       if (res.statusCode == 404 || response["sid"] == "") {
-
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
@@ -191,11 +190,10 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
       } else if (res.statusCode == 200) {
         print(response["sid"]);
 
-
-          print("Navigating to dashboard");
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const dashboardScreen()));
-          // setState(() => isLoading = false);
+        print("Navigating to dashboard");
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const dashboardScreen()));
+        // setState(() => isLoading = false);
 
       }
     } catch (e) {
