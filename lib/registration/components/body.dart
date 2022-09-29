@@ -31,8 +31,20 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   bool isLoading = false;
   bool isChecked = false;
-  var uuid = Uuid();
+  bool _isobscure = true;
+  bool _isobscure2 = true;
 
+  var uuid = Uuid();
+  void _toggle() {
+    setState(() {
+      _isobscure = !_isobscure;
+    });
+  }
+  void _toggle2() {
+    setState(() {
+      _isobscure2 = !_isobscure2;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,15 +154,31 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const registration_components().textField(
-                                  "Enter Password",
-                                  TextInputType.visiblePassword,
-                                  _signUpPasswordController,
-                                  ""),
-
+                              // const registration_components().textField(
+                              //     "Enter Password",
+                              //     TextInputType.visiblePassword,
+                              //     _signUpPasswordController,
+                              //     ""),
+                          TextFormField(
+                            obscureText: _isobscure,
+                            controller: _signUpPasswordController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                hintText: 'Enter Password',
+                                suffixIcon: IconButton(
+                                  icon: Icon(_isobscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                  onPressed: _toggle,
+                                )),
+                            keyboardType: TextInputType.visiblePassword,
+                          ),
                               const SizedBox(
                                 height: 30,
                               ),
+
+
                               registration_components().text(
                                   '   Confirm Password',
                                   FontWeight.w600,
@@ -160,11 +188,26 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const registration_components().textField(
-                                  "Enter Confirm Password",
-                                  TextInputType.text,
-                                  _signUpConfrimPasswordController,
-                                  "confirmpassword"),
+                              // const registration_components().textField(
+                              //     "Enter Confirm Password",
+                              //     TextInputType.text,
+                              //     _signUpConfrimPasswordController,
+                              //     "confirmpassword"),
+                              TextFormField(
+                                obscureText: _isobscure2,
+                                controller: _signUpConfrimPasswordController,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15)),
+                                    hintText: 'Enter Confirm Password',
+                                    suffixIcon: IconButton(
+                                      icon: Icon(_isobscure2
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: _toggle2,
+                                    )),
+                                keyboardType: TextInputType.visiblePassword,
+                              ),
                               CheckboxListTile(
                                 title: const Text.rich(TextSpan(
                                   children: [
