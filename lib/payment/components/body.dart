@@ -37,7 +37,9 @@ class _bodyState extends State<body> {
   var stuid;
   var type;
 
-  SingingCharacter? _certificate = null;
+  // SingingCharacter? _certificate = null;
+  var _certificate = 1;
+
   SingingCharacter? _lunch = null;
 
   @override
@@ -116,46 +118,46 @@ class _bodyState extends State<body> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            payment_components().text(
-                                'Do you want to have hardcopy of certificate ?',
-                                FontWeight.w600,
-                                Color(0xFF1D2A3A),
-                                16),
-                            // const Text('   User Name',
-                            //     style: TextStyle(
-                            //         fontSize: 16, color: Color(0xFF1D2A3A))),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            // payment_components().text(
+                            //     'Do you want to have hardcopy of certificate ?',
+                            //     FontWeight.w600,
+                            //     Color(0xFF1D2A3A),
+                            //     16),
+                            // // const Text('   User Name',
+                            // //     style: TextStyle(
+                            // //         fontSize: 16, color: Color(0xFF1D2A3A))),
+                            // const SizedBox(
+                            //   height: 10,
+                            // ),
 
-                            Column(
-                              children: [
-                                RadioListTile(
-                                    title: Text("Yes"),
-                                    value: SingingCharacter.Yes,
-                                    groupValue: _certificate,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _certificate = value;
-                                        certificate = 1;
-                                        // print(_certificate);
-                                        // amount(certificate, lunch);
-                                      });
-                                    }),
-                                RadioListTile(
-                                    title: Text("No"),
-                                    value: SingingCharacter.No,
-                                    groupValue: _certificate,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _certificate = value;
-                                        certificate = 0;
-                                        // print(_certificate);
-                                        // amount(certificate, lunch);
-                                      });
-                                    }),
-                              ],
-                            ),
+                            // Column(
+                            //   children: [
+                            //     // RadioListTile(
+                            //     //     title: Text("Yes"),
+                            //     //     value: SingingCharacter.Yes,
+                            //     //     groupValue: _certificate,
+                            //     //     onChanged: (SingingCharacter? value) {
+                            //     //       setState(() {
+                            //     //         _certificate = value;
+                            //     //         certificate = 1;
+                            //     //         // print(_certificate);
+                            //     //         // amount(certificate, lunch);
+                            //     //       });
+                            //     //     }),
+                            //     // RadioListTile(
+                            //     //     title: Text("No"),
+                            //     //     value: SingingCharacter.No,
+                            //     //     groupValue: _certificate,
+                            //     //     onChanged: (SingingCharacter? value) {
+                            //     //       setState(() {
+                            //     //         _certificate = value;
+                            //     //         certificate = 0;
+                            //     //         // print(_certificate);
+                            //     //         // amount(certificate, lunch);
+                            //     //       });
+                            //     //     }),
+                            //   ],
+                            // ),
 
                             payment_components().text(
                                 'Do you want to include lunch ?',

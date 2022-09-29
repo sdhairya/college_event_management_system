@@ -101,7 +101,7 @@ class _bodyState extends State<body> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Phone Email\n',
+                      const Text('Email\n',
                           style: TextStyle(
                               fontSize: 16, color: Color(0xFF1D2A3A))),
                       login_components().textField("Enter Email Address",

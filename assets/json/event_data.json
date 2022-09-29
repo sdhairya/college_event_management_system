@@ -11,7 +11,7 @@
         "time": "9:30 AM - 2:30 PM",
         "category": [{"category":"C"},{"category": "D"}],
         "venue_of_event": "Classroom No: NBGF-103 & Lab-104, New Engineering Building, UVPCE",
-        "logo_image": "assets/images/project_presentation_logo.jpg",
+        "logo_image": "assets/images/pd.png",
         "description": "The project work constitutes a major component in most of the professional programmers. In this event the project should be related to the field of Computer science / Information Technology. Participants of this event are expected to demonstrate some real life projects. These projects may be carried out in some industry, research and development laboratories, educational institutions or software companies by the participant. It is suggested that the project is to be chosen which should have some direct relevance in day-to-day activities. Participants have to show the actual working of their project.",
         "rules": [
           {"rule": "1. Each team/member will be given 15 minutes to demonstrate their project work (10 minutes for presentation and 5 minutes for question and answer)."},
@@ -160,14 +160,14 @@
         ]
       },
       {
-        "name": "Web Inside",
+        "name": "Webathon",
         "type": "Tech",
         "date": "15th October 2022",
         "time": "12:30 AM - 3:30 PM",
         "category": [{"category":"D"},{"category": "E"}],
         "venue_of_event": "Lab-004, New Engineering Building, UVPCE",
         "logo_image": "assets/images/web_inside_logo.png",
-        "description": "",
+        "description": "**Sponsored by SSIP**",
         "rules": [
           {"rule": "Round 1 (Elimination round) : In Round One there will be one quiz which is based on HTML, CSS, JavaScript and Bootstrap. After the quiz there 15 groups will be shortlisted. (Optional)"},
           {"rule": "Round 2(Preliminary Round) : In Round 2 Participants have to design a web page as a given demo web page in a time period.\n1. Make template using HTML and CSS\n2. Coding allowed only in NOTEPAD\n3. Use of Paint would be allowed "},
@@ -265,40 +265,6 @@
           {"name": "Mr. Dhairya Chauhan","mail_id": "chauhandhairya12@gmail.com","mobile_no": "8401563817","branch_sem": "Sem-5-CE","enrollment_no": "20012011018"}
         ]
       },
-      {
-        "name": "Cosplay (GDSC)",
-        "type": "Tech",
-        "date": "14th October 2022",
-        "time": "12:30 AM - 3:30 PM",
-        "category": [{"category":"A"},{"category": "B"}],
-        "venue_of_event": "Classroom No: Seminar Hall, New Engineering Building, UVPCE",
-        "logo_image": "assets/images/cosplay_logo.png",
-        "description": "A costume party with mimicry contests, best-dressed competition, quizzes and photobooth.Theme: Movies (Hollywood,Bollywood,etc.)",
-        "rules": [
-          {"rule": "1. Participants should be dressed according to the theme."},
-          {"rule": "2. Participants should be dressed according to the theme."},
-          {"rule": "3. Attendees are expected to act responsibly with their cosplay props"}
-
-        ],
-        "evaluation_criteria": [
-          {"rule": "1. Mimicry contest: The participants will be asked to mimic the characters they have dressed up as and the participants will be evaluated on the basis of their performance. Also participants will be evaluated on the basis of the accuracy of their costumes with the character (best dressed)."}
-
-        ],
-        "faculty_coordinator":
-        [
-          {"name": "Prof. Priyanka Patel","mail_id": "pkp02@ganpatuniversity.ac.in","mobile_no": "9638974312"},
-          {"name": "Prof. Urmila Patel","mail_id": "urmila.patel@ganpatuniversity.ac.in","mobile_no": "9909911838"}
-
-        ],
-        "student_coordinator":
-        [
-          {"name": "Ms. Khushi Mehta","mail_id": "khushimehta20@gnu.ac.in","mobile_no": "7359769974","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531014"},
-          {"name": "Ms. Vidhi Parikh","mail_id": "vidhiparikh20@gnu.ac.in","mobile_no": "7284842191","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531021"},
-          {"name": "Ms. Alauki Patel","mail_id": "alaukipatel20@gnu.ac.in","mobile_no": "9586502555","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531022"},
-          {"name": "Mr. Dhruv Somani","mail_id": "dhruvsomani20@gnu.ac.in ","mobile_no": "9408220400","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531033"}
-
-        ]
-      },
 
       {
         "name": "Ideathon (GDSC)",
@@ -307,7 +273,7 @@
         "time": "10:00 AM - 1:30 PM",
         "category": [{"category":"C"},{"category": "D"}],
         "venue_of_event": "Classroom No: PG Seminar Hall, New Engineering Building, UVPCE",
-        "logo_image": "assets/images/ideathon_logo.jpg",
+        "logo_image": "assets/images/ideathon_logo_updated.png",
         "description": "It is a short, intensive, workshop-like experience for students. Participants work in teams and use design thinking and innovative learning practices to ideate and collaborate on possible solutions.\nTeam size : 4 members (max)\n\nFocused topics :  Internet of things (IoT),Cyber Security,HealthCare,Entertainment,Agriculture,General(Any),Automobile(Electric Vehicales etc.).",
         "rules": [
           {"rule": "1. Pitch deck that will be submitted in the 1st round should be adhering to the provided format"},
@@ -329,7 +295,6 @@
         [
           {"name": "Ms. Khushi Mehta","mail_id": "khushimehta20@gnu.ac.in","mobile_no": "7359769974","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531014"},
           {"name": "Ms. Vidhi Parikh","mail_id": "vidhiparikh20@gnu.ac.in","mobile_no": "7284842191","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531021"},
-          {"name": "Mr. Saurav Gupta","mail_id": "sauravgupta21@gnu.ac.in","mobile_no": "9586206207","branch_sem": "Sem-3-CE","enrollment_no": "21012011135"},
           {"name": "Mr. Jevin Kardani","mail_id": "jevinkardani20@gnu.ac.in","mobile_no": "9737286356","branch_sem": "Sem-5-CE AI","enrollment_no": "20012531012"}
         ]
       }
@@ -625,6 +590,40 @@
           {"name": "GUPTA DAKSH","mail_id": "daksh7819@gmail.com","mobile_no": "7265950896","branch_sem": "III-ME","enrollment_no": "NA"},
           {"name": "AJAY KAPOOR","mail_id": "ajaykapoor4774@gmail.com","mobile_no": "9173003217","branch_sem": "III-ME","enrollment_no": "NA"}
         ]
+      },
+      {
+        "name": "CAD Competition 2D & 3D",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "11:00 AM - 1:00 PM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "CAD / CAM LAB BSPP MAIN BUILDING",
+        "logo_image": "assets/images/cad_comp_logo.png",
+        "description": "This event is for those students who are proficient in software like AutoCAD and want to pursue their job / business in the design / drafting department of industry. Students participating in this event must be proficient in AutoCAD (2D & 3D). There are two rounds in this event. First round is an elimination round in which 2D drawing/ objects are given to students for drafting.Those students who have succeeded in this round will be promoted to the final round of 3D Drawing. An isometric component is given to students for the last round.Maximum 45 Minutes are given to students in both rounds.)",
+        "rules": [
+          {"rule": ""},
+          {"rule": ""},
+          {"rule": ""}
+
+        ],
+        "evaluation_criteria": [
+          {"rule": "Evaluation is based on time and skill"}
+
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Kalpesh P. Patel ","mail_id": "","mobile_no": "9426577398"},
+          {"name": "Prof. Sunil V. Patel","mail_id": "","mobile_no": "7041733180"}
+
+        ],
+        "student_coordinator":
+        [
+          {"name": "Kumhar Himanshu Savaram","mail_id": "","mobile_no": "8824202199","branch_sem": "","enrollment_no": ""},
+          {"name": "Patel Tanish Sunilbhai","mail_id": "","mobile_no": "9316694484","branch_sem": "","enrollment_no": ""},
+          {"name": "Ms. Alauki Patel","mail_id": "","mobile_no": "9586502555","branch_sem": "","enrollment_no": ""},
+          {"name": "Patel Vedant B.","mail_id": "","mobile_no": "9157399041","branch_sem": "","enrollment_no": ""}
+
+        ]
       }
     ]
   },
@@ -643,7 +642,7 @@
         "time": "11:00AM - 1:00 PM",
         "category": [{"category":"A"}],
         "venue_of_event": "Agriculture Wing, U V P C E, Ganpat University",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/math_quiz.png",
         "description": "The game is in two rounds: elimination and final.\n\nStage I: Elimination round\n1. There will be a written test for all participating students. \n2. The written test will be of 20 minutes.\n3. Questions will check the mathematical ability of participating students.\n4. Top 10 students will be selected for final round based on points they have gained in written test.\n\nStage II: Final round\n1. In Final round there are 3 sub rounds listed below.\n2. For Each question student have only 30 seconds in each round. For correct answer, the students will earn 10 points. In case of wrong answer, the team will lose 5 points. \n3. Students can pass the question. In case of passing, if any students answer the question correctly will eligible to earn 5 points. In case of wrong answer, the students will lose 5 points.\n4. There will be 2 rounds of asking questions to top 10 students.\n5. After these two rounds of asking questions, 5 students from top 10 will be elimimated.\n6. Rest of top 5 students will have to play buzzer round. For Each question student have only 30 secs. \n7. Winner will be decided at the same time when all the rounds get completed.",
         "rules": [
           {"rule": "1. It is an individual event."},
@@ -676,7 +675,7 @@
         "time": "2:00 AM - 4:00 PM",
         "category": [{"category":"E"}],
         "venue_of_event": "",
-        "logo_image": "assets/images/infocrates_white_mini.png",
+        "logo_image": "assets/images/modeling.png",
         "description":     "The game is in a single round. Each team or each participant will get only one chance to present their model/poster. \nStudent must present Model or Poster related application in Mathematics.\nPoster may be handmade or printed.\nThe results will be declared on the same day for the Model/Poster.",
         "rules": [
           {"rule": "1. It can be a team event or an individual candidate can participate in this event. A team can comprise of maximum four members."},
@@ -815,7 +814,7 @@
         "time": "09:00 AM to 11:00 AM",
         "category": [{"category":"C"}],
         "venue_of_event": "Petrochemical lab-1, BSPP building",
-        "logo_image": "assets/images/Poster_presentation_logo_petrox.png",
+        "logo_image": "assets/images/pps.png",
         "description":  "Presentations usually consist of affixing the research poster to a portable board with the researcher in attendance answering questions posed by passing colleagues.",
         "rules": [
           {"rule": "1. Layout and format must be organized and concise"},
@@ -849,7 +848,7 @@
         "time": "02:00 PM to 04:00 PM",
         "category": [{"category":"E"}],
         "venue_of_event": "BSPP Class Room 220",
-        "logo_image": "assets/images/tech_quiz.png",
+        "logo_image": "assets/images/tech_quid_logo_updated.png",
         "description": "The quiz can be described as a type of game where competitors try their best to answer the questions in less time. The quiz is not about random topics, it's about specific topics",
         "rules": [
           {"rule": "1. General Round – Each team - quota of 4 questions. In this round each team has its own quota of 4 questions and other questions passed to it from the previous team that did not answer. A team gets 30 seconds to answer the question intended for it, and is awarded 20 points for answering it. If the team, the question intended for gives a wrong answer, the quiz master will give the correct answer. If the team that the question intended for passes it. The next team/s get 15 seconds to answer it and is awarded 10 points for the right answer. The team members can discuss before giving the answer. If a team cannot answer a question they can pass it or after 30 seconds it gets automatically passed to the next team. If a team is answering a question and the time passes, then the team gets to complete the answer and is awarded points for the right answer. There is no negative marking for wrong answer. No buzzer is used in this round"},
@@ -875,10 +874,10 @@
       {
         "name": "Group Discussion",
         "type": "Tech",
-        "date": "14th October 2022",
-        "time": "9:30 AM - 2:30 PM",
+        "date": "15th October 2022",
+        "time": "2:00 AM - 4:00 PM",
         "category": [{"category":"E"}],
-        "venue_of_event": "Room No. 111",
+        "venue_of_event": "Room No. 111, Petrochemical dept. UVPCE",
         "logo_image": "assets/images/group_discussion_logo.png",
         "description":  "A group discussion is a discussion between a group of participants on a given subject.\n\nA group discussion typically forms a part of the selection process used by organisations and educational institutions. The candidates talk about the given topic to present facts, opinions and conclusions",
         "rules": [
@@ -960,7 +959,7 @@
         "category": [{"category":"A"}],
         "venue_of_event": "Biomedical Lab",
         "logo_image": "assets/images/Innovativemania_logo.png",
-        "description":     "We welcome new innovative ideas And Provide Stage For the Students So they can Perform their Innovative Ideas & Represent Their Models.",
+        "description": "**Sponsored by SSIP**.\n\nWe welcome new innovative ideas And Provide Stage For the Students So they can Perform their Innovative Ideas & Represent Their Models.",
         "rules": [
           {"rule": "1. The project may be undertaken by individual student or in group not exceeding three members."},
           {"rule": "2. There will be 2 stage assessments of Projects for final selection. \nI. PHASE I, which is Pre-assessment stage, Based on the project abstract submitted by you.\nII. PHASE II which is final assessment stage, Based on Video demonstration of working of project send by you.\n"},
@@ -1063,12 +1062,12 @@
     "poster": "",
     "events": [
       {
-        "name": "Block Structure",
+        "name": "Framed Structure",
         "type": "Tech",
         "date": "15th October 2022",
-        "time": "9:30 AM - 3:20 PM",
+        "time": "11:30 AM - 1:20 PM",
         "category": [{"category":"C"},{"category": "D"},{"category": "E"}],
-        "venue_of_event": "Classroom  or lab both preferred",
+        "venue_of_event": "Earthquake Lab, Room no. 19",
         "logo_image": "assets/images/block_structure_logo.webp",
         "description":"Students had to participate in group of five. This event consisted of creating a structure with the provided number of wooden cubes. Total Number of blocks provided: 50 nos.Time of construction for each team:10min.",
 
@@ -1076,7 +1075,7 @@
           {"rule": "1. Students have to participate in a group of 5."},
           {"rule": "2. Materials will be provided to them."},
           {"rule": "3. A 3 storey structure has to be prepared by the team with the help  of wooden rods and steel winders"},
-          {"rule": "4. Criteria for structure: Height of the structure:80-90cm, Cross section of structure in plan: 25cm*25cm"}
+          {"rule": "4. Criteria for structure: Height of the structure:70-90cm, Cross section of structure in plan: 25cm*25cm"}
         ],
         "evaluation_criteria": [
           {"rule": "1. 1st Round: One block is to be removed by one of the participant of the same group as per asked by the judges."},
@@ -1092,20 +1091,52 @@
         ],
         "student_coordinator":
         [
-          {"name": "Drashtant Thori","mail_id": "drashtantthori19@gnu.ac.in","mobile_no": "7778008888","branch_sem": "VII","enrollment_no": "19012071032"},
-          {"name": "Patel Poojan Arvindbhai","mail_id": "poojanpatel20@gnu.ac.in","mobile_no": "9638529956","branch_sem": "V","enrollment_no": "20012071014"},
-          {"name": "Patel Bhavya Harshadbhai","mail_id": "bhavyahpatel20@gnu.ac.in","mobile_no": "9924571088","branch_sem": "V","enrollment_no": "20012071022"}
+          {"name": "Shivam Panchal","mail_id": "","mobile_no": "99093 35786","branch_sem": "","enrollment_no": ""},
+          {"name": "Tirth Parekh","mail_id": "","mobile_no": "83473 86850","branch_sem": "","enrollment_no": ""},
+          {"name": "Rishabh Jaiswal","mail_id": "","mobile_no": "78604 76333","branch_sem": "","enrollment_no": ""}
         ]
       },
       {
-        "name": "Poster Presentation",
+        "name": "Celebrating Connections",
+        "type": "Tech",
+        "date": "15th October 2022",
+        "time": "10:30 AM - 3:20 PM",
+        "category": [{"category":"C"},{"category": "D"}],
+        "venue_of_event": "MB006 UVPCE",
+        "logo_image": "assets/images/celeb.jpg",
+        "description":"Connections are structural elements that are used for joining different members of the structural steel framework. The steel structure is the assembly of different members like beams, and columns. These various steel members are interconnected using Rivets, Bolts, and Welding. This is known as a connection.\nConnections can be of various types, based on different criteria. Based on the fastening method, the connections are of three types: rivets, Bolts, and Welding. Based on rigidity, the connections are of three types-Rigid, Simple, and Semi-rigid.\nSteel's strength and resistance make it an exceptional material in terms of durability and economy. High impact and deformation resistance allow steel to be used in most large constructions as the main element of the supporting structure.\nWhen one hears about steel and connections, the human brain always shows tall structures and bridges. The challenge includes designing the Installation/ Model/Sculpture that must include steel joineries and connection with steel as a primary material. The specified material must be market readily available.\nThe proposed Installation/Model/Sculpture must not exceed the size limit of 10' x 10'x 10' (LxBxH) or 3000 mm x 3000 mm x 3000 mm (LxBxH) at an actual scale of 1:1.\nPlease refer to the SOR (Schedule Of Rates) provided in the registered email id.",
+
+        "rules": [
+          {"rule": "1. This is a student-only competition. No faculty or staff members can participate in this event."},
+          {"rule": "2. All teams must meet the minimum requirements of submissions."},
+          {"rule": "3. Any form of Copy or Duplication will lead to disqualification."},
+          {"rule": "4. A team will be disqualified with immediate effect if found breaking any above-mentioned rules and regulations"}
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Representation of Brief:\nThe most important quality of a design is the presentation reflecting the intentions behind it. It can present many different things and focus on one or more aspects like Spatial layout, Technical details, Material exploration, Structural Clarity, etc."},
+          {"rule": "2. Feasibility of Construction:\nA beautiful piece is undeniably appealing, but its feasibility is more than just beauty. A feasibility study is an important tool for evaluating a project before starting it. By understanding the feasibility of a project, one can make better decisions about whether to move forward."},
+          {"rule": "3. Impact:\nWhen Communication and Aesthetics are perfectly combined, they produce an impactful image that is eagerly shared among the design-oriented community. The ingredients of an impactful design include Bold Geometry, Unusual angles, Rich color combination, Sharp contrast, Rhythmic pattern, and strong legibility among others."}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "AR. TAPAN PATEL","mail_id": "","mobile_no": "96621 28811"}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Hardik Batta","mail_id": "","mobile_no": "8233621820","branch_sem": "","enrollment_no": ""},
+          {"name": "Prayas Lunawat","mail_id": "","mobile_no": "8347161270","branch_sem": "","enrollment_no": ""},
+          {"name": "Nevil Patel","mail_id": "","mobile_no": "9429367663","branch_sem": "","enrollment_no": ""}
+        ]
+      },
+      {
+        "name": "Youth Ideathon",
         "type": "Tech",
         "date": "15th October 2022",
         "time": "10:30 AM - 3:20 PM",
         "category": [{"category":"C"},{"category": "D"}],
         "venue_of_event": "MB006 UVPCE",
         "logo_image": "assets/images/poster_presentation_civesta.jpg",
-        "description":"The objective behind organisation of poster making competition is to bring out the creative expression of students and to gauge their knowledge and awareness of various trends of sustainable development",
+        "description":"**Sponsored by SSIP**\nThe objective behind organisation of poster making competition is to bring out the creative expression of students and to gauge their knowledge and awareness of various trends of sustainable development",
 
         "rules": [
           {"rule": "1. Each group (maximum 2 participants) can post only one Poster that should be printed/drawn from the home. The poster must be made on the A2 size (16.5 * 23.4 inches) sheet with margins (0.5 inches).Poster can be made using pencil, crayon, watercolour, oil paint, etc. Photographs, wires, other 3D objects, print-outs is also acceptable. The Topic of poster and theme should be clearly mentioned at the Top Margin of the Poster.Name, Class, College of the Participants must be written on bottom-left portion of poster . These details should be same as in registration form."}
@@ -1126,7 +1157,7 @@
         "student_coordinator":
         [
           {"name": "Patel Himani Dharmendrabhai","mail_id": "himanidpatel19@gnu.ac.in","mobile_no": "9016035350","branch_sem": "VII","enrollment_no": "19012071027"},
-          {"name": "Solanki Pratik Haribhai","mail_id": "pratikkumarsolanki19@gnu.ac.in","mobile_no": "9510719871","branch_sem": "VII","enrollment_no": "19012071023"},
+          {"name": "Chaudhary Parth","mail_id": "","mobile_no": "","branch_sem": "","enrollment_no": ""},
           {"name": "Mavi Yogeshbhai Rameshbhai","mail_id": "yogeshmavi326@gmail.com","mobile_no": "6352195246","branch_sem": "V","enrollment_no": "21012072036"}
         ]
       },
@@ -1166,13 +1197,46 @@
           {"name": "Joshi Shani","mail_id": "shanijoshi18@gun.ac.in","mobile_no": "9687842224","branch_sem": "V","enrollment_no": "21012072068"},
           {"name": "Rajput Nirali RajendraSinh","mail_id": "niralirajput18@gnu.ac.in","mobile_no": "6356349795","branch_sem": "V","enrollment_no": "21012072067"}
         ]
+      },
+      {
+        "name": "Drone Workshop & Competition",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "11:00 AM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "BSPP Ground",
+        "logo_image": "assets/images/drone-workshop_logo.png",
+        "description": "The event is divided into two parts, the first part is for students who want to learn about drones and their applications while the second part is a drone competition in which drone pilots from across the state are invited to participate.",
+        "rules": [
+          {"rule": "1. The drone pilot will be given 1 minute time in which he has to take off and land the drone."},
+          {"rule": "2. In this 1 minute time, he has to take various photographs and videos of the Ganpat University campus with the help of the camera attached to the drone."},
+          {"rule": "3. The video must be of 30 seconds duration while there are no restrictions on the number of photographs."}
+
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Photographs and videos taken by each drone pilot will be evaluated by professionals and the first 3 winners will be announced based on their artistry and skill."}
+
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Ishan Thakkar","mail_id": "pkp02@ganpatuniversity.ac.in","mobile_no": "9714520498"},
+          {"name": "Prof. Devdatt R. Pandya","mail_id": "urmila.patel@ganpatuniversity.ac.in","mobile_no": "9998978949"}
+
+        ],
+        "student_coordinator":
+        [
+          {"name": "Mithil Mayurbhai Panchal","mail_id": "","mobile_no": "9638500144","branch_sem": "","enrollment_no": ""},
+          {"name": "Viraj Sunil Rajeshirke","mail_id": "","mobile_no": "9328307226","branch_sem": "","enrollment_no": ""},
+          {"name": "Jash kunalbhai Trivedi","mail_id": "","mobile_no": "8849715716","branch_sem": "","enrollment_no": ""}
+
+        ]
       }
 
     ]
   },
   {
     "name": "ElectaBuzz",
-    "logo": "assets/images/electrabuzz_logo.JPG",
+    "logo": "assets/images/electabuzz_logo.jpg",
     "poster": "",
     "events": [
 
@@ -1184,7 +1248,7 @@
         "category": [{"category":"C"},{"category": "D"}],
         "venue_of_event": "EED,UVPCE",
         "logo_image": "assets/images/circuit_assembly_logo.JPG",
-        "description":   "This is the event where participants should design and development of electrical field related circuit.",
+        "description":   "**Sponsored by SSIP**.\n\nThis is the event where participants should design and development of electrical field related circuit.",
         "rules": [
           {"rule": "1. A tool kit of Electronics Devices will provide to the team."},
           {"rule": "2. Participants will have to assemble the circuit before given time limit."},
@@ -1354,27 +1418,110 @@
         "name": "Workshop of Ship building",
         "type": "Tech",
         "date": "14th October 2022/15th October 2022",
-        "time": "9:30 AM - 4:00 PM",
+        "time": "10:00 AM - 2:00 PM",
         "category": [{"category":"A"},{"category": "B"},{"category": "C"},{"category": "D"},{"category": "E"}],
-        "venue_of_event": "Ship-Building Competion",
+        "venue_of_event": "Near Marine Workshop",
         "logo_image": "assets/images/Workshop_of_Ship_building.jpg",
         "description": "Participants will be provided with all the materials required to build the ship.They will be guided by the co-ordinators.After the completion of the ship-building the ship would have to go through floating test.Every participant will be provided with certificate.Ship building will commence on 14th followed by floating test on 15th of oct 2022.All the ships will be judged without any partiality  by the judges.The decision of the judges would be final.There would be two rounds in this event.Every participating group would be charged a participation fees of 500/- rupees only.Participants has to bare an additional fee of 250/- rupees after the last date of registration i.e. 13/10/22.",
         "rules": [
-          {"rule": "NA"}
+          {"rule": "1. The registration must be done prior to the commencement of the event."},
+          {"rule": "2. If failed to register before the given time, then they would be charged with extra entry fees for late registration and no extra time will be provided prior to testing."},
+          {"rule": "3. Only existing students of any Diploma or B.Tech. course may participate in this competition."},
+          {"rule": "4. The team must not have more than five students."},
+          {"rule": "5. Using any extra material brought by the participants will not be allowed."},
+          {"rule": "6. All the participants will be provided with same materials for fair competency."},
+          {"rule": "7. The ship would be checked for flotation period."},
+          {"rule": "8. The ship might be tested against artificially created waves."}
         ],
         "evaluation_criteria": [
-          {"rule": "NA"}
+          {"rule": "The ship should not exceed the dimension of 1 m length,0.35m breadth 0.65m height.\nRound 1:-\n1Time limit: 4hrs\nPoints earned:\nComplete model according to criteria: 3 points on the model.\nFor ship quality of building and good paintng: 2 points."},
+          {"rule": "\nRound 2:-\n1Time limit: 300 sec\nPoints earned:\nEach Check Point:1 point (Max points = 5),\n1 point on floating of ship in the calm water.\n1 point on the floating of ship in waves .\n1 point on the floating of ship with the load of 500g.\n2 point on the floating of ship with the load of 1000 g in waves."}
         ],
         "faculty_coordinator":
         [
-          {"name": "Mihir A. Patel","mail_id": "map04@ganpatuniversity.ac.in","mobile_no": "8160670003"},
+          {"name": "Prof. Hardik A. Patel","mail_id": "","mobile_no": ""},
           {"name": "","mail_id": "","mobile_no": ""},
           {"name": "","mail_id": "","mobile_no": ""}
         ],
         "student_coordinator":
         [
           {"name": "Akash Singh","mail_id": "akashsingh20@gnu.ac.in","mobile_no": "9918263121","branch_sem": "5th Sem","enrollment_no": "21012092005"},
-          {"name": "Nirjar Sarkar","mail_id": "nirjharsarkar20@gnu.ac.in","mobile_no": "8583038477","branch_sem": "5th Sem","enrollment_no": "21012092012"}
+          {"name": "Nirjar Sarkar","mail_id": "nirjharsarkar20@gnu.ac.in","mobile_no": "8583038477","branch_sem": "5th Sem","enrollment_no": "21012092012"},
+          {"name": "Nilesh Kumar Yadav","mail_id": "","mobile_no": "","branch_sem": "","enrollment_no": ""}
+        ]
+      },
+
+      {
+        "name": "Working Model Competition",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "10:00 AM - 12:00 PM",
+        "category": [{"category":"A"}],
+        "venue_of_event": "Near Marine Workshop",
+        "logo_image": "assets/images/cosplay_logo.png",
+        "description": "Participant group have to make a working model of ship or other working model of machinery onboard ship.",
+        "rules": [
+          {"rule": "1. Model should be in 100% working state"},
+          {"rule": "2. Winner will be decided by the judge"},
+          {"rule": "3. Participant group will have to bring their own working model"}
+
+        ],
+        "evaluation_criteria": [
+          {"rule": "1. Model should be in 100% working state"},
+          {"rule": "2.  Innovative idea will be appreciated"}
+
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "Prof. Hardik A. Patel","mail_id": "","mobile_no": ""},
+          {"name": "Jitendra Ravat","mail_id": "","mobile_no": ""}
+
+        ],
+        "student_coordinator":
+        [
+          {"name": "Savaliya Jay","mail_id": "","mobile_no": "","branch_sem": "","enrollment_no": ""},
+          {"name": "Abhi Gajjar","mail_id": "","mobile_no": "","branch_sem": "","enrollment_no": ""}
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Application of AI & IoT in Engineering",
+    "logo": "assets/images/central_logo.png",
+    "poster": "",
+    "events": [
+
+      {
+        "name": "Application of AI & IoT in Engineering",
+        "type": "Tech",
+        "date": "14th October 2022",
+        "time": "10:00 AM",
+        "category": [{"category":"A"},{"category": "B"}],
+        "venue_of_event": "",
+        "logo_image": "assets/images/central_logo.png",
+        "description": "",
+        "rules": [
+          {"rule": "1. At least 3 participants are needed to form a group or team."},
+          {"rule": "2. There should not be more than five participants in one group."},
+          {"rule": "3. Group must contain students from core & Non-core branch."},
+          {"rule": "4. Group are to be form in a such a way that there must be at least one student from each of the following groups:\n\nStudent 1: C.E/I.T/ICT\nStudent 2 : Mechanical/ Automobile/ Mechatronics/ Marine/ Petrochemical\nStudent 3: Biomedical/ Electrical/ Civil"},
+          {"rule": "5. Anyone from poster (A2 size), paper and model can be presented."}
+        ],
+        "evaluation_criteria": [
+          {"rule": ""}
+        ],
+        "faculty_coordinator":
+        [
+          {"name": "PROF. ANKIT RAVAL","mail_id": "","mobile_no": "99094 67947"},
+          {"name": "PROF. RAVI PATEL","mail_id": "","mobile_no": "94294 05701"},
+          {"name": "","mail_id": "","mobile_no": ""}
+        ],
+        "student_coordinator":
+        [
+          {"name": "Krushang Shah","mail_id": "","mobile_no": "9586046444","branch_sem": "","enrollment_no": ""},
+          {"name": "Chaudhary Yash","mail_id": "","mobile_no": "9313167343","branch_sem": "","enrollment_no": ""},
+          {"name": "Bony Patel","mail_id": "","mobile_no": "6352840188","branch_sem": "","enrollment_no": ""}
         ]
       }
     ]
