@@ -14,6 +14,7 @@ import '../../addFaculty/addFaculty.dart';
 import '../../createEvent/createEvent.dart';
 import '../../events/events.dart';
 import '../../hms/event.dart';
+import '../../profileDetails/profileDetails.dart';
 import '../../size_config.dart';
 import '../../timerScreen/timer.dart';
 import '../dashboardScreen.dart';
@@ -50,14 +51,14 @@ class _bodyState extends State<body> {
 
     try {
       final response = await dio.get(
-        "https://convergence.uvpce.ac.in/C2K22/myEvents.php",
-        options: Options(headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json'
-        }),
-        queryParameters: data.toJson()
-        // data: data.toJson(),
-      );
+          "https://convergence.uvpce.ac.in/C2K22/myEvents.php",
+          options: Options(headers: {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+          }),
+          queryParameters: data.toJson()
+          // data: data.toJson(),
+          );
 
       print("");
       if (response.statusCode == 200) {
@@ -118,7 +119,7 @@ class _bodyState extends State<body> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFF1D2A3A),
-          automaticallyImplyLeading: false,
+          // automaticallyImplyLeading: false,
         ),
         drawer: Drawer(
           child: SingleChildScrollView(
@@ -323,70 +324,91 @@ class _bodyState extends State<body> {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.event_note),
-          title: const Text('Create Event'),
+          leading: const Icon(Icons.account_circle),
+          title: const Text('My Profile'),
           onTap: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => createEvent(),
-              ),
-            );
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => profileDetails(
+                      name: stuName,
+                    )));
           },
         ),
-        ListTile(
-          leading: const Icon(Icons.add_circle),
-          title: const Text('Add Faculty'),
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => addFaculty(),
-              ),
-            );
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text('Timer'),
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => timer(),
-              ),
-            );
-          },
-        ),
-        // ListTile(
-        //   leading: const Icon(Icons.settings),
-        //   title: const Text('Profile'),
-        //   onTap: () {
-        //     Navigator.of(context).pushReplacement(
-        //         MaterialPageRoute(builder: (context) => profileDetails()));
-        //   },
-        // ),
-        ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text('Create Profile'),
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => createProfile()));
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text('My Events'),
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => events()));
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text('Add Coordinator'),
-          onTap: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => addCoordinator()));
-          },
-        ),
+        role == "admin"
+            ? Wrap(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.add_business),
+                    title: const Text('Create Department'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => createProfile()));
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.person_add_alt_rounded),
+                    title: const Text('Add Faculty'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => addFaculty(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.add_circle),
+                    title: const Text('Add Campaigner'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => createProfile()));
+                    },
+                  ),
+                ],
+              )
+            : SizedBox(),
+        role == "faculty"
+            ? Wrap(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.bookmark_add),
+                    title: const Text('Create Event'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => createEvent(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.person_add_alt_rounded),
+                    title: const Text('Add Coordinator'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => addCoordinator()));
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.event_note_sharp),
+                    title: const Text('My Events'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => events()));
+                    },
+                  ),
+                ],
+              )
+            : SizedBox(),
+        role == "student"
+            ? ListTile(
+                leading: const Icon(Icons.event_note_sharp),
+                title: const Text('My Events'),
+                onTap: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => events()));
+                },
+              )
+            : SizedBox()
       ],
     );
   }
@@ -531,11 +553,10 @@ class _bodyState extends State<body> {
     );
   }
 
-  Future fetchData() async{
+  Future fetchData() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
     stuName = studata.getString("stuName");
     role = studata.getString("role");
-
   }
 
 // Widget buildCard(EventData element) =>
