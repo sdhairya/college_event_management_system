@@ -8,6 +8,7 @@ import 'package:college_event_management/hms/event_parser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../addFaculty/addFaculty.dart';
 import '../../createEvent/createEvent.dart';
@@ -29,6 +30,7 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   List<EventDeptData> eventlist = [];
   var stuName;
+  var role;
 
   String assetURL = 'https://convergence.uvpce.ac.in/register/assets/';
   final Dio dio = Dio();
@@ -37,6 +39,7 @@ class _bodyState extends State<body> {
   void initState() {
     eventlist.clear();
     getSelectedEvents('695c01ca-01de-4fab-a2fe-dd1204a1097');
+    fetchData();
     super.initState();
   }
 
@@ -117,17 +120,17 @@ class _bodyState extends State<body> {
           backgroundColor: Color(0xFF1D2A3A),
           automaticallyImplyLeading: false,
         ),
-        // drawer: Drawer(
-        //   child: SingleChildScrollView(
-        //     child: Column(
-        //       crossAxisAlignment: CrossAxisAlignment.stretch,
-        //       children: <Widget>[
-        //         buildHeader(context),
-        //         buildMenuItems(context),
-        //       ],
-        //     ),
-        //   ),
-        // ),
+        drawer: Drawer(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                buildHeader(context),
+                buildMenuItems(context),
+              ],
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
           child: Column(
@@ -142,7 +145,7 @@ class _bodyState extends State<body> {
                 padding: const EdgeInsets.only(top: 20),
                 child: Column(
                   children: [
-                    dashboard_components().text("Welcome Hardik,",
+                    dashboard_components().text("Welcome $stuName,",
                         FontWeight.bold, const Color(0xFF1D2A3A), 25),
                     SizedBox(height: 20),
                   ],
@@ -526,6 +529,13 @@ class _bodyState extends State<body> {
         ],
       ),
     );
+  }
+
+  Future fetchData() async{
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    stuName = studata.getString("stuName");
+    role = studata.getString("role");
+
   }
 
 // Widget buildCard(EventData element) =>

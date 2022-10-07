@@ -378,6 +378,7 @@ class _bodyState extends State<body> {
         var response = json.decode(res.body);
         uid = response["id"];
         print(uid);
+        print(response);
         // print(response);
 
         if (uid != "") {
@@ -385,6 +386,8 @@ class _bodyState extends State<body> {
 
           studata.setString("stuid", uid);
           studata.setString("stuName", response["username"]);
+          studata.setString("role", response["role"]);
+
           if (response["isVerified"] == "0") {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => VerifyOTPScreen()));
