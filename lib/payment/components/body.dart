@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/payment/components/payment_components.dart';
+import 'package:college_event_management/payment_timer/payment_status_screen.dart';
 import 'package:college_event_management/timerScreen/timer.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -36,7 +37,9 @@ class _bodyState extends State<body> {
   var stuid;
   var type;
 
-  SingingCharacter? _certificate = null;
+  // SingingCharacter? _certificate = null;
+  var _certificate = 1;
+
   SingingCharacter? _lunch = null;
 
   @override
@@ -115,46 +118,46 @@ class _bodyState extends State<body> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            payment_components().text(
-                                'Do you want to have hardcopy of certificate ?',
-                                FontWeight.w600,
-                                Color(0xFF1D2A3A),
-                                16),
-                            // const Text('   User Name',
-                            //     style: TextStyle(
-                            //         fontSize: 16, color: Color(0xFF1D2A3A))),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            // payment_components().text(
+                            //     'Do you want to have hardcopy of certificate ?',
+                            //     FontWeight.w600,
+                            //     Color(0xFF1D2A3A),
+                            //     16),
+                            // // const Text('   User Name',
+                            // //     style: TextStyle(
+                            // //         fontSize: 16, color: Color(0xFF1D2A3A))),
+                            // const SizedBox(
+                            //   height: 10,
+                            // ),
 
-                            Column(
-                              children: [
-                                RadioListTile(
-                                    title: Text("Yes"),
-                                    value: SingingCharacter.Yes,
-                                    groupValue: _certificate,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _certificate = value;
-                                        certificate = 1;
-                                        print(_certificate);
-                                        // amount(certificate, lunch);
-                                      });
-                                    }),
-                                RadioListTile(
-                                    title: Text("No"),
-                                    value: SingingCharacter.No,
-                                    groupValue: _certificate,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _certificate = value;
-                                        certificate = 0;
-                                        print(_certificate);
-                                        // amount(certificate, lunch);
-                                      });
-                                    }),
-                              ],
-                            ),
+                            // Column(
+                            //   children: [
+                            //     // RadioListTile(
+                            //     //     title: Text("Yes"),
+                            //     //     value: SingingCharacter.Yes,
+                            //     //     groupValue: _certificate,
+                            //     //     onChanged: (SingingCharacter? value) {
+                            //     //       setState(() {
+                            //     //         _certificate = value;
+                            //     //         certificate = 1;
+                            //     //         // print(_certificate);
+                            //     //         // amount(certificate, lunch);
+                            //     //       });
+                            //     //     }),
+                            //     // RadioListTile(
+                            //     //     title: Text("No"),
+                            //     //     value: SingingCharacter.No,
+                            //     //     groupValue: _certificate,
+                            //     //     onChanged: (SingingCharacter? value) {
+                            //     //       setState(() {
+                            //     //         _certificate = value;
+                            //     //         certificate = 0;
+                            //     //         // print(_certificate);
+                            //     //         // amount(certificate, lunch);
+                            //     //       });
+                            //     //     }),
+                            //   ],
+                            // ),
 
                             payment_components().text(
                                 'Do you want to include lunch ?',
@@ -177,7 +180,7 @@ class _bodyState extends State<body> {
                                         _lunch = value;
                                         islunch = 1;
                                         lunch = 150;
-                                        print(_lunch);
+                                        // print(_lunch);
                                         amount(certificate, lunch);
                                       });
                                     }),
@@ -190,7 +193,7 @@ class _bodyState extends State<body> {
                                         _lunch = value;
                                         islunch = 0;
                                         lunch = 0;
-                                        print(_lunch);
+                                        // print(_lunch);
                                         amount(certificate, lunch);
                                       });
                                     }),
@@ -286,7 +289,7 @@ class _bodyState extends State<body> {
             "Access-Control-Allow-Origin": "*"
           },
           encoding: Encoding.getByName('utf-8'));
-      print(res.statusCode);
+      // print(res.statusCode);
       //  var response = json.decode(res.body);
 
       //print(response["firebaseId"]);
@@ -324,10 +327,10 @@ class _bodyState extends State<body> {
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
         type = response["studentType"];
-        print(type);
-        print(response);
+        // print(type);
+        // print(response);
       } else {
-        print("some issue");
+        // print("some issue");
         setState(() => isLoading = false);
       }
     } catch (e) {
@@ -370,23 +373,23 @@ class _bodyState extends State<body> {
     stuid = studata.getString("stuid");
     var _lunchState;
     var _certificateType;
-    print(stuid);
+    // print(stuid);
     if (_lunch == SingingCharacter.Yes) {
       _lunchState = "Yes";
-      print(_lunchState);
+      // print(_lunchState);
     } else if (_lunch == SingingCharacter.No) {
       _lunchState = "No";
-      print(_lunchState);
+      // print(_lunchState);
     } else {
       print("Something Wrong");
     }
 
     if (_certificate == SingingCharacter.Yes) {
       _certificateType = 1;
-      print(_certificateType);
+      // print(_certificateType);
     } else if (_certificate == SingingCharacter.No) {
       _certificateType = 0;
-      print(_certificateType);
+      // print(_certificateType);
     } else {
       print("Something Wrong");
     }
@@ -404,7 +407,7 @@ class _bodyState extends State<body> {
             "Access-Control-Allow-Origin": "*"
           },
           encoding: Encoding.getByName('utf-8'));
-      print(res.statusCode);
+      // print(res.statusCode);
       //  var response = json.decode(res.body);
 
       //print(response["firebaseId"]);
@@ -443,7 +446,7 @@ class _bodyState extends State<body> {
         makePayment();
       }
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
@@ -455,12 +458,18 @@ class _bodyState extends State<body> {
       final Uri url = Uri.parse(uri);
 
       if (await canLaunchUrl(url))
+        {
         await launchUrl(url);
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => PaymentStatusScreen()));
+        setState(() => isLoading = false);
+        }
       else
         // can't launch url, there is some error
         throw "Could not launch $url";
+
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 }

@@ -16,7 +16,8 @@ class body extends StatefulWidget {
   final EventData eventDetails;
   final String deptName;
 
-  const body({Key? key, required this.eventDetails, required this.deptName}) : super(key: key);
+  const body({Key? key, required this.eventDetails, required this.deptName})
+      : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -25,7 +26,11 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   bool isLoading = false;
 
+  String assetURL = 'https://convergence.uvpce.ac.in/register/assets/';
+
+
   var stuid;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +39,11 @@ class _bodyState extends State<body> {
         child: SingleChildScrollView(
             reverse: false,
             child: LayoutBuilder(builder: (context, constraints) {
-              return AnimatedContainer(duration: const Duration(milliseconds: 500),
-                padding: constraints.maxWidth < 500 ? EdgeInsets.zero : const EdgeInsets.all(30.0),
+              return AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                padding: constraints.maxWidth < 500
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.all(30.0),
                 child: Center(
                   child: Container(
                     constraints: const BoxConstraints(maxWidth: 1200),
@@ -54,7 +62,7 @@ class _bodyState extends State<body> {
                                       padding: const EdgeInsets.only(
                                           bottom: 3, right: 8),
                                       onPressed: () {
-                                        Navigator.pop(context,true);
+                                        Navigator.pop(context, true);
                                         //
                                         // Navigator.of(context).pushReplacement(MaterialPageRoute(
                                         //     builder: (context) => dashboardScreen()));
@@ -72,14 +80,12 @@ class _bodyState extends State<body> {
                                         fontWeight: FontWeight.w600,
                                         color: Color(0xFF1D2A3A)),
                                   ),
-                                )
-
-                            ),
+                                )),
                             Container(
                               child: SizedBox(
                                 height: 250, // card height
                                 width: getWidth(kIsWeb ? 250 : double.infinity),
-                                child: Image.asset(widget.eventDetails.logo),
+                                child: Image.network(assetURL + widget.eventDetails.logo),
                                 // ListView.separated(
                                 //     scrollDirection: Axis.horizontal,
                                 //     padding: const EdgeInsets.all(12),
@@ -98,89 +104,110 @@ class _bodyState extends State<body> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ListTile(
-                                    leading: eventDetails_components().text(widget.eventDetails.name,
-                                        FontWeight.bold, const Color(0xFF1D2A3A), 26),
-
-                                      trailing:eventDetails_components().text(widget.eventDetails.type,
-                                          FontWeight.bold, const Color(0xFF1D2A3A), 24),
-
+                                    leading: eventDetails_components().text(
+                                        widget.eventDetails.name,
+                                        FontWeight.bold,
+                                        const Color(0xFF1D2A3A),
+                                        26),
+                                    trailing: eventDetails_components().text(
+                                        widget.eventDetails.type,
+                                        FontWeight.bold,
+                                        const Color(0xFF1D2A3A),
+                                        24),
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  eventDetails_components().text(widget.eventDetails.date+"\n"+widget.eventDetails.time,
-                                      FontWeight.normal, const Color(0xFF1D2A3A), 18),
+                                  eventDetails_components().text(
+                                      widget.eventDetails.date +
+                                          "\n" +
+                                          widget.eventDetails.time,
+                                      FontWeight.normal,
+                                      const Color(0xFF1D2A3A),
+                                      18),
                                   SizedBox(
                                     height: 5,
                                   ),
                                   eventDetails_components().text(
-                                      "Time Slot : " + widget.eventDetails.getCategoryTime(),
+                                      "Time Slot : " +
+                                          widget.eventDetails.getCategoryTime(),
                                       FontWeight.normal,
                                       const Color(0xFF1D2A3A),
                                       18),
                                   SizedBox(
                                     height: 25,
                                   ),
-                                  eventDetails_components().text("Description",
-                                      FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                                  eventDetails_components().text(
+                                      "Description",
+                                      FontWeight.normal,
+                                      const Color(0xFF1D2A3A),
+                                      22),
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  eventDetails_components().text(widget.eventDetails.description,
-                                      FontWeight.normal, const Color(0xFF1D2A3A), 15),
+                                  eventDetails_components().text(
+                                      widget.eventDetails.description,
+                                      FontWeight.normal,
+                                      const Color(0xFF1D2A3A),
+                                      15),
 
                                   SizedBox(
                                     height: 15,
                                   ),
-                        //           InkWell(
-                        //             child: Container(
-                        //               padding: EdgeInsets.all(10),
-                        //               decoration: BoxDecoration(
-                        //                   color: Color(0xFFD9D9D9),
-                        //                   borderRadius: BorderRadius.circular(20)),
-                        //               child: Row(
-                        //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //                 children: [
-                        //                   eventDetails_components().text("Show Attendees",
-                        //                       FontWeight.bold, const Color(0xFF1D2A3A), 22),
-                        //                   // SizedBox(width: 20,),
-                        //                   Icon(
-                        //                     Icons.arrow_circle_right,
-                        //                     color: Color(0xFF1D2A3A),
-                        //                     size: 30,
-                        //                   )
-                        //                 ],
-                        //               ),
-                        //             ),
-                        //             /*onTap: () {
-                        //   Navigator.of(context).pushReplacement(
-                        //       MaterialPageRoute(
-                        //           builder: (context) => attendees(previousScreen_data: widget.eventDetails,)));
-                        // },*/
-                        //           ),
+                                  //           InkWell(
+                                  //             child: Container(
+                                  //               padding: EdgeInsets.all(10),
+                                  //               decoration: BoxDecoration(
+                                  //                   color: Color(0xFFD9D9D9),
+                                  //                   borderRadius: BorderRadius.circular(20)),
+                                  //               child: Row(
+                                  //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  //                 children: [
+                                  //                   eventDetails_components().text("Show Attendees",
+                                  //                       FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                                  //                   // SizedBox(width: 20,),
+                                  //                   Icon(
+                                  //                     Icons.arrow_circle_right,
+                                  //                     color: Color(0xFF1D2A3A),
+                                  //                     size: 30,
+                                  //                   )
+                                  //                 ],
+                                  //               ),
+                                  //             ),
+                                  //             /*onTap: () {
+                                  //   Navigator.of(context).pushReplacement(
+                                  //       MaterialPageRoute(
+                                  //           builder: (context) => attendees(previousScreen_data: widget.eventDetails,)));
+                                  // },*/
+                                  //           ),
                                   SizedBox(
                                     height: 15,
                                   ),
                                   Container(
-                                      width: double.maxFinite,
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFFD9D9D9),
-                                          borderRadius: BorderRadius.circular(20)),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          eventDetails_components().text("Show Faculty Coordinators",
-                                              FontWeight.bold, const Color(0xFF1D2A3A), 22),
+                                    width: double.maxFinite,
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xFFD9D9D9),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        eventDetails_components().text(
+                                            "Show Faculty Coordinators",
+                                            FontWeight.bold,
+                                            const Color(0xFF1D2A3A),
+                                            22),
 
-                                          Container(
-                                            child: buildListWithoutScroll(widget.eventDetails.facultyCoordinator),
-                                          )
-                                          // SizedBox(width: 20,),
-                                        ],
-                                      ),
+                                        Container(
+                                          child: buildListWithoutScroll(widget
+                                              .eventDetails.facultyCoordinator),
+                                        )
+                                        // SizedBox(width: 20,),
+                                      ],
                                     ),
-
+                                  ),
 
                                   SizedBox(
                                     height: 15,
@@ -188,50 +215,70 @@ class _bodyState extends State<body> {
                                   Container(
                                     width: double.maxFinite,
                                     padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xFFD9D9D9),
-                                          borderRadius: BorderRadius.circular(20)),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          eventDetails_components().text("Show Student Coordinators",
-                                              FontWeight.bold, const Color(0xFF1D2A3A), 22),
-                                          // SizedBox(width: 20,),
-                                          Container(
-                                            child: buildListWithoutScrollStudent(widget.eventDetails.studentCoordinator),
-                                          )
-                                        ],
-                                      ),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xFFD9D9D9),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        eventDetails_components().text(
+                                            "Show Student Coordinators",
+                                            FontWeight.bold,
+                                            const Color(0xFF1D2A3A),
+                                            22),
+                                        // SizedBox(width: 20,),
+                                        Container(
+                                          child: buildListWithoutScrollStudent(
+                                              widget.eventDetails
+                                                  .studentCoordinator),
+                                        )
+                                      ],
                                     ),
-
+                                  ),
 
                                   SizedBox(
                                     height: 30,
                                   ),
-                                  eventDetails_components().text("Rules/Regulation of Event",
-                                      FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                                  eventDetails_components().text(
+                                      "Rules/Regulation of Event",
+                                      FontWeight.normal,
+                                      const Color(0xFF1D2A3A),
+                                      22),
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  eventDetails_components().text(widget.eventDetails.getAllRules(),
-                                      FontWeight.normal, const Color(0xFF1D2A3A), 15),
+                                  eventDetails_components().text(
+                                      widget.eventDetails.getAllRules(),
+                                      FontWeight.normal,
+                                      const Color(0xFF1D2A3A),
+                                      15),
                                   SizedBox(
                                     height: 25,
                                   ),
-                                  eventDetails_components().text("Evaluation Criteria",
-                                      FontWeight.normal, const Color(0xFF1D2A3A), 22),
+                                  eventDetails_components().text(
+                                      "Evaluation Criteria",
+                                      FontWeight.normal,
+                                      const Color(0xFF1D2A3A),
+                                      22),
                                   SizedBox(
                                     height: 15,
                                   ),
-                                  eventDetails_components().text(widget.eventDetails.getAllEvaluationCriteria(),
-                                      FontWeight.normal, const Color(0xFF1D2A3A), 15),
+                                  eventDetails_components().text(
+                                      widget.eventDetails
+                                          .getAllEvaluationCriteria(),
+                                      FontWeight.normal,
+                                      const Color(0xFF1D2A3A),
+                                      15),
                                   SizedBox(
                                     height: 20,
                                   ),
                                   Align(
                                     alignment: Alignment.center,
                                     child: SizedBox(
-                                      width: getWidth(kIsWeb ? 100 : double.infinity),
+                                      width: getWidth(
+                                          kIsWeb ? 100 : double.infinity),
                                       child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                             primary: Color(0xFF1D2A3A),
@@ -242,17 +289,19 @@ class _bodyState extends State<body> {
                                             shape: StadiumBorder(),
                                             enableFeedback: true,
                                           ),
-                                          child:  isLoading
+                                          child: isLoading
                                               ? const CircularProgressIndicator(
-                                            color: Colors.white,
-                                            backgroundColor: Colors.transparent,
-                                          )
+                                                  color: Colors.white,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                )
                                               : const Text('Book Event'),
                                           onPressed: () {
+                                            setState(() => isLoading = true);
+
                                             bookEvent();
                                           }),
                                     ),
-
                                   ),
                                   SizedBox(
                                     height: 15,
@@ -267,11 +316,8 @@ class _bodyState extends State<body> {
                   ),
                 ),
               );
-            })
-
-        ),
-      )
-      ,
+            })),
+      ),
     );
   }
 
@@ -282,32 +328,15 @@ class _bodyState extends State<body> {
         height: 250,
       );
 
-  Future bookEvent() async{
-
+  Future bookEvent() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
     stuid = studata.getString("stuid");
     var eventName = widget.eventDetails.name;
 
     var deptName = widget.deptName;
 
-    // showDialog(
-    //     context: context,
-    //     builder: (context) =>
-    //         AlertDialog(
-    //           title: Text('Error'),
-    //           content: Text("Event Name: $eventName\nDeptName: $deptName"),
-    //           actions: [
-    //             TextButton(
-    //                 onPressed: () {
-    //                   Navigator.of(context).pop();
-    //                 },
-    //                 child: Text('Ok'))
-    //           ],
-    //         ));
-
-
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/lunchAndcopy.php";
+      String uri = "https://convergence.uvpce.ac.in/C2K22/bookEvent.php";
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "sid": stuid,
@@ -320,49 +349,92 @@ class _bodyState extends State<body> {
           },
           encoding: Encoding.getByName('utf-8'));
       print(res.statusCode);
-      //  var response = json.decode(res.body);
-
-      //print(response["firebaseId"]);
-      //print(response);
+      var response = json.decode(res.body);
+      print(response["message"]);
       if (res.statusCode == 404) {
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text('Error'),
-              content: Text("User Not Found !!"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Ok'))
-              ],
-            ));
+                  title: Text('Error'),
+                  content: Text("User Not Found !!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              title: Text('Error'),
-              content: Text("Bed Request!!"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Ok'))
-              ],
-            ));
+                  title: Text('Error'),
+                  content: Text("Bed Request!!"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Ok'))
+                  ],
+                ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-        //makePayment();
+        if (response["message"] == "Event booked successfully!!") {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text('Convergence Confirmation'),
+                    content: Text(response["message"]),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Ok'))
+                    ],
+                  ));
+          setState(() => isLoading = false);
+        } else if (response["message"] ==
+                "Another event is already booked in same time slots.." ||
+            response["message"] ==
+                "You can not register for more than 3 events!") {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text('Error'),
+                    content: Text(response["message"]),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Ok'))
+                    ],
+                  ));
+          setState(() => isLoading = false);
+        } else {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text('Error'),
+                    content: Text(response["message"]),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Ok'))
+                    ],
+                  ));
+          setState(() => isLoading = false);
+        }
       }
     } catch (e) {
       print(e.toString());
     }
-
-
-
   }
 
   Widget buildListWithoutScroll(List<FacultyData> facultyCoordinator) {
@@ -380,31 +452,46 @@ class _bodyState extends State<body> {
   Widget buildList(FacultyData e) {
     return Container(
       padding: EdgeInsets.only(left: 20),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
-         SizedBox(height: 20,),
-         eventDetails_components().text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
-         SizedBox(height: 10,),
-         Wrap(
-               direction: Axis.horizontal,
-               spacing: 10,
-               children: [
-                 Icon(Icons.mail, size: 15,),
-                 eventDetails_components().text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
-               ],
-             ),
-         SizedBox(height: 10,),
-         Wrap(
-           direction: Axis.horizontal,
-           spacing: 10,
-           children: [
-             Icon(Icons.phone, size: 15,),
-             eventDetails_components().text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
-           ],
-         ),
-       ],
-     ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          eventDetails_components()
+              .text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
+          SizedBox(
+            height: 10,
+          ),
+          Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            children: [
+              Icon(
+                Icons.mail,
+                size: 15,
+              ),
+              eventDetails_components()
+                  .text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Wrap(
+            direction: Axis.horizontal,
+            spacing: 10,
+            children: [
+              Icon(
+                Icons.phone,
+                size: 15,
+              ),
+              eventDetails_components()
+                  .text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -414,24 +501,39 @@ class _bodyState extends State<body> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
-          eventDetails_components().text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 20,
+          ),
+          eventDetails_components()
+              .text(e.name, FontWeight.bold, Color(0xFF1D2A3A), 16),
+          SizedBox(
+            height: 10,
+          ),
           Wrap(
             direction: Axis.horizontal,
             spacing: 10,
             children: [
-              Icon(Icons.mail, size: 15,),
-              eventDetails_components().text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
+              Icon(
+                Icons.mail,
+                size: 15,
+              ),
+              eventDetails_components()
+                  .text(e.emailId, FontWeight.normal, Color(0xFF1D2A3A), 14),
             ],
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Wrap(
             direction: Axis.horizontal,
             spacing: 10,
             children: [
-              Icon(Icons.phone, size: 15,),
-              eventDetails_components().text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
+              Icon(
+                Icons.phone,
+                size: 15,
+              ),
+              eventDetails_components()
+                  .text(e.mobileNo, FontWeight.normal, Color(0xFF1D2A3A), 14),
             ],
           ),
         ],

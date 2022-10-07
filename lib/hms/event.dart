@@ -1,28 +1,40 @@
 import 'dart:core';
-class FacultyData{
+
+class FacultyData {
   String name = "";
   String emailId = "";
   String mobileNo = "";
-  FacultyData({required this.name,required this.emailId,required this.mobileNo});
+
+  FacultyData(
+      {required this.name, required this.emailId, required this.mobileNo});
+
   @override
   String toString() {
     return "$name\n$mobileNo\n$emailId";
   }
 }
-class StudentData{
+
+class StudentData {
   String name = "";
   String emailId = "";
   String mobileNo = "";
   String branchSem = "";
   String enrollmentNo = "";
-  StudentData({required this.name,required this.emailId,required this.mobileNo,required this.branchSem,
-    required this.enrollmentNo});
+
+  StudentData(
+      {required this.name,
+      required this.emailId,
+      required this.mobileNo,
+      required this.branchSem,
+      required this.enrollmentNo});
+
   @override
   String toString() {
     return "$name\n$mobileNo\n$emailId\n$branchSem\n$enrollmentNo";
   }
 }
-class EventData{
+
+class EventData {
   String name = "";
   String type = "";
   String date = "";
@@ -35,28 +47,47 @@ class EventData{
   List<String> evaluation = [];
   List<FacultyData> facultyCoordinator = [];
   List<StudentData> studentCoordinator = [];
-  String getCategoryTime(){
+
+  String getCategoryTime() {
     return categoryTime.join('-');
   }
-  String getAllRules(){
+
+  String getAllRules() {
     return rules.join("\n");
   }
-  String getAllEvaluationCriteria(){
+
+  String getAllEvaluationCriteria() {
     return evaluation.join("\n");
   }
-  EventData({required this.name,required this.type,required this.date,required this.time,
-    required this.venue,required this.logo,required this.description});
+
+  EventData({
+    required this.name,
+    required this.type,
+    required this.date,
+    required this.time,
+    required this.venue,
+    required this.logo,
+    required this.description,
+  });
+
   @override
   String toString() {
     return "$name\n$type\n$date\n$time\n${categoryTime.toString()}\n$venue\n$logo\n$description\n${rules.toString()}\n${evaluation.toString()}\n${facultyCoordinator.toString()}\n${studentCoordinator.toString()}";
   }
 }
-class EventDeptData{
+
+class EventDeptData {
   String name = "";
   String logo = "";
   String poster = "";
   List<EventData> eventList = [];
-  EventDeptData({required this.name,required this.logo,required this.poster});
+
+  EventDeptData({
+    required this.name,
+    required this.logo,
+    required this.poster,
+  });
+
   @override
   String toString() {
     return "$name\n$logo\n$poster\n${eventList.toString()}";

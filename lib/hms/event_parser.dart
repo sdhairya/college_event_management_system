@@ -60,7 +60,7 @@ class EventParser{
   List<EventData> getEventDataList(records){
     List<EventData> listEvent = [];
     if(records == null) return [];
-    debugPrint("getEventDataList::Length of records ${(records as List).length.toString()}\n Records are ${records}");
+    // debugPrint("getEventDataList::Length of records ${(records as List).length.toString()}\n Records are ${records}");
     for (var e in records) {
       listEvent.add(getEventData(e));
     }

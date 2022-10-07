@@ -1,17 +1,20 @@
 import 'dart:convert';
+
 import 'package:college_event_management/login/components/login_components.dart';
 import 'package:college_event_management/payment/payment.dart';
+import 'package:college_event_management/verify_otp/verify_otp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../createProfile/createProfile.dart';
 import '../../dashboard/dashboardScreen.dart';
 import '../../forgotPassword.dart';
 import '../../registration/registrtion.dart';
 import '../../size_config.dart';
-import 'package:http/http.dart' as http;
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -98,7 +101,7 @@ class _bodyState extends State<body> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Phone Email\n',
+                      const Text('Email\n',
                           style: TextStyle(
                               fontSize: 16, color: Color(0xFF1D2A3A))),
                       login_components().textField("Enter Email Address",
@@ -202,26 +205,24 @@ class _bodyState extends State<body> {
 
                             setState(() => isLoading = true);
 
-                            if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty)
-
-                              {
-                                userLogin();
-
-                              }
-                            else{
+                            if (_emailController.text.isNotEmpty &&
+                                _passwordController.text.isNotEmpty) {
+                              userLogin();
+                            } else {
                               showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                    title: Text('Error'),
-                                    content: Text("All fields are required!!"),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text('Ok'))
-                                    ],
-                                  ));
+                                        title: Text('Error'),
+                                        content:
+                                            Text("All fields are required!!"),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('Ok'))
+                                        ],
+                                      ));
                             }
                             //dashboardScreen();
                             // User? user = await loginUsingEmailPassword(
@@ -341,67 +342,71 @@ class _bodyState extends State<body> {
 
       if (res.statusCode == 404) {
         showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text("User Not Found Check your Email Or Password!"),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Ok'))
-                  ],
-                ));
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("User Not Found Check your Email Or Password!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
         setState(() => isLoading = false);
-
       } else if (res.statusCode == 442) {
         showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text("Bed Request!!"),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Ok'))
-                  ],
-                ));
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("Bed Request!!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
         setState(() => isLoading = false);
-
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
         uid = response["id"];
         print(uid);
-        print(response);
+        // print(response);
 
         if (uid != "") {
-
           SharedPreferences studata = await SharedPreferences.getInstance();
 
           studata.setString("stuid", uid);
           studata.setString("stuName", response["username"]);
-
-          // checkProfile(uid);
-          Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (context) => dashboardScreen()));
-          Fluttertoast.showToast(
+          if (response["isVerified"] == "0") {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => VerifyOTPScreen()));
+          } else if (response["isVerified"] == "1") {
+            checkProfile(uid);
+            // Navigator.of(context).pushReplacement(
+            //                 MaterialPageRoute(
+            //                     builder: (context) => dashboardScreen()));
+            Fluttertoast.showToast(
               msg: "Success!!",
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIosWeb: 1,
               backgroundColor: Colors.red,
               textColor: Colors.white,
-              fontSize: 16.0);
-          // setState(() => isLoading = false);
-
+              fontSize: 16.0,
+            );
+            // setState(() => isLoading = false);
+          }
         } else {
           print("some issue");
           setState(() => isLoading = false);
-
         }
       } else {
         print("some issue");
@@ -419,7 +424,8 @@ class _bodyState extends State<body> {
           body: json.encode({"id": uid}),
           headers: {
             "Accept": "application/json",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            'Accept': '*/*'
           },
           encoding: Encoding.getByName('utf-8'));
 
@@ -459,7 +465,7 @@ class _bodyState extends State<body> {
         if (flag == "0") {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => createProfile()));
-        } else if (flag == "1") { 
+        } else if (flag == "1") {
           checkPayment();
         } else {
           print("somthing wrong");
@@ -473,13 +479,11 @@ class _bodyState extends State<body> {
     }
   }
 
-  Future checkPayment() async{
+  Future checkPayment() async {
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/checkPayment.php";
       var res = await http.post(Uri.parse(uri),
-          body: json.encode({
-            "id": uid
-          }),
+          body: json.encode({"id": uid}),
           headers: {
             "Accept": "application/json",
             "Access-Control-Allow-Origin": "*"
@@ -492,15 +496,14 @@ class _bodyState extends State<body> {
       //print(response["firebaseId"]);
       //print(response);
       if (res.statusCode == 404 || response["sid"] == "") {
-            Navigator.of(context).pushReplacement(
+        Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => payment()));
 
         setState(() => isLoading = false);
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
                   title: Text('Error'),
                   content: Text("Bed Request!!"),
                   actions: [
@@ -515,18 +518,14 @@ class _bodyState extends State<body> {
       } else if (res.statusCode == 200) {
         print(response["sid"]);
 
-        if(response["sid"] == uid)
-          {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => dashboardScreen()));
-            setState(() => isLoading = false);
-          }
-
+        if (response["sid"] == uid) {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => dashboardScreen()));
+          setState(() => isLoading = false);
+        }
       }
     } catch (e) {
       print(e.toString());
     }
-
   }
-
 }

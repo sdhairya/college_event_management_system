@@ -1,21 +1,17 @@
-import 'package:college_event_management/size_config.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:college_event_management/payment_timer/payment_status_screen.dart';
+import 'package:college_event_management/verify_otp/verify_otp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import '../login/components/body.dart';
 import '../dashboard/dashboardScreen.dart';
-import '';
 import '../registration/registrtion.dart';
-import '../forgotPassword.dart';
+import 'login/login.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
 
-    options: kIsWeb?FirebaseOptions(
+    options: kIsWeb?const FirebaseOptions(
       apiKey: "AIzaSyBZ1C4-OlfZ9es8wI11n67Pfn6-2jO3_Sk",
       appId: "1:218216942084:web:8177f1e389af6825edc351",
         messagingSenderId: "218216942084",
@@ -31,9 +27,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      // home: HomePage(),
+
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginScreen(),
+        '/dashboard': (context) => const dashboardScreen(),
+        '/register': (context) => const registration(),
+        // '/verify_otp' : (context) => const VerifyOTPScreen(),
+        // '/payment_status' : (context) => const PaymentStatusScreen(),
+      },
+
 
       // title: 'Flutter Demo',
       // theme: ThemeData(
@@ -74,23 +80,6 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
-  }
-}
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  //Login Function
-
-  @override
-  Widget build(BuildContext context) {
-
-    return body();
   }
 
 
