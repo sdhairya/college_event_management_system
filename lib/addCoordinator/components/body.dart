@@ -1,16 +1,20 @@
+import 'dart:convert';
+
 import 'package:college_event_management/addCoordinator/components/addCoordinator_components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../main.dart';
 import '../../size_config.dart';
-
+import 'package:http/http.dart' as http;
 
 TextEditingController _coordiantorNameController = TextEditingController();
 TextEditingController _coordiantorEmailController = TextEditingController();
 TextEditingController _coordiantorPhoneController = TextEditingController();
-TextEditingController _coordiantorEnrollmentController = TextEditingController();
-
+TextEditingController _coordiantorEnrollmentController =
+    TextEditingController();
 
 class addCoordinator extends StatefulWidget {
   const addCoordinator({Key? key}) : super(key: key);
@@ -20,6 +24,11 @@ class addCoordinator extends StatefulWidget {
 }
 
 class _addCoordinatorState extends State<addCoordinator> {
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  bool isLoading = false;
+  var uuid = Uuid();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +60,8 @@ class _addCoordinatorState extends State<addCoordinator> {
                             Icons.arrow_back_ios_new_rounded,
                             size: 30,
                           )),
-                      addCoordinator_components().text("Add Coordinator", FontWeight.w600, Color(0xFF1D2A3A), 35),
+                      addCoordinator_components().text("Add Coordinator",
+                          FontWeight.w600, Color(0xFF1D2A3A), 35),
                       // Text(
                       //   'Add Coordinator ',
                       //   style: TextStyle(
@@ -77,41 +87,27 @@ class _addCoordinatorState extends State<addCoordinator> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const addCoordinator_components().text('   Name', FontWeight.normal, Color(0xFF1D2A3A), 16),
-
+                      const addCoordinator_components().text(
+                          '   Name', FontWeight.normal, Color(0xFF1D2A3A), 16),
                       const SizedBox(
                         height: 10,
                       ),
-                      const addCoordinator_components().textField("Enter Your Name", TextInputType.text, _coordiantorNameController),
-
+                      const addCoordinator_components().textField(
+                          "Enter Your Name",
+                          TextInputType.text,
+                          _coordiantorNameController),
                       const SizedBox(
                         height: 30,
                       ),
-                      const addCoordinator_components().text('   Email', FontWeight.normal, Color(0xFF1D2A3A), 16),
+                      const addCoordinator_components().text(
+                          '   Email', FontWeight.normal, Color(0xFF1D2A3A), 16),
                       const SizedBox(
                         height: 10,
                       ),
-                      const addCoordinator_components().textField("Enter Email", TextInputType.emailAddress, _coordiantorEmailController),
-
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const addCoordinator_components().text('   Phone Number', FontWeight.normal, Color(0xFF1D2A3A), 16),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const addCoordinator_components().textField("Enter Phone Number", TextInputType.visiblePassword, _coordiantorPhoneController),
-
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const addCoordinator_components().text('   Enrollment Number', FontWeight.normal, Color(0xFF1D2A3A), 16),
-
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const addCoordinator_components().textField("Enter Enrollment No.", TextInputType.text, _coordiantorEnrollmentController),
-
+                      const addCoordinator_components().textField(
+                          "Enter Email",
+                          TextInputType.emailAddress,
+                          _coordiantorEmailController),
                       const SizedBox(
                         height: 30,
                       ),
@@ -122,7 +118,7 @@ class _addCoordinatorState extends State<addCoordinator> {
                             alignment: Alignment.center,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary:Color(0xFF1D2A3A),
+                                primary: Color(0xFF1D2A3A),
                                 onSurface: Color(0xFF1D2A3A),
                                 padding: EdgeInsets.all(3),
                                 textStyle: TextStyle(fontSize: 20),
@@ -131,7 +127,25 @@ class _addCoordinatorState extends State<addCoordinator> {
                                 enableFeedback: true,
                               ),
                               child: const Text('Add Coordinator'),
-                              onPressed: (){}
+                              onPressed: () async {
+                                if (isLoading) return;
+                                setState(() => isLoading = true);
+
+                                if (_emailController.text.isNotEmpty &&
+                                    _nameController.text.isNotEmpty) {
+                                  addCoordinator();
+                                } else {
+                                  Fluttertoast.showToast(
+                                      msg: "Any field can not be empty!!",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                  setState(() => isLoading = false);
+                                }
+                              },
                             ),
                           )),
                     ],
@@ -146,5 +160,86 @@ class _addCoordinatorState extends State<addCoordinator> {
         ),
       ),
     );
+  }
+
+  Future addCoordinator() async {
+    var userId = uuid.v4();
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "id": userId,
+            "email": _emailController.text,
+            "userName": _nameController.text,
+            "role": "faculty",
+            "password": "Convergence@uvpce"
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("User Not Found Check your Email Or Password!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("Bed Request!!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+        Fluttertoast.showToast(
+            msg: "Faculty Added Successfully!!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+        print("faculty added Successfully!!");
+        setState(() => isLoading = false);
+
+        _emailController.text = "";
+        _nameController.text = "";
+
+        // print(response);
+      } else {
+        print("some issue");
+        setState(() => isLoading = false);
+      }
+    } catch (e) {
+      // print(e.toString());
+    }
   }
 }

@@ -35,16 +35,19 @@ class _bodyState extends State<body> {
   bool _isobscure2 = true;
 
   var uuid = Uuid();
+
   void _toggle() {
     setState(() {
       _isobscure = !_isobscure;
     });
   }
+
   void _toggle2() {
     setState(() {
       _isobscure2 = !_isobscure2;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,25 +162,25 @@ class _bodyState extends State<body> {
                               //     TextInputType.visiblePassword,
                               //     _signUpPasswordController,
                               //     ""),
-                          TextFormField(
-                            obscureText: _isobscure,
-                            controller: _signUpPasswordController,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                hintText: 'Enter Password',
-                                suffixIcon: IconButton(
-                                  icon: Icon(_isobscure
-                                      ? Icons.visibility
-                                      : Icons.visibility_off),
-                                  onPressed: _toggle,
-                                )),
-                            keyboardType: TextInputType.visiblePassword,
-                          ),
+                              TextFormField(
+                                obscureText: _isobscure,
+                                controller: _signUpPasswordController,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    hintText: 'Enter Password',
+                                    suffixIcon: IconButton(
+                                      icon: Icon(_isobscure
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: _toggle,
+                                    )),
+                                keyboardType: TextInputType.visiblePassword,
+                              ),
                               const SizedBox(
                                 height: 30,
                               ),
-
 
                               registration_components().text(
                                   '   Confirm Password',
@@ -198,7 +201,8 @@ class _bodyState extends State<body> {
                                 controller: _signUpConfrimPasswordController,
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15)),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
                                     hintText: 'Enter Confirm Password',
                                     suffixIcon: IconButton(
                                       icon: Icon(_isobscure2
@@ -329,7 +333,6 @@ class _bodyState extends State<body> {
     );
   }
 
-
   Future insertUser() async {
     var userId = uuid.v4();
     SharedPreferences studata = await SharedPreferences.getInstance();
@@ -341,7 +344,7 @@ class _bodyState extends State<body> {
             "id": userId,
             "email": _signUpEmailController.text,
             "userName": _signUpNameController.text,
-            "isStudent": 1,
+            "role": "user",
             "password": _signUpPasswordController.text
           }),
           headers: {
@@ -354,9 +357,45 @@ class _bodyState extends State<body> {
 
       //print(response["firebaseId"]);
       //print(response);
-      if (res.statusCode == 200) {
+
+      if (res.statusCode == 404) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("User Not Found Check your Email Or Password!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("Bed Request!!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+
         Fluttertoast.showToast(
-            msg: "Success!!",
+            msg: "Registration Successfully!!",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
@@ -368,6 +407,7 @@ class _bodyState extends State<body> {
 
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => VerifyOTPScreen()));
+        // print(response);
       } else {
         print("some issue");
         setState(() => isLoading = false);

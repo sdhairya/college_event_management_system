@@ -24,9 +24,17 @@ class _bodyState extends State<body> {
   File? _pickedimage;
   Uint8List webImage = Uint8List(8);
   var stuid;
+  var role;
 
   bool isLoading = false;
   bool isChecked = true;
+
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
+
   TextEditingController _createProfileFirstNameController =
       TextEditingController();
   TextEditingController _createProfileLastNameController =
@@ -34,6 +42,8 @@ class _bodyState extends State<body> {
   TextEditingController _createProfileMobileController =
       TextEditingController();
   TextEditingController _createProfileEmailController = TextEditingController();
+  TextEditingController _createProfileEr_noController = TextEditingController();
+
   TextEditingController _createProfileSemController = TextEditingController();
   TextEditingController _createProfileBranchController =
       TextEditingController();
@@ -243,6 +253,20 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
+                              const Text('    Enrollement No',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Enrollment Number",
+                                  TextInputType.text,
+                                  _createProfileEr_noController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
                               const Text('    Branch',
                                   style: TextStyle(
                                       fontSize: 16, color: Color(0xFF1D2A3A))),
@@ -257,9 +281,12 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              const Text('    Semester',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              role != "faculty" || role != "admin"
+                                  ?  Wrap(
+                        children: [const Text('    Semester',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Color(0xFF1D2A3A))),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -267,7 +294,7 @@ class _bodyState extends State<body> {
                                   "Enter Semester",
                                   TextInputType.datetime,
                                   _createProfileSemController,
-                                  ""),
+                                  "")]):SizedBox(),
                               const SizedBox(
                                 height: 30,
                               ),
@@ -319,9 +346,9 @@ class _bodyState extends State<body> {
                                       : const Text('Create Profile'),
                                   onPressed: isChecked
                                       ? () async {
-                                    setState(() => isLoading = true);
+                                          setState(() => isLoading = true);
 
-                                    // if (isLoading) return;
+                                          // if (isLoading) return;
                                           if (_createProfileFirstNameController
                                                   .text.isNotEmpty &&
                                               _createProfileLastNameController
@@ -457,9 +484,6 @@ class _bodyState extends State<body> {
   }
 
   Future createStuProfile() async {
-    SharedPreferences studata = await SharedPreferences.getInstance();
-    stuid = studata.getString("stuid");
-
     print(stuid);
 
     try {
@@ -470,6 +494,7 @@ class _bodyState extends State<body> {
             "firstName": _createProfileFirstNameController.text,
             "lastName": _createProfileLastNameController.text,
             "email": _createProfileEmailController.text,
+            "er_no":_createProfileEr_noController,
             "mobile": _createProfileMobileController.text,
             "college": _createProfileCollegeController.text,
             "branch": _createProfileBranchController.text,
@@ -575,5 +600,11 @@ class _bodyState extends State<body> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future fetchData() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    role = studata.getString("role");
+    stuid = studata.getString("stuid");
   }
 }

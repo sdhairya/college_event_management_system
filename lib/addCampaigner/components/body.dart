@@ -1,26 +1,30 @@
 import 'dart:convert';
+import 'dart:math';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:college_event_management/addCoordinator/components/addCoordinator_components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:college_event_management/size_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../../main.dart';
-import '../addFaculty.dart';
-import 'addFaculty_components.dart';
-import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 
-import '../../dashboard/dashboardScreen.dart';
+import '../../main.dart';
+import '../../size_config.dart';
+import 'package:http/http.dart' as http;
 
-class body extends StatefulWidget {
-  const body({Key? key}) : super(key: key);
+TextEditingController _coordiantorNameController = TextEditingController();
+TextEditingController _coordiantorEmailController = TextEditingController();
+TextEditingController _coordiantorPhoneController = TextEditingController();
+TextEditingController _coordiantorEnrollmentController =
+TextEditingController();
+
+class addCampaigner extends StatefulWidget {
+  const addCampaigner({Key? key}) : super(key: key);
 
   @override
-  State<body> createState() => _bodyState();
+  State<addCampaigner> createState() => _addCampaignerState();
 }
 
-class _bodyState extends State<body> {
+class _addCampaignerState extends State<addCampaigner> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   bool isLoading = false;
@@ -31,7 +35,8 @@ class _bodyState extends State<body> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        child: Stack(
+        reverse: true,
+        child: Column(
           children: <Widget>[
             Column(
               children: [
@@ -48,25 +53,29 @@ class _bodyState extends State<body> {
                       IconButton(
                           padding: EdgeInsets.only(bottom: 3, right: 8),
                           onPressed: () {
-                            signOut();
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
                           },
                           icon: Icon(
                             Icons.arrow_back_ios_new_rounded,
                             size: 30,
                           )),
-                      Text(
-                        'Add Faculty',
-                        style: TextStyle(
-                            fontSize: 35,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF1D2A3A)),
-                      )
+                      addCoordinator_components().text("Add Campaigner",
+                          FontWeight.w600, Color(0xFF1D2A3A), 35),
+                      // Text(
+                      //   'Add Coordinator ',
+                      //   style: TextStyle(
+                      //       fontSize: 35,
+                      //       fontStyle: FontStyle.normal,
+                      //       fontWeight: FontWeight.w600,
+                      //       color: Color(0xFF1D2A3A)),
+                      // )
                     ],
                   ),
                 ),
                 Container(
-                  height: getHeight(555),
+                  // height: getHeight(555),
                   width: getWidth(kIsWeb ? 100 : double.infinity),
                   // width: kIsWeb ? 600 : double.infinity,
                   // constraints: BoxConstraints(maxWidth: 1000),
@@ -79,21 +88,27 @@ class _bodyState extends State<body> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const addFaculty_components().text("    Name"),
+                      const addCoordinator_components().text(
+                          '   Name', FontWeight.normal, Color(0xFF1D2A3A), 16),
                       const SizedBox(
                         height: 10,
                       ),
-                      const addFaculty_components().textField(
-                          "Enter Name", TextInputType.text, _nameController),
+                      const addCoordinator_components().textField(
+                          "Enter Your Name",
+                          TextInputType.text,
+                          _coordiantorNameController),
                       const SizedBox(
                         height: 30,
                       ),
-                      const addFaculty_components().text("    Email"),
+                      const addCoordinator_components().text(
+                          '   Email', FontWeight.normal, Color(0xFF1D2A3A), 16),
                       const SizedBox(
                         height: 10,
                       ),
-                      const addFaculty_components().textField("Enter Email",
-                          TextInputType.emailAddress, _emailController),
+                      const addCoordinator_components().textField(
+                          "Enter Email",
+                          TextInputType.emailAddress,
+                          _coordiantorEmailController),
                       const SizedBox(
                         height: 30,
                       ),
@@ -112,19 +127,14 @@ class _bodyState extends State<body> {
                                 shape: StadiumBorder(),
                                 enableFeedback: true,
                               ),
-                              child: isLoading
-                                  ? const CircularProgressIndicator(
-                                      color: Colors.white,
-                                      backgroundColor: Colors.transparent,
-                                    )
-                                  : const Text('Add Faculty'),
+                              child: const Text('Add Campaigner'),
                               onPressed: () async {
                                 if (isLoading) return;
                                 setState(() => isLoading = true);
 
                                 if (_emailController.text.isNotEmpty &&
                                     _nameController.text.isNotEmpty) {
-                                  addFaculty();
+                                  addCampaigner();
                                 } else {
                                   Fluttertoast.showToast(
                                       msg: "Any field can not be empty!!",
@@ -141,7 +151,10 @@ class _bodyState extends State<body> {
                           )),
                     ],
                   ),
-                )
+                ),
+                Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom)),
               ],
             )
           ],
@@ -150,8 +163,9 @@ class _bodyState extends State<body> {
     );
   }
 
-  Future addFaculty() async {
+  Future addCampaigner() async {
     var userId = uuid.v4();
+    var intValue = Random().nextInt(1000) + 800;
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
       var res = await http.post(Uri.parse(uri),
@@ -230,11 +244,4 @@ class _bodyState extends State<body> {
       // print(e.toString());
     }
   }
-
-  Future signOut() async {
-    await FirebaseAuth.instance.signOut();
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
-  }
-
-  }
+}
