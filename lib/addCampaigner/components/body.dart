@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:college_event_management/addCoordinator/components/addCoordinator_components.dart';
+import 'package:college_event_management/addCampaigner/components/addCampaigner_components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -61,7 +61,7 @@ class _bodyState extends State<body> {
                             Icons.arrow_back_ios_new_rounded,
                             size: 30,
                           )),
-                      addCoordinator_components().text("Add Campaigner",
+                      addCampaigner_components().text("Add Campaigner",
                           FontWeight.w600, Color(0xFF1D2A3A), 35),
                       // Text(
                       //   'Add Coordinator ',
@@ -88,27 +88,27 @@ class _bodyState extends State<body> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const addCoordinator_components().text(
+                      const addCampaigner_components().text(
                           '   Name', FontWeight.normal, Color(0xFF1D2A3A), 16),
                       const SizedBox(
                         height: 10,
                       ),
-                      const addCoordinator_components().textField(
+                      const addCampaigner_components().textField(
                           "Enter Your Name",
                           TextInputType.text,
-                          _coordiantorNameController),
+                          _addCampaignernameController),
                       const SizedBox(
                         height: 30,
                       ),
-                      const addCoordinator_components().text(
+                      const addCampaigner_components().text(
                           '   Email', FontWeight.normal, Color(0xFF1D2A3A), 16),
                       const SizedBox(
                         height: 10,
                       ),
-                      const addCoordinator_components().textField(
+                      const addCampaigner_components().textField(
                           "Enter Email",
                           TextInputType.emailAddress,
-                          _coordiantorEmailController),
+                          _addCampaigneremailController),
                       const SizedBox(
                         height: 30,
                       ),
