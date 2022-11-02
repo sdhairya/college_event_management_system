@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../addFaculty/components/body.dart';
+import 'package:college_event_management/addCampaigner/components/body.dart';
 
 
 import 'package:flutter/src/widgets/framework.dart';
