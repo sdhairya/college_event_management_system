@@ -25,8 +25,8 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+  TextEditingController _addCampaignernameController = TextEditingController();
+  TextEditingController _addCampaigneremailController = TextEditingController();
   bool isLoading = false;
   var uuid = Uuid();
 
@@ -132,8 +132,8 @@ class _bodyState extends State<body> {
                                 if (isLoading) return;
                                 setState(() => isLoading = true);
 
-                                if (_emailController.text.isNotEmpty &&
-                                    _nameController.text.isNotEmpty) {
+                                if (_addCampaigneremailController.text.isNotEmpty &&
+                                    _addCampaignernameController.text.isNotEmpty) {
                                   addCampaigner();
                                 } else {
                                   Fluttertoast.showToast(
@@ -165,14 +165,14 @@ class _bodyState extends State<body> {
 
   Future addCampaigner() async {
     var userId = uuid.v4();
-    var intValue = Random().nextInt(1000) + 800;
+
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/addCampaigner.php";
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "id": userId,
-            "email": _emailController.text,
-            "userName": _nameController.text,
+            "email": _addCampaigneremailController.text,
+            "userName": _addCampaignernameController.text,
             "role": "campaigner",
             "password": "Convergence@uvpce"
           }),
@@ -232,8 +232,8 @@ class _bodyState extends State<body> {
         print("campaigner added Successfully!!");
         setState(() => isLoading = false);
 
-        _emailController.text = "";
-        _nameController.text = "";
+        _addCampaigneremailController.text = "";
+        _addCampaignernameController.text = "";
 
         // print(response);
       } else {
