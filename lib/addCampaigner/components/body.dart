@@ -134,7 +134,7 @@ class _bodyState extends State<body> {
 
                                 if (_addCampaigneremailController.text.isNotEmpty &&
                                     _addCampaignernameController.text.isNotEmpty) {
-                                  addCampaigner();
+                                  addCampaignerStudent();
                                 } else {
                                   Fluttertoast.showToast(
                                       msg: "Any field can not be empty!!",
@@ -163,7 +163,7 @@ class _bodyState extends State<body> {
     );
   }
 
-  Future addCampaigner() async {
+  Future addCampaignerStudent() async {
     var userId = uuid.v4();
 
     try {
