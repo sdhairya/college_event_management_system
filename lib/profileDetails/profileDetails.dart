@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:college_event_management/profileDetails/components/body.dart';
 
 class profileDetails extends StatelessWidget {
-  final String name;
-  const profileDetails({Key? key, required this.name}) : super(key: key);
+  const profileDetails({Key? key}) : super(key: key);
 
 //   @override
 //   State<profileDetails> createState() => _profileDetailsState();
@@ -12,6 +11,6 @@ class profileDetails extends StatelessWidget {
 // class _profileDetailsState extends State<profileDetails> {
   @override
   Widget build(BuildContext context) {
-    return body(name: name);
+    return body();
   }
 }

@@ -6,8 +6,7 @@ import '../../dashboard/dashboardScreen.dart';
 import '../../size_config.dart';
 
 class body extends StatefulWidget {
-  final String name;
-  const body({Key? key, required this.name}) : super(key: key);
+  const body({Key? key}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -21,158 +20,126 @@ class _bodyState extends State<body> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
+      body: SafeArea(
+      child: SingleChildScrollView(
+        // padding: EdgeInsets.only(left: 5, right: 5, bottom: 10),
         reverse: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const Align(
-              alignment: Alignment(0, 0),
-            ),
-            Container(
-              height: getHeight(50),
-              width: getWidth(kIsWeb ? 250 : double.infinity),
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(
-                  left: 0, top: MediaQuery.of(context).size.height * 0.12),
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                      padding: EdgeInsets.only(bottom: 3, right: 8),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (context) => dashboardScreen()));
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        size: 30,
-                      )),
-                  Text(
-                    'Attendees Details ',
-                    style: TextStyle(
-                        fontSize: 35,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF1D2A3A)),
-                  )
-                ],
+        child: LayoutBuilder(builder: (context, constraints){
+          return AnimatedContainer(duration: const Duration(milliseconds: 500),
+            padding: constraints.maxWidth < 500 ? EdgeInsets.zero : const EdgeInsets.all(30.0),
+            child: Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 1200),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    const Align(
+                      alignment: Alignment(0, 0),
+                    ),
+                    Container(
+                        alignment: Alignment.topLeft,
+                        child: ListTile(
+                          dense: true,
+                          horizontalTitleGap: 0,
+                          leading: IconButton(
+                              padding: const EdgeInsets.only(
+                                  bottom: 3, right: 3),
+                              onPressed: () {
+                                //
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                    builder: (context) => dashboardScreen()));
+                              },
+                              icon: Icon(
+                                color: Color(0xFF1D2A3A),
+                                Icons.arrow_back_ios_new_rounded,
+                                size: 25,
+                              )),
+                          title: const Text(
+                            'Profile ',
+                            style: TextStyle(
+                                fontSize: 28,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF1D2A3A)),
+                          ),
+                        )
+
+                    ),
+
+                    Container(
+                      padding: EdgeInsets.only(left: 5, top: 40,  ),
+                      child:Column(
+                        children: [
+                          CircleAvatar(
+                                radius: 80,
+                                backgroundColor: Colors.cyan,
+                            child: Center(
+                              child: profile_components().text("T", FontWeight.bold, Colors.white, 80),
+                            ),
+                              ),
+                              SizedBox(height: 30,),
+                          profile_components().text("test", FontWeight.bold, Color(0xFF1D2A3A), 26),
+                        ],
+                      )
+                        
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(top: 30),
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      decoration:BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFFD9D9D9),
+                      ),
+                      child: Column(
+                        children: [
+                          buildDetails(Icons.location_on, "Address"),
+                          buildDetails(Icons.mail, "abc@gmail.com"),
+                          buildDetails(Icons.phone, "1234567890"),
+
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      decoration:BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFFD9D9D9),
+                      ),
+                      child: Column(
+                        children: [
+                          buildDetails(Icons.account_tree, "IT"),
+                          buildDetails(Icons.category, "7"),
+                          buildDetails(Icons.account_balance, "UVPCE"),
+
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
+          );
+        },)
 
-            Container(
-              width: getWidth(kIsWeb ? 250 : double.infinity),
-              padding: EdgeInsets.only(left: 5, top: 40,  ),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 80,
-                    backgroundColor: Colors.cyan,
-                  ),
-                  SizedBox(width: 30,),
-                  Column(
-                    children: [
-                      profile_components().text(widget.name, FontWeight.bold, Color(0xFF1D2A3A), 26),
-                      profile_components().text("Ahmedabad", FontWeight.normal, Color(0xFF1D2A3A), 22)
-                    ],
-                  )
 
-                ],
-              ),
-            ),
-
-            Container(
-              width: getWidth(kIsWeb ? 250 : double.infinity),
-              padding: EdgeInsets.only(left: 10, top: 30),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      profile_components().icon(Icons.mail),
-                      profile_components().text("abc@gmail.com", FontWeight.normal, Color(0xFF1D2A3A), 20)
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      profile_components().icon(Icons.phone),
-                      profile_components().text("1234567890", FontWeight.normal, Color(0xFF1D2A3A), 20)
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      profile_components().icon(Icons.whatsapp),
-                      profile_components().text("1234567890", FontWeight.normal, Color(0xFF1D2A3A), 20)
-                    ],
-                  ),
-                  SizedBox(height: 30,),
-                ],
-              ),
-            ),
-
-            Container(
-              width: getWidth(kIsWeb ? 250 : double.infinity),
-              padding: EdgeInsets.only(left: 10, top: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  profile_components().text("Attended Events", FontWeight.bold, Color(0xFF1D2A3A), 25),
-                  SizedBox(height: 20,)
-                ],
-              ),
-            ),
-
-            Container(
-              width: getWidth(kIsWeb ? 230 : double.infinity),
-              child: Flexible(
-                fit: FlexFit.loose,
-                // height:,// card height
-                // width: getWidth(kIsWeb ? 230 : double.infinity),
-                child: ListView.separated(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                    padding: const EdgeInsets.all(12),
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return buildCard(index, list);
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: 10,);
-                    }),
-              ),
-            ),
-
-          ],
-        ),
+      ),
       ),
     );
   }
 
-  Widget buildCard(int index, List list) => Container(
-    padding: EdgeInsets.only(left: 30, top: 10,bottom: 10),
-    // margin: EdgeInsets.only(left: 50, right: 50),
-    decoration: BoxDecoration(
-        border: Border.all(color: Color(0xFF1D2A3A), width: 1,),
-        borderRadius: BorderRadius.circular(20),
-        color: Color(0xFFd9d8d4)
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        profile_components().text(list[index], FontWeight.bold, Color(0xFF1D2A3A), 22),
-        SizedBox(height: 5,),
-        profile_components().text("29th Nov 2022", FontWeight.normal, Color(0xFF1D2A3A), 20),
-        SizedBox(height:5,),
-        Row(
-          children: [
-            profile_components().icon(Icons.location_on),
-            profile_components().text("Ahmedabad", FontWeight.normal, Color(0xFF1D2A3A), 20),
-          ],
-        )
-      ],
-    ),
-  );
+  Widget buildDetails(IconData icon, String text) {
+    return ListTile(
+      dense: true,
+      horizontalTitleGap: 0,
+      leading: profile_components().icon(icon),
+        title: profile_components().text(text, FontWeight.normal, Color(0xFF1D2A3A), 20)
+        ,
+
+    );
+  }
+
 
 }

@@ -329,7 +329,6 @@ class _bodyState extends State<body> {
           onTap: () {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => profileDetails(
-                      name: stuName,
                     )));
           },
         ),
@@ -361,6 +360,17 @@ class _bodyState extends State<body> {
                     onTap: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => createProfile()));
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.bookmark_add),
+                    title: const Text('Create Event'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => createEvent(),
+                        ),
+                      );
                     },
                   ),
                 ],

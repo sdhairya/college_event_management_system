@@ -153,8 +153,8 @@ class _bodyState extends State<body> {
           ],
         ),
         onTap: (){
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => profileDetails(name: list[index],)));
+          // Navigator.of(context).pushReplacement(
+          //     MaterialPageRoute(builder: (context) => profileDetails(name: list[index],)));
         },)
   );
 }
