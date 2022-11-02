@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:college_event_management/addCampaigner/addCampaigner.dart';
+import 'package:college_event_management/addCampaigner/components/body.dart';
 import 'package:college_event_management/addCoordinator/components/body.dart';
 import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/dashboard/models/MyEventsReqBody.dart';
@@ -359,7 +361,7 @@ class _bodyState extends State<body> {
                     title: const Text('Add Campaigner'),
                     onTap: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => createProfile()));
+                          builder: (context) => addCampaigner()));
                     },
                   ),
                   ListTile(

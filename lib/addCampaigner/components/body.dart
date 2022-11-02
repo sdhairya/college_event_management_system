@@ -17,14 +17,14 @@ TextEditingController _coordiantorPhoneController = TextEditingController();
 TextEditingController _coordiantorEnrollmentController =
 TextEditingController();
 
-class addCampaigner extends StatefulWidget {
-  const addCampaigner({Key? key}) : super(key: key);
+class body extends StatefulWidget {
+  const body({Key? key}) : super(key: key);
 
   @override
-  State<addCampaigner> createState() => _addCampaignerState();
+  State<body> createState() => _bodyState();
 }
 
-class _addCampaignerState extends State<addCampaigner> {
+class _bodyState extends State<body> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   bool isLoading = false;
@@ -167,13 +167,13 @@ class _addCampaignerState extends State<addCampaigner> {
     var userId = uuid.v4();
     var intValue = Random().nextInt(1000) + 800;
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
+      String uri = "https://convergence.uvpce.ac.in/C2K22/addCampaigner.php";
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "id": userId,
             "email": _emailController.text,
             "userName": _nameController.text,
-            "role": "faculty",
+            "role": "campaigner",
             "password": "Convergence@uvpce"
           }),
           headers: {
@@ -191,7 +191,7 @@ class _addCampaignerState extends State<addCampaigner> {
           context: context,
           builder: (context) => AlertDialog(
             title: Text('Error'),
-            content: Text("User Not Found Check your Email Or Password!"),
+            content: Text("User Not Found Check the Email address!"),
             actions: [
               TextButton(
                 onPressed: () {
@@ -222,14 +222,14 @@ class _addCampaignerState extends State<addCampaigner> {
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
         Fluttertoast.showToast(
-            msg: "Faculty Added Successfully!!",
+            msg: "Campaigner Added Successfully!!",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.red,
             textColor: Colors.white,
             fontSize: 16.0);
-        print("faculty added Successfully!!");
+        print("campaigner added Successfully!!");
         setState(() => isLoading = false);
 
         _emailController.text = "";
@@ -245,3 +245,5 @@ class _addCampaignerState extends State<addCampaigner> {
     }
   }
 }
+
+
