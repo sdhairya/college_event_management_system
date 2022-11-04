@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:college_event_management/addCampaigner/addCampaigner.dart';
 import 'package:college_event_management/addCampaigner/components/body.dart';
 import 'package:college_event_management/addCoordinator/components/body.dart';
+import 'package:college_event_management/createEventDept/createEventDept.dart';
 import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/dashboard/models/MyEventsReqBody.dart';
 import 'package:college_event_management/eventsList/eventList.dart';
@@ -342,7 +343,7 @@ class _bodyState extends State<body> {
                     title: const Text('Create Department'),
                     onTap: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => createProfile()));
+                          builder: (context) => createEventDept()));
                     },
                   ),
                   ListTile(
@@ -561,7 +562,7 @@ class _bodyState extends State<body> {
           //   //),
           // ),
         ],
-      ), 
+      ),
     );
   }
 

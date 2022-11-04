@@ -1,6 +1,6 @@
 import 'package:college_event_management/dashboard/components/body.dart'
     as dashboard_body;
-import 'package:college_event_management/login/components/body.dart'
+import 'package:college_event_management/homepage/components/body.dart'
     as login_body;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

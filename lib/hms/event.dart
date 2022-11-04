@@ -92,4 +92,21 @@ class EventDeptData {
   String toString() {
     return "$name\n$logo\n$poster\n${eventList.toString()}";
   }
+
+  factory EventDeptData.fromJson(List<dynamic> json){
+    print(json.length);
+    return EventDeptData(name: "name", logo: "logo", poster: "poster");
+    // return EventDeptData(name: json['name'], logo: json['logo'], poster: json['poster']);
+  }
+
+  Map<String, dynamic> toJson(){
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['logo'] = this.logo;
+    data['poster'] = this.logo;
+    data['eventList'] = this.eventList;
+
+    return data;
+  }
+
 }

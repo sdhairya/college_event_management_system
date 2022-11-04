@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:college_event_management/createEventDept/createEventDept.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'event.dart';
+import 'package:http/http.dart' as http;
 
 
 class EventParser{
@@ -80,5 +82,25 @@ class EventParser{
     dataList.forEach((e)=>listEvent.add(getDeptEventData(e)));
     //debugPrint("Event Parser::Response:: ${listEvent.toString()}");
     return listEvent;
+  }
+  Future<EventDeptData> createEventDepart(String name, String logo, String poster) async{
+    final http.Response response = await http.post(Uri.parse('https://convergence.uvpce.ac.in/register/assets/assets/json/event_data.json'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'name': name,
+      'logo': logo,
+      'poster': poster,
+    }),
+
+    );
+    if (response.statusCode == 200) {
+      print(response);
+      return EventDeptData.fromJson(json.decode( "[" + response.body + "]"));
+    } else {
+      print(response.statusCode);
+      throw Exception('Failed to create Event Department.');
+    }
   }
 }
