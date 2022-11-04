@@ -8,6 +8,7 @@ import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/dashboard/models/MyEventsReqBody.dart';
 import 'package:college_event_management/eventsList/eventList.dart';
 import 'package:college_event_management/hms/event_parser.dart';
+import 'package:college_event_management/showCampaigner/showCampaigner.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class _bodyState extends State<body> {
   List<EventDeptData> eventlist = [];
   var stuName;
   var role;
+  var stuid;
 
   String assetURL = 'https://convergence.uvpce.ac.in/register/assets/';
   final Dio dio = Dio();
@@ -42,8 +44,9 @@ class _bodyState extends State<body> {
   @override
   void initState() {
     eventlist.clear();
-    getSelectedEvents('695c01ca-01de-4fab-a2fe-dd1204a1097');
     fetchData();
+    getSelectedEvents('695c01ca-01de-4fab-a2fe-dd1204a1097f');
+
     super.initState();
   }
 
@@ -376,6 +379,17 @@ class _bodyState extends State<body> {
                       );
                     },
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.bookmark_add),
+                    title: const Text('Show Campaigners'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => showCampaigner(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               )
             : SizedBox(),
@@ -570,6 +584,7 @@ class _bodyState extends State<body> {
     SharedPreferences studata = await SharedPreferences.getInstance();
     stuName = studata.getString("stuName");
     role = studata.getString("role");
+    stuid = studata.getString("stuid");
   }
 
 // Widget buildCard(EventData element) =>
