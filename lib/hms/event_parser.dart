@@ -83,6 +83,25 @@ class EventParser{
     //debugPrint("Event Parser::Response:: ${listEvent.toString()}");
     return listEvent;
   }
+
+  CampaignerData getCampaignerData(Map<String, dynamic> record){
+    CampaignerData object = CampaignerData(campaigner_id: record['campaigner_id'], name: record['name'], email: record['email'], campaigner_token: record['campaigner_token']);
+    return object;
+  }
+
+  Future<List<CampaignerData>> getCampaignerDataList() async{
+    final url = Uri.parse("https://convergence.uvpce.ac.in/C2K22/addCampaigner.php");
+    final response = await http.get(url);
+
+    final responseData = await json.decode(response.body);
+    List<CampaignerData> listCampaigner = [];
+    responseData.forEach((e)=> listCampaigner.add(getCampaignerData(e)));
+
+    return listCampaigner;
+
+    print(responseData);
+  }
+
   Future<EventDeptData> createEventDepart(String name, String logo, String poster) async{
     final http.Response response = await http.post(Uri.parse('https://convergence.uvpce.ac.in/register/assets/assets/json/event_data.json'),
     headers: <String, String>{

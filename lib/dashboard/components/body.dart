@@ -82,31 +82,6 @@ class _bodyState extends State<body> {
     }
   }
 
-  List<String> eventsCategories = <String>[
-    'Infocrats',
-    'Mech-Mechato',
-    'MATHMAGIX',
-    'PetroX',
-    "Biotechnical",
-    "CIVESTA",
-    "Electabuzz",
-    "MARITECH"
-  ];
-
-  final List<String> elements = [
-    "Zero",
-    "One",
-    "Two",
-    "Three",
-    "Four",
-    "Five",
-    "Six",
-    "Seven",
-    "Eight",
-    "A Million Billion Trillion",
-    "A much, much longer text that will still fit"
-  ];
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

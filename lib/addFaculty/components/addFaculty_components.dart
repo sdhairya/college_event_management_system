@@ -26,12 +26,15 @@ class addFaculty_components extends StatelessWidget {
 
   }
 
-  Text text(String label){
-    return Text(label,
-        style: TextStyle(
-            fontSize: 16, color: Color(0xFF1D2A3A)));
+  Text text(String data, FontWeight fontWeight, Color color, double fontsize) {
+    return Text(
+      data,
+      style: TextStyle(
+          fontWeight: fontWeight,
+          color: color,
+          fontSize: fontsize),
+    );
   }
-
   TextField textField(String hint, TextInputType type, TextEditingController _controller){
     return  TextField(
       keyboardType: type,

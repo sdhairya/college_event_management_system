@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -57,46 +58,46 @@ class _bodyState extends State<body> {
                           alignment: Alignment(0, 0),
                         ),
                         Container(
-                          height: getHeight(50),
-                          width: getWidth(kIsWeb ? 100 : double.infinity),
-                          margin: EdgeInsets.only(
-                              left: 20, top: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.12),
-                          child: Row(
-                            children: <Widget>[
-                              IconButton(
-                                  padding: EdgeInsets.only(bottom: 3, right: 8),
+                            alignment: Alignment.topLeft,
+                            child: ListTile(
+                              dense: true,
+                              horizontalTitleGap: 0,
+                              leading: IconButton(
+                                  padding:
+                                  const EdgeInsets.only(bottom: 3, right: 3),
                                   onPressed: () {
+                                    //
                                     Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
-                                            builder: (context) => HomePage()));
+                                            builder: (context) =>
+                                                dashboardScreen()));
                                   },
                                   icon: Icon(
+                                    color: Color(0xFF1D2A3A),
                                     Icons.arrow_back_ios_new_rounded,
-                                    size: 30,
+                                    size: 20,
                                   )),
-                              createEventDept_components().text(
-                                  "Create Department",
-                                  FontWeight.w600, Color(0xFF1D2A3A), 35),
-                              // Text(
-                              //   'Add Coordinator ',
-                              //   style: TextStyle(
-                              //       fontSize: 35,
-                              //       fontStyle: FontStyle.normal,
-                              //       fontWeight: FontWeight.w600,
-                              //       color: Color(0xFF1D2A3A)),
-                              // )
-                            ],
-                          ),
+                              title: const Text(
+                                'Dashboard ',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF1D2A3A)),
+                              ),
+                            )),
+                        const SizedBox(
+                          height: 20,
                         ),
                         Container(
-                          // height: getHeight(555),
-                          width: getWidth(kIsWeb ? 100 : double.infinity),
-                          // width: kIsWeb ? 600 : double.infinity,
-                          // constraints: BoxConstraints(maxWidth: 1000),
                           alignment: Alignment.center,
+                          child: createEventDept_components().text("Create Department", FontWeight.bold, Color(0xFF1D2A3A), 30),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                         alignment: Alignment.center,
                           margin: EdgeInsets.only(
                               left: 20,
                               right: 20,

@@ -14,6 +14,21 @@ class FacultyData {
   }
 }
 
+class CampaignerData{
+  String campaigner_id="";
+  String name="";
+  String email="";
+  String campaigner_token="";
+
+  CampaignerData(
+      {required this.campaigner_id, required this.name, required this.email, required this.campaigner_token}
+      );
+  @override
+  String toString(){
+    return "$campaigner_id\n$name\n$email\n$campaigner_token";
+  }
+}
+
 class StudentData {
   String name = "";
   String emailId = "";
