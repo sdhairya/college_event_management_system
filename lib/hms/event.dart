@@ -29,6 +29,26 @@ class CampaignerData{
   }
 }
 
+class ProfileData{
+  String? firstName="";
+  String? lastName="";
+  String? email="";
+  String? er_no="";
+  String? mobile="";
+  String? branch="";
+  String? sem="";
+  String? college="";
+  String? address="";
+
+  ProfileData(
+      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.mobile, required this.branch, required this.sem, required this.college, required this.address}
+      );
+  @override
+  String toString(){
+    return "$firstName\n$lastName\n$email\n$er_no\n$mobile\n$branch\n$sem\n$college\n$address";
+  }
+}
+
 class StudentData {
   String name = "";
   String emailId = "";

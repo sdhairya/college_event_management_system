@@ -18,4 +18,8 @@ class components extends StatelessWidget {
     );
   }
 
+  Icon icon(IconData icon){
+    return Icon(icon);
+  }
+
 }

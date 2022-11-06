@@ -1,3 +1,4 @@
+import 'package:college_event_management/homepage/homepage.dart';
 import 'package:college_event_management/payment_timer/payment_status_screen.dart';
 import 'package:college_event_management/verify_otp/verify_otp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/',
       routes: {
-        '/': (context) => const LoginScreen(),
+        '/': (context) => const homepage(),
+        '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const dashboardScreen(),
         '/register': (context) => const registration(),
         // '/verify_otp' : (context) => const VerifyOTPScreen(),
@@ -72,7 +74,7 @@ class _HomePageState extends State<HomePage> {
         future: _intitializeFirebase(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return LoginScreen();
+            return homepage();
           }
           return const Center(
             child: CircularProgressIndicator(),

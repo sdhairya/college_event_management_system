@@ -96,9 +96,22 @@ class EventParser{
     final responseData = await json.decode(response.body);
     List<CampaignerData> listCampaigner = [];
     responseData.forEach((e)=> listCampaigner.add(getCampaignerData(e)));
-
+    print(listCampaigner);
     return listCampaigner;
 
+
+  }
+
+  Future<List<ProfileData>> getProfileData(String stuid) async{
+    final url = Uri.parse(
+        "https://convergence.uvpce.ac.in/C2K22/studentProfile.php?id=$stuid");
+    final response = await http.get(url);
+    final responseData = json.decode(response.body);
+
+    List<ProfileData> listProfile = [];
+    listProfile.add(ProfileData(firstName: responseData['firstName'], lastName: responseData['lastName'], email: responseData['email'], er_no: responseData['er_no'], mobile: responseData['mobile'], branch: responseData['branch'], sem: responseData['sem'], college: responseData['college'], address: responseData['address']));
+
+    return listProfile;
     print(responseData);
   }
 

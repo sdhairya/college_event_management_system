@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../dashboard/dashboardScreen.dart';
+import '../../hms/event.dart';
+import '../../hms/event_parser.dart';
 import '../../size_config.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,24 +21,36 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   var responseData;
   var stuId;
+  List<String?> profilelist = [];
+
+
 
   @override
   void initState() {
     fetchData();
+    // if(profilelist.isEmpty){
+    //   EventParser().getProfileData(stuId).then((value) {
+    //     setState(() {
+    //       profilelist=value;
+    //     });
+    //   });
+    // }
     super.initState();
   }
 
-  List<String> list = <String>[
-    'Tech',
-    'Talk',
-    'Funny',
-    'Sports',
-    "Logical",
-    "Coding"
-  ];
-
   @override
   Widget build(BuildContext context) {
+
+
+    if(profilelist.isEmpty){
+      getData().then((value) {
+        setState(() {
+          profilelist=value;
+        });
+      });
+    }
+    print(profilelist);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -99,14 +113,14 @@ class _bodyState extends State<body> {
                                     radius: 80,
                                     backgroundColor: Colors.cyan,
                                     child: Center(
-                                      child: profile_components().text("T",
+                                      child: profile_components().text(profilelist[0]![0]+profilelist[1]![0],
                                           FontWeight.bold, Colors.white, 80),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 30,
                                   ),
-                                  profile_components().text("test",
+                                  profile_components().text(profilelist[0]!+" "+profilelist[1]!,
                                       FontWeight.bold, Color(0xFF1D2A3A), 26),
                                 ],
                               )),
@@ -119,9 +133,9 @@ class _bodyState extends State<body> {
                             ),
                             child: Column(
                               children: [
-                                buildDetails(Icons.location_on, "Address"),
-                                buildDetails(Icons.mail, "abc@gmail.com"),
-                                buildDetails(Icons.phone, "1234567890"),
+                                buildDetails(Icons.location_on, profilelist[8]!),
+                                buildDetails(Icons.mail, profilelist[2]!),
+                                buildDetails(Icons.phone, profilelist[4]!),
                               ],
                             ),
                           ),
@@ -134,9 +148,9 @@ class _bodyState extends State<body> {
                             ),
                             child: Column(
                               children: [
-                                buildDetails(Icons.account_tree, "IT"),
-                                buildDetails(Icons.category, "7"),
-                                buildDetails(Icons.account_balance, "UVPCE"),
+                                buildDetails(Icons.account_tree, profilelist[5]!),
+                                buildDetails(Icons.category, profilelist[6]!),
+                                buildDetails(Icons.account_balance, profilelist[7]!),
                               ],
                             ),
                           ),
@@ -161,6 +175,22 @@ class _bodyState extends State<body> {
     );
   }
 
+  Future getData() async{
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    String? fname=studata.getString("fname");
+    String? lname=studata.getString("lname");
+    String? email=studata.getString("email");
+    String? eno=studata.getString("eno");
+    String? mobile=studata.getString("mobile");
+    String? branch=studata.getString("branch");
+    String? sem=studata.getString("sem");
+    String? college=studata.getString("college");
+    String? address= studata.getString("address");
+
+    List<String?> data= [fname, lname, email, eno, mobile, branch, sem, college, address];
+    return data;
+  }
+
   Future fetchData() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
 
@@ -169,7 +199,15 @@ class _bodyState extends State<body> {
         "https://convergence.uvpce.ac.in/C2K22/studentProfile.php?id=$stuId");
     final response = await http.get(url);
     responseData = json.decode(response.body);
+    studata.setString("fname",responseData['firstName'].toString());
+    studata.setString("lname",responseData['lastName'].toString());
+    studata.setString("email",responseData['email'].toString());
+    studata.setString("eno",responseData['er_no'].toString());
+    studata.setString("mobile", responseData['mobile'].toString());
+    studata.setString("branch", responseData['branch'].toString());
+    studata.setString("sem", responseData['sem'].toString());
+    studata.setString("college", responseData['college'].toString());
+    studata.setString("address", responseData['address'].toString());
 
-    print(responseData);
   }
 }
