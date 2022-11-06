@@ -43,22 +43,17 @@ class _bodyState extends State<body> {
       TextEditingController();
   TextEditingController _editProfileLastNameController =
       TextEditingController();
-  TextEditingController _editProfileMobileController =
-      TextEditingController();
+  TextEditingController _editProfileMobileController = TextEditingController();
   TextEditingController _editProfileEmailController = TextEditingController();
   TextEditingController _editProfileEr_noController = TextEditingController();
 
   TextEditingController _editProfileSemController = TextEditingController();
-  TextEditingController _editProfileBranchController =
-      TextEditingController();
-  TextEditingController _editProfileCollegeController =
-      TextEditingController();
-  TextEditingController _editProfileAddressController =
-      TextEditingController();
+  TextEditingController _editProfileBranchController = TextEditingController();
+  TextEditingController _editProfileCollegeController = TextEditingController();
+  TextEditingController _editProfileAddressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
           reverse: false,
@@ -90,9 +85,10 @@ class _bodyState extends State<body> {
                                   padding: const EdgeInsets.only(
                                       bottom: 3, right: 8),
                                   onPressed: () {
-
-                                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                        builder: (context) => profileDetails()));
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                profileDetails()));
                                   },
                                   icon: Icon(
                                     color: Color(0xFF1D2A3A),
@@ -224,19 +220,21 @@ class _bodyState extends State<body> {
                                 height: 30,
                               ),
                               role != "faculty" || role != "admin"
-                                  ?  Wrap(
-                        children: [const Text('    Semester',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Color(0xFF1D2A3A))),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const editProfile_components().textField(
-                                  "Enter Semester",
-                                  TextInputType.datetime,
-                                  _editProfileSemController,
-                                  "")]):SizedBox(),
+                                  ? Wrap(children: [
+                                      const Text('    Semester',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xFF1D2A3A))),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const editProfile_components().textField(
+                                          "Enter Semester",
+                                          TextInputType.datetime,
+                                          _editProfileSemController,
+                                          "")
+                                    ])
+                                  : SizedBox(),
                               const SizedBox(
                                 height: 30,
                               ),
@@ -307,7 +305,8 @@ class _bodyState extends State<body> {
                                                   .text.isNotEmpty &&
                                               _editProfileCollegeController
                                                   .text.isNotEmpty) {
-                                            createStuProfile();
+
+                                            updateStuProfile();
                                           } else {
                                             showDialog(
                                                 context: context,
@@ -327,36 +326,6 @@ class _bodyState extends State<body> {
                                                       ],
                                                     ));
                                           }
-
-                                          // if (_signUpEmailController
-                                          //     .text.isNotEmpty) {
-                                          //   if (_signUpPasswordController.text ==
-                                          //       _signUpConfrimPasswordController
-                                          //           .text) {
-                                          //     signUp();
-                                          //   } else {
-                                          //     Fluttertoast.showToast(
-                                          //         msg:
-                                          //         "Confirm password don't match!!",
-                                          //         toastLength: Toast.LENGTH_SHORT,
-                                          //         gravity: ToastGravity.BOTTOM,
-                                          //         timeInSecForIosWeb: 1,
-                                          //         backgroundColor: Colors.red,
-                                          //         textColor: Colors.white,
-                                          //         fontSize: 16.0);
-                                          //     setState(() => isLoading = false);
-                                          //   }
-                                          // } else {
-                                          //   Fluttertoast.showToast(
-                                          //       msg: "Any field can not be empty!!",
-                                          //       toastLength: Toast.LENGTH_SHORT,
-                                          //       gravity: ToastGravity.BOTTOM,
-                                          //       timeInSecForIosWeb: 1,
-                                          //       backgroundColor: Colors.red,
-                                          //       textColor: Colors.white,
-                                          //       fontSize: 16.0);
-                                          //   setState(() => isLoading = false);
-                                          // }
                                         }
                                       : null,
                                 ),
@@ -425,7 +394,7 @@ class _bodyState extends State<body> {
     print(_pickedimage);
   }
 
-  Future createStuProfile() async {
+  Future updateStuProfile() async {
     print(stuid);
 
     try {
@@ -433,15 +402,15 @@ class _bodyState extends State<body> {
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "sid": stuid,
-            "firstName": _editProfileFirstNameController.text,
-            "lastName": _editProfileLastNameController.text,
-            "email": _editProfileEmailController.text,
-            "er_no":_editProfileEr_noController,
+            "firstName": _editProfileFirstNameController.text.toString(),
+            "lastName": _editProfileLastNameController.text.toString(),
+            "email": _editProfileEmailController.text.toString(),
+            "er_no": _editProfileEr_noController.toString(),
             "mobile": _editProfileMobileController.text,
-            "college": _editProfileCollegeController.text,
-            "branch": _editProfileBranchController.text,
+            "college": _editProfileCollegeController.text.toString(),
+            "branch": _editProfileBranchController.text.toString(),
             "sem": _editProfileSemController.text,
-            "address": _editProfileAddressController.text,
+            "address": _editProfileAddressController.text.toString(),
             "flag": 1
           }),
           headers: {
@@ -449,6 +418,7 @@ class _bodyState extends State<body> {
             "Access-Control-Allow-Origin": "*"
           },
           encoding: Encoding.getByName('utf-8'));
+      print("okh");
       print(res.statusCode);
       //  var response = json.decode(res.body);
 
@@ -483,79 +453,43 @@ class _bodyState extends State<body> {
                         child: Text('Ok'))
                   ],
                 ));
+
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-        checkPayment();
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  Future getData() async{
-    SharedPreferences data = await SharedPreferences.getInstance();
-    _editProfileFirstNameController.text=data.getString("fname")!;
-    _editProfileLastNameController.text=data.getString("lname")!;
-    _editProfileEmailController.text=data.getString("email")!;
-    _editProfileEr_noController.text=data.getString("eno")!;
-    _editProfileMobileController.text=data.getString("mobile")!;
-    _editProfileBranchController.text=data.getString("branch")!;
-    _editProfileSemController.text=data.getString("sem")!;
-    _editProfileCollegeController.text=data.getString("college")!;
-    _editProfileAddressController.text= data.getString("address")!;
-
-  }
-
-  Future checkPayment() async {
-    try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/checkPayment.php";
-      var res = await http.post(Uri.parse(uri),
-          body: json.encode({"id": stuid}),
-          headers: {
-            "Accept": "application/json",
-            "Access-Control-Allow-Origin": "*"
-          },
-          encoding: Encoding.getByName('utf-8'));
-      var temp = res.statusCode;
-      print("paymentCode  $temp");
-      //  var response = json.decode(res.body);
-
-      //print(response["firebaseId"]);
-      //print(response);
-      if (res.statusCode == 404) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => payment()));
-
-        setState(() => isLoading = false);
-      } else if (res.statusCode == 442) {
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
-                  title: Text('Error'),
-                  content: Text("Bed Request!!"),
+                  title: Text('Status'),
+                  content: Text("Profile Updated Successfully!!"),
                   actions: [
                     TextButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => dashboardScreen()));
                         },
                         child: Text('Ok'))
                   ],
                 ));
         setState(() => isLoading = false);
-      } else if (res.statusCode == 200) {
-        var response = json.decode(res.body);
 
-        print(response["sid"]);
-        print(response);
-        if (response["sid"] == stuid) {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => dashboardScreen()));
-          setState(() => isLoading = false);
-        }
       }
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future getData() async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    _editProfileFirstNameController.text = data.getString("fname")!.toString();
+    _editProfileLastNameController.text = data.getString("lname")!.toString();
+    _editProfileEmailController.text = data.getString("email")!.toString();
+    _editProfileEr_noController.text = data.getString("eno")!.toString();
+    _editProfileMobileController.text = data.getString("mobile")!;
+    _editProfileBranchController.text = data.getString("branch")!.toString();
+    _editProfileSemController.text = data.getString("sem")!;
+    _editProfileCollegeController.text = data.getString("college")!.toString();
+    _editProfileAddressController.text = data.getString("address")!.toString();
   }
 
   Future fetchData() async {

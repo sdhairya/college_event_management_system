@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:college_event_management/campaignerDashBoard/campaignerDashBoard.dart';
 import 'package:college_event_management/login/components/login_components.dart';
 import 'package:college_event_management/payment/payment.dart';
 import 'package:college_event_management/profileDetails/profileDetails.dart';
@@ -423,6 +424,9 @@ class _bodyState extends State<body> {
   }
 
   Future checkProfile(uid) async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+
+    var userRole = studata.getString("role");
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/checkProfile.php";
       var res = await http.post(Uri.parse(uri),
@@ -471,7 +475,13 @@ class _bodyState extends State<body> {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => createProfile()));
         } else if (flag == "1") {
-          checkPayment();
+          if (userRole == "campaigner") {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => campaignerDashBoard()));
+            setState(() => isLoading = false);
+          } else {
+            checkPayment();
+          }
         } else {
           print("somthing wrong");
         }
@@ -524,9 +534,11 @@ class _bodyState extends State<body> {
         print(response["sid"]);
 
         if (response["sid"] == uid) {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => dashboardScreen()));
-          setState(() => isLoading = false);
+
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => dashboardScreen()));
+            setState(() => isLoading = false);
+
         }
       }
     } catch (e) {

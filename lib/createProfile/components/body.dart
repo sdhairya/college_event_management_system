@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../campaignerDashBoard/campaignerDashBoard.dart';
 import 'createProfile_components.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,6 +26,7 @@ class _bodyState extends State<body> {
   Uint8List webImage = Uint8List(8);
   var stuid;
   var role;
+  var userRole;
 
   bool isLoading = false;
   bool isChecked = true;
@@ -486,6 +488,8 @@ class _bodyState extends State<body> {
   Future createStuProfile() async {
     print(stuid);
 
+
+
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/studentProfile.php";
       var res = await http.post(Uri.parse(uri),
@@ -543,7 +547,13 @@ class _bodyState extends State<body> {
                 ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-        checkPayment();
+        if (userRole == "campaigner") {
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => campaignerDashBoard()));
+          setState(() => isLoading = false);
+        } else {
+          checkPayment();
+        }
       }
     } catch (e) {
       print(e.toString());
@@ -606,5 +616,6 @@ class _bodyState extends State<body> {
     SharedPreferences studata = await SharedPreferences.getInstance();
     role = studata.getString("role");
     stuid = studata.getString("stuid");
+    userRole= studata.getString("role");
   }
 }
