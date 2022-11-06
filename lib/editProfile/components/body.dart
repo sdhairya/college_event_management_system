@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:college_event_management/payment/payment.dart';
+import 'package:college_event_management/profileDetails/profileDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,7 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'createProfile_components.dart';
+import 'editProfile_components.dart';
 import 'package:http/http.dart' as http;
 
 class body extends StatefulWidget {
@@ -23,6 +24,8 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   File? _pickedimage;
   Uint8List webImage = Uint8List(8);
+  List<String?> profilelist = [];
+
   var stuid;
   var role;
 
@@ -32,28 +35,30 @@ class _bodyState extends State<body> {
   @override
   void initState() {
     fetchData();
+    getData();
     super.initState();
   }
 
-  TextEditingController _createProfileFirstNameController =
+  TextEditingController _editProfileFirstNameController =
       TextEditingController();
-  TextEditingController _createProfileLastNameController =
+  TextEditingController _editProfileLastNameController =
       TextEditingController();
-  TextEditingController _createProfileMobileController =
+  TextEditingController _editProfileMobileController =
       TextEditingController();
-  TextEditingController _createProfileEmailController = TextEditingController();
-  TextEditingController _createProfileEr_noController = TextEditingController();
+  TextEditingController _editProfileEmailController = TextEditingController();
+  TextEditingController _editProfileEr_noController = TextEditingController();
 
-  TextEditingController _createProfileSemController = TextEditingController();
-  TextEditingController _createProfileBranchController =
+  TextEditingController _editProfileSemController = TextEditingController();
+  TextEditingController _editProfileBranchController =
       TextEditingController();
-  TextEditingController _createProfileCollegeController =
+  TextEditingController _editProfileCollegeController =
       TextEditingController();
-  TextEditingController _createProfileAddressController =
+  TextEditingController _editProfileAddressController =
       TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SingleChildScrollView(
           reverse: false,
@@ -85,9 +90,9 @@ class _bodyState extends State<body> {
                                   padding: const EdgeInsets.only(
                                       bottom: 3, right: 8),
                                   onPressed: () {
-                                    //
-                                    // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                    //     builder: (context) => dashboardScreen()));
+
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                        builder: (context) => profileDetails()));
                                   },
                                   icon: Icon(
                                     color: Color(0xFF1D2A3A),
@@ -95,7 +100,7 @@ class _bodyState extends State<body> {
                                     size: 30,
                                   )),
                               title: const Text(
-                                'Create Profile ',
+                                'Edit Profile ',
                                 style: TextStyle(
                                     fontSize: 35,
                                     fontStyle: FontStyle.normal,
@@ -126,69 +131,6 @@ class _bodyState extends State<body> {
                         //               fit: BoxFit.fill,
                         //             )))
                         // ),
-                        // Container(
-                        //   alignment: Alignment.center,
-                        //   child: TextButton(
-                        //       child: Row(
-                        //         mainAxisAlignment: MainAxisAlignment.center,
-                        //         children: const [
-                        //           Icon(Icons.edit),
-                        //           Text("Edit"),
-                        //         ],
-                        //       ),
-                        //       onPressed: () => showDialog(
-                        //           context: context,
-                        //           builder: (context) => Dialog(
-                        //               child: Container(
-                        //                 width: double.minPositive,
-                        //                 padding: EdgeInsets.all(20),
-                        //                 height: 150,
-                        //                 child: Row(
-                        //                   mainAxisAlignment: MainAxisAlignment.center,
-                        //                   children: [
-                        //                     ElevatedButton(
-                        //                         style: ElevatedButton.styleFrom(
-                        //                           shape: CircleBorder(),
-                        //                           enableFeedback: true,
-                        //                           alignment: Alignment.center,
-                        //                           primary: Colors.white70,
-                        //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
-                        //                         ),
-                        //                         onPressed: () {
-                        //                           _getFromGallery();
-                        //                           Navigator.pop(context);
-                        //                         },
-                        //                         child: Column(
-                        //                           children: [
-                        //                             Icon(Icons.image,size: 50, color: Colors.deepOrange),
-                        //                             Text("Gallery",style: TextStyle(fontSize: 16, color: Colors.black),)
-                        //                           ],
-                        //                         )),
-                        //
-                        //                     Visibility(child: SizedBox(width: 30,), visible: kIsWeb ? false : true,),
-                        //                     Visibility(child: ElevatedButton(
-                        //
-                        //                         style: ElevatedButton.styleFrom(
-                        //                           shape: CircleBorder(),
-                        //                           enableFeedback: true,
-                        //                           alignment: Alignment.center,
-                        //                           primary: Colors.white70,
-                        //                           padding: EdgeInsets.only(top: 20,left: 20,right: 20, bottom: 15),
-                        //                         ),
-                        //                         onPressed: () {
-                        //                           _getFromCamera();
-                        //                           Navigator.pop(context);
-                        //                         },
-                        //                         child: Column(
-                        //                           children: [
-                        //                             Icon(Icons.camera_alt,size: 50, color: Colors.deepOrange),
-                        //                             Text("Camera", style: TextStyle(color: Colors.black,fontSize: 16),)
-                        //                           ],
-                        //                         )), visible: kIsWeb ? false : true,)
-                        //                   ],
-                        //                 ),
-                        //               )))),
-                        // ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -203,10 +145,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter First Name",
                                   TextInputType.text,
-                                  _createProfileFirstNameController,
+                                  _editProfileFirstNameController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -217,10 +159,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter Last Name",
                                   TextInputType.text,
-                                  _createProfileLastNameController,
+                                  _editProfileLastNameController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -231,10 +173,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter Mobile Number",
                                   TextInputType.phone,
-                                  _createProfileMobileController,
+                                  _editProfileMobileController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -245,10 +187,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter Email",
                                   TextInputType.emailAddress,
-                                  _createProfileEmailController,
+                                  _editProfileEmailController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -259,10 +201,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter Enrollment Number",
                                   TextInputType.text,
-                                  _createProfileEr_noController,
+                                  _editProfileEr_noController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -273,10 +215,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter Branch Name",
                                   TextInputType.datetime,
-                                  _createProfileBranchController,
+                                  _editProfileBranchController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -290,10 +232,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter Semester",
                                   TextInputType.datetime,
-                                  _createProfileSemController,
+                                  _editProfileSemController,
                                   "")]):SizedBox(),
                               const SizedBox(
                                 height: 30,
@@ -304,10 +246,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter College Name",
                                   TextInputType.datetime,
-                                  _createProfileCollegeController,
+                                  _editProfileCollegeController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -318,10 +260,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              const createProfile_components().textField(
+                              const editProfile_components().textField(
                                   "Enter Address",
                                   TextInputType.datetime,
-                                  _createProfileAddressController,
+                                  _editProfileAddressController,
                                   ""),
                               const SizedBox(
                                 height: 30,
@@ -343,27 +285,27 @@ class _bodyState extends State<body> {
                                           color: Colors.white,
                                           backgroundColor: Colors.transparent,
                                         )
-                                      : const Text('Create Profile'),
+                                      : const Text('Update Profile'),
                                   onPressed: isChecked
                                       ? () async {
                                           setState(() => isLoading = true);
 
                                           // if (isLoading) return;
-                                          if (_createProfileFirstNameController
+                                          if (_editProfileFirstNameController
                                                   .text.isNotEmpty &&
-                                              _createProfileLastNameController
+                                              _editProfileLastNameController
                                                   .text.isNotEmpty &&
-                                              _createProfileEmailController
+                                              _editProfileEmailController
                                                   .text.isNotEmpty &&
-                                              _createProfileAddressController
+                                              _editProfileAddressController
                                                   .text.isNotEmpty &&
-                                              _createProfileSemController
+                                              _editProfileSemController
                                                   .text.isNotEmpty &&
-                                              _createProfileMobileController
+                                              _editProfileMobileController
                                                   .text.isNotEmpty &&
-                                              _createProfileBranchController
+                                              _editProfileBranchController
                                                   .text.isNotEmpty &&
-                                              _createProfileCollegeController
+                                              _editProfileCollegeController
                                                   .text.isNotEmpty) {
                                             createStuProfile();
                                           } else {
@@ -491,15 +433,15 @@ class _bodyState extends State<body> {
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "sid": stuid,
-            "firstName": _createProfileFirstNameController.text,
-            "lastName": _createProfileLastNameController.text,
-            "email": _createProfileEmailController.text,
-            "er_no":_createProfileEr_noController,
-            "mobile": _createProfileMobileController.text,
-            "college": _createProfileCollegeController.text,
-            "branch": _createProfileBranchController.text,
-            "sem": _createProfileSemController.text,
-            "address": _createProfileAddressController.text,
+            "firstName": _editProfileFirstNameController.text,
+            "lastName": _editProfileLastNameController.text,
+            "email": _editProfileEmailController.text,
+            "er_no":_editProfileEr_noController,
+            "mobile": _editProfileMobileController.text,
+            "college": _editProfileCollegeController.text,
+            "branch": _editProfileBranchController.text,
+            "sem": _editProfileSemController.text,
+            "address": _editProfileAddressController.text,
             "flag": 1
           }),
           headers: {
@@ -548,6 +490,20 @@ class _bodyState extends State<body> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future getData() async{
+    SharedPreferences data = await SharedPreferences.getInstance();
+    _editProfileFirstNameController.text=data.getString("fname")!;
+    _editProfileLastNameController.text=data.getString("lname")!;
+    _editProfileEmailController.text=data.getString("email")!;
+    _editProfileEr_noController.text=data.getString("eno")!;
+    _editProfileMobileController.text=data.getString("mobile")!;
+    _editProfileBranchController.text=data.getString("branch")!;
+    _editProfileSemController.text=data.getString("sem")!;
+    _editProfileCollegeController.text=data.getString("college")!;
+    _editProfileAddressController.text= data.getString("address")!;
+
   }
 
   Future checkPayment() async {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:college_event_management/editProfile/editProfile.dart';
 import 'package:college_event_management/profileDetails/components/profile_components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -154,6 +155,36 @@ class _bodyState extends State<body> {
                               ],
                             ),
                           ),
+                          
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.only(top:20 ),
+                            child:
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: const Color(0xFF1D2A3A),
+                                onSurface: const Color(0xFF1D2A3A),
+                                padding: const EdgeInsets.all(3),
+                                textStyle: const TextStyle(fontSize: 20),
+                                minimumSize: const Size.fromHeight(50),
+                                shape: const StadiumBorder(),
+                                enableFeedback: true,
+                              ),
+                              child:  const Text('Edit Profile'),
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  editProfile()));
+                              },
+                            ),
+                            // ElevatedButton(onPressed: () {
+                            //   Navigator.of(context).pushReplacement(
+                            //       MaterialPageRoute(
+                            //           builder: (context) =>
+                            //               editProfile()));
+                            // }, child: profile_components().text("Edit", FontWeight.bold, Colors.white, 16)),
+                          )
                         ],
                       ),
                     ),
@@ -176,38 +207,39 @@ class _bodyState extends State<body> {
   }
 
   Future getData() async{
-    SharedPreferences studata = await SharedPreferences.getInstance();
-    String? fname=studata.getString("fname");
-    String? lname=studata.getString("lname");
-    String? email=studata.getString("email");
-    String? eno=studata.getString("eno");
-    String? mobile=studata.getString("mobile");
-    String? branch=studata.getString("branch");
-    String? sem=studata.getString("sem");
-    String? college=studata.getString("college");
-    String? address= studata.getString("address");
+    SharedPreferences data = await SharedPreferences.getInstance();
+    String? fname=data.getString("fname");
+    String? lname=data.getString("lname");
+    String? email=data.getString("email");
+    String? eno=data.getString("eno");
+    String? mobile=data.getString("mobile");
+    String? branch=data.getString("branch");
+    String? sem=data.getString("sem");
+    String? college=data.getString("college");
+    String? address= data.getString("address");
 
-    List<String?> data= [fname, lname, email, eno, mobile, branch, sem, college, address];
-    return data;
+    List<String?> profiledata= [fname, lname, email, eno, mobile, branch, sem, college, address];
+    return profiledata;
   }
 
   Future fetchData() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
+    SharedPreferences data = await SharedPreferences.getInstance();
 
     stuId = studata.getString("stuid");
     final url = Uri.parse(
         "https://convergence.uvpce.ac.in/C2K22/studentProfile.php?id=$stuId");
     final response = await http.get(url);
     responseData = json.decode(response.body);
-    studata.setString("fname",responseData['firstName'].toString());
-    studata.setString("lname",responseData['lastName'].toString());
-    studata.setString("email",responseData['email'].toString());
-    studata.setString("eno",responseData['er_no'].toString());
-    studata.setString("mobile", responseData['mobile'].toString());
-    studata.setString("branch", responseData['branch'].toString());
-    studata.setString("sem", responseData['sem'].toString());
-    studata.setString("college", responseData['college'].toString());
-    studata.setString("address", responseData['address'].toString());
+    data.setString("fname",responseData['firstName'].toString());
+    data.setString("lname",responseData['lastName'].toString());
+    data.setString("email",responseData['email'].toString());
+    data.setString("eno",responseData['er_no'].toString());
+    data.setString("mobile", responseData['mobile'].toString());
+    data.setString("branch", responseData['branch'].toString());
+    data.setString("sem", responseData['sem'].toString());
+    data.setString("college", responseData['college'].toString());
+    data.setString("address", responseData['address'].toString());
 
   }
 }

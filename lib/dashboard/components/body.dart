@@ -365,6 +365,17 @@ class _bodyState extends State<body> {
                       );
                     },
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.bookmark_add),
+                    title: const Text('Create Profile'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => createProfile(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               )
             : SizedBox(),
