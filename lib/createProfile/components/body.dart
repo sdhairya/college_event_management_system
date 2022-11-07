@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../campaignerDashBoard/campaignerDashBoard.dart';
+import 'package:college_event_management/campaignerDashBoard/campaignerDashBoard.dart';
 import 'createProfile_components.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,7 +26,7 @@ class _bodyState extends State<body> {
   Uint8List webImage = Uint8List(8);
   var stuid;
   var role;
-  var userRole;
+  var email;
 
   bool isLoading = false;
   bool isChecked = true;
@@ -43,7 +43,8 @@ class _bodyState extends State<body> {
       TextEditingController();
   TextEditingController _createProfileMobileController =
       TextEditingController();
-  TextEditingController _createProfileEmailController = TextEditingController();
+  TextEditingController _createProfileCampaignerTokenController =
+      TextEditingController();
   TextEditingController _createProfileEr_noController = TextEditingController();
 
   TextEditingController _createProfileSemController = TextEditingController();
@@ -53,6 +54,7 @@ class _bodyState extends State<body> {
       TextEditingController();
   TextEditingController _createProfileAddressController =
       TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -241,20 +243,6 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              const Text('    Email',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Color(0xFF1D2A3A))),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const createProfile_components().textField(
-                                  "Enter Email",
-                                  TextInputType.emailAddress,
-                                  _createProfileEmailController,
-                                  ""),
-                              const SizedBox(
-                                height: 30,
-                              ),
                               const Text('    Enrollment No',
                                   style: TextStyle(
                                       fontSize: 16, color: Color(0xFF1D2A3A))),
@@ -284,19 +272,22 @@ class _bodyState extends State<body> {
                                 height: 30,
                               ),
                               role != "faculty" || role != "admin"
-                                  ?  Wrap(
-                        children: [const Text('    Semester',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Color(0xFF1D2A3A))),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const createProfile_components().textField(
-                                  "Enter Semester",
-                                  TextInputType.datetime,
-                                  _createProfileSemController,
-                                  "")]):SizedBox(),
+                                  ? Wrap(children: [
+                                      const Text('    Semester',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xFF1D2A3A))),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const createProfile_components()
+                                          .textField(
+                                              "Enter Semester",
+                                              TextInputType.datetime,
+                                              _createProfileSemController,
+                                              "")
+                                    ])
+                                  : SizedBox(),
                               const SizedBox(
                                 height: 30,
                               ),
@@ -328,6 +319,21 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
+
+                              if (role== "user") ... [const Text('    Campaigner Token',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createProfile_components().textField(
+                                  "Enter Campaigner Token",
+                                  TextInputType.number,
+                                  _createProfileCampaignerTokenController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),],
                               Container(
                                 alignment: Alignment.center,
                                 child: ElevatedButton(
@@ -354,8 +360,6 @@ class _bodyState extends State<body> {
                                           if (_createProfileFirstNameController
                                                   .text.isNotEmpty &&
                                               _createProfileLastNameController
-                                                  .text.isNotEmpty &&
-                                              _createProfileEmailController
                                                   .text.isNotEmpty &&
                                               _createProfileAddressController
                                                   .text.isNotEmpty &&
@@ -488,23 +492,22 @@ class _bodyState extends State<body> {
   Future createStuProfile() async {
     print(stuid);
 
-
-
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/studentProfile.php";
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
-            "sid": stuid,
-            "firstName": _createProfileFirstNameController.text,
-            "lastName": _createProfileLastNameController.text,
-            "email": _createProfileEmailController.text,
-            "er_no":_createProfileEr_noController,
+            "sid": stuid.toString(),
+            "firstName": _createProfileFirstNameController.text.toString(),
+            "lastName": _createProfileLastNameController.text.toString(),
+            "email": email.toString(),
+            "er_no": _createProfileEr_noController.text.toString(),
             "mobile": _createProfileMobileController.text,
-            "college": _createProfileCollegeController.text,
-            "branch": _createProfileBranchController.text,
+            "college": _createProfileCollegeController.text.toString(),
+            "branch": _createProfileBranchController.text.toString(),
             "sem": _createProfileSemController.text,
-            "address": _createProfileAddressController.text,
-            "flag": 1
+            "address": _createProfileAddressController.text.toString(),
+            "flag": 1,
+            "campaignerToken":role == "user" ? int.parse(_createProfileCampaignerTokenController.text.toString()) : 0
           }),
           headers: {
             "Accept": "application/json",
@@ -547,7 +550,7 @@ class _bodyState extends State<body> {
                 ));
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-        if (userRole == "campaigner") {
+        if (role == "campaigner") {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => campaignerDashBoard()));
           setState(() => isLoading = false);
@@ -616,6 +619,6 @@ class _bodyState extends State<body> {
     SharedPreferences studata = await SharedPreferences.getInstance();
     role = studata.getString("role");
     stuid = studata.getString("stuid");
-    userRole= studata.getString("role");
+    email = studata.getString("email");
   }
 }

@@ -390,6 +390,7 @@ class _bodyState extends State<body> {
           studata.setString("stuid", uid);
           studata.setString("stuName", response["username"]);
           studata.setString("role", response["role"]);
+          studata.setString("email", response["email"]);
 
           if (response["isVerified"] == "0") {
             Navigator.of(context).pushReplacement(

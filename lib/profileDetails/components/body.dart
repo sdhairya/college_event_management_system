@@ -234,6 +234,7 @@ class _bodyState extends State<body> {
     data.setString("fname",responseData['firstName'].toString());
     data.setString("lname",responseData['lastName'].toString());
     data.setString("email",responseData['email'].toString());
+    data.setString("campToken", responseData['campaigner_token'].toString());
     data.setString("eno",responseData['er_no'].toString());
     data.setString("mobile", responseData['mobile'].toString());
     data.setString("branch", responseData['branch'].toString());
