@@ -36,13 +36,6 @@ class _bodyState extends State<body> {
     //     });
     //   });
     // }
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-
     if(profilelist.isEmpty){
       getData().then((value) {
         setState(() {
@@ -50,6 +43,18 @@ class _bodyState extends State<body> {
         });
       });
     }
+    super.initState();
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+
+
     print(profilelist);
 
     return Scaffold(

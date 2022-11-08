@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../homepage/homepage.dart';
 import '../../profileDetails/profileDetails.dart';
 import '../campaignerDashBoard.dart';
 
@@ -49,6 +51,19 @@ class _bodyState extends State<body> {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => profileDetails(
                 )));
+          },
+        ),
+
+        ListTile(
+          leading: const Icon(Icons.account_circle),
+          title: const Text('Logout'),
+          onTap: () async {
+            SharedPreferences studata = await SharedPreferences.getInstance();
+            SharedPreferences data = await SharedPreferences.getInstance();
+            data.clear();
+            studata.clear();
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => homepage()));
           },
         ),
 

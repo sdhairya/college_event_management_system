@@ -8,6 +8,7 @@ import 'package:college_event_management/createProfile/createProfile.dart';
 import 'package:college_event_management/dashboard/models/MyEventsReqBody.dart';
 import 'package:college_event_management/eventsList/eventList.dart';
 import 'package:college_event_management/hms/event_parser.dart';
+import 'package:college_event_management/homepage/homepage.dart';
 import 'package:college_event_management/showCampaigner/showCampaigner.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -421,7 +422,20 @@ class _bodyState extends State<body> {
                       MaterialPageRoute(builder: (context) => events()));
                 },
               )
-            : SizedBox()
+            : SizedBox(),
+
+        ListTile(
+          leading: const Icon(Icons.account_circle),
+          title: const Text('Logout'),
+          onTap: () async {
+            SharedPreferences studata = await SharedPreferences.getInstance();
+            SharedPreferences data = await SharedPreferences.getInstance();
+            data.clear();
+            studata.clear();
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => homepage()));
+          },
+        ),
       ],
     );
   }
@@ -571,6 +585,7 @@ class _bodyState extends State<body> {
     stuName = studata.getString("stuName");
     role = studata.getString("role");
     stuid = studata.getString("stuid");
+
   }
 
 // Widget buildCard(EventData element) =>
