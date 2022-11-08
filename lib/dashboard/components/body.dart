@@ -188,20 +188,20 @@ class _bodyState extends State<body> {
                 ),
               ),*/
 
-              SizedBox(
-                height: 40,
-              ),
-              Container(
-                width: getWidth(kIsWeb ? 250 : double.infinity),
-                child: dashboard_components().text(
-                    "Selected Events", FontWeight.w300, Color(0xFF1D2A3A), 23),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 40,
-              ),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // // Container(
+              // //   width: getWidth(kIsWeb ? 250 : double.infinity),
+              // //   child: dashboard_components().text(
+              // //       "Selected Events", FontWeight.w300, Color(0xFF1D2A3A), 23),
+              // // ),
+              // // SizedBox(
+              // //   height: 20,
+              // // ),
+              // SizedBox(
+              //   height: 40,
+              // ),
               Container(
                 width: getWidth(kIsWeb ? 250 : double.infinity),
                 child: dashboard_components()
@@ -366,17 +366,17 @@ class _bodyState extends State<body> {
                       );
                     },
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.bookmark_add),
-                    title: const Text('Create Profile'),
-                    onTap: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => createProfile(),
-                        ),
-                      );
-                    },
-                  ),
+                  // ListTile(
+                  //   leading: const Icon(Icons.bookmark_add),
+                  //   title: const Text('Create Profile'),
+                  //   onTap: () {
+                  //     Navigator.of(context).pushReplacement(
+                  //       MaterialPageRoute(
+                  //         builder: (context) => createProfile(),
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
                 ],
               )
             : SizedBox(),

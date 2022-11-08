@@ -208,9 +208,35 @@ class _bodyState extends State<body> {
 
                             setState(() => isLoading = true);
 
+                            bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(_emailController.text);
+                            print (emailValid);
+
+
+
                             if (_emailController.text.isNotEmpty &&
                                 _passwordController.text.isNotEmpty) {
-                              userLogin();
+                              bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(_emailController.text);
+
+                              if(emailValid) {
+                                userLogin();
+                              }
+                              else{
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text('Error'),
+                                      content:
+                                      Text("Please enter valid email!!"),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('Ok'))
+                                      ],
+                                    ));
+                                setState(() => isLoading = false);
+                              }
                             } else {
                               showDialog(
                                   context: context,
@@ -226,6 +252,8 @@ class _bodyState extends State<body> {
                                               child: Text('Ok'))
                                         ],
                                       ));
+                              setState(() => isLoading = false);
+
                             }
                             //dashboardScreen();
                             // User? user = await loginUsingEmailPassword(
@@ -476,9 +504,14 @@ class _bodyState extends State<body> {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => createProfile()));
         } else if (flag == "1") {
-          if (userRole == "campaigner") {
+          if (userRole == "campaigner" ) {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => campaignerDashBoard()));
+            setState(() => isLoading = false);
+          }
+          else if (userRole == "faculty") {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => dashboardScreen()));
             setState(() => isLoading = false);
           } else {
             checkPayment();

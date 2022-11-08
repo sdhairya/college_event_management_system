@@ -281,23 +281,52 @@ class _bodyState extends State<body> {
                                           // if (isLoading) return;
 
                                           if (_signUpEmailController
-                                              .text.isNotEmpty) {
-                                            if (_signUpPasswordController
-                                                    .text ==
-                                                _signUpConfrimPasswordController
-                                                    .text) {
-                                              insertUser();
-                                            } else {
-                                              Fluttertoast.showToast(
-                                                  msg:
-                                                      "Confirm password don't match!!",
-                                                  toastLength:
-                                                      Toast.LENGTH_SHORT,
-                                                  gravity: ToastGravity.BOTTOM,
-                                                  timeInSecForIosWeb: 1,
-                                                  backgroundColor: Colors.red,
-                                                  textColor: Colors.white,
-                                                  fontSize: 16.0);
+                                                  .text.isNotEmpty &&
+                                              _signUpNameController
+                                                  .text.isNotEmpty &&
+                                              _signUpPasswordController
+                                                  .text.isNotEmpty &&
+                                              _signUpConfrimPasswordController
+                                                  .text.isNotEmpty) {
+
+                                            bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(_signUpEmailController.text);
+                                            if(emailValid) {
+                                              if (_signUpPasswordController
+                                                  .text ==
+                                                  _signUpConfrimPasswordController
+                                                      .text) {
+                                                insertUser();
+                                              } else {
+                                                Fluttertoast.showToast(
+                                                    msg:
+                                                    "Confirm password don't match!!",
+                                                    toastLength:
+                                                    Toast.LENGTH_SHORT,
+                                                    gravity: ToastGravity
+                                                        .BOTTOM,
+                                                    timeInSecForIosWeb: 1,
+                                                    backgroundColor: Colors.red,
+                                                    textColor: Colors.white,
+                                                    fontSize: 16.0);
+                                                setState(() =>
+                                                isLoading = false);
+                                              }
+                                            }
+                                            else{
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) => AlertDialog(
+                                                    title: Text('Error'),
+                                                    content:
+                                                    Text("Please enter valid email!!"),
+                                                    actions: [
+                                                      TextButton(
+                                                          onPressed: () {
+                                                            Navigator.of(context).pop();
+                                                          },
+                                                          child: Text('Ok'))
+                                                    ],
+                                                  ));
                                               setState(() => isLoading = false);
                                             }
                                           } else {
@@ -393,7 +422,6 @@ class _bodyState extends State<body> {
         );
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-
         Fluttertoast.showToast(
             msg: "Registration Successfully!!",
             toastLength: Toast.LENGTH_SHORT,
