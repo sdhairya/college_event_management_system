@@ -131,9 +131,31 @@ class _addCoordinatorState extends State<addCoordinator> {
                                 if (isLoading) return;
                                 setState(() => isLoading = true);
 
-                                if (_emailController.text.isNotEmpty &&
+                                bool emailValid = RegExp(
+                                        r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                    .hasMatch(_emailController.text);
+                                print ("addCoordinatorEmail: $emailValid");                                if (_emailController.text.isNotEmpty &&
                                     _nameController.text.isNotEmpty) {
-                                  addCoordinator();
+                                  if (emailValid) {
+                                    addCoordinator();
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              title: Text('Error'),
+                                              content: Text(
+                                                  "Please enter valid email!!"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: Text('Ok'))
+                                              ],
+                                            ));
+                                    setState(() => isLoading = false);
+                                  }
                                 } else {
                                   Fluttertoast.showToast(
                                       msg: "Any field can not be empty!!",

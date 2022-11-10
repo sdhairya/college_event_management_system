@@ -372,7 +372,37 @@ class _bodyState extends State<body> {
                                                   .text.isNotEmpty &&
                                               _createProfileCollegeController
                                                   .text.isNotEmpty) {
-                                            createStuProfile();
+
+
+                                            bool mobileValid = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(_createProfileMobileController.text);
+                                            print (mobileValid);
+
+                                            if(mobileValid){
+                                              createStuProfile();
+
+                                            }
+                                            else{
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      AlertDialog(
+                                                        title: Text('Error'),
+                                                        content: Text(
+                                                            "Please enter valid mobile number!!"),
+                                                        actions: [
+                                                          TextButton(
+                                                              onPressed: () {
+                                                                Navigator.of(
+                                                                    context)
+                                                                    .pop();
+                                                              },
+                                                              child: Text('Ok'))
+                                                        ],
+                                                      ));
+                                            }
+                                            setState(() => isLoading = false);
+
+
                                           } else {
                                             showDialog(
                                                 context: context,
@@ -391,6 +421,8 @@ class _bodyState extends State<body> {
                                                             child: Text('Ok'))
                                                       ],
                                                     ));
+                                            setState(() => isLoading = false);
+
                                           }
 
                                           // if (_signUpEmailController

@@ -143,9 +143,31 @@ class _bodyState extends State<body> {
                                           if (isLoading) return;
                                           setState(() => isLoading = true);
 
+                                          bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(_addCampaigneremailController.text);
+                                          print ("addCampaignerEmail: $emailValid");
                                           if (_addCampaigneremailController.text.isNotEmpty &&
                                               _addCampaignernameController.text.isNotEmpty) {
-                                            addCampaignerStudent();
+
+                                            if(emailValid) {
+                                              addCampaignerStudent();                                            }
+                                            else{
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) => AlertDialog(
+                                                    title: Text('Error'),
+                                                    content:
+                                                    Text("Please enter valid email!!"),
+                                                    actions: [
+                                                      TextButton(
+                                                          onPressed: () {
+                                                            Navigator.of(context).pop();
+                                                          },
+                                                          child: Text('Ok'))
+                                                    ],
+                                                  ));
+                                              setState(() => isLoading = false);
+                                            }
+
                                           } else {
                                             Fluttertoast.showToast(
                                                 msg: "Any field can not be empty!!",

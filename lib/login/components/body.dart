@@ -208,33 +208,29 @@ class _bodyState extends State<body> {
 
                             setState(() => isLoading = true);
 
-                            bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(_emailController.text);
-                            print (emailValid);
-
-
-
                             if (_emailController.text.isNotEmpty &&
                                 _passwordController.text.isNotEmpty) {
-                              bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(_emailController.text);
+                              bool emailValid = RegExp(
+                                      r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                  .hasMatch(_emailController.text);
 
-                              if(emailValid) {
+                              if (emailValid) {
                                 userLogin();
-                              }
-                              else{
+                              } else {
                                 showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
-                                      title: Text('Error'),
-                                      content:
-                                      Text("Please enter valid email!!"),
-                                      actions: [
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text('Ok'))
-                                      ],
-                                    ));
+                                          title: Text('Error'),
+                                          content: Text(
+                                              "Please enter valid email!!"),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Ok'))
+                                          ],
+                                        ));
                                 setState(() => isLoading = false);
                               }
                             } else {
@@ -253,7 +249,6 @@ class _bodyState extends State<body> {
                                         ],
                                       ));
                               setState(() => isLoading = false);
-
                             }
                             //dashboardScreen();
                             // User? user = await loginUsingEmailPassword(
@@ -504,12 +499,11 @@ class _bodyState extends State<body> {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => createProfile()));
         } else if (flag == "1") {
-          if (userRole == "campaigner" ) {
+          if (userRole == "campaigner") {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => campaignerDashBoard()));
             setState(() => isLoading = false);
-          }
-          else if (userRole == "faculty") {
+          } else if (userRole == "faculty") {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => dashboardScreen()));
             setState(() => isLoading = false);
@@ -568,11 +562,9 @@ class _bodyState extends State<body> {
         print(response["sid"]);
 
         if (response["sid"] == uid) {
-
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => dashboardScreen()));
-            setState(() => isLoading = false);
-
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => dashboardScreen()));
+          setState(() => isLoading = false);
         }
       }
     } catch (e) {
