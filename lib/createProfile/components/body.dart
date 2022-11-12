@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:college_event_management/payment/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:college_event_management/dashboard/dashboardScreen.dart';
@@ -600,6 +601,16 @@ class _bodyState extends State<body> {
       }
     } catch (e) {
       print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);
     }
   }
 

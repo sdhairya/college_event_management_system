@@ -211,7 +211,7 @@ class _bodyState extends State<body> {
             "email": _addCampaigneremailController.text,
             "userName": _addCampaignernameController.text,
             "role": "campaigner",
-            "password": "Convergence@uvpce"
+            "password": "123456789"
           }),
           headers: {
             "Accept": "application/json",
@@ -275,11 +275,29 @@ class _bodyState extends State<body> {
         // print(response);
       } else {
         print("some issue");
-        setState(() => isLoading = false);
-      }
+        print(e.toString());
+        Fluttertoast.showToast(
+          msg: "Some issue",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        setState(() => isLoading = false);      }
     } catch (e) {
-      // print(e.toString());
-    }
+      print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);    }
   }
 }
 

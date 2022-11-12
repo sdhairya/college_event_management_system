@@ -183,12 +183,6 @@ class _bodyState extends State<body> {
                                                   editProfile()));
                               },
                             ),
-                            // ElevatedButton(onPressed: () {
-                            //   Navigator.of(context).pushReplacement(
-                            //       MaterialPageRoute(
-                            //           builder: (context) =>
-                            //               editProfile()));
-                            // }, child: profile_components().text("Edit", FontWeight.bold, Colors.white, 16)),
                           )
                         ],
                       ),
@@ -232,9 +226,9 @@ class _bodyState extends State<body> {
     SharedPreferences data = await SharedPreferences.getInstance();
 
     stuId = studata.getString("stuid");
-    final url = Uri.parse(
+    var url = Uri.parse(
         "https://convergence.uvpce.ac.in/C2K22/studentProfile.php?id=$stuId");
-    final response = await http.get(url);
+    var response = await http.get(url);
     responseData = json.decode(response.body);
     data.setString("fname",responseData['firstName'].toString());
     data.setString("lname",responseData['lastName'].toString());

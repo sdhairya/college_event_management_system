@@ -219,20 +219,6 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     stuid = studata.getString("stuid");
     print(stuid);
 
-    // if (temp
-    //       .toString()
-    //       .isNotEmpty) {
-    //     stuid = temp.toString();
-    //   }
-    //   else if (temp1
-    //       .toString()
-    //       .isNotEmpty) {
-    //     stuid = temp1.toString();
-    //   }
-    //   else if (temp1.isEmpty)
-    //     print("Somthing worng with otpUserID!!");
-    // }
-
     try {
       String uri =
           "https://convergence.uvpce.ac.in/C2K22/auth/otp_verification.php";
@@ -332,6 +318,16 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
       }
     } catch (e) {
       print(e.toString());
+      Fluttertoast.showToast(
+        msg: "some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);
     }
   }
 
