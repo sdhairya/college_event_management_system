@@ -30,22 +30,23 @@ class CampaignerData{
 }
 
 class ProfileData{
-  String? firstName="";
-  String? lastName="";
-  String? email="";
-  String? er_no="";
-  String? mobile="";
-  String? branch="";
-  String? sem="";
-  String? college="";
-  String? address="";
+  String firstName="";
+  String lastName="";
+  String email="";
+  String er_no="";
+  String mobile="";
+  String branch="";
+  String sem="";
+  String college="";
+  String address="";
+  String campToken="";
 
   ProfileData(
-      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.mobile, required this.branch, required this.sem, required this.college, required this.address}
+      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.mobile, required this.branch, required this.sem, required this.college, required this.address, required this.campToken}
       );
   @override
   String toString(){
-    return "$firstName\n$lastName\n$email\n$er_no\n$mobile\n$branch\n$sem\n$college\n$address";
+    return "$firstName\n$lastName\n$email\n$er_no\n$mobile\n$branch\n$sem\n$college\n$address\n$campToken";
   }
 }
 
@@ -66,6 +67,35 @@ class StudentData {
   @override
   String toString() {
     return "$name\n$mobileNo\n$emailId\n$branchSem\n$enrollmentNo";
+  }
+}
+
+class ParticipantData{
+  String firstName="";
+  String lastName="";
+  String email="";
+  String er_no="";
+  String branch="";
+  String college="";
+
+  ParticipantData(
+      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.branch, required this.college}
+      );
+  @override
+  String toString(){
+    return "$firstName\n$lastName\n$email\n$er_no\n$branch\n$college";
+  }
+}
+
+class VisitedCollege{
+  String college="";
+
+  VisitedCollege(
+  { required this.college}
+      );
+  @override
+  String toString(){
+    return "$college";
   }
 }
 

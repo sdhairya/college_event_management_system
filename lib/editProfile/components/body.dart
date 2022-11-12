@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:college_event_management/hms/event.dart';
 import 'package:college_event_management/payment/payment.dart';
 import 'package:college_event_management/profileDetails/profileDetails.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../campaignerDashBoard/campaignerDashBoard.dart';
+import '../../hms/event_parser.dart';
 import 'editProfile_components.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,7 +27,7 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   File? _pickedimage;
   Uint8List webImage = Uint8List(8);
-  List<String?> profilelist = [];
+  List<ProfileData> profilelist = [];
 
   var stuid;
   var role;
@@ -37,16 +39,17 @@ class _bodyState extends State<body> {
   @override
   void initState() {
     fetchData();
-    getData();
+    profilelist.clear();
     super.initState();
   }
 
   TextEditingController _editProfileFirstNameController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController _editProfileLastNameController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController _editProfileMobileController = TextEditingController();
-  TextEditingController _editProfileCampaignerController = TextEditingController();
+  TextEditingController _editProfileCampaignerController =
+      TextEditingController();
   TextEditingController _editProfileEr_noController = TextEditingController();
 
   TextEditingController _editProfileSemController = TextEditingController();
@@ -56,16 +59,35 @@ class _bodyState extends State<body> {
 
   @override
   Widget build(BuildContext context) {
+    if (profilelist.isEmpty) {
+      EventParser().getProfileData().then((value) {
+        setState(() {
+          profilelist = value;
+        });
+      });
+    }
+    _editProfileFirstNameController.text = profilelist[0].firstName;
+    _editProfileLastNameController.text = profilelist[0].lastName;
+    email = profilelist[0].email;
+    _editProfileCampaignerController.text = profilelist[0].campToken;
+    _editProfileEr_noController.text = profilelist[0].er_no;
+    _editProfileMobileController.text = profilelist[0].mobile;
+    _editProfileBranchController.text = profilelist[0].branch;
+    _editProfileSemController.text = profilelist[0].sem;
+    _editProfileCollegeController.text = profilelist[0].college;
+    _editProfileAddressController.text = profilelist[0].address;
+
+
     return Scaffold(
       body: SingleChildScrollView(
           reverse: false,
           child: LayoutBuilder(builder: (context, constraints) {
             return AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              padding: constraints.maxWidth < 500
-                  ? EdgeInsets.zero
-                  : const EdgeInsets.all(30.0),
-              child: Center(
+                duration: const Duration(milliseconds: 500),
+                padding: constraints.maxWidth < 500
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.all(30.0),
+                child: Center(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         vertical: 30.0, horizontal: 25.0),
@@ -76,272 +98,273 @@ class _bodyState extends State<body> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: Column(
-                        children: [
+                      children: [
                         const Align(
-                        alignment: Alignment(0, 0),
-                  ),
-                  Container(
-                      alignment: Alignment.topLeft,
-                      child: ListTile(
-                        leading: IconButton(
-                            padding: const EdgeInsets.only(
-                                bottom: 3, right: 8),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          profileDetails()));
-                            },
-                            icon: Icon(
-                              color: Color(0xFF1D2A3A),
-                              Icons.arrow_back_ios_new_rounded,
-                              size: 30,
+                          alignment: Alignment(0, 0),
+                        ),
+                        Container(
+                            alignment: Alignment.topLeft,
+                            child: ListTile(
+                              leading: IconButton(
+                                  padding: const EdgeInsets.only(
+                                      bottom: 3, right: 8),
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                profileDetails()));
+                                  },
+                                  icon: Icon(
+                                    color: Color(0xFF1D2A3A),
+                                    Icons.arrow_back_ios_new_rounded,
+                                    size: 30,
+                                  )),
+                              title: const Text(
+                                'Edit Profile ',
+                                style: TextStyle(
+                                    fontSize: 35,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF1D2A3A)),
+                              ),
                             )),
-                        title: const Text(
-                          'Edit Profile ',
-                          style: TextStyle(
-                              fontSize: 35,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF1D2A3A)),
-                        ),
-                      )),
-                  // Container(
-                  //     margin: EdgeInsets.only(
-                  //         left: 0, top: MediaQuery.of(context).size.height * 0.12),
-                  //     child: CircleAvatar(
-                  //         radius: 80,
-                  //         child: _pickedimage == null
-                  //             ? null
-                  //             : ClipOval(
-                  //
-                  //             child: kIsWeb
-                  //                 ? Image.memory(
-                  //               width: double.maxFinite,
-                  //               height: double.maxFinite,
-                  //               webImage,
-                  //               fit: BoxFit.fill,
-                  //             )
-                  //                 : Image.file(
-                  //               width: double.maxFinite,
-                  //               height: double.maxFinite,
-                  //               _pickedimage!,
-                  //               fit: BoxFit.fill,
-                  //             )))
-                  // ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                      alignment: Alignment.center,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                          const Text('   First Name',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const editProfile_components().textField(
-                          "Enter First Name",
-                          TextInputType.text,
-                          _editProfileFirstNameController,
-                          ""),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const Text('    Last Name',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const editProfile_components().textField(
-                          "Enter Last Name",
-                          TextInputType.text,
-                          _editProfileLastNameController,
-                          ""),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const Text('    Mobile Number',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const editProfile_components().textField(
-                          "Enter Mobile Number",
-                          TextInputType.phone,
-                          _editProfileMobileController,
-                          ""),
-                      const SizedBox(
-                        height: 30,
-                      ),
-
-                      const Text('    Enrollment No',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const editProfile_components().textField(
-                          "Enter Enrollment Number",
-                          TextInputType.text,
-                          _editProfileEr_noController,
-                          ""),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const Text('    Branch',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const editProfile_components().textField(
-                          "Enter Branch Name",
-                          TextInputType.datetime,
-                          _editProfileBranchController,
-                          ""),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      role != "faculty" || role != "admin"
-                          ? Wrap(children: [
-                        const Text('    Semester',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xFF1D2A3A))),
+                        // Container(
+                        //     margin: EdgeInsets.only(
+                        //         left: 0, top: MediaQuery.of(context).size.height * 0.12),
+                        //     child: CircleAvatar(
+                        //         radius: 80,
+                        //         child: _pickedimage == null
+                        //             ? null
+                        //             : ClipOval(
+                        //
+                        //             child: kIsWeb
+                        //                 ? Image.memory(
+                        //               width: double.maxFinite,
+                        //               height: double.maxFinite,
+                        //               webImage,
+                        //               fit: BoxFit.fill,
+                        //             )
+                        //                 : Image.file(
+                        //               width: double.maxFinite,
+                        //               height: double.maxFinite,
+                        //               _pickedimage!,
+                        //               fit: BoxFit.fill,
+                        //             )))
+                        // ),
                         const SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
-                        const editProfile_components().textField(
-                            "Enter Semester",
-                            TextInputType.datetime,
-                            _editProfileSemController,
-                            "")
-                      ])
-                          : SizedBox(),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const Text('    College Name',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const editProfile_components().textField(
-                          "Enter College Name",
-                          TextInputType.datetime,
-                          _editProfileCollegeController,
-                          ""),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const Text('    Address',
-                          style: TextStyle(
-                              fontSize: 16, color: Color(0xFF1D2A3A))),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const editProfile_components().textField(
-                          "Enter Address",
-                          TextInputType.datetime,
-                          _editProfileAddressController,
-                          ""),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      if (role== "user") ... [const Text('    Campaigner Token',
-                  style: TextStyle(
-                      fontSize: 16, color: Color(0xFF1D2A3A))),
-              const SizedBox(
-                height: 10,
-              ),
-              const editProfile_components().textField(
-                  "Enter Campaigner Token",
-                  TextInputType.number,
-                  _editProfileCampaignerController,
-                  ""),
-              const SizedBox(
-                height: 30,
-              ),],
-              Container(
-                alignment: Alignment.center,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFF1D2A3A),
-                    onSurface: const Color(0xFF1D2A3A),
-                    padding: const EdgeInsets.all(3),
-                    textStyle: const TextStyle(fontSize: 20),
-                    minimumSize: const Size.fromHeight(50),
-                    shape: const StadiumBorder(),
-                    enableFeedback: true,
-                  ),
-                  child: isLoading
-                      ? const CircularProgressIndicator(
-                    color: Colors.white,
-                    backgroundColor: Colors.transparent,
-                  )
-                      : const Text('Update Profile'),
-                  onPressed: isChecked
-                      ? () async {
-                    setState(() => isLoading = true);
+                        Container(
+                          alignment: Alignment.center,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('   First Name',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const editProfile_components().textField(
+                                  "Enter First Name",
+                                  TextInputType.text,
+                                  _editProfileFirstNameController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Last Name',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const editProfile_components().textField(
+                                  "Enter Last Name",
+                                  TextInputType.text,
+                                  _editProfileLastNameController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Mobile Number',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const editProfile_components().textField(
+                                  "Enter Mobile Number",
+                                  TextInputType.phone,
+                                  _editProfileMobileController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Enrollment No',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const editProfile_components().textField(
+                                  "Enter Enrollment Number",
+                                  TextInputType.text,
+                                  _editProfileEr_noController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Branch',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const editProfile_components().textField(
+                                  "Enter Branch Name",
+                                  TextInputType.datetime,
+                                  _editProfileBranchController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              role != "faculty" || role != "admin"
+                                  ? Wrap(children: [
+                                      const Text('    Semester',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xFF1D2A3A))),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const editProfile_components().textField(
+                                          "Enter Semester",
+                                          TextInputType.datetime,
+                                          _editProfileSemController,
+                                          "")
+                                    ])
+                                  : SizedBox(),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    College Name',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const editProfile_components().textField(
+                                  "Enter College Name",
+                                  TextInputType.datetime,
+                                  _editProfileCollegeController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text('    Address',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xFF1D2A3A))),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const editProfile_components().textField(
+                                  "Enter Address",
+                                  TextInputType.datetime,
+                                  _editProfileAddressController,
+                                  ""),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              if (role == "user") ...[
+                                const Text('    Campaigner Token',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Color(0xFF1D2A3A))),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const editProfile_components().textField(
+                                    "Enter Campaigner Token",
+                                    TextInputType.number,
+                                    _editProfileCampaignerController,
+                                    ""),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                              ],
+                              Container(
+                                alignment: Alignment.center,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: const Color(0xFF1D2A3A),
+                                    onSurface: const Color(0xFF1D2A3A),
+                                    padding: const EdgeInsets.all(3),
+                                    textStyle: const TextStyle(fontSize: 20),
+                                    minimumSize: const Size.fromHeight(50),
+                                    shape: const StadiumBorder(),
+                                    enableFeedback: true,
+                                  ),
+                                  child: isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white,
+                                          backgroundColor: Colors.transparent,
+                                        )
+                                      : const Text('Update Profile'),
+                                  onPressed: isChecked
+                                      ? () async {
+                                          setState(() => isLoading = true);
 
-                    // if (isLoading) return;
-                    if (_editProfileFirstNameController
-                        .text.isNotEmpty &&
-                        _editProfileLastNameController
-                            .text.isNotEmpty &&
-                        _editProfileAddressController
-                            .text.isNotEmpty &&
-                        _editProfileSemController
-                            .text.isNotEmpty &&
-                        _editProfileMobileController
-                            .text.isNotEmpty &&
-                        _editProfileBranchController
-                            .text.isNotEmpty &&
-                        _editProfileCollegeController
-                            .text.isNotEmpty) {
-                      updateStuProfile();
-                    } else {
-                      showDialog(
-                          context: context,
-                          builder: (context) =>
-                              AlertDialog(
-                                title: Text('Error'),
-                                content: Text(
-                                    "All fields are required!!"),
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.of(
-                                            context)
-                                            .pop();
-                                      },
-                                      child: Text('Ok'))
-                                ],
-                              ));
-                    }
-                  }
-                      : null,
-                ),
-              ),
-              ],
-            ),
-            ),
-            Padding(
-            padding: EdgeInsets.only(
-            bottom:
-            MediaQuery.of(context).viewInsets.bottom)),
-            ],
-            ),
-            ),
-            )
-            );
+                                          // if (isLoading) return;
+                                          if (_editProfileFirstNameController
+                                                  .text.isNotEmpty &&
+                                              _editProfileLastNameController
+                                                  .text.isNotEmpty &&
+                                              _editProfileAddressController
+                                                  .text.isNotEmpty &&
+                                              _editProfileSemController
+                                                  .text.isNotEmpty &&
+                                              _editProfileMobileController
+                                                  .text.isNotEmpty &&
+                                              _editProfileBranchController
+                                                  .text.isNotEmpty &&
+                                              _editProfileCollegeController
+                                                  .text.isNotEmpty) {
+                                            updateStuProfile();
+                                          } else {
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                      title: Text('Error'),
+                                                      content: Text(
+                                                          "All fields are required!!"),
+                                                      actions: [
+                                                        TextButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            child: Text('Ok'))
+                                                      ],
+                                                    ));
+                                          }
+                                        }
+                                      : null,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom)),
+                      ],
+                    ),
+                  ),
+                ));
           })),
     );
   }
@@ -413,8 +436,9 @@ class _bodyState extends State<body> {
             "sem": _editProfileSemController.text,
             "address": _editProfileAddressController.text.toString(),
             "flag": 1,
-            "campaignerToken":role == "user" ? int.parse(_editProfileCampaignerController.text.toString()) : 0
-
+            "campaignerToken": role == "user"
+                ? int.parse(_editProfileCampaignerController.text.toString())
+                : 0
           }),
           headers: {
             "Accept": "application/json",
@@ -430,8 +454,7 @@ class _bodyState extends State<body> {
       if (res.statusCode == 404) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
                   title: Text('Error'),
                   content: Text("User Not Found !!"),
                   actions: [
@@ -446,8 +469,7 @@ class _bodyState extends State<body> {
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
                   title: Text('Error'),
                   content: Text("Bed Request!!"),
                   actions: [
@@ -463,8 +485,7 @@ class _bodyState extends State<body> {
       } else if (res.statusCode == 200) {
         showDialog(
             context: context,
-            builder: (context) =>
-                AlertDialog(
+            builder: (context) => AlertDialog(
                   title: Text('Status'),
                   content: Text("Profile Updated Successfully!!"),
                   actions: [
@@ -472,11 +493,14 @@ class _bodyState extends State<body> {
                         onPressed: () {
                           if (role == "campaigner") {
                             Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (context) => campaignerDashBoard()));
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        campaignerDashBoard()));
                             setState(() => isLoading = false);
                           } else {
                             Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(builder: (context) => dashboardScreen()));
+                                MaterialPageRoute(
+                                    builder: (context) => dashboardScreen()));
                             setState(() => isLoading = false);
                           }
                         },
@@ -484,26 +508,11 @@ class _bodyState extends State<body> {
                   ],
                 ));
 
-
         setState(() => isLoading = false);
       }
     } catch (e) {
       print(e.toString());
     }
-  }
-
-  Future getData() async {
-    SharedPreferences data = await SharedPreferences.getInstance();
-    _editProfileFirstNameController.text = data.getString("fname")!.toString();
-    _editProfileLastNameController.text = data.getString("lname")!.toString();
-    email = data.getString("email")!.toString();
-    _editProfileCampaignerController.text = data.getString("campToken").toString();
-    _editProfileEr_noController.text = data.getString("eno")!.toString();
-    _editProfileMobileController.text = data.getString("mobile")!;
-    _editProfileBranchController.text = data.getString("branch")!.toString();
-    _editProfileSemController.text = data.getString("sem")!;
-    _editProfileCollegeController.text = data.getString("college")!.toString();
-    _editProfileAddressController.text = data.getString("address")!.toString();
   }
 
   Future fetchData() async {

@@ -22,13 +22,14 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   var responseData;
   var stuId;
-  List<String?> profilelist = [];
+  List<ProfileData> profilelist = [];
 
 
 
   @override
   void initState() {
-    fetchData();
+    // fetchData();
+    profilelist.clear();
     // if(profilelist.isEmpty){
     //   EventParser().getProfileData(stuId).then((value) {
     //     setState(() {
@@ -36,26 +37,27 @@ class _bodyState extends State<body> {
     //     });
     //   });
     // }
-    if(profilelist.isEmpty){
-      getData().then((value) {
-        setState(() {
-          profilelist=value;
-        });
-      });
-    }
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-      });
-    });
+
   }
 
   @override
   Widget build(BuildContext context) {
 
+    if (profilelist.isEmpty) {
+      EventParser().getProfileData().then((value) {
+        setState(() {
+          profilelist = value;
+        });
+      });
+    }
 
+    print(profilelist[0]);
 
-    print(profilelist);
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+      });
+    });
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -119,14 +121,14 @@ class _bodyState extends State<body> {
                                     radius: 80,
                                     backgroundColor: Colors.cyan,
                                     child: Center(
-                                      child: profile_components().text(profilelist[0]![0]+profilelist[1]![0],
+                                      child: profile_components().text(profilelist[0].firstName[0]+profilelist[0].lastName[0],
                                           FontWeight.bold, Colors.white, 80),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 30,
                                   ),
-                                  profile_components().text(profilelist[0]!+" "+profilelist[1]!,
+                                  profile_components().text(profilelist[0].firstName+" "+profilelist[0].lastName,
                                       FontWeight.bold, Color(0xFF1D2A3A), 26),
                                 ],
                               )),
@@ -139,9 +141,9 @@ class _bodyState extends State<body> {
                             ),
                             child: Column(
                               children: [
-                                buildDetails(Icons.location_on, profilelist[8]!),
-                                buildDetails(Icons.mail, profilelist[2]!),
-                                buildDetails(Icons.phone, profilelist[4]!),
+                                buildDetails(Icons.location_on, profilelist[0].address),
+                                buildDetails(Icons.mail, profilelist[0].email),
+                                buildDetails(Icons.phone, profilelist[0].mobile),
                               ],
                             ),
                           ),
@@ -154,13 +156,12 @@ class _bodyState extends State<body> {
                             ),
                             child: Column(
                               children: [
-                                buildDetails(Icons.account_tree, profilelist[5]!),
-                                buildDetails(Icons.category, profilelist[6]!),
-                                buildDetails(Icons.account_balance, profilelist[7]!),
+                                buildDetails(Icons.account_tree, profilelist[0].branch),
+                                buildDetails(Icons.category, profilelist[0].sem),
+                                buildDetails(Icons.account_balance, profilelist[0].college),
                               ],
                             ),
                           ),
-                          
                           Container(
                             width: MediaQuery.of(context).size.width * 0.3,
                             margin: EdgeInsets.only(top:20 ),
@@ -190,7 +191,8 @@ class _bodyState extends State<body> {
                   ),
                 );
               },
-            )),
+            )
+        ),
       ),
     );
   }
@@ -205,41 +207,4 @@ class _bodyState extends State<body> {
     );
   }
 
-  Future getData() async{
-    SharedPreferences data = await SharedPreferences.getInstance();
-    String? fname=data.getString("fname");
-    String? lname=data.getString("lname");
-    String? email=data.getString("email");
-    String? eno=data.getString("eno");
-    String? mobile=data.getString("mobile");
-    String? branch=data.getString("branch");
-    String? sem=data.getString("sem");
-    String? college=data.getString("college");
-    String? address= data.getString("address");
-
-    List<String?> profiledata= [fname, lname, email, eno, mobile, branch, sem, college, address];
-    return profiledata;
-  }
-
-  Future fetchData() async {
-    SharedPreferences studata = await SharedPreferences.getInstance();
-    SharedPreferences data = await SharedPreferences.getInstance();
-
-    stuId = studata.getString("stuid");
-    var url = Uri.parse(
-        "https://convergence.uvpce.ac.in/C2K22/studentProfile.php?id=$stuId");
-    var response = await http.get(url);
-    responseData = json.decode(response.body);
-    data.setString("fname",responseData['firstName'].toString());
-    data.setString("lname",responseData['lastName'].toString());
-    data.setString("email",responseData['email'].toString());
-    data.setString("campToken", responseData['campaigner_token'].toString());
-    data.setString("eno",responseData['er_no'].toString());
-    data.setString("mobile", responseData['mobile'].toString());
-    data.setString("branch", responseData['branch'].toString());
-    data.setString("sem", responseData['sem'].toString());
-    data.setString("college", responseData['college'].toString());
-    data.setString("address", responseData['address'].toString());
-
-  }
 }
