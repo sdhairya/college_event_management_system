@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:college_event_management/campaignerDashBoard/campaignerDashBoard.dart';
 import 'package:college_event_management/editProfile/editProfile.dart';
 import 'package:college_event_management/profileDetails/components/profile_components.dart';
 import 'package:flutter/foundation.dart';
@@ -22,13 +23,12 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   var responseData;
   var stuId;
+  var role;
   List<ProfileData> profilelist = [];
-
-
 
   @override
   void initState() {
-    // fetchData();
+    fetchData();
     profilelist.clear();
     // if(profilelist.isEmpty){
     //   EventParser().getProfileData(stuId).then((value) {
@@ -38,12 +38,10 @@ class _bodyState extends State<body> {
     //   });
     // }
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     if (profilelist.isEmpty) {
       EventParser().getProfileData().then((value) {
         setState(() {
@@ -55,8 +53,7 @@ class _bodyState extends State<body> {
     print(profilelist[0]);
 
     Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-      });
+      setState(() {});
     });
 
     return Scaffold(
@@ -90,11 +87,17 @@ class _bodyState extends State<body> {
                                     padding: const EdgeInsets.only(
                                         bottom: 3, right: 3),
                                     onPressed: () {
-                                      //
-                                      Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  dashboardScreen()));
+                                      if (role == "campaigner") {
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    campaignerDashBoard()));
+                                      } else {
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    dashboardScreen()));
+                                      }
                                     },
                                     icon: Icon(
                                       color: Color(0xFF1D2A3A),
@@ -121,15 +124,24 @@ class _bodyState extends State<body> {
                                     radius: 80,
                                     backgroundColor: Colors.cyan,
                                     child: Center(
-                                      child: profile_components().text(profilelist[0].firstName[0]+profilelist[0].lastName[0],
-                                          FontWeight.bold, Colors.white, 80),
+                                      child: profile_components().text(
+                                          profilelist[0].firstName[0] +
+                                              profilelist[0].lastName[0],
+                                          FontWeight.bold,
+                                          Colors.white,
+                                          80),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 30,
                                   ),
-                                  profile_components().text(profilelist[0].firstName+" "+profilelist[0].lastName,
-                                      FontWeight.bold, Color(0xFF1D2A3A), 26),
+                                  profile_components().text(
+                                      profilelist[0].firstName +
+                                          " " +
+                                          profilelist[0].lastName,
+                                      FontWeight.bold,
+                                      Color(0xFF1D2A3A),
+                                      26),
                                 ],
                               )),
                           Container(
@@ -141,9 +153,11 @@ class _bodyState extends State<body> {
                             ),
                             child: Column(
                               children: [
-                                buildDetails(Icons.location_on, profilelist[0].address),
+                                buildDetails(
+                                    Icons.location_on, profilelist[0].address),
                                 buildDetails(Icons.mail, profilelist[0].email),
-                                buildDetails(Icons.phone, profilelist[0].mobile),
+                                buildDetails(
+                                    Icons.phone, profilelist[0].mobile),
                               ],
                             ),
                           ),
@@ -156,17 +170,19 @@ class _bodyState extends State<body> {
                             ),
                             child: Column(
                               children: [
-                                buildDetails(Icons.account_tree, profilelist[0].branch),
-                                buildDetails(Icons.category, profilelist[0].sem),
-                                buildDetails(Icons.account_balance, profilelist[0].college),
+                                buildDetails(
+                                    Icons.account_tree, profilelist[0].branch),
+                                buildDetails(
+                                    Icons.category, profilelist[0].sem),
+                                buildDetails(Icons.account_balance,
+                                    profilelist[0].college),
                               ],
                             ),
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width * 0.3,
-                            margin: EdgeInsets.only(top:20 ),
-                            child:
-                            ElevatedButton(
+                            margin: EdgeInsets.only(top: 20),
+                            child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: const Color(0xFF1D2A3A),
                                 onSurface: const Color(0xFF1D2A3A),
@@ -176,12 +192,11 @@ class _bodyState extends State<body> {
                                 shape: const StadiumBorder(),
                                 enableFeedback: true,
                               ),
-                              child:  const Text('Edit Profile'),
+                              child: const Text('Edit Profile'),
                               onPressed: () {
                                 Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  editProfile()));
+                                    MaterialPageRoute(
+                                        builder: (context) => editProfile()));
                               },
                             ),
                           )
@@ -191,8 +206,7 @@ class _bodyState extends State<body> {
                   ),
                 );
               },
-            )
-        ),
+            )),
       ),
     );
   }
@@ -207,4 +221,8 @@ class _bodyState extends State<body> {
     );
   }
 
+  Future fetchData() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    role = studata.getString("role");
+  }
 }
