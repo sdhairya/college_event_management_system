@@ -19,7 +19,7 @@ class createEventDept_components extends StatelessWidget {
     );
   }
 
-  TextFormField textField(String hint, TextInputType type, TextEditingController controller) {
+  TextFormField textField(String hint, TextInputType type, TextEditingController controller, int? maxlines) {
     // if(valid=="password"){
     //   validator=_requiredValidator;
     // }
@@ -29,6 +29,7 @@ class createEventDept_components extends StatelessWidget {
     return  TextFormField(
       keyboardType: type,
       controller: controller,
+      maxLines: maxlines,
       // validator: validator,
       decoration: InputDecoration(
         border: OutlineInputBorder(

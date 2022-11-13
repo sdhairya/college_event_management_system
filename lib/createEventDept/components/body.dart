@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../hms/event.dart';
@@ -22,7 +24,12 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
+
+  File? _pickedimage;
+  Uint8List webImage = Uint8List(8);
+
   TextEditingController _eventDeptnameController = TextEditingController();
+  TextEditingController _eventDeptdescriptionController = TextEditingController();
   bool isLoading = false;
   var uuid = Uuid();
   List<EventDeptData> eventlist = [];
@@ -106,9 +113,50 @@ class _bodyState extends State<body> {
                                   .size
                                   .height * 0.06),
 
+
+
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Container(
+                                alignment: Alignment.center,
+                                  child: CircleAvatar(
+                                      radius: SizeConfig.screenWidth! * 0.05,
+                                      child: _pickedimage == null
+                                          ? InkWell(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.camera_alt,size: 50, color: Colors.white),
+                                            Text("Choose Image", style: TextStyle(color: Colors.black,fontSize: 16),)
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          _getFromGallery();
+                                        },
+                                      )
+                                          : ClipOval(
+
+                                          child: Image.memory(
+                                            width: double.maxFinite,
+                                            height: double.maxFinite,
+                                            webImage,
+                                            fit: BoxFit.fill,
+                                          )))
+                              ),
+                              Visibility(child: Container(
+                                alignment: Alignment.center,
+                                child: TextButton(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.edit),
+                                        Text("Edit"),
+                                      ],
+                                    ),
+                                    onPressed: () =>
+                                        _getFromGallery()),
+                              ),visible: _pickedimage == null ? false : true),
                               const createEventDept_components().text(
                                   '   Name', FontWeight.normal,
                                   Color(0xFF1D2A3A), 16),
@@ -118,7 +166,20 @@ class _bodyState extends State<body> {
                               const createEventDept_components().textField(
                                   "Enter Department Name",
                                   TextInputType.text,
-                                  _eventDeptnameController),
+                                  _eventDeptnameController, 1),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const createEventDept_components().text(
+                                  '   Description', FontWeight.normal,
+                                  Color(0xFF1D2A3A), 16),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const createEventDept_components().textField(
+                                  "Enter Department Description",
+                                  TextInputType.multiline,
+                                  _eventDeptdescriptionController, null),
                               const SizedBox(
                                 height: 30,
                               ),
@@ -178,6 +239,20 @@ class _bodyState extends State<body> {
         ,
       ),
     );
+  }
+
+  _getFromGallery() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      var f = await image.readAsBytes();
+      setState(() {
+        webImage = f;
+        _pickedimage = File("a");
+      });
+    }
+    print(webImage);
+
   }
 
   void addEventDept() async {

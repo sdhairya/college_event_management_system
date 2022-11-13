@@ -102,58 +102,71 @@ class _bodyState extends State<body> {
             children: [
               Container(
                   // padding: EdgeInsets.all(50),
-                  margin: EdgeInsets.only(left: 200, right: 200, top: 50),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      campaignerDashBoard_components().text(
-                          "My Participants = " +
-                              myparticipants.length.toString(),
-                          FontWeight.w500,
-                          Color(0xFF1D2A3A),
-                          28),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildListWithoutScroll(myparticipants),
-                    ],
-                  )),
+                  // margin: EdgeInsets.only(left: 200, right: 200, top: 50),
+                  padding: MediaQuery.of(context).size.width < 1200 ? EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20) : const EdgeInsets.only(left: 200, right: 200, top: 50,bottom: 50),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        campaignerDashBoard_components().text(
+                            "My Participants = " +
+                                myparticipants.length.toString(),
+                            FontWeight.w500,
+                            Color(0xFF1D2A3A),
+                            28),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        buildListWithoutScroll(myparticipants),
+                      ],
+                    ),
+                  )
+                  ),
               Container(
                   // padding: EdgeInsets.all(50),
                   margin: EdgeInsets.only(left: 200, right: 200, top: 50),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      campaignerDashBoard_components().text(
-                          "Total Participants = " +
-                              totalparticipants.length.toString(),
-                          FontWeight.w500,
-                          Color(0xFF1D2A3A),
-                          28),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildListWithoutScroll(totalparticipants),
-                    ],
-                  )),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child:Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        campaignerDashBoard_components().text(
+                            "Total Participants = " +
+                                totalparticipants.length.toString(),
+                            FontWeight.w500,
+                            Color(0xFF1D2A3A),
+                            28),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        buildListWithoutScroll(totalparticipants),
+                      ],
+                    ) ,
+                  )
+                  ),
               Container(
                 // padding: EdgeInsets.all(50),
                   margin: EdgeInsets.only(left: 200, right: 200, top: 50),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      campaignerDashBoard_components().text(
-                          "Total Visited Colleges = " +
-                              visitedcollege.length.toString(),
-                          FontWeight.w500,
-                          Color(0xFF1D2A3A),
-                          28),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildVisitedCollegeList(visitedcollege),
-                    ],
-                  )),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        campaignerDashBoard_components().text(
+                            "Total Visited Colleges = " +
+                                visitedcollege.length.toString(),
+                            FontWeight.w500,
+                            Color(0xFF1D2A3A),
+                            28),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        buildVisitedCollegeList(visitedcollege),
+                      ],
+                    ),
+                  )
+                  ),
             ],
           ),
         ),
@@ -196,7 +209,7 @@ class _bodyState extends State<body> {
 
   Widget buildListWithoutScroll(List<ParticipantData> list) {
     return Column(
-      children: list.map((e) => buildList(e)).toList(),
+        children: list.map((e) => buildList(e)).toList(),
     );
   }
 
