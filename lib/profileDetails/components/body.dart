@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:college_event_management/editProfile/editProfile.dart';
@@ -23,11 +22,21 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   var responseData;
   var stuId;
-  List<ProfileData> profilelist = [ProfileData(firstName: "firstName", lastName: "lastName", email: "email", er_no: "er_no", mobile: "mobile", branch: "branch", sem: "sem", college: "college", address: "address", campToken: "campToken")];
+  List<ProfileData> profilelist = [];
+
+
 
   @override
   void initState() {
     // fetchData();
+    profilelist.clear();
+    // if(profilelist.isEmpty){
+    //   EventParser().getProfileData(stuId).then((value) {
+    //     setState(() {
+    //       profilelist=value;
+    //     });
+    //   });
+    // }
     super.initState();
 
   }
@@ -200,4 +209,8 @@ class _bodyState extends State<body> {
     );
   }
 
+  Future fetchData() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    role = studata.getString("role");
+  }
 }

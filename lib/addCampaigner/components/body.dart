@@ -275,7 +275,6 @@ class _bodyState extends State<body> {
         // print(response);
       } else {
         print("some issue");
-        print(e.toString());
         Fluttertoast.showToast(
           msg: "Some issue",
           toastLength: Toast.LENGTH_SHORT,
