@@ -209,8 +209,4 @@ class _bodyState extends State<body> {
     );
   }
 
-  Future fetchData() async {
-    SharedPreferences studata = await SharedPreferences.getInstance();
-    role = studata.getString("role");
-  }
 }
