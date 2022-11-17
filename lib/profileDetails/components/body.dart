@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:college_event_management/editProfile/editProfile.dart';
@@ -22,21 +23,11 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   var responseData;
   var stuId;
-  List<ProfileData> profilelist = [];
-
-
+  List<ProfileData> profilelist = [ProfileData(firstName: "firstName", lastName: "lastName", email: "email", er_no: "er_no", mobile: "mobile", branch: "branch", sem: "sem", college: "college", address: "address", campToken: "campToken")];
 
   @override
   void initState() {
     // fetchData();
-    profilelist.clear();
-    // if(profilelist.isEmpty){
-    //   EventParser().getProfileData(stuId).then((value) {
-    //     setState(() {
-    //       profilelist=value;
-    //     });
-    //   });
-    // }
     super.initState();
 
   }
@@ -44,20 +35,22 @@ class _bodyState extends State<body> {
   @override
   Widget build(BuildContext context) {
 
-    if (profilelist.isEmpty) {
+    // if (profilelist.isEmpty) {
       EventParser().getProfileData().then((value) {
         setState(() {
           profilelist = value;
         });
       });
-    }
+    // }
 
-    print(profilelist[0]);
+    // print(profilelist[0]);
 
-    Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-      });
-    });
+    // Future.delayed(Duration(seconds: 2), () {
+    //   setState(() {
+    //   });
+    // });
+
+
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

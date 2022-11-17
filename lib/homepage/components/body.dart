@@ -155,7 +155,7 @@ class _bodyState extends State<body> {
                               runSpacing: getHeight(20),
                               direction: Axis.horizontal,
                               children: eventlist
-                                  .map((e) => buildC(e.name, e.logo))
+                                  .map((e) => buildC(context, e.name, e.logo, e.eventList))
                                   .toList(),
                             ),
                           )),
@@ -202,7 +202,7 @@ class _bodyState extends State<body> {
         ));
   }
 
-  Widget buildC(String categoryName, String logo) {
+  Widget buildC(BuildContext context, String categoryName, String logo, List<EventData> eventListData) {
     return InkWell(
       child: Column(
         children: [
@@ -237,16 +237,74 @@ class _bodyState extends State<body> {
         ],
       ),
       onTap: () {
-        // Navigator.of(context).pushReplacement(
-        //   MaterialPageRoute(
-        //     builder: (context) => eventList(
-        //       eventListData: eventListData,
-        //       categoryName: categoryName,
-        //       logo: logo.isEmpty ? 'assets/event1.png' : logo,
-        //     ),
-        //   ),
-        // );
+        showDialog(context: context,
+            builder: (context)=> Dialog(
+              insetPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.25, vertical: MediaQuery.of(context).size.height * 0.1),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(30),
+            child:  Column(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: kIsWeb ? SizeConfig.screenWidth! * 0.05 : SizeConfig.screenWidth! * 0.15,
+                        child: ClipOval(
+                          child: Image.asset(logo.isEmpty ? 'assets/event1.png' : logo, fit: BoxFit.fill, height: double.maxFinite, width: double.maxFinite,),
+                        ),
+
+                      ),
+                      components()
+                          .text(
+                          categoryName, FontWeight.w300, Color(0xFF1D2A3A),
+                          23),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                buildListWithoutScroll(eventListData)
+              ],
+            ),
+          )
+
+          
+          // eventList(
+          //     eventListData: eventListData,
+          //     categoryName: categoryName,
+          //     logo: logo.isEmpty ? 'assets/event1.png' : logo,
+          //   ),
+            ));
       },
     );
   }
+
+  Widget buildListWithoutScroll(List<EventData> list) {
+    return Column(
+      children: list.map((e) => buildList(e)).toList(),
+    );
+
+  }
+
+  Widget buildList(EventData element) {
+    return  Container(
+      width: double.infinity,
+        padding: EdgeInsets.only(left: 20, top: 10,bottom: 5, right: 0),
+        margin: EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+
+            borderRadius: BorderRadius.circular(20),
+            color: Color(0xFFD9D9D9)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            components().text(element.name, FontWeight.bold, Color(0xFF1D2A3A), 20),
+            SizedBox(height: 5,),
+            components().text(element.date, FontWeight.normal, Color(0xFF1D2A3A), 14),
+          ],
+        ),
+        
+    );
+  }
+
 }
