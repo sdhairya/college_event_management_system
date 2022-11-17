@@ -10,7 +10,6 @@ import '../addFaculty.dart';
 import 'addFaculty_components.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
-
 import '../../dashboard/dashboardScreen.dart';
 
 class body extends StatefulWidget {
@@ -25,15 +24,19 @@ class _bodyState extends State<body> {
   TextEditingController _emailController = TextEditingController();
   bool isLoading = false;
   var uuid = Uuid();
+  var userId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: LayoutBuilder(builder: (context, constraints){
-          return AnimatedContainer(duration: const Duration(milliseconds: 500),
-            padding: constraints.maxWidth < 500 ? EdgeInsets.zero : const EdgeInsets.all(30.0),
+      body: SingleChildScrollView(child: LayoutBuilder(
+        builder: (context, constraints) {
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            padding: constraints.maxWidth < 500
+                ? EdgeInsets.zero
+                : const EdgeInsets.all(30.0),
             child: Center(
               child: Container(
                 constraints: const BoxConstraints(maxWidth: 600),
@@ -49,7 +52,7 @@ class _bodyState extends State<body> {
                           horizontalTitleGap: 0,
                           leading: IconButton(
                               padding:
-                              const EdgeInsets.only(bottom: 3, right: 3),
+                                  const EdgeInsets.only(bottom: 3, right: 3),
                               onPressed: () {
                                 //
                                 Navigator.of(context).pushReplacement(
@@ -76,7 +79,8 @@ class _bodyState extends State<body> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: addFaculty_components().text("Add Faculty", FontWeight.bold, Color(0xFF1D2A3A), 30),
+                      child: addFaculty_components().text("Add Faculty",
+                          FontWeight.bold, Color(0xFF1D2A3A), 30),
                     ),
                     const SizedBox(
                       height: 20,
@@ -93,16 +97,18 @@ class _bodyState extends State<body> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const addFaculty_components().text("    Name",FontWeight.normal,Color(0xFF1D2A3A),18),
+                          const addFaculty_components().text("    Name",
+                              FontWeight.normal, Color(0xFF1D2A3A), 18),
                           const SizedBox(
                             height: 10,
                           ),
-                          const addFaculty_components().textField(
-                              "Enter Name", TextInputType.text, _nameController),
+                          const addFaculty_components().textField("Enter Name",
+                              TextInputType.text, _nameController),
                           const SizedBox(
                             height: 30,
                           ),
-                          const addFaculty_components().text("    Email",FontWeight.normal,Color(0xFF1D2A3A),18),
+                          const addFaculty_components().text("    Email",
+                              FontWeight.normal, Color(0xFF1D2A3A), 18),
                           const SizedBox(
                             height: 10,
                           ),
@@ -128,16 +134,18 @@ class _bodyState extends State<body> {
                                   ),
                                   child: isLoading
                                       ? const CircularProgressIndicator(
-                                    color: Colors.white,
-                                    backgroundColor: Colors.transparent,
-                                  )
+                                          color: Colors.white,
+                                          backgroundColor: Colors.transparent,
+                                        )
                                       : const Text('Add Faculty'),
                                   onPressed: () async {
                                     if (isLoading) return;
                                     setState(() => isLoading = true);
 
-                                    bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(_emailController.text);
-                                    print ("addFacultyEmail: $emailValid");
+                                    bool emailValid = RegExp(
+                                            r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                        .hasMatch(_emailController.text);
+                                    print("addFacultyEmail: $emailValid");
 
                                     if (_emailController.text.isNotEmpty &&
                                         _nameController.text.isNotEmpty) {
@@ -147,22 +155,20 @@ class _bodyState extends State<body> {
                                         showDialog(
                                             context: context,
                                             builder: (context) => AlertDialog(
-                                              title: Text('Error'),
-                                              content: Text(
-                                                  "Please enter valid email!!"),
-                                              actions: [
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: Text('Ok'))
-                                              ],
-                                            ));
+                                                  title: Text('Error'),
+                                                  content: Text(
+                                                      "Please enter valid email!!"),
+                                                  actions: [
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text('Ok'))
+                                                  ],
+                                                ));
                                         setState(() => isLoading = false);
                                       }
-
-
                                     } else {
                                       Fluttertoast.showToast(
                                           msg: "Any field can not be empty!!",
@@ -185,13 +191,13 @@ class _bodyState extends State<body> {
               ),
             ),
           );
-        },)
-      ),
+        },
+      )),
     );
   }
 
   Future addFaculty() async {
-    var userId = uuid.v4();
+    userId = uuid.v4();
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
       var res = await http.post(Uri.parse(uri),
@@ -201,6 +207,90 @@ class _bodyState extends State<body> {
             "userName": _nameController.text,
             "role": "faculty",
             "password": "Convergence@uvpce"
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("User Not Found Check your Email Or Password!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("Bed Request!!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+        faculty();
+      } else {
+        print("some issue");
+        Fluttertoast.showToast(
+          msg: "Some issue",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        setState(() => isLoading = false);
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);
+    }
+  }
+
+
+  Future faculty() async {
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/addFaculty.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "id": userId,
+            "email": _emailController.text,
+            "userName": _nameController.text,
           }),
           headers: {
             "Accept": "application/json",
@@ -267,7 +357,17 @@ class _bodyState extends State<body> {
         setState(() => isLoading = false);
       }
     } catch (e) {
-      // print(e.toString());
+      print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);
     }
   }
 
@@ -277,4 +377,4 @@ class _bodyState extends State<body> {
         .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
   }
 
-  }
+}

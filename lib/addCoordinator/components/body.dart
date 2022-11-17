@@ -28,6 +28,7 @@ class _addCoordinatorState extends State<addCoordinator> {
   TextEditingController _emailController = TextEditingController();
   bool isLoading = false;
   var uuid = Uuid();
+  var userId;
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +186,7 @@ class _addCoordinatorState extends State<addCoordinator> {
   }
 
   Future addCoordinator() async {
-    var userId = uuid.v4();
+    userId = uuid.v4();
     try {
       String uri = "https://convergence.uvpce.ac.in/C2K22/auth/signup.php";
       var res = await http.post(Uri.parse(uri),
@@ -241,27 +242,140 @@ class _addCoordinatorState extends State<addCoordinator> {
         );
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
+
+        addStuCoordinator();
+        // Fluttertoast.showToast(
+        //     msg: "Faculty Added Successfully!!",
+        //     toastLength: Toast.LENGTH_SHORT,
+        //     gravity: ToastGravity.BOTTOM,
+        //     timeInSecForIosWeb: 1,
+        //     backgroundColor: Colors.red,
+        //     textColor: Colors.white,
+        //     fontSize: 16.0);
+        // print("faculty added Successfully!!");
+        // setState(() => isLoading = false);
+        //
+        // _emailController.text = "";
+        // _nameController.text = "";
+
+        // print(response);
+      } else {
+        print("some issue");
         Fluttertoast.showToast(
-            msg: "Faculty Added Successfully!!",
+          msg: "Some issue",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        setState(() => isLoading = false);
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);
+    }
+  }
+
+  Future addStuCoordinator() async{
+
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/addStudentCoordinator.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({
+            "id": userId,
+            "email": _emailController.text,
+            "userName": _nameController.text
+
+          }),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 404) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("User Not Found Check your Email Or Password!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 442) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text("Bed Request!!"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Ok'),
+              )
+            ],
+          ),
+        );
+        setState(() => isLoading = false);
+      } else if (res.statusCode == 200) {
+
+        Fluttertoast.showToast(
+            msg: "Student Coordinator Added Successfully!!",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.red,
             textColor: Colors.white,
             fontSize: 16.0);
-        print("faculty added Successfully!!");
+        print("Student Coordinator added Successfully!!");
         setState(() => isLoading = false);
 
         _emailController.text = "";
         _nameController.text = "";
 
-        // print(response);
+
       } else {
         print("some issue");
         setState(() => isLoading = false);
       }
     } catch (e) {
-      // print(e.toString());
+      print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);
     }
+
   }
 }

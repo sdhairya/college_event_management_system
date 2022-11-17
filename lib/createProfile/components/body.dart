@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:college_event_management/size_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:college_event_management/campaignerDashBoard/campaignerDashBoard.dart';
 import 'createProfile_components.dart';
 import 'package:http/http.dart' as http;
+
 
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
@@ -663,6 +663,16 @@ class _bodyState extends State<body> {
       }
     } catch (e) {
       print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      setState(() => isLoading = false);
     }
   }
 
