@@ -14,7 +14,6 @@ import 'package:college_event_management/campaignerDashBoard/campaignerDashBoard
 import 'createProfile_components.dart';
 import 'package:http/http.dart' as http;
 
-
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
 
@@ -243,17 +242,23 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              const Text('    Enrollment No',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Color(0xFF1D2A3A))),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const createProfile_components().textField(
-                                  "Enter Enrollment Number",
-                                  TextInputType.text,
-                                  _createProfileEr_noController,
-                                  ""),
+                              role != "faculty" || role != "admin"
+                                  ? Wrap(children: [
+                                      const Text('    Enrollment No',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xFF1D2A3A))),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const createProfile_components()
+                                          .textField(
+                                              "Enter Enrollment No",
+                                              TextInputType.datetime,
+                                              _createProfileEr_noController,
+                                              "")
+                                    ])
+                                  : SizedBox(),
                               const SizedBox(
                                 height: 30,
                               ),
@@ -271,26 +276,23 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              role != "faculty" || role != "admin"
-                                  ? Wrap(children: [
-                                      const Text('    Semester',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Color(0xFF1D2A3A))),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const createProfile_components()
-                                          .textField(
-                                              "Enter Semester",
-                                              TextInputType.datetime,
-                                              _createProfileSemController,
-                                              "")
-                                    ])
-                                  : SizedBox(),
-                              const SizedBox(
-                                height: 30,
-                              ),
+                              if (role != "faculty" || role != "admin") ...[
+                                const Text('    Semester',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Color(0xFF1D2A3A))),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const createProfile_components().textField(
+                                    "Enter Semester",
+                                    TextInputType.datetime,
+                                    _createProfileSemController,
+                                    ""),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                              ],
                               const Text('    College Name',
                                   style: TextStyle(
                                       fontSize: 16, color: Color(0xFF1D2A3A))),
@@ -365,24 +367,22 @@ class _bodyState extends State<body> {
                                                   .text.isNotEmpty &&
                                               _createProfileAddressController
                                                   .text.isNotEmpty &&
-                                              _createProfileSemController
-                                                  .text.isNotEmpty &&
                                               _createProfileMobileController
                                                   .text.isNotEmpty &&
                                               _createProfileBranchController
                                                   .text.isNotEmpty &&
                                               _createProfileCollegeController
                                                   .text.isNotEmpty) {
+                                            bool mobileValid = RegExp(
+                                                    r'(^(?:[+0]9)?[0-9]{10,12}$)')
+                                                .hasMatch(
+                                                    _createProfileMobileController
+                                                        .text);
+                                            print(mobileValid);
 
-
-                                            bool mobileValid = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)').hasMatch(_createProfileMobileController.text);
-                                            print (mobileValid);
-
-                                            if(mobileValid){
+                                            if (mobileValid) {
                                               createStuProfile();
-
-                                            }
-                                            else{
+                                            } else {
                                               showDialog(
                                                   context: context,
                                                   builder: (context) =>
@@ -394,7 +394,7 @@ class _bodyState extends State<body> {
                                                           TextButton(
                                                               onPressed: () {
                                                                 Navigator.of(
-                                                                    context)
+                                                                        context)
                                                                     .pop();
                                                               },
                                                               child: Text('Ok'))
@@ -402,8 +402,6 @@ class _bodyState extends State<body> {
                                                       ));
                                             }
                                             setState(() => isLoading = false);
-
-
                                           } else {
                                             showDialog(
                                                 context: context,
@@ -423,7 +421,6 @@ class _bodyState extends State<body> {
                                                       ],
                                                     ));
                                             setState(() => isLoading = false);
-
                                           }
 
                                           // if (_signUpEmailController

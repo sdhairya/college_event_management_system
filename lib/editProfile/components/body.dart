@@ -128,29 +128,6 @@ class _bodyState extends State<body> {
                                     color: Color(0xFF1D2A3A)),
                               ),
                             )),
-                        // Container(
-                        //     margin: EdgeInsets.only(
-                        //         left: 0, top: MediaQuery.of(context).size.height * 0.12),
-                        //     child: CircleAvatar(
-                        //         radius: 80,
-                        //         child: _pickedimage == null
-                        //             ? null
-                        //             : ClipOval(
-                        //
-                        //             child: kIsWeb
-                        //                 ? Image.memory(
-                        //               width: double.maxFinite,
-                        //               height: double.maxFinite,
-                        //               webImage,
-                        //               fit: BoxFit.fill,
-                        //             )
-                        //                 : Image.file(
-                        //               width: double.maxFinite,
-                        //               height: double.maxFinite,
-                        //               _pickedimage!,
-                        //               fit: BoxFit.fill,
-                        //             )))
-                        // ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -201,17 +178,23 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              const Text('    Enrollment No',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Color(0xFF1D2A3A))),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const editProfile_components().textField(
-                                  "Enter Enrollment Number",
-                                  TextInputType.text,
-                                  _editProfileEr_noController,
-                                  ""),
+                              role != "faculty" || role != "admin"
+                                  ? Wrap(children: [
+                                const Text('    Enrollment No',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Color(0xFF1D2A3A))),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const editProfile_components()
+                                    .textField(
+                                    "Enter Enrollment No",
+                                    TextInputType.datetime,
+                                    _editProfileEr_noController,
+                                    "")
+                              ])
+                                  : SizedBox(),
                               const SizedBox(
                                 height: 30,
                               ),

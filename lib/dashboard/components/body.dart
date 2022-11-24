@@ -92,6 +92,7 @@ class _bodyState extends State<body> {
 
     final minCount = 2;
 
+
     if (eventlist.isEmpty) {
       EventParser().getDeptEventList().then((value) {
         // debugPrint(":::HMS:::Event_Data:::$value");
