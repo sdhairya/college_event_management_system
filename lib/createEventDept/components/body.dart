@@ -278,7 +278,9 @@ class _bodyState extends State<body> {
         _pickedimage = File("a");
       });
     }
-     imgPath = Image.file(File(image!.path));
+
+    //imgPath = image!.path;
+    imgPath = File(image!.path);
     print("print $imgPath" );
   }
 
@@ -415,7 +417,8 @@ class _bodyState extends State<body> {
     http.MultipartRequest('POST', urlToInsertImage);
     request.files.add(await http.MultipartFile.fromPath(
         'logo',
-        imgPath
+       f
+       // File(imgPath).readAsBytes().asStream()
     ));
 
     var response = await request.send();

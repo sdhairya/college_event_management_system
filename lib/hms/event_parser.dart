@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:college_event_management/createEventDept/createEventDept.dart';
+import 'package:college_event_management/myEvents/myEvents.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -258,5 +259,50 @@ class EventParser {
 
     return listProfile;
     print(responseData);
+  }
+
+  Future<List<ProfileData>> myEvents() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    var stuid = studata.getString("stuid");
+
+    try {
+      String uri = "https://convergence.uvpce.ac.in/C2K22/myEvents.php";
+      var res = await http.post(Uri.parse(uri),
+          body: json.encode({"sid": stuid.toString()}),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          encoding: Encoding.getByName('utf-8'));
+      print(res.statusCode);
+      //  var response = json.decode(res.body);
+
+      //print(response["firebaseId"]);
+      //print(response);
+      if (res.statusCode == 200) {
+        final myParticipants = json.decode(res.body);
+
+        print("getMyParticipants function work!!");
+        print(myParticipants);
+        List<ParticipantData> listMyParticipant = [];
+        myParticipants
+            .forEach((e) => listMyParticipant.add(getParticipantsData(e)));
+
+        return listMyParticipant;
+      } else {
+        print("some issue");
+      }
+    } catch (e) {
+      print(e.toString());
+      Fluttertoast.showToast(
+        msg: "Some issue",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
   }
 }
