@@ -14,39 +14,57 @@ class FacultyData {
   }
 }
 
-class CampaignerData{
-  String campaigner_id="";
-  String name="";
-  String email="";
-  String campaigner_token="";
+class CampaignerData {
+  String campaigner_id = "";
+  String name = "";
+  String email = "";
+  String campaigner_token = "";
 
   CampaignerData(
-      {required this.campaigner_id, required this.name, required this.email, required this.campaigner_token}
-      );
+      {required this.campaigner_id, required this.name, required this.email, required this.campaigner_token});
+
   @override
-  String toString(){
+  String toString() {
     return "$campaigner_id\n$name\n$email\n$campaigner_token";
   }
 }
 
-class ProfileData{
-  String firstName="";
-  String lastName="";
-  String email="";
-  String er_no="";
-  String mobile="";
-  String branch="";
-  String sem="";
-  String college="";
-  String address="";
-  String campToken="";
+class ProfileData {
+  String firstName = "";
+  String lastName = "";
+  String email = "";
+  String er_no = "";
+  String mobile = "";
+  String branch = "";
+  String sem = "";
+  String college = "";
+  String address = "";
+  String campToken = "";
 
   ProfileData(
-      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.mobile, required this.branch, required this.sem, required this.college, required this.address, required this.campToken}
-      );
+      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.mobile, required this.branch, required this.sem, required this.college, required this.address, required this.campToken});
+
+  @override
+  String toString() {
+    return "$firstName\n$lastName\n$email\n$er_no\n$mobile\n$branch\n$sem\n$college\n$address\n$campToken";
+  }
+}
+
+class myEventsData {
+  String eventName = "";
+  String departmentName = "";
+  String timeslot = "";
+  String eventDate = "";
+  String eventTime = "";
+  String eventLocation = "";
+
+  myEventsData({
+    required this.eventName, required this.departmentName, required this.timeslot, required this.eventDate, required this.eventTime, required this.eventLocation
+  });
+
   @override
   String toString(){
-    return "$firstName\n$lastName\n$email\n$er_no\n$mobile\n$branch\n$sem\n$college\n$address\n$campToken";
+    return "$eventName\n$departmentName\n$timeslot\n$eventDate\n$eventTime\n$eventLocation";
   }
 }
 
@@ -57,12 +75,11 @@ class StudentData {
   String branchSem = "";
   String enrollmentNo = "";
 
-  StudentData(
-      {required this.name,
-      required this.emailId,
-      required this.mobileNo,
-      required this.branchSem,
-      required this.enrollmentNo});
+  StudentData({required this.name,
+    required this.emailId,
+    required this.mobileNo,
+    required this.branchSem,
+    required this.enrollmentNo});
 
   @override
   String toString() {
@@ -70,31 +87,30 @@ class StudentData {
   }
 }
 
-class ParticipantData{
-  String firstName="";
-  String lastName="";
-  String email="";
-  String er_no="";
-  String branch="";
-  String college="";
+class ParticipantData {
+  String firstName = "";
+  String lastName = "";
+  String email = "";
+  String er_no = "";
+  String branch = "";
+  String college = "";
 
   ParticipantData(
-      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.branch, required this.college}
-      );
+      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.branch, required this.college});
+
   @override
-  String toString(){
+  String toString() {
     return "$firstName\n$lastName\n$email\n$er_no\n$branch\n$college";
   }
 }
 
-class VisitedCollege{
-  String college="";
+class VisitedCollege {
+  String college = "";
 
-  VisitedCollege(
-  { required this.college}
-      );
+  VisitedCollege({ required this.college});
+
   @override
-  String toString(){
+  String toString() {
     return "$college";
   }
 }
@@ -137,7 +153,10 @@ class EventData {
 
   @override
   String toString() {
-    return "$name\n$type\n$date\n$time\n${categoryTime.toString()}\n$venue\n$logo\n$description\n${rules.toString()}\n${evaluation.toString()}\n${facultyCoordinator.toString()}\n${studentCoordinator.toString()}";
+    return "$name\n$type\n$date\n$time\n${categoryTime
+        .toString()}\n$venue\n$logo\n$description\n${rules
+        .toString()}\n${evaluation.toString()}\n${facultyCoordinator
+        .toString()}\n${studentCoordinator.toString()}";
   }
 }
 
@@ -164,7 +183,7 @@ class EventDeptData {
     // return EventDeptData(name: json['name'], logo: json['logo'], poster: json['poster']);
   }
 
-  Map<String, dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['logo'] = this.logo;

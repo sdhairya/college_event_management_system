@@ -261,7 +261,18 @@ class EventParser {
     print(responseData);
   }
 
-  Future<List<ProfileData>> myEvents() async {
+  myEventsData getmyEventsData(Map<String, dynamic> record) {
+    myEventsData object = myEventsData(
+        eventName: record['eventName'],
+        departmentName: record['departmentName'],
+        timeslot: record['timeslot'],
+        eventDate: record['eventDate'],
+        eventTime: record['eventTime'],
+        eventLocation: record['eventLocation']);
+    return object;
+  }
+
+  Future myEvents() async {
     SharedPreferences studata = await SharedPreferences.getInstance();
     var stuid = studata.getString("stuid");
 
@@ -284,14 +295,15 @@ class EventParser {
 
         print("getMyParticipants function work!!");
         print(myParticipants);
-        List<ParticipantData> listMyParticipant = [];
+        List<myEventsData> listMyEvents = [];
         myParticipants
-            .forEach((e) => listMyParticipant.add(getParticipantsData(e)));
+            .forEach((e) => listMyEvents.add(getmyEventsData(e)));
 
-        return listMyParticipant;
+        return listMyEvents;
       } else {
         print("some issue");
       }
+
     } catch (e) {
       print(e.toString());
       Fluttertoast.showToast(

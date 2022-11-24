@@ -10,6 +10,8 @@ import 'package:college_event_management/eventsList/eventList.dart';
 import 'package:college_event_management/hms/event_parser.dart';
 import 'package:college_event_management/homepage/homepage.dart';
 import 'package:college_event_management/showCampaigner/showCampaigner.dart';
+import 'package:college_event_management/showFacultyCoordinator/showFacultyCoordinator.dart';
+import 'package:college_event_management/showStudentCoordinator/showStudentCoordinator.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -356,7 +358,29 @@ class _bodyState extends State<body> {
                     },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.bookmark_add),
+                    leading: const Icon(Icons.people),
+                    title: const Text('Show Faculty Coordinators'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => showFacultyCoordinator(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.people),
+                    title: const Text('Show Student Coordinators'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => showStudentCoordinator(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.campaign),
                     title: const Text('Show Campaigners'),
                     onTap: () {
                       Navigator.of(context).pushReplacement(

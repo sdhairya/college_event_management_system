@@ -1,6 +1,10 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../dashboard/dashboardScreen.dart';
 import '../../size_config.dart';
@@ -15,6 +19,10 @@ class body extends StatefulWidget {
 
 class _bodyState extends State<body> {
   bool isLoading = false;
+  File? _pickedimage;
+  var f;
+  var imgPath;
+  Uint8List webImage = Uint8List(8);
   List<String> list = <String>['Tech', 'Talk', 'Funny', 'Sports'];
   String dropdownValue = "Tech";
   // name, category, date, location, charges, description
@@ -91,6 +99,54 @@ class _bodyState extends State<body> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Container(
+                            alignment: Alignment.center,
+                            child: CircleAvatar(
+                                radius: SizeConfig.screenWidth! * 0.05,
+                                child: _pickedimage == null
+                                    ? InkWell(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.camera_alt,
+                                          size: 50,
+                                          color: Colors.white),
+                                      Text(
+                                        "Choose Image",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16),
+                                      )
+                                    ],
+                                  ),
+                                  onTap: () {
+                                    _getFromGallery();
+                                  },
+                                )
+                                    : ClipOval(
+                                    child: Image.memory(
+                                      width: double.maxFinite,
+                                      height: double.maxFinite,
+                                      webImage,
+                                      fit: BoxFit.fill,
+                                    )))),
+                          Visibility(
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: TextButton(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: const [
+                                        Icon(Icons.edit),
+                                        Text("Edit"),
+                                      ],
+                                    ),
+                                    onPressed: () => _getFromGallery()),
+                              ),
+                              visible:
+                              _pickedimage == null ? false : true),
                           const createEvent_components().text("   Event Name",FontWeight.normal,Color(0xFF1D2A3A),18),
                           const SizedBox(
                             height: 10,
@@ -229,5 +285,18 @@ class _bodyState extends State<body> {
 
       ),
     );
+  }
+  _getFromGallery() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      f = await image.readAsBytes();
+      setState(() {
+        webImage = f;
+        _pickedimage = File("a");
+      });
+    }
+    imgPath = Image.file(File(image!.path));
+    print("print $imgPath" );
   }
 }
