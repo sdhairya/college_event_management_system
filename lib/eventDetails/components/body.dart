@@ -332,6 +332,9 @@ class _bodyState extends State<body> {
     SharedPreferences studata = await SharedPreferences.getInstance();
     stuid = studata.getString("stuid");
     var eventName = widget.eventDetails.name;
+    var eventDate = widget.eventDetails.date;
+    var eventTime = widget.eventDetails.time;
+    var eventLocation = widget.eventDetails.venue;
 
     var deptName = widget.deptName;
 
@@ -341,7 +344,10 @@ class _bodyState extends State<body> {
           body: json.encode({
             "sid": stuid,
             "event_name": eventName,
-            "department_name": deptName
+            "department_name": deptName,
+            "event_date":eventDate.toString(),
+            "event_time":eventTime.toString(),
+            "event_location":eventLocation.toString()
           }),
           headers: {
             "Accept": "application/json",
