@@ -305,6 +305,7 @@ class EventParser {
     responseData
         .forEach((e) => liststudent.add(getCoordinators(e)));
     print(responseData);
+    return liststudent;
 
   }
 

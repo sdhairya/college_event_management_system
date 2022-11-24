@@ -25,7 +25,7 @@ class _bodyState extends State<body> {
   @override
   Widget build(BuildContext context) {
     if(liststudent.isEmpty){
-      EventParser().getFacultyCoordinatorList().then((value) {
+      EventParser().getStudentCoordinatorList().then((value) {
         setState(() {
           liststudent=value;
         });

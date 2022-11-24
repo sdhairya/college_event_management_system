@@ -30,6 +30,14 @@ class _bodyState extends State<body> {
 
 
   var stuid;
+  var role;
+  var email;
+
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -274,6 +282,7 @@ class _bodyState extends State<body> {
                                   SizedBox(
                                     height: 20,
                                   ),
+                                  role == "user" ?
                                   Align(
                                     alignment: Alignment.center,
                                     child: SizedBox(
@@ -302,7 +311,7 @@ class _bodyState extends State<body> {
                                             bookEvent();
                                           }),
                                     ),
-                                  ),
+                                  ) : SizedBox(),
                                   SizedBox(
                                     height: 15,
                                   ),
@@ -546,4 +555,12 @@ class _bodyState extends State<body> {
       ),
     );
   }
+
+  Future fetchData() async {
+    SharedPreferences studata = await SharedPreferences.getInstance();
+    role = studata.getString("role");
+    stuid = studata.getString("stuid");
+    email = studata.getString("email");
+  }
+
 }
