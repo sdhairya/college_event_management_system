@@ -7,4 +7,15 @@ class showStudentCoordinator_components extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container();
   }
+
+  Text text(String data, FontWeight fontWeight, Color color, double fontsize) {
+    return Text(
+      data,
+      style: TextStyle(
+          fontWeight: fontWeight,
+          color: color,
+          fontSize: fontsize),
+    );
+  }
+
 }

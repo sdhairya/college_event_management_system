@@ -246,6 +246,7 @@ class EventParser {
 
     List<ProfileData> listProfile = [];
     listProfile.add(ProfileData(
+      sid: responseData['sid'],
         firstName: responseData['firstName'],
         lastName: responseData['lastName'],
         email: responseData['email'],
@@ -261,6 +262,52 @@ class EventParser {
     print(responseData);
   }
 
+  ProfileData getCoordinators(Map<String, dynamic> record){
+    ProfileData object = ProfileData(
+        sid: record['sid'],
+        firstName: record['firstName'],
+        lastName: record['lastName'],
+        email: record['email'],
+        er_no: record['er_no'],
+        mobile: record['mobile'],
+        branch: record['branch'],
+        sem: record['sem'],
+        college: record['college'],
+        address: record['address'],
+        campToken: record['campaigner_token']);
+    return object;
+  }
+
+  Future getFacultyCoordinatorList() async {
+
+    final url =
+    Uri.parse("https://convergence.uvpce.ac.in/C2K22/addFaculty.php");
+    final response = await http.get(url);
+    // var responseData;
+
+    final responseData = await json.decode(response.body);
+    List<ProfileData> listfaculty = [];
+    responseData
+        .forEach((e) => listfaculty.add(getCoordinators(e)));
+    // listfaculty.add(FacultyData(name: responseData['firstName']+ " " +responseData['lastName'], emailId: responseData['email'], mobileNo: responseData['mobile'].toString()));
+    print("PARSER");
+    print(listfaculty);
+    return listfaculty;
+
+  }
+
+  Future getStudentCoordinatorList() async {
+    final url =
+    Uri.parse("https://convergence.uvpce.ac.in/C2K22/addStudentCoordinator.php");
+    final response = await http.get(url);
+    final responseData = await json.decode(response.body);
+    List<ProfileData> liststudent = [];
+    responseData
+        .forEach((e) => liststudent.add(getCoordinators(e)));
+    print(responseData);
+
+  }
+
   myEventsData getmyEventsData(Map<String, dynamic> record) {
     myEventsData object = myEventsData(
         eventName: record['eventName'],
@@ -268,7 +315,7 @@ class EventParser {
         timeslot: record['timeslot'],
         eventDate: record['eventDate'],
         eventTime: record['eventTime'],
-        eventLocation: record['eventLocation']);
+        eventLocation: record['eventLoaction']);
     return object;
   }
 

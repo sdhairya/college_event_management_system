@@ -1,10 +1,12 @@
 import 'dart:collection';
 
+import 'package:college_event_management/hms/event.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../dashboard/dashboardScreen.dart';
 import '../../eventDetails/eventDetails.dart';
+import '../../hms/event_parser.dart';
 import '../../size_config.dart';
 import 'events_components.dart';
 
@@ -16,120 +18,147 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
+  List<myEventsData> myeventlist = [];
   List<String> list1 = <String>['Infocrats', 'Mech-Mechato', 'MATHMAGIX', 'PetroX',"Biotechnical", "CIVESTA","Electabuzz","General Events","MARITECH"];
-  // List<String> infocrats =  <String>["PROJECT PRESENTATION",
-  //   "PAPER PRESENTATION",
-  //   "POSTER PRESENTATION",
-  //   "CRYPT YOUR  MIND",
-  //   "WEB INSIDE",
-  //   "CODE CONNECTION",
-  //   "QUIZZARD"];
 
-
+  @override
+  void initState() {
+    myeventlist.clear();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+
+
+    if (myeventlist.isEmpty) {
+      EventParser().myEvents().then((value) {
+        // debugPrint(":::HMS:::Event_Data:::$value");
+        setState(() {
+          myeventlist = value;
+        });
+      });
+      print(myeventlist);
+    }
+
+
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Align(
-              alignment: Alignment(0, 0),
-            ),
-            Container(
-              height: getHeight(50),
-              width: getWidth(kIsWeb ? 250 : double.infinity),
-              margin: EdgeInsets.only(
-                  left: 20, top: MediaQuery.of(context).size.height * 0.12),
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                      padding: EdgeInsets.only(bottom: 3, right: 8),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => dashboardScreen()));
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        size: 30,
-                      )),
-                  Text(
-                    'My Events ',
-                    style: TextStyle(
-                        fontSize: 35,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF1D2A3A)),
-                  )
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          reverse: false,
+          child: LayoutBuilder(builder: (context, constraints) {
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              padding: constraints.maxWidth < 500
+                  ? EdgeInsets.zero
+                  : const EdgeInsets.all(30.0),
+              child: Center(
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment(0, 0),
+                      ),
+                      Container(
+                          alignment: Alignment.topLeft,
+                          child: ListTile(
+                            dense: true,
+                            horizontalTitleGap: 0,
+                            leading: IconButton(
+                                padding:
+                                const EdgeInsets.only(bottom: 3, right: 3),
+                                onPressed: () {
+                                  //
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              dashboardScreen()));
+                                },
+                                icon: Icon(
+                                  color: Color(0xFF1D2A3A),
+                                  Icons.arrow_back_ios_new_rounded,
+                                  size: 20,
+                                )),
+                            title: const Text(
+                              'Dashboard ',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF1D2A3A)),
+                            ),
+                          )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: events_components().text("My Events", FontWeight.bold, Color(0xFF1D2A3A), 30),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        child: buildListWithoutScroll(myeventlist),
+                      )
+                    ],
+                  ),
+                ),
               ),
-            ),
-            Container(
-              // height: 1000,
-              width: getWidth(kIsWeb ? 230 : double.infinity),
-              child: Flexible(
-                fit: FlexFit.loose,
-                child: getCardList()
-              ),
-            )
-          ],
+            );
+          }),
         ),
       ),
     );
   }
-  Widget getCardList(){
-    return buildListWithoutScroll(list1);
-  }
-  Widget buildListWithoutScroll(List list) {
+
+  Widget buildListWithoutScroll(List<myEventsData> list) {
     return
       Column(children:list.map((e) => buildCard(e)).toList()
       )
     ;
   }
-  Widget buildCard(String e) =>
+  Widget buildCard(myEventsData e) =>
       Container(
-        padding: EdgeInsets.only(left: 30, top: 10,bottom: 10, right: 30),
+        padding: EdgeInsets.only(left: 30, top: 5,bottom: 0, right: 30),
+          margin: EdgeInsets.only(bottom: 10),
         // margin: EdgeInsets.only(left: 50, right: 50),
         decoration: BoxDecoration(
 
             borderRadius: BorderRadius.circular(20),
             color: Color(0xFFD9D9D9)),
-        child: InkWell(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    events_components().text(e, FontWeight.bold, Color(0xFF1D2A3A), 20),
-                    SizedBox(height: 5,),
-                    events_components().text("29th Nov 2022", FontWeight.normal, Color(0xFF1D2A3A), 14),
-                    SizedBox(height:5,),
-                    Row(
-                      children: [
-                        events_components().icon(Icons.location_on),
-                        events_components().text("Ahmedabad", FontWeight.normal, Color(0xFF1D2A3A), 14),
-                      ],
-                    )
-                  ],
-                ),
-                Icon(Icons.arrow_circle_right,size: 30,color: Color(0xFF1D2A3A),)
-              ],
-            )
-            
-            
+        child:
+        ListTile(
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              events_components().text(e.eventName, FontWeight.bold, Color(0xFF1D2A3A), 20),
+              SizedBox(height: 5,),
+              events_components().text(e.departmentName, FontWeight.normal, Color(0xFF1D2A3A), 14),
+              SizedBox(height:5,),
+              ListTile(
+                dense: true,
+                contentPadding: EdgeInsets.all(0),
+                horizontalTitleGap: 0,
+                leading: events_components().icon(Icons.location_on),
+                title: events_components().text(e.eventLocation, FontWeight.normal, Color(0xFF1D2A3A), 14),
 
+              )
+            ],
+          ),
+          trailing: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              events_components().text(e.eventDate, FontWeight.normal, Color(0xFF1D2A3A), 14),
+              SizedBox(height: 5,),
+              events_components().text(e.eventTime+ "   "+e.timeslot, FontWeight.normal, Color(0xFF1D2A3A), 14),
+              SizedBox(height:5,),
+              // events_components().text(e.timeslot, FontWeight.normal, Color(0xFF1D2A3A), 14),
 
-          ],
-        ),
-        /*onTap: (){
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => eventDetails(inputList: e,)));
-        }*/
-            )
+            ],
+          ),
+        )
+
       );
 }

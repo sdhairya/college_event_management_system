@@ -22,7 +22,7 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   var responseData;
   var stuId;
-  List<ProfileData> profilelist = [ProfileData(firstName: "firstName", lastName: "lastName", email: "email", er_no: "er_no", mobile: "mobile", branch: "branch", sem: "sem", college: "college", address: "address", campToken: "campToken")];
+  List<ProfileData> profilelist = [ProfileData(sid: "sid",firstName: "firstName", lastName: "lastName", email: "email", er_no: "er_no", mobile: "mobile", branch: "branch", sem: "sem", college: "college", address: "address", campToken: "campToken")];
 
 
 

@@ -390,17 +390,14 @@ class _bodyState extends State<body> {
                       );
                     },
                   ),
-                  // ListTile(
-                  //   leading: const Icon(Icons.bookmark_add),
-                  //   title: const Text('Create Profile'),
-                  //   onTap: () {
-                  //     Navigator.of(context).pushReplacement(
-                  //       MaterialPageRoute(
-                  //         builder: (context) => createProfile(),
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
+                  ListTile(
+                    leading: const Icon(Icons.event_note_sharp),
+                    title: const Text('My Events'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => events()));
+                    },
+                  )
                 ],
               )
             : SizedBox(),
@@ -437,7 +434,7 @@ class _bodyState extends State<body> {
                 ],
               )
             : SizedBox(),
-        role == "student"
+        role == "user"
             ? ListTile(
                 leading: const Icon(Icons.event_note_sharp),
                 title: const Text('My Events'),

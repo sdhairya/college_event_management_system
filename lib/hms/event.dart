@@ -30,6 +30,7 @@ class CampaignerData {
 }
 
 class ProfileData {
+  String sid = "";
   String firstName = "";
   String lastName = "";
   String email = "";
@@ -42,11 +43,11 @@ class ProfileData {
   String campToken = "";
 
   ProfileData(
-      {required this.firstName, required this.lastName, required this.email, required this.er_no, required this.mobile, required this.branch, required this.sem, required this.college, required this.address, required this.campToken});
+      {required this.sid, required this.firstName, required this.lastName, required this.email, required this.er_no, required this.mobile, required this.branch, required this.sem, required this.college, required this.address, required this.campToken});
 
   @override
   String toString() {
-    return "$firstName\n$lastName\n$email\n$er_no\n$mobile\n$branch\n$sem\n$college\n$address\n$campToken";
+    return "$sid\n$firstName\n$lastName\n$email\n$er_no\n$mobile\n$branch\n$sem\n$college\n$address\n$campToken";
   }
 }
 
