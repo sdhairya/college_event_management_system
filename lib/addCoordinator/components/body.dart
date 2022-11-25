@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:college_event_management/addCoordinator/components/addCoordinator_components.dart';
+import 'package:college_event_management/dashboard/dashboardScreen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,12 +11,6 @@ import '../../main.dart';
 import '../../size_config.dart';
 import 'package:http/http.dart' as http;
 
-TextEditingController _coordiantorNameController = TextEditingController();
-TextEditingController _coordiantorEmailController = TextEditingController();
-TextEditingController _coordiantorPhoneController = TextEditingController();
-TextEditingController _coordiantorEnrollmentController =
-    TextEditingController();
-
 class addCoordinator extends StatefulWidget {
   const addCoordinator({Key? key}) : super(key: key);
 
@@ -24,8 +19,8 @@ class addCoordinator extends StatefulWidget {
 }
 
 class _addCoordinatorState extends State<addCoordinator> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+  TextEditingController _coordiantorNameController = TextEditingController();
+  TextEditingController _coordiantorEmailController = TextEditingController();
   bool isLoading = false;
   var uuid = Uuid();
   var userId;
@@ -55,7 +50,7 @@ class _addCoordinatorState extends State<addCoordinator> {
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                    builder: (context) => dashboardScreen()));
                           },
                           icon: Icon(
                             Icons.arrow_back_ios_new_rounded,
@@ -94,7 +89,7 @@ class _addCoordinatorState extends State<addCoordinator> {
                         height: 10,
                       ),
                       const addCoordinator_components().textField(
-                          "Enter Your Name",
+                          "Enter  Name",
                           TextInputType.text,
                           _coordiantorNameController),
                       const SizedBox(
@@ -134,9 +129,11 @@ class _addCoordinatorState extends State<addCoordinator> {
 
                                 bool emailValid = RegExp(
                                         r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
-                                    .hasMatch(_emailController.text);
-                                print ("addCoordinatorEmail: $emailValid");                                if (_emailController.text.isNotEmpty &&
-                                    _nameController.text.isNotEmpty) {
+                                    .hasMatch(_coordiantorEmailController.text);
+                                print("addCoordinatorEmail: $emailValid");
+                                if (_coordiantorEmailController.text.isNotEmpty &&
+                                    _coordiantorNameController
+                                        .text.isNotEmpty) {
                                   if (emailValid) {
                                     addCoordinator();
                                   } else {
@@ -192,9 +189,9 @@ class _addCoordinatorState extends State<addCoordinator> {
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "id": userId,
-            "email": _emailController.text,
-            "userName": _nameController.text,
-            "role": "faculty",
+            "email": _coordiantorEmailController.text,
+            "userName": _coordiantorNameController.text,
+            "role": "studentCoordinator",
             "password": "Convergence@uvpce"
           }),
           headers: {
@@ -242,7 +239,6 @@ class _addCoordinatorState extends State<addCoordinator> {
         );
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-
         addStuCoordinator();
         // Fluttertoast.showToast(
         //     msg: "Faculty Added Successfully!!",
@@ -287,16 +283,15 @@ class _addCoordinatorState extends State<addCoordinator> {
     }
   }
 
-  Future addStuCoordinator() async{
-
+  Future addStuCoordinator() async {
     try {
-      String uri = "https://convergence.uvpce.ac.in/C2K22/addStudentCoordinator.php";
+      String uri =
+          "https://convergence.uvpce.ac.in/C2K22/addStudentCoordinator.php";
       var res = await http.post(Uri.parse(uri),
           body: json.encode({
             "id": userId,
-            "email": _emailController.text,
-            "userName": _nameController.text
-
+            "email": _coordiantorEmailController.text,
+            "userName": _coordiantorNameController.text
           }),
           headers: {
             "Accept": "application/json",
@@ -343,7 +338,6 @@ class _addCoordinatorState extends State<addCoordinator> {
         );
         setState(() => isLoading = false);
       } else if (res.statusCode == 200) {
-
         Fluttertoast.showToast(
             msg: "Student Coordinator Added Successfully!!",
             toastLength: Toast.LENGTH_SHORT,
@@ -355,10 +349,8 @@ class _addCoordinatorState extends State<addCoordinator> {
         print("Student Coordinator added Successfully!!");
         setState(() => isLoading = false);
 
-        _emailController.text = "";
-        _nameController.text = "";
-
-
+        _coordiantorEmailController.text = "";
+        _coordiantorNameController.text = "";
       } else {
         print("some issue");
         setState(() => isLoading = false);
@@ -376,6 +368,5 @@ class _addCoordinatorState extends State<addCoordinator> {
       );
       setState(() => isLoading = false);
     }
-
   }
 }

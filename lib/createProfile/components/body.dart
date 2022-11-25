@@ -242,25 +242,9 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              role != "faculty"
-                                  ? Wrap(children: [
-                                      const Text('    Enrollment No',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Color(0xFF1D2A3A))),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const createProfile_components()
-                                          .textField(
-                                              "Enter Enrollment No",
-                                              TextInputType.datetime,
-                                              _createProfileEr_noController,
-                                              "")
-                                    ])
-                                  : SizedBox(),
-                              role != "admin"
-                                  ? Wrap(children: [
+                              if (role == "user" ||
+                                  role == "campaigner" ||
+                                  role == "studentCoordinator") ...[
                                 const Text('    Enrollment No',
                                     style: TextStyle(
                                         fontSize: 16,
@@ -268,17 +252,15 @@ class _bodyState extends State<body> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                const createProfile_components()
-                                    .textField(
+                                const createProfile_components().textField(
                                     "Enter Enrollment No",
                                     TextInputType.datetime,
                                     _createProfileEr_noController,
-                                    "")
-                              ])
-                                  : SizedBox(),
-                              const SizedBox(
-                                height: 30,
-                              ),
+                                    ""),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                              ],
                               const Text('    Branch',
                                   style: TextStyle(
                                       fontSize: 16, color: Color(0xFF1D2A3A))),
@@ -293,7 +275,9 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              if (role != "faculty" || role != "admin") ...[
+                              if (role == "user" ||
+                                  role == "campaigner" ||
+                                  role == "studentCoordinator") ...[
                                 const Text('    Semester',
                                     style: TextStyle(
                                         fontSize: 16,

@@ -142,6 +142,8 @@ class _bodyState extends State<body> {
                           showCampaigner_components().text(element.name, FontWeight.bold, Color(0xFF1D2A3A), 20),
                           SizedBox(height: 5,),
                           showCampaigner_components().text(element.email, FontWeight.normal, Color(0xFF1D2A3A), 14),
+                          SizedBox(height: 5,),
+                          showCampaigner_components().text("Campaigner Token: " + element.campaigner_token, FontWeight.normal, Color(0xFF1D2A3A), 14)
                         ],
                       )
                     ),

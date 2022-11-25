@@ -282,7 +282,6 @@ class _bodyState extends State<body> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  role == "user" ?
                                   Align(
                                     alignment: Alignment.center,
                                     child: SizedBox(
@@ -300,10 +299,10 @@ class _bodyState extends State<body> {
                                           ),
                                           child: isLoading
                                               ? const CircularProgressIndicator(
-                                                  color: Colors.white,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                )
+                                            color: Colors.white,
+                                            backgroundColor:
+                                            Colors.transparent,
+                                          )
                                               : const Text('Book Event'),
                                           onPressed: () {
                                             setState(() => isLoading = true);
@@ -311,7 +310,7 @@ class _bodyState extends State<body> {
                                             bookEvent();
                                           }),
                                     ),
-                                  ) : SizedBox(),
+                                  ),
                                   SizedBox(
                                     height: 15,
                                   ),

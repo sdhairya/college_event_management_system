@@ -391,14 +391,6 @@ class _bodyState extends State<body> {
                       );
                     },
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.event_note_sharp),
-                    title: const Text('My Events'),
-                    onTap: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => events()));
-                    },
-                  )
                 ],
               )
             : SizedBox(),

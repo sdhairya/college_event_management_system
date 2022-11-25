@@ -26,6 +26,7 @@ class editProfile_components extends StatefulWidget {
     }
     return  TextFormField(
       keyboardType: type,
+      // initialValue: hint,
       controller: controller,
       validator: validator,
       decoration: InputDecoration(

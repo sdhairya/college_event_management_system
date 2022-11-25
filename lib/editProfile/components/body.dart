@@ -27,7 +27,20 @@ class body extends StatefulWidget {
 class _bodyState extends State<body> {
   File? _pickedimage;
   Uint8List webImage = Uint8List(8);
-  List<ProfileData> profilelist = [];
+  List<ProfileData> profilelist = [
+    ProfileData(
+        sid: "sid",
+        firstName: "firstName",
+        lastName: "lastName",
+        email: "email",
+        er_no: "er_no",
+        mobile: "mobile",
+        branch: "branch",
+        sem: "sem",
+        college: "college",
+        address: "address",
+        campToken: "campToken")
+  ];
 
   var stuid;
   var role;
@@ -38,9 +51,9 @@ class _bodyState extends State<body> {
 
   @override
   void initState() {
-    fetchData();
-    profilelist.clear();
+
     super.initState();
+    fetchData();
   }
 
   TextEditingController _editProfileFirstNameController =
@@ -59,13 +72,12 @@ class _bodyState extends State<body> {
 
   @override
   Widget build(BuildContext context) {
-    if (profilelist.isEmpty) {
-      EventParser().getProfileData().then((value) {
-        setState(() {
-          profilelist = value;
-        });
+    EventParser().getProfileData().then((value) {
+
+      setState(() {
+        profilelist = value;
       });
-    }
+    });
     _editProfileFirstNameController.text = profilelist[0].firstName;
     _editProfileLastNameController.text = profilelist[0].lastName;
     email = profilelist[0].email;
@@ -76,7 +88,6 @@ class _bodyState extends State<body> {
     _editProfileSemController.text = profilelist[0].sem;
     _editProfileCollegeController.text = profilelist[0].college;
     _editProfileAddressController.text = profilelist[0].address;
-
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -178,8 +189,9 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              role != "faculty" || role != "admin"
-                                  ? Wrap(children: [
+                              if (role == "user" ||
+                                  role == "campaigner" ||
+                                  role == "studentCoordinator") ...[
                                 const Text('    Enrollment No',
                                     style: TextStyle(
                                         fontSize: 16,
@@ -187,17 +199,30 @@ class _bodyState extends State<body> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                const editProfile_components()
-                                    .textField(
+                                const editProfile_components().textField(
                                     "Enter Enrollment No",
                                     TextInputType.datetime,
                                     _editProfileEr_noController,
-                                    "")
-                              ])
-                                  : SizedBox(),
-                              const SizedBox(
-                                height: 30,
-                              ),
+                                    ""),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                const Text('    Semester',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Color(0xFF1D2A3A))),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const editProfile_components().textField(
+                                    "Enter Semester",
+                                    TextInputType.datetime,
+                                    _editProfileSemController,
+                                    ""),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                              ],
                               const Text('    Branch',
                                   style: TextStyle(
                                       fontSize: 16, color: Color(0xFF1D2A3A))),
@@ -212,25 +237,11 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              role != "faculty" || role != "admin"
-                                  ? Wrap(children: [
-                                      const Text('    Semester',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Color(0xFF1D2A3A))),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const editProfile_components().textField(
-                                          "Enter Semester",
-                                          TextInputType.datetime,
-                                          _editProfileSemController,
-                                          "")
-                                    ])
-                                  : SizedBox(),
-                              const SizedBox(
-                                height: 30,
-                              ),
+                              if (role == "user" ||
+                                  role == "campaigner" ||
+                                  role == "studentCoordinator") ...[
+
+                              ],
                               const Text('    College Name',
                                   style: TextStyle(
                                       fontSize: 16, color: Color(0xFF1D2A3A))),
@@ -332,6 +343,7 @@ class _bodyState extends State<body> {
                                                             child: Text('Ok'))
                                                       ],
                                                     ));
+                                            setState(() => isLoading = false);
                                           }
                                         }
                                       : null,
@@ -494,7 +506,24 @@ class _bodyState extends State<body> {
         setState(() => isLoading = false);
       }
     } catch (e) {
-      print(e.toString());
+      showDialog(
+          context: context,
+          builder: (context) =>
+              AlertDialog(
+                title: Text('Error'),
+                content: Text(
+                    "All fields are required!!"),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(
+                            context)
+                            .pop();
+                      },
+                      child: Text('Ok'))
+                ],
+              ));
+      setState(() => isLoading = false);
     }
   }
 
