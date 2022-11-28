@@ -327,8 +327,8 @@ class _bodyState extends State<body> {
           leading: const Icon(Icons.home_filled),
           title: const Text('Home'),
           onTap: () {
-            const campaignerDashBoard();
-            Navigator.pop(context);
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => homepage()));
           },
         ),
         ListTile(

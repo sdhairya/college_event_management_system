@@ -24,10 +24,7 @@ class body extends StatefulWidget {
 }
 
 class _bodyState extends State<body> {
-  // void initState() {
-  //   super.initState();
-  //   getGstAmt();
-  // }
+
 
   bool isLoading = false;
   bool isChecked = false;
@@ -36,6 +33,12 @@ class _bodyState extends State<body> {
   int islunch = 0;
   var stuid;
   var type;
+
+  void initState() {
+    getGstAmt();
+
+    super.initState();
+  }
 
   // SingingCharacter? _certificate = null;
   var _certificate = 1;
@@ -327,6 +330,8 @@ class _bodyState extends State<body> {
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
         type = response["studentType"];
+
+
         // print(type);
         // print(response);
       } else {
@@ -355,6 +360,7 @@ class _bodyState extends State<body> {
     } else {
       print("Student Type Was Not Found!!");
     }
+
     // if (type == "gnu") {
     //
     // } else if (type == "nongnu") {

@@ -487,6 +487,8 @@ class _bodyState extends State<body> {
                         child: Text('Ok'))
                   ],
                 ));
+        setState(() => isLoading = false);
+
       } else if (res.statusCode == 442) {
         showDialog(
             context: context,
@@ -501,6 +503,8 @@ class _bodyState extends State<body> {
                         child: Text('Ok'))
                   ],
                 ));
+        setState(() => isLoading = false);
+
       } else if (res.statusCode == 200) {
         var response = json.decode(res.body);
         var flag = response["profileFlag"];
@@ -514,7 +518,7 @@ class _bodyState extends State<body> {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => campaignerDashBoard()));
             setState(() => isLoading = false);
-          } else if (userRole == "faculty") {
+          } else if (userRole == "faculty" || userRole == "studentCoordinator") {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => dashboardScreen()));
             setState(() => isLoading = false);

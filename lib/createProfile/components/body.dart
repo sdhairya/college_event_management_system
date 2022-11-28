@@ -589,7 +589,7 @@ class _bodyState extends State<body> {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => campaignerDashBoard()));
           setState(() => isLoading = false);
-        } else if (role == "faculty") {
+        } else if (role == "faculty" || role == "studentCoordinator") {
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => dashboardScreen()));
           setState(() => isLoading = false);

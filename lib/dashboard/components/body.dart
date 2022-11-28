@@ -305,7 +305,8 @@ class _bodyState extends State<body> {
           title: const Text('Home'),
           onTap: () {
             const dashboardScreen();
-            Navigator.pop(context);
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => homepage()));
           },
         ),
         ListTile(
@@ -414,6 +415,29 @@ class _bodyState extends State<body> {
                     onTap: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => addCoordinator()));
+                    },
+                  ),
+
+                  ListTile(
+                    leading: const Icon(Icons.people),
+                    title: const Text('Show Student Coordinators'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => showStudentCoordinator(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.campaign),
+                    title: const Text('Show Campaigners'),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => showCampaigner(),
+                        ),
+                      );
                     },
                   ),
                   ListTile(
