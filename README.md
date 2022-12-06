@@ -72,7 +72,7 @@ This is User Profile page where the user can see his profile and also can edit h
 ### **Edit Profile Page**
 This is dashboard page for all users except the campaigner, here the event departments are shown and when the user clicks on it all the events of that department is shown.
 
-[image](https://user-images.githubusercontent.com/76546289/205847499-48622526-ff1d-4285-ae3a-7b5636a02918.png)
+![image](https://user-images.githubusercontent.com/76546289/205850610-dcd5939a-17f5-42fa-874c-80d7f683fc16.png)
 
 ### **Events List Page**
 After clicking on event department, the user redirects to this event list page where the user can see all the events of that particular category along with its date and location.
