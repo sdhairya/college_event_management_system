@@ -496,9 +496,6 @@ class _bodyState extends State<body> {
                   ),
                 )
                 .toList()
-            // eventListData.map((e) {
-            //   return buildCard(e);
-            // }).toList(),
             ),
       ),
     );
@@ -526,12 +523,6 @@ class _bodyState extends State<body> {
                 height: double.maxFinite,
                 width: double.maxFinite,
               )
-                  // : Image.asset(
-                  //     logo.isEmpty ? 'assets/event1.png' : logo,
-                  //     fit: BoxFit.fill,
-                  //     height: double.maxFinite,
-                  //     width: double.maxFinite,
-                  //   ),
                   ),
             ),
             dashboard_components().text(

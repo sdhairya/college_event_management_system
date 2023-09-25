@@ -13,6 +13,8 @@ import '../../profileDetails/profileDetails.dart';
 import '../campaignerDashBoard.dart';
 import 'package:http/http.dart' as http;
 
+int index = 0;
+
 class body extends StatefulWidget {
   const body({Key? key}) : super(key: key);
 
@@ -63,6 +65,8 @@ class _bodyState extends State<body> {
       });
     }
     print(campaignerToken);
+    List<Color> colors=[Colors.blue,Colors.blueGrey];
+
 
     return MaterialApp(
       home: DefaultTabController(
@@ -89,8 +93,10 @@ class _bodyState extends State<body> {
             ),
           ),
           drawer: Drawer(
+            backgroundColor: Colors.cyan,
             child: SingleChildScrollView(
               child: Column(
+
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   buildMenuItems(context),
@@ -214,11 +220,15 @@ class _bodyState extends State<body> {
   }
 
   Widget buildList(ParticipantData element) {
+
+    List<Color> colors=[Colors.blue,Colors.green,Colors.red,Colors.amber, Colors.deepPurpleAccent,Colors.white];
+
+    Color c = (colors..shuffle()).first;
     return Container(
       padding: EdgeInsets.only(left: 0, top: 5, bottom: 5, right: 0),
       margin: EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Color(0xFFD9D9D9)),
+          borderRadius: BorderRadius.circular(20), color:c ),
       child: ListTile(
         title: ListTile(
             horizontalTitleGap: 15,
@@ -285,6 +295,8 @@ class _bodyState extends State<body> {
   }
 
   Widget buildVisited(VisitedCollege element) {
+
+
     return Container(
       padding: EdgeInsets.only(left: 0, top: 5, bottom: 5, right: 0),
       margin: EdgeInsets.only(bottom: 10),

@@ -154,7 +154,8 @@ class _bodyState extends State<body> {
                                                 height: double.maxFinite,
                                                 webImage,
                                                 fit: BoxFit.fill,
-                                              )))),
+                                              )))
+                                ),
                                 Visibility(
                                     child: Container(
                                       alignment: Alignment.center,

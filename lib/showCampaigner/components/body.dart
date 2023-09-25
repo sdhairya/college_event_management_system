@@ -147,7 +147,6 @@ class _bodyState extends State<body> {
                         ],
                       )
                     ),
-                trailing: Icon(Icons.arrow_circle_right,size: 30,color: Color(0xFF1D2A3A),)
 
             ),
 

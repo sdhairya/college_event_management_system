@@ -15,7 +15,8 @@ import 'createProfile_components.dart';
 import 'package:http/http.dart' as http;
 
 class body extends StatefulWidget {
-  const body({Key? key}) : super(key: key);
+  final String? role;
+  const body({Key? key, required this.role}) : super(key: key);
 
   @override
   State<body> createState() => _bodyState();
@@ -242,9 +243,10 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              if (role == "user" ||
-                                  role == "campaigner" ||
-                                  role == "studentCoordinator") ...[
+
+                              if (widget.role == "user" ||
+                                  widget.role == "campaigner" ||
+                                  widget.role == "studentCoordinator") ...[
                                 const Text('    Enrollment No',
                                     style: TextStyle(
                                         fontSize: 16,
@@ -275,9 +277,9 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              if (role == "user" ||
-                                  role == "campaigner" ||
-                                  role == "studentCoordinator") ...[
+                              if (widget.role == "user" ||
+                                  widget.role == "campaigner" ||
+                                  widget. role == "studentCoordinator") ...[
                                 const Text('    Semester',
                                     style: TextStyle(
                                         fontSize: 16,
@@ -322,7 +324,7 @@ class _bodyState extends State<body> {
                               const SizedBox(
                                 height: 30,
                               ),
-                              if (role == "user") ...[
+                              if (widget.role == "user") ...[
                                 const Text('    Campaigner Token',
                                     style: TextStyle(
                                         fontSize: 16,

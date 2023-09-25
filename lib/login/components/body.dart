@@ -511,8 +511,10 @@ class _bodyState extends State<body> {
         print(response);
 
         if (flag == "0") {
+          SharedPreferences studata = await SharedPreferences.getInstance();
+          String? r = studata.getString("role");
           Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => createProfile()));
+              MaterialPageRoute(builder: (context) => createProfile(role: r,)));
         } else if (flag == "1") {
           if (userRole == "campaigner") {
             Navigator.of(context).pushReplacement(

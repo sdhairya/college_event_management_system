@@ -52,8 +52,15 @@ class _bodyState extends State<body> {
   @override
   void initState() {
 
-    super.initState();
+
     fetchData();
+    EventParser().getProfileData().then((value) {
+
+      setState(() {
+        profilelist = value;
+      });
+    });
+    super.initState();
   }
 
   TextEditingController _editProfileFirstNameController =
@@ -72,12 +79,7 @@ class _bodyState extends State<body> {
 
   @override
   Widget build(BuildContext context) {
-    EventParser().getProfileData().then((value) {
 
-      setState(() {
-        profilelist = value;
-      });
-    });
     _editProfileFirstNameController.text = profilelist[0].firstName;
     _editProfileLastNameController.text = profilelist[0].lastName;
     email = profilelist[0].email;
